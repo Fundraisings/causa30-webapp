@@ -2,30 +2,19 @@
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Causa30 | Compra & Ayuda</title>
-
-    <meta name="description"
-        content="Compra productos con propósito durante 30 días. Cada compra genera una contribución directa de la empresa participante a una fundación de animales.">
-
+    <title>Causa30 | Campañas Promocionales con Propósito</title>
+    <meta name="description" content="Compra productos con propósito durante 30 días. Cada compra genera una contribución directa y fija de la empresa participante a una fundación de animales.">
     <meta name="theme-color" content="#1E5A41">
 
     <!-- Tipografías -->
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Estilos -->
-
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
@@ -33,170 +22,221 @@
     <!-- ================================================= -->
     <!-- HEADER -->
     <!-- ================================================= -->
-
     <header>
-
         <div class="logo">
-
             <span>Causa30</span>
-
+            <small class="brand-sub">by Altrua</small>
         </div>
-
         <nav>
-
             <a href="#promociones">Promociones</a>
-
             <a href="#fundacion">Fundación</a>
-
             <a href="#mascotas">Mascotas</a>
-
             <a href="#resultados">Resultados</a>
-
+            <a href="#empresas" class="nav-cta">Unir mi Empresa</a>
         </nav>
-
     </header>
-
-
 
     <!-- ================================================= -->
     <!-- HERO -->
     <!-- ================================================= -->
-
     <section class="hero">
-
         <div class="hero-overlay"></div>
-
         <div class="hero-content">
-
-            <span class="tag">
-
-                CAMPAÑA DEL MES
-
-            </span>
-
-            <h1>
-
-                Compra & Ayuda
-
-            </h1>
-
+            <span class="tag">CAMPAÑA ACTIVA — 30 DÍAS</span>
+            <h1>Compra & Ayuda</h1>
             <p>
-
-                Durante los próximos 30 días podrás comprar productos participantes y ayudar a una fundación de animales.
-
+                Durante los próximos 30 días, por cada producto participante que adquieras, la empresa dona un monto fijo directamente a la fundación. Transparente, directo y verificable.
             </p>
-
-            <a href="#promociones" class="btn">
-
-                Ver promociones
-
-            </a>
-
+            <div class="hero-actions">
+                <a href="#promociones" class="btn">Ver promociones</a>
+                <a href="#como-funciona" class="btn-secondary">¿Cómo funciona?</a>
+            </div>
         </div>
-
     </section>
-
-
 
     <!-- ================================================= -->
     <!-- TARJETAS -->
     <!-- ================================================= -->
+    <section id="promociones" class="cards-section container">
+        <h2 class="section-title">Productos Participantes</h2>
+        <p class="section-subtitle">Cada compra suma un impacto fijo registrado en tiempo real.</p>
+        
+        <div class="cards-grid">
+            <!-- Tarjeta Producto 1 -->
+            <article class="card">
+                <div class="card-badge">Aporta RD$50 por unidad</div>
+                <div class="card-image-placeholder">🛍️</div>
+                <div class="card-body">
+                    <h3>Plan Nutrición Canina Premium</h3>
+                    <p class="company-name">Patrocinado por: <strong>Marca Ejemplo</strong></p>
+                    <div class="impact-tag">Aporte directo: <strong>RD$ 50.00</strong></div>
+                    <p class="card-desc">Saco de alimento balanceado de 15kg para perros adultos.</p>
+                    <a href="#resultados" class="btn-card">Comprar en Tienda Aliada</a>
+                </div>
+            </article>
 
-    <section id="promociones" class="cards">
-
+            <!-- Tarjeta Producto 2 -->
+            <article class="card">
+                <div class="card-badge">Aporta RD$25 por unidad</div>
+                <div class="card-image-placeholder">🐱</div>
+                <div class="card-body">
+                    <h3>Kit Arenero Higiénico + Pala</h3>
+                    <p class="company-name">Patrocinado por: <strong>EcoPet RD</strong></p>
+                    <div class="impact-tag">Aporte directo: <strong>RD$ 25.00</strong></div>
+                    <p class="card-desc">Kit completo biodegradable para el cuidado e higiene de felinos.</p>
+                    <a href="#resultados" class="btn-card">Comprar en Tienda Aliada</a>
+                </div>
+            </article>
+        </div>
     </section>
-
-
 
     <!-- ================================================= -->
     <!-- CONTADOR -->
     <!-- ================================================= -->
-
     <section class="contador">
-
+        <div class="container contador-grid">
+            <div class="contador-item">
+                <span class="counter-number" id="units-counter">6,450</span>
+                <span class="counter-label">Unidades Vendidas</span>
+            </div>
+            <div class="contador-item">
+                <span class="counter-number">RD$ <span id="funds-counter">161,250</span></span>
+                <span class="counter-label">Generados para la Fundación</span>
+            </div>
+            <div class="contador-item">
+                <span class="counter-number" id="days-counter">12</span>
+                <span class="counter-label">Días Restantes de Campaña</span>
+            </div>
+        </div>
     </section>
-
-
 
     <!-- ================================================= -->
     <!-- FUNDACIÓN -->
     <!-- ================================================= -->
-
-    <section id="fundacion">
-
+    <section id="fundacion" class="container section-padding">
+        <div class="info-card">
+            <span class="badge-accent">Fundación Beneficiaria de este Mes</span>
+            <h2>Albergue Mascotas con Amor RD</h2>
+            <p>
+                Organización dedicada al rescate, esterilización, rehabilitación y adopción responsable de perros y gatos en situación de vulnerabilidad o abandono.
+            </p>
+            <p>
+                <strong>Meta de la campaña de 30 días:</strong> Financiar el tratamiento médico, vacunas y alimento mensual para más de 80 animales rescatados.
+            </p>
+        </div>
     </section>
-
-
 
     <!-- ================================================= -->
     <!-- MASCOTAS -->
     <!-- ================================================= -->
-
-    <section id="mascotas">
-
+    <section id="mascotas" class="container section-padding">
+        <h2 class="section-title">Historias que se Benefician</h2>
+        <div class="mascotas-grid">
+            <div class="pet-card">
+                <div class="pet-avatar">🐶</div>
+                <h3>Max</h3>
+                <p>En recuperación de traumatismo. Gracias a las ventas de esta campaña se financia su cirugía posterior.</p>
+            </div>
+            <div class="pet-card">
+                <div class="pet-avatar">🐱</div>
+                <h3>Luna</h3>
+                <p>Rescatada con su camada. Cuenta con alimento y atención veterinaria asegurada durante 30 días.</p>
+            </div>
+        </div>
     </section>
-
-
 
     <!-- ================================================= -->
     <!-- COMO FUNCIONA -->
     <!-- ================================================= -->
-
-    <section class="como-funciona">
-
+    <section id="como-funciona" class="como-funciona">
+        <div class="container">
+            <h2 class="section-title">¿Cómo Funciona Causa30?</h2>
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <h3>Compras el Producto</h3>
+                    <p>Adquieres un producto participante en los puntos de venta oficiales de la empresa aliada.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <h3>Donación Fija Directa</h3>
+                    <p>Por cada unidad vendida, la empresa aporta un monto fijo estipulado (ej. RD$25 o RD$50) directamente a la fundación.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <h3>Impacto Verificable</h3>
+                    <p>Causa30 audita y publica los resultados de la campaña durante los 30 días para total transparencia.</p>
+                </div>
+            </div>
+        </div>
     </section>
-
-
 
     <!-- ================================================= -->
     <!-- TRANSPARENCIA -->
     <!-- ================================================= -->
-
-    <section class="transparencia">
-
+    <section class="transparencia container section-padding">
+        <div class="transparencia-box">
+            <h2>Modelo de Donación Transparente</h2>
+            <p>
+                En Causa30 no manejamos ni custodiamos el dinero de las donaciones. La empresa participante realiza el pago del compromiso social <strong>directamente a la cuenta bancaria oficial de la fundación</strong>. Causa30 provee la plataforma tecnológica, la estrategia de marketing y la verificación de la campaña promocional.
+            </p>
+        </div>
     </section>
-
-
 
     <!-- ================================================= -->
     <!-- RESULTADOS -->
     <!-- ================================================= -->
-
-    <section id="resultados">
-
+    <section id="resultados" class="container section-padding">
+        <h2 class="section-title">Resultados de la Campaña Activa</h2>
+        <div class="results-board">
+            <div class="progress-bar-outer">
+                <div class="progress-bar-inner" style="width: 65%;">65% de la Meta</div>
+            </div>
+            <p class="results-text">Meta: <strong>10,000 unidades vendidas</strong> | Actual: <strong>6,450 unidades</strong></p>
+        </div>
     </section>
-
-
 
     <!-- ================================================= -->
     <!-- PROPONER PRODUCTOS -->
     <!-- ================================================= -->
-
-    <section class="ideas">
-
+    <section class="ideas container section-padding">
+        <div class="ideas-card">
+            <h2>¿Qué producto te gustaría ver en la próxima Causa30?</h2>
+            <p>Queremos conectar marcas que consumes a diario con las causas que más te importan.</p>
+            <form class="ideas-form" onsubmit="event.preventDefault(); alert('¡Gracias por tu recomendación!');">
+                <input type="text" placeholder="Ej: Marca de café, alimento, accesorios..." required>
+                <button type="submit" class="btn">Enviar Propuesta</button>
+            </form>
+        </div>
     </section>
-
-
 
     <!-- ================================================= -->
     <!-- EMPRESAS -->
     <!-- ================================================= -->
-
-    <section class="empresas">
-
+    <section id="empresas" class="empresas">
+        <div class="container">
+            <h2>¿Eres una Empresa o Marca?</h2>
+            <p>
+                Causa30 es la mejor vía para lanzar campañas promocionales de 30 días con alto impacto comercial, fortaleciendo tu reputación de marca e impulsando tus ventas con propósito.
+            </p>
+            <a href="mailto:contacto@altrua.one" class="btn-dark">Patrocinar una Campaña</a>
+        </div>
     </section>
-
-
 
     <!-- ================================================= -->
     <!-- FOOTER -->
     <!-- ================================================= -->
-
     <footer>
-
+        <div class="container footer-content">
+            <p>&copy; 2026 Causa30 — Una iniciativa de <strong>Altrua Global</strong>. Soluciones que financian soluciones.</p>
+            <div class="footer-links">
+                <a href="#como-funciona">Transparencia</a>
+                <a href="#empresas">Empresas</a>
+            </div>
+        </div>
     </footer>
 
-<script src="app.js"></script>
+    <script src="app.js"></script>
 
 </body>
 
