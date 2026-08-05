@@ -4,9 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Causa30 | Campañas Promocionales con Propósito</title>
-  <meta name="description" content="Plataforma de campañas solidarias de 30 días patrocinadas por empresas.">
   
-  <!-- Tipografía Montserrat/Inter estilo Pray Theme -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
@@ -15,7 +13,7 @@
 </head>
 <body>
 
-  <!-- HEADER TRANSPARENTE CON BOTÓN ESMERALDA -->
+  <!-- HEADER -->
   <header class="main-header">
     <div class="header-container">
       <a href="#" class="logo">
@@ -24,147 +22,95 @@
       </a>
       <nav class="nav-links">
         <a href="#inicio">INICIO</a>
+        <a href="#swipe-section">EXPLORAR</a>
         <a href="#como-funciona">CÓMO FUNCIONA</a>
-        <a href="#fundaciones">FUNDACIÓN</a>
-        <a href="#promociones">PROMOCIONES</a>
         <a href="#contacto">CONTACTO</a>
       </nav>
       <a href="#empresas" class="btn-header">UNIR MI EMPRESA</a>
     </div>
   </header>
 
-  <!-- HERO A PANTALLA COMPLETA CON FOTO DE FONDO -->
+  <!-- HERO SECTION -->
   <section id="inicio" class="hero-pray">
     <div class="hero-overlay-dark"></div>
     <div class="hero-inner">
       <span class="hero-tag">CAMPAÑAS DE 30 DÍAS POR EMPRESAS</span>
       <h1 class="hero-title">COMPRA & AYUDA</h1>
       <p class="hero-subtitle">CADA VENTA GENERA UNA APORTACIÓN DIRECTA Y VERIFICABLE A LA FUNDACIÓN</p>
-      <a href="#promociones" class="btn-hero-emerald">VER CAMPANAS ACTIVAS</a>
-    </div>
-
-    <!-- TRES BLOQUES SOBREPUESTOS VERDE ESMERALDA -->
-    <div class="hero-cards-wrapper">
-      <div class="emerald-card">
-        <div class="card-num">01.</div>
-        <h3>COMPRA CON PROPÓSITO</h3>
-        <p>Eliges productos participantes de las marcas aliadas durante los 30 días de la campaña activa.</p>
-        <a href="#promociones" class="card-link">SABER MÁS &rarr;</a>
-      </div>
-      <div class="emerald-card">
-        <div class="card-num">02.</div>
-        <h3>DONACIÓN DIRECTA</h3>
-        <p>La empresa dona un monto fijo directo por unidad a la cuenta de la fundación sin intermediarios.</p>
-        <a href="#como-funciona" class="card-link">SABER MÁS &rarr;</a>
-      </div>
-      <div class="emerald-card">
-        <div class="card-num">03.</div>
-        <h3>IMPACTO VERIFICABLE</h3>
-        <p>Auditamos y mostramos en tiempo real las unidades vendidas y el fondo acumulado.</p>
-        <a href="#resultados" class="card-link">SABER MÁS &rarr;</a>
-      </div>
+      <a href="#swipe-section" class="btn-hero-emerald">DESCUBRIR PRODUCTOS</a>
     </div>
   </section>
 
-  <!-- CONTADORES DE IMPACTO E ICONOS -->
-  <section class="stats-section">
-    <div class="stats-container">
-      <div class="stat-box">
-        <div class="stat-icon">🏥</div>
-        <div class="stat-number" id="units-counter">6,450</div>
-        <div class="stat-label">UNIDADES VENDIDAS</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-icon">🐶</div>
-        <div class="stat-number">RD$ <span id="funds-counter">161,250</span></div>
-        <div class="stat-label">RECAUDADO DIRECTO</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-icon">🤝</div>
-        <div class="stat-number">100%</div>
-        <div class="stat-label">TRANSPARENCIA B2B</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-icon">📅</div>
-        <div class="stat-number" id="days-counter">12</div>
-        <div class="stat-label">DÍAS RESTANTES</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECCIÓN DE PRODUCTOS / CAUSAS -->
-  <section id="promociones" class="causes-section">
-    <div class="causes-container">
-      <div class="section-header-left">
-        <span class="sub-heading">CAMPAÑA ACTIVA ESTE MES</span>
+  <!-- SWIPE CARDS SECTION (ESTILO MÓVIL PINTEREST) -->
+  <section id="swipe-section" class="swipe-section">
+    <div class="swipe-container">
+      <div class="section-header-center">
+        <span class="sub-heading">DESLIZA O USA LOS BOTONES</span>
         <h2>PRODUCTOS PATROCINADOS</h2>
       </div>
 
-      <div class="causes-grid">
-        <!-- Tarjeta 1 -->
-        <article class="cause-card">
-          <div class="cause-img-box">
-            <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=600&q=80" alt="Alimento Canino Premium">
-            <span class="cause-badge">APORTA RD$50 / UNIDAD</span>
+      <!-- MOCKUP MÓVIL INTERACTIVO -->
+      <div class="mobile-frame">
+        <div class="mobile-screen">
+          <div class="mobile-header-bar">
+            <span class="pill-active">CAMPAÑA ACTIVA 30 DÍAS</span>
           </div>
-          <div class="cause-body">
-            <h4>ALIMENTO CANINO PREMIUM 15KG</h4>
-            <p>Por cada saco vendido durante los 30 días, la marca aporta RD$50 directos a la fundación.</p>
-            <div class="cause-progress">
-              <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 65%;"></div></div>
-              <div class="progress-meta">
-                <span>RECAUDADO: <strong>RD$ 90,000</strong></span>
-                <span>META: <strong>RD$ 150,000</strong></span>
-              </div>
-            </div>
-            <a href="#empresas" class="btn-cause-emerald">COMPRAR EN TIENDA ALIADA</a>
-          </div>
-        </article>
 
-        <!-- Tarjeta 2 -->
-        <article class="cause-card">
-          <div class="cause-img-box">
-            <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&q=80" alt="Kit Higiénico Felino">
-            <span class="cause-badge">APORTA RD$25 / UNIDAD</span>
-          </div>
-          <div class="cause-body">
-            <h4>KIT HIGIÉNICO FELINO BIODEGRADABLE</h4>
-            <p>Producto ecológico patrocinado. Donación directa de RD$25 por cada kit comprado.</p>
-            <div class="cause-progress">
-              <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 80%;"></div></div>
-              <div class="progress-meta">
-                <span>RECAUDADO: <strong>RD$ 71,250</strong></span>
-                <span>META: <strong>RD$ 90,000</strong></span>
-              </div>
-            </div>
-            <a href="#empresas" class="btn-cause-emerald">COMPRAR EN TIENDA ALIADA</a>
-          </div>
-        </article>
+          <!-- CONTENEDOR DE TARJETAS EN PILA (STACK) -->
+          <div class="card-stack" id="cardStack">
 
-        <!-- Tarjeta 3 -->
-        <article class="cause-card">
-          <div class="cause-img-box">
-            <img src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=600&q=80" alt="Atención Veterinaria">
-            <span class="cause-badge">FUNDACIÓN BENEFICIARIA</span>
-          </div>
-          <div class="cause-body">
-            <h4>ALBERGUE MASCOTAS CON AMOR RD</h4>
-            <p>Entidad receptora del 100% de los fondos generados en esta campaña promocional.</p>
-            <div class="cause-progress">
-              <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 70%;"></div></div>
-              <div class="progress-meta">
-                <span>CAMPAÑA EN CURSO</span>
-                <span>DÍAS: <strong>12 DE 30</strong></span>
+            <!-- Tarjeta 1 -->
+            <div class="swipe-card" data-index="0">
+              <div class="card-badge">APORTA RD$50 / UNIDAD</div>
+              <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=600&q=80" alt="Alimento Canino Premium">
+              </div>
+              <div class="card-info">
+                <h3>ALIMENTO CANINO PREMIUM 15KG</h3>
+                <p class="sponsor">Patrocinado por: <strong>Purina RD</strong></p>
+                <div class="impact-info">Donación directa por unidad: <strong>RD$ 50.00</strong></div>
               </div>
             </div>
-            <a href="#empresas" class="btn-cause-emerald">CONOCER LA FUNDACIÓN</a>
+
+            <!-- Tarjeta 2 -->
+            <div class="swipe-card" data-index="1">
+              <div class="card-badge">APORTA RD$25 / UNIDAD</div>
+              <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&q=80" alt="Kit Higiénico Felino">
+              </div>
+              <div class="card-info">
+                <h3>KIT HIGIÉNICO FELINO BIODEGRADABLE</h3>
+                <p class="sponsor">Patrocinado por: <strong>EcoPet RD</strong></p>
+                <div class="impact-info">Donación directa por unidad: <strong>RD$ 25.00</strong></div>
+              </div>
+            </div>
+
+            <!-- Tarjeta 3 -->
+            <div class="swipe-card" data-index="2">
+              <div class="card-badge">APORTA RD$40 / UNIDAD</div>
+              <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=600&q=80" alt="Cama Ortopédica para Mascotas">
+              </div>
+              <div class="card-info">
+                <h3>CAMA ORTOPÉDICA REFORZADA</h3>
+                <p class="sponsor">Patrocinado por: <strong>PetComfort</strong></p>
+                <div class="impact-info">Donación directa por unidad: <strong>RD$ 40.00</strong></div>
+              </div>
+            </div>
+
           </div>
-        </article>
+
+          <!-- CONTROLES MÓVILES ABAJO (BOTONES X Y CHECK) -->
+          <div class="mobile-actions">
+            <button class="action-btn btn-reject" id="btnReject" title="Pasar">✕</button>
+            <button class="action-btn btn-accept" id="btnAccept" title="Ver / Comprar">✓</button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER ESTILO INSTITUCIONAL -->
+  <!-- FOOTER -->
   <footer id="empresas" class="pray-footer">
     <div class="footer-container">
       <h3>¿ERES UNA EMPRESA O MARCA?</h3>
