@@ -1,6 +1,109 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Causa30 — Campañas Solidarias de 30 Días | Altrua</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navegación Principal -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="#" class="brand-logo">
+        <span class="brand-name">Causa<span class="highlight">30</span></span>
+        <span class="brand-badge">by Altrua</span>
+      </a>
+      <nav class="nav-menu">
+        <a href="#manifiesto" class="nav-link">Manifiesto</a>
+        <a href="#modelo" class="nav-link">Modelo</a>
+        <a href="#campanas" class="nav-link">Campañas</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="#contacto" class="btn btn-secondary">Empresas</a>
+        <a href="#explorar" class="btn btn-primary">Ver Campaña Activa</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="tag-pill">
+          <span class="dot"></span> Campañas Promocionales con Propósito
+        </div>
+        <h1 class="hero-title">
+          Donde las ventas impulsan <span class="gradient-text">impacto real.</span>
+        </h1>
+        <p class="hero-description">
+          Conectamos empresas, fundaciones y consumidores en campañas de 30 días donde cada unidad vendida genera una contribución transparente, directa y verificable.
+        </p>
+        <div class="hero-buttons">
+          <a href="#contacto" class="btn btn-primary btn-lg">Lanzar una Campaña</a>
+          <a href="#manifiesto" class="btn btn-outline btn-lg">Conocer el Manifiesto</a>
+        </div>
+        
+        <!-- Métricas Rápidas -->
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number" id="days-counter">30</span>
+            <span class="stat-label">Días por Campaña</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Donación Directa</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">1:1</span>
+            <span class="stat-label">Impacto Verificable</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Card Interactivas -->
+      <div class="hero-visual">
+        <div class="card-glass shadow-lg">
+          <div class="card-badge-status">
+            <span class="pulse-dot"></span> EN VIVO — CAMPAÑA #01
+          </div>
+          <div class="card-header-campaign">
+            <h3>Alimentando Huellas</h3>
+            <p>Empresa Patrocinadora &bull; Fundación Beneficiaria</p>
+          </div>
+          <div class="card-impact-box">
+            <div class="impact-info">
+              <span class="impact-amount">RD$ 25.00</span>
+              <span class="impact-sub">Aportado por cada unidad vendida</span>
+            </div>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 65%;"></div>
+            </div>
+            <div class="progress-labels">
+              <span>Meta: 10,000 Unidades</span>
+              <span><strong>6,500</strong> alcanzadas</span>
+            </div>
+          </div>
+          <div class="card-footer-campaign">
+            <p class="time-left">⏱️ Quedan <strong>12 días</strong> de campaña</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html><!DOCTYPE html>
+<html lang="es">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
