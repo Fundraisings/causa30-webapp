@@ -1,25 +1,35 @@
 // ==========================================================================
-// Causa30 v0.1 — Lógica Base e Interactividad
+// Causa30 — Lógica e Interactividad
 // ==========================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('🚀 Causa30 v0.1 inicializado correctamente.');
+    console.log('✅ Causa30 cargado con éxito.');
 
-  // Animación simple para el contador de la hero section
-  const daysCounter = document.getElementById('days-counter');
-  
-  if (daysCounter) {
-    let count = 0;
-    const target = 30;
-    const duration = 1000; // 1 segundo
-    const intervalTime = duration / target;
+    // Animación de contadores al cargar la página
+    const unitsElement = document.getElementById('units-counter');
+    const fundsElement = document.getElementById('funds-counter');
 
-    const timer = setInterval(() => {
-      count++;
-      daysCounter.textContent = count;
-      if (count >= target) {
-        clearInterval(timer);
-      }
-    }, intervalTime);
-  }
+    if (unitsElement && fundsElement) {
+        let currentUnits = 0;
+        const targetUnits = 6450;
+        const duration = 1500; // 1.5 segundos
+        const steps = 50;
+        const increment = targetUnits / steps;
+        const stepTime = duration / steps;
+
+        const timer = setInterval(() => {
+            currentUnits += increment;
+            if (currentUnits >= targetUnits) {
+                currentUnits = targetUnits;
+                clearInterval(timer);
+            }
+            
+            // Actualizar unidades
+            unitsElement.textContent = Math.floor(currentUnits).toLocaleString('es-DO');
+            
+            // Calculamos fondos en base a un promedio de RD$25 por unidad
+            const currentFunds = Math.floor(currentUnits * 25);
+            fundsElement.textContent = currentFunds.toLocaleString('es-DO');
+        }, stepTime);
+    }
 });
