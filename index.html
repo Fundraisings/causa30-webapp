@@ -1,125 +1,902 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Causa30 | Campañas Promocionales con Propósito</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Causa30 — Compra & Ayuda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --forest-950:#081912;
+    --forest-900:#0c2318;
+    --forest-800:#12331f;
+    --forest-600:#1f6f47;
+    --forest-500:#2c8a5a;
+    --mint-300:#8fe3b0;
+    --mint-200:#c3f3d6;
+    --coral-500:#ff7a59;
+    --coral-400:#ffa07a;
+    --cream:#faf7f0;
+    --cream-alt:#f2ede2;
+    --paper:#ffffff;
+    --ink:#0f1f16;
+    --ink-soft:#4b5a51;
+    --line:#e4ddce;
+    --shadow-soft: 0 20px 60px -20px rgba(8,25,18,0.35);
+    --radius-lg: 28px;
+    --radius-md: 18px;
+    --ease: cubic-bezier(.16,.84,.44,1);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{max-width:100%; display:block;}
+  .display{font-family:'Outfit', sans-serif;}
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit; cursor:pointer; border:none; background:none;}
+  ::selection{background:var(--mint-300); color:var(--forest-950);}
+
+  .wrap{max-width:1320px; margin:0 auto; padding:0 40px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{opacity:0; transform:translateY(28px); transition:opacity .8s var(--ease), transform .8s var(--ease);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    padding:22px 0;
+    transition:background .4s var(--ease), padding .4s var(--ease), backdrop-filter .4s var(--ease), border-color .4s var(--ease);
+    border-bottom:1px solid transparent;
+  }
+  header.scrolled{
+    background:rgba(250,247,240,0.72);
+    backdrop-filter:blur(16px) saturate(160%);
+    -webkit-backdrop-filter:blur(16px) saturate(160%);
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+  }
+  nav{display:flex; align-items:center; justify-content:space-between;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Outfit',sans-serif; font-weight:700; font-size:20px; letter-spacing:-0.01em; color:var(--cream);}
+  header.scrolled .logo{color:var(--ink);}
+  .logo .mark{
+    width:30px; height:30px; border-radius:50%;
+    background:conic-gradient(from 200deg, var(--mint-300), var(--forest-500) 60%, var(--mint-300));
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:inset 0 0 0 2px rgba(255,255,255,.25);
+  }
+  .logo .mark::after{content:''; width:8px; height:8px; border-radius:50%; background:var(--forest-950);}
+  .logo b{color:var(--mint-300); font-weight:800;}
+
+  .nav-links{display:flex; align-items:center; gap:36px; list-style:none;}
+  .nav-links a{
+    font-size:14.5px; font-weight:500; color:rgba(250,247,240,0.82);
+    position:relative; padding-bottom:4px; transition:color .3s;
+  }
+  header.scrolled .nav-links a{color:var(--ink-soft);}
+  .nav-links a:hover{color:var(--mint-300);}
+  header.scrolled .nav-links a:hover{color:var(--forest-600);}
+  .nav-links a.active::after{
+    content:''; position:absolute; left:50%; bottom:-2px; transform:translateX(-50%);
+    width:5px; height:5px; border-radius:50%; background:var(--mint-300);
+  }
+  .btn-login{
+    padding:10px 20px; border-radius:100px;
+    border:1px solid rgba(250,247,240,0.35); color:var(--cream);
+    font-size:14px; font-weight:500; display:flex; align-items:center; gap:8px;
+    transition:all .3s;
+  }
+  header.scrolled .btn-login{border-color:var(--line); color:var(--ink);}
+  .btn-login:hover{background:rgba(250,247,240,0.12); border-color:var(--mint-300);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; min-height:100vh; display:flex; align-items:center;
+    background:var(--forest-950);
+    overflow:hidden;
+    padding-top:90px;
+  }
+  .hero-bg{
+    position:absolute; inset:0;
+    background-image:url('https://picsum.photos/seed/causa30hope/1800/1200');
+    background-size:cover; background-position:center 30%;
+    filter:sepia(.35) saturate(1.3) hue-rotate(60deg) brightness(.55) contrast(1.05);
+    transform:scale(1.08);
+  }
+  .hero-bg::after{
+    content:'';
+  }
+  .hero-scrim{
+    position:absolute; inset:0;
+    background:
+      radial-gradient(60% 70% at 78% 45%, rgba(8,25,18,0.15), rgba(8,25,18,0.65) 60%),
+      linear-gradient(100deg, rgba(6,18,13,0.96) 0%, rgba(6,18,13,0.86) 34%, rgba(6,18,13,0.35) 62%, rgba(6,18,13,0.55) 100%);
+  }
+  .hero-inner{
+    position:relative; z-index:2; width:100%;
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:40px; align-items:center;
+    padding:60px 0 40px;
+  }
+
+  /* left: card stack */
+  .stack{position:relative; height:640px;}
+  .pcard{
+    position:absolute; top:50%; border-radius:24px; overflow:hidden;
+    box-shadow: var(--shadow-soft);
+    background:var(--forest-800);
+    transition: transform .6s var(--ease), opacity .6s var(--ease), filter .6s var(--ease);
+    border:1px solid rgba(255,255,255,0.08);
+  }
+  .pcard .photo{
+    height:62%; width:100%; object-fit:cover; filter:sepia(.25) saturate(1.2) hue-rotate(55deg) brightness(.85);
+  }
+  .pcard .info{padding:20px 22px 22px; background:linear-gradient(180deg, rgba(8,25,18,0.4), rgba(8,25,18,0.92));}
+  .pcard .badge{
+    position:absolute; top:16px; left:16px; z-index:3;
+    background:var(--mint-300); color:var(--forest-950); font-weight:700; font-size:11px;
+    letter-spacing:.06em; padding:6px 12px; border-radius:100px; display:flex; align-items:center; gap:5px;
+  }
+  .pcard .heart{position:absolute; top:16px; right:16px; z-index:3; width:34px; height:34px; border-radius:50%;
+    background:rgba(255,255,255,0.15); backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center; color:#fff; font-size:15px;}
+  .pcard .brand{font-size:11px; letter-spacing:.1em; color:var(--mint-200); font-weight:700; margin-bottom:4px;}
+  .pcard .pname{font-family:'Outfit',sans-serif; font-weight:600; color:#fff; font-size:19px; line-height:1.2; margin-bottom:4px;}
+  .pcard .desc{font-size:12.5px; color:rgba(255,255,255,0.6); margin-bottom:10px;}
+  .pcard .price{font-family:'Outfit',sans-serif; font-weight:700; font-size:22px; color:#fff; margin-bottom:12px;}
+  .pcard .donate{
+    display:flex; align-items:center; gap:8px; font-size:13px; color:var(--mint-200);
+    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:9px 14px; margin-bottom:10px;
+  }
+  .pcard .cta{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    background:linear-gradient(120deg, var(--mint-300), var(--forest-500));
+    color:var(--forest-950); font-weight:700; font-size:14px; padding:13px; border-radius:14px;
+  }
+
+  .pcard.p0{ width:300px; height:520px; left:0; z-index:5; transform:translateY(-50%) rotate(-2deg); }
+  .pcard.p1{ width:230px; height:400px; left:260px; z-index:4; transform:translateY(-58%) rotate(2deg); opacity:.92; filter:brightness(.8);}
+  .pcard.p2{ width:200px; height:340px; left:440px; z-index:3; transform:translateY(-42%) rotate(4deg); opacity:.75; filter:brightness(.65);}
+  .pcard.p1 .info, .pcard.p2 .info{padding:14px 16px 16px;}
+  .pcard.p1 .pname{font-size:15px;} .pcard.p2 .pname{font-size:14px;}
+  .pcard.p1 .cta, .pcard.p2 .cta{padding:9px; font-size:12px;}
+
+  .pcard.p0:hover{transform:translateY(-53%) rotate(-1deg) scale(1.015);}
+
+  .stack-nav{
+    position:absolute; bottom:-6px; left:0; display:flex; align-items:center; gap:18px; z-index:6;
+  }
+  .stack-nav button{
+    width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.25);
+    color:#fff; display:flex; align-items:center; justify-content:center; transition:all .3s;
+  }
+  .stack-nav button:hover{background:rgba(255,255,255,0.12); border-color:var(--mint-300);}
+  .dots{display:flex; gap:6px;}
+  .dots span{width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.35);}
+  .dots span.on{background:var(--mint-300); width:16px; border-radius:4px; transition:all .3s;}
+
+  /* right: hero text */
+  .hero-copy{position:relative; z-index:2; padding-left:10px;}
+  .eyebrow{
+    font-size:13px; font-weight:700; letter-spacing:.16em; color:var(--mint-300);
+    display:flex; align-items:center; gap:12px; margin-bottom:22px;
+  }
+  .eyebrow::before{content:''; width:28px; height:1px; background:var(--mint-300);}
+  h1.hero-title{
+    font-family:'Outfit',sans-serif; font-weight:800; letter-spacing:-0.02em;
+    font-size:clamp(48px, 6vw, 76px); line-height:0.98; color:#fff; margin-bottom:22px;
+  }
+  h1.hero-title .amp{color:var(--mint-300); font-weight:600; display:block;}
+  .hero-sub{
+    font-size:17px; line-height:1.55; color:rgba(255,255,255,0.72); max-width:400px; margin-bottom:34px;
+  }
+  .hero-sub b{color:var(--mint-200); font-weight:600;}
+  .hero-actions{display:flex; align-items:center; gap:28px; flex-wrap:wrap;}
+
+  .counter{display:flex; align-items:center; gap:16px;}
+  .ring{position:relative; width:96px; height:96px;}
+  .ring svg{transform:rotate(-90deg);}
+  .ring-track{fill:none; stroke:rgba(255,255,255,0.12); stroke-width:6;}
+  .ring-fill{fill:none; stroke:var(--mint-300); stroke-width:6; stroke-linecap:round; stroke-dasharray:264; stroke-dashoffset:264; transition:stroke-dashoffset 1.4s var(--ease);}
+  .ring-num{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff;}
+  .ring-num b{font-family:'Outfit',sans-serif; font-size:26px; font-weight:800; line-height:1;}
+  .ring-label{font-size:11px; color:rgba(255,255,255,0.6); line-height:1.3;}
+  .ring-label b{color:rgba(255,255,255,0.85); display:block; font-weight:700; letter-spacing:.04em; font-size:11px;}
+
+  .btn-primary{
+    display:inline-flex; align-items:center; gap:10px;
+    background:linear-gradient(120deg, var(--coral-500), var(--coral-400));
+    color:#fff; font-weight:700; font-size:15px; padding:17px 28px; border-radius:100px;
+    box-shadow:0 16px 34px -12px rgba(255,122,89,0.55);
+    transition:transform .35s var(--ease), box-shadow .35s var(--ease);
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 20px 40px -12px rgba(255,122,89,0.7);}
+
+  /* trust bar */
+  .trust{
+    position:relative; z-index:3; margin-top:56px;
+    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12);
+    backdrop-filter:blur(10px); border-radius:20px;
+    display:grid; grid-template-columns:repeat(4,1fr);
+  }
+  .trust > div{padding:22px 26px; display:flex; align-items:center; gap:14px; border-right:1px solid rgba(255,255,255,0.1);}
+  .trust > div:last-child{border-right:none;}
+  .trust .ic{width:38px; height:38px; border-radius:11px; background:rgba(143,227,176,0.15); color:var(--mint-300); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .trust b{display:block; font-size:13.5px; color:#fff; font-weight:600;}
+  .trust span{font-size:12px; color:rgba(255,255,255,0.55);}
+
+  .scroll-cue{
+    position:absolute; bottom:28px; left:50%; transform:translateX(-50%); z-index:3;
+    display:flex; flex-direction:column; align-items:center; gap:6px;
+    font-size:12px; color:var(--mint-200); letter-spacing:.04em; opacity:.8;
+  }
+  .scroll-cue .arrow{animation:bob 2s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
+
+  /* ---------- SECTION shell ---------- */
+  section{padding:120px 0;}
+  .sec-head{max-width:640px; margin-bottom:64px;}
+  .sec-eyebrow{font-size:12.5px; font-weight:700; letter-spacing:.14em; color:var(--forest-600); display:flex; align-items:center; gap:10px; margin-bottom:16px;}
+  .sec-eyebrow::before{content:''; width:22px; height:1px; background:var(--forest-600);}
+  .sec-title{font-family:'Outfit',sans-serif; font-weight:700; letter-spacing:-0.02em; font-size:clamp(32px,4vw,46px); line-height:1.06; margin-bottom:16px;}
+  .sec-sub{font-size:16.5px; color:var(--ink-soft); line-height:1.6;}
+
+  /* ---------- CAMPAIGNS ---------- */
+  .campaigns{background:var(--paper);}
+  .camp-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .camp-card{
+    background:var(--cream); border-radius:var(--radius-md); overflow:hidden; border:1px solid var(--line);
+    transition:transform .45s var(--ease), box-shadow .45s var(--ease);
+  }
+  .camp-card:hover{transform:translateY(-6px); box-shadow:var(--shadow-soft);}
+  .camp-photo{height:200px; width:100%; object-fit:cover; filter:sepia(.3) saturate(1.15) hue-rotate(55deg) brightness(.92);}
+  .camp-body{padding:22px 22px 24px;}
+  .camp-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;}
+  .camp-brand{font-size:11px; font-weight:700; letter-spacing:.08em; color:var(--forest-600); text-transform:uppercase;}
+  .camp-time{font-size:11.5px; color:var(--coral-500); font-weight:600; background:rgba(255,122,89,0.1); padding:4px 10px; border-radius:100px;}
+  .camp-name{font-family:'Outfit',sans-serif; font-weight:600; font-size:19px; margin-bottom:14px; line-height:1.25;}
+  .camp-row{display:flex; justify-content:space-between; align-items:center; padding-top:14px; border-top:1px dashed var(--line);}
+  .camp-price{font-family:'Outfit',sans-serif; font-weight:700; font-size:18px;}
+  .camp-give{font-size:12.5px; color:var(--forest-600); font-weight:600;}
+  .camp-cta{
+    margin-top:16px; width:100%; padding:13px; border-radius:12px; background:var(--forest-900); color:#fff;
+    font-weight:600; font-size:13.5px; display:flex; align-items:center; justify-content:center; gap:8px;
+    transition:background .3s;
+  }
+  .camp-cta:hover{background:var(--forest-600);}
+
+  /* ---------- HOW IT WORKS ---------- */
+  .how{background:var(--forest-950); color:#fff; position:relative; overflow:hidden;}
+  .how::before{
+    content:''; position:absolute; top:-20%; right:-10%; width:600px; height:600px; border-radius:50%;
+    background:radial-gradient(circle, rgba(143,227,176,0.12), transparent 70%);
+  }
+  .how .sec-eyebrow, .how .sec-eyebrow::before{color:var(--mint-300); background:var(--mint-300);}
+  .how .sec-sub{color:rgba(255,255,255,0.6);}
+  .flow{display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative; z-index:2; margin-top:20px;}
+  .flow-step{position:relative; padding:36px 26px; text-align:left;}
+  .flow-step:not(:last-child)::after{
+    content:'→'; position:absolute; right:-6px; top:40px; color:var(--mint-300); font-size:22px; opacity:.6;
+  }
+  .flow-num{font-family:'Outfit',sans-serif; font-size:13px; color:var(--mint-300); font-weight:700; letter-spacing:.1em; margin-bottom:18px;}
+  .flow-ic{width:52px; height:52px; border-radius:14px; background:rgba(143,227,176,0.1); border:1px solid rgba(143,227,176,0.25); display:flex; align-items:center; justify-content:center; color:var(--mint-300); margin-bottom:20px;}
+  .flow-title{font-family:'Outfit',sans-serif; font-weight:600; font-size:20px; margin-bottom:10px;}
+  .flow-desc{font-size:14px; color:rgba(255,255,255,0.55); line-height:1.55;}
+
+  /* ---------- TRANSPARENCIA ---------- */
+  .transparency{background:var(--paper);}
+  .trans-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;}
+  .trans-list{display:flex; flex-direction:column; gap:28px;}
+  .trans-item{display:flex; gap:18px;}
+  .trans-item .ic{
+    width:46px; height:46px; border-radius:13px; background:var(--cream-alt); color:var(--forest-600);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; border:1px solid var(--line);
+  }
+  .trans-item h4{font-family:'Outfit',sans-serif; font-weight:600; font-size:17px; margin-bottom:6px;}
+  .trans-item p{font-size:14.5px; color:var(--ink-soft); line-height:1.55;}
+  .trans-visual{
+    background:var(--forest-900); border-radius:var(--radius-lg); padding:36px; color:#fff;
+    position:relative; overflow:hidden;
+  }
+  .receipt{background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:16px; padding:24px; backdrop-filter:blur(6px);}
+  .receipt-row{display:flex; justify-content:space-between; padding:11px 0; border-bottom:1px dashed rgba(255,255,255,0.14); font-size:13.5px;}
+  .receipt-row:last-child{border-bottom:none;}
+  .receipt-row span:first-child{color:rgba(255,255,255,0.55);}
+  .receipt-row span:last-child{font-weight:600;}
+  .receipt-badge{display:inline-flex; align-items:center; gap:6px; background:rgba(143,227,176,0.15); color:var(--mint-300); font-size:11.5px; font-weight:700; padding:5px 12px; border-radius:100px; margin-bottom:16px;}
+
+  /* ---------- FUNDACION ---------- */
+  .foundation{background:var(--cream-alt);}
+  .fnd-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:0; border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-soft);}
+  .fnd-photo{position:relative; min-height:520px;}
+  .fnd-photo img{width:100%; height:100%; object-fit:cover; position:absolute; inset:0; filter:sepia(.3) saturate(1.2) hue-rotate(55deg) brightness(.85);}
+  .fnd-photo::after{content:''; position:absolute; inset:0; background:linear-gradient(0deg, rgba(8,25,18,0.55), transparent 40%);}
+  .fnd-logo{
+    position:absolute; bottom:26px; left:26px; z-index:2; width:64px; height:64px; border-radius:16px;
+    background:rgba(255,255,255,0.92); display:flex; align-items:center; justify-content:center;
+    font-family:'Outfit',sans-serif; font-weight:800; color:var(--forest-700); font-size:22px;
+  }
+  .fnd-body{background:var(--paper); padding:56px; display:flex; flex-direction:column; justify-content:center;}
+  .fnd-body h3{font-family:'Outfit',sans-serif; font-weight:700; font-size:30px; margin-bottom:18px; letter-spacing:-.01em;}
+  .fnd-body p{font-size:15.5px; color:var(--ink-soft); line-height:1.7; margin-bottom:28px;}
+  .fnd-contact{display:flex; flex-wrap:wrap; gap:14px;}
+  .fnd-contact a{
+    display:flex; align-items:center; gap:9px; font-size:13.5px; font-weight:600; color:var(--forest-700);
+    background:var(--cream-alt); padding:11px 16px; border-radius:100px; border:1px solid var(--line);
+    transition:all .3s;
+  }
+  .fnd-contact a:hover{background:var(--forest-700); color:#fff; border-color:var(--forest-700);}
+
+  /* ---------- MASCOTAS ---------- */
+  .pets{background:var(--paper);}
+  .pets-head{display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:48px;}
+  .pet-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:22px;}
+  .pet-card{position:relative; border-radius:var(--radius-md); overflow:hidden; aspect-ratio:3/4.1;}
+  .pet-card img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:sepia(.25) saturate(1.15) hue-rotate(55deg) brightness(.92); transition:transform .6s var(--ease);}
+  .pet-card:hover img{transform:scale(1.06);}
+  .pet-scrim{position:absolute; inset:0; background:linear-gradient(0deg, rgba(6,18,13,0.92) 0%, rgba(6,18,13,0.15) 55%, transparent 75%);}
+  .pet-avail{position:absolute; top:14px; left:14px; z-index:2; background:var(--mint-300); color:var(--forest-950); font-size:10.5px; font-weight:700; padding:5px 11px; border-radius:100px; letter-spacing:.03em;}
+  .pet-info{position:absolute; bottom:0; left:0; right:0; padding:20px; z-index:2;}
+  .pet-info h4{font-family:'Outfit',sans-serif; color:#fff; font-weight:600; font-size:19px; margin-bottom:2px;}
+  .pet-info span{color:rgba(255,255,255,0.65); font-size:12.5px;}
+  .pet-actions{display:flex; gap:8px; margin-top:14px;}
+  .pet-actions button{flex:1; padding:10px; border-radius:10px; font-size:12.5px; font-weight:700; display:flex; align-items:center; justify-content:center; gap:6px;}
+  .pet-adopt{background:var(--mint-300); color:var(--forest-950);}
+  .pet-share{background:rgba(255,255,255,0.14); color:#fff; border:1px solid rgba(255,255,255,0.3);}
+  .pet-share:hover{background:var(--coral-500); border-color:var(--coral-500);}
+
+  /* ---------- RESULTADOS ---------- */
+  .results{background:var(--cream-alt);}
+  .results-panel{background:var(--paper); border-radius:var(--radius-lg); border:1px solid var(--line); overflow:hidden; box-shadow:var(--shadow-soft);}
+  .res-row{display:grid; grid-template-columns:1.6fr 1.4fr 1fr 1fr 1.2fr 1.3fr; align-items:center; padding:20px 30px; border-bottom:1px solid var(--line); gap:12px;}
+  .res-row.head{background:var(--cream-alt); font-size:11.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft);}
+  .res-row:not(.head):hover{background:rgba(143,227,176,0.06);}
+  .res-row:last-child{border-bottom:none;}
+  .res-company{display:flex; align-items:center; gap:12px; font-weight:600; font-size:14.5px;}
+  .res-avatar{width:34px; height:34px; border-radius:9px; background:var(--forest-700); color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Outfit',sans-serif; font-weight:700; font-size:13px; flex-shrink:0;}
+  .res-cell{font-size:13.5px; color:var(--ink-soft);}
+  .res-cell b{color:var(--ink); font-weight:600;}
+  .status{display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600; padding:6px 12px; border-radius:100px;}
+  .status.ok{background:rgba(44,138,90,0.12); color:var(--forest-600);}
+  .status.pending{background:rgba(255,122,89,0.12); color:var(--coral-500);}
+
+  /* ---------- PROPONER ---------- */
+  .propose{background:var(--forest-950); color:#fff; text-align:center; position:relative; overflow:hidden;}
+  .propose::before{content:''; position:absolute; top:-30%; left:50%; transform:translateX(-50%); width:800px; height:800px; border-radius:50%; background:radial-gradient(circle, rgba(143,227,176,0.1), transparent 70%);}
+  .propose-inner{position:relative; z-index:2; max-width:680px; margin:0 auto;}
+  .propose h3{font-family:'Outfit',sans-serif; font-weight:700; font-size:clamp(28px,4vw,42px); line-height:1.15; margin-bottom:28px; letter-spacing:-.01em;}
+  .propose-form{display:flex; gap:10px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); padding:8px; border-radius:100px; margin:0 auto 18px; max-width:520px;}
+  .propose-form input{flex:1; background:none; border:none; color:#fff; padding:12px 18px; font-size:14.5px; font-family:'Inter',sans-serif;}
+  .propose-form input::placeholder{color:rgba(255,255,255,0.4);}
+  .propose-form button{background:var(--mint-300); color:var(--forest-950); font-weight:700; padding:13px 26px; border-radius:100px; font-size:14px;}
+  .propose-note{font-size:13px; color:rgba(255,255,255,0.45);}
+  .propose-note a{color:var(--mint-300); font-weight:600;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--forest-950); color:rgba(255,255,255,0.6); padding:64px 0 32px; border-top:1px solid rgba(255,255,255,0.08);}
+  .foot-top{display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:40px; padding-bottom:48px;}
+  .foot-brand .logo{color:#fff; margin-bottom:14px;}
+  .foot-brand p{font-size:13.5px; line-height:1.6; max-width:260px; color:rgba(255,255,255,0.45);}
+  .foot-col h5{font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:16px;}
+  .foot-col a{display:block; font-size:14px; margin-bottom:11px; color:rgba(255,255,255,0.62); transition:color .3s;}
+  .foot-col a:hover{color:var(--mint-300);}
+  .foot-bottom{display:flex; justify-content:space-between; align-items:center; padding-top:28px; border-top:1px solid rgba(255,255,255,0.08); font-size:12.5px; color:rgba(255,255,255,0.35);}
+  .foot-social{display:flex; gap:10px;}
+  .foot-social a{width:34px; height:34px; border-radius:50%; border:1px solid rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; transition:all .3s;}
+  .foot-social a:hover{background:var(--mint-300); border-color:var(--mint-300); color:var(--forest-950);}
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 1080px){
+    .wrap{padding:0 24px;}
+    .hero-inner{grid-template-columns:1fr; gap:60px;}
+    .stack{height:460px; margin:0 auto;}
+    .trust{grid-template-columns:repeat(2,1fr);}
+    .trust > div{border-bottom:1px solid rgba(255,255,255,0.1);}
+    .camp-grid{grid-template-columns:repeat(2,1fr);}
+    .flow{grid-template-columns:repeat(2,1fr); row-gap:20px;}
+    .flow-step:nth-child(2)::after{display:none;}
+    .trans-grid{grid-template-columns:1fr;}
+    .fnd-grid{grid-template-columns:1fr;}
+    .fnd-photo{min-height:320px;}
+    .pet-grid{grid-template-columns:repeat(2,1fr);}
+    .res-row{grid-template-columns:1.6fr 1fr 1fr; }
+    .res-cell.hide-mobile{display:none;}
+    .nav-links{display:none;}
+  }
+  @media (max-width: 620px){
+    section{padding:80px 0;}
+    .camp-grid{grid-template-columns:1fr;}
+    .pet-grid{grid-template-columns:1fr;}
+    .flow{grid-template-columns:1fr;}
+    .fnd-body{padding:32px;}
+    .foot-top{grid-template-columns:1fr 1fr; row-gap:32px;}
+    .hero-actions{flex-direction:column; align-items:flex-start; gap:22px;}
+  }
+</style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="main-header">
-    <div class="header-container">
-      <a href="#" class="logo">
-        <span class="logo-icon">🐾</span>
-        <span class="logo-text">CAUSA<span class="highlight">30</span></span>
+<header id="siteHeader">
+  <div class="wrap">
+    <nav>
+      <a class="logo" href="#top"><span class="mark"></span>CAUSA<b>30</b></a>
+      <ul class="nav-links">
+        <li><a href="#campanas" class="active">Promociones</a></li>
+        <li><a href="#fundacion">Fundación</a></li>
+        <li><a href="#resultados">Resultados</a></li>
+        <li><a href="#como-funciona">Cómo funciona</a></li>
+      </ul>
+      <a class="btn-login" href="#">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        Iniciar sesión
       </a>
-      <nav class="nav-links">
-        <a href="#inicio">INICIO</a>
-        <a href="#swipe-section">EXPLORAR</a>
-        <a href="#como-funciona">CÓMO FUNCIONA</a>
-        <a href="#contacto">CONTACTO</a>
-      </nav>
-      <a href="#empresas" class="btn-header">UNIR MI EMPRESA</a>
-    </div>
-  </header>
+    </nav>
+  </div>
+</header>
 
-  <!-- HERO SECTION -->
-  <section id="inicio" class="hero-pray">
-    <div class="hero-overlay-dark"></div>
-    <div class="hero-inner">
-      <span class="hero-tag">CAMPAÑAS DE 30 DÍAS POR EMPRESAS</span>
-      <h1 class="hero-title">COMPRA & AYUDA</h1>
-      <p class="hero-subtitle">CADA VENTA GENERA UNA APORTACIÓN DIRECTA Y VERIFICABLE A LA FUNDACIÓN</p>
-      <a href="#swipe-section" class="btn-hero-emerald">DESCUBRIR PRODUCTOS</a>
-    </div>
-  </section>
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-scrim"></div>
+  <div class="wrap hero-inner">
 
-  <!-- SWIPE CARDS SECTION (ESTILO MÓVIL PINTEREST) -->
-  <section id="swipe-section" class="swipe-section">
-    <div class="swipe-container">
-      <div class="section-header-center">
-        <span class="sub-heading">DESLIZA O USA LOS BOTONES</span>
-        <h2>PRODUCTOS PATROCINADOS</h2>
+    <div class="stack" id="stack">
+      <div class="pcard p2">
+        <img class="photo" src="https://picsum.photos/seed/causa30coffee/500/650" alt="">
+        <div class="info">
+          <div class="brand">CAFÉ ORIGEN</div>
+          <div class="pname">Café Premium 100% Arábica</div>
+          <div class="price">RD$650</div>
+        </div>
+      </div>
+      <div class="pcard p1">
+        <div class="heart">♡</div>
+        <img class="photo" src="https://picsum.photos/seed/causa30soap/500/650" alt="">
+        <div class="info">
+          <div class="brand">BOTANIKA</div>
+          <div class="pname">Jabón Líquido Avena &amp; Coco</div>
+          <div class="price">RD$550</div>
+          <div class="donate">♥ Dona RD$40</div>
+        </div>
+      </div>
+      <div class="pcard p0">
+        <div class="badge">★ Destacado</div>
+        <div class="heart">♡</div>
+        <img class="photo" src="https://picsum.photos/seed/causa30supp/600/780" alt="">
+        <div class="info">
+          <div class="brand">NUTRILIFE</div>
+          <div class="pname">Magnesio Ultra</div>
+          <div class="desc">Apoyo para tu bienestar diario.</div>
+          <div class="price">RD$790</div>
+          <div class="donate">♥ Dona RD$50 a la fundación</div>
+          <div class="cta">Ver promoción →</div>
+        </div>
       </div>
 
-      <!-- MOCKUP MÓVIL INTERACTIVO -->
-      <div class="mobile-frame">
-        <div class="mobile-screen">
-          <div class="mobile-header-bar">
-            <span class="pill-active">CAMPAÑA ACTIVA 30 DÍAS</span>
+      <div class="stack-nav">
+        <button aria-label="Anterior">←</button>
+        <div class="dots"><span class="on"></span><span></span><span></span></div>
+        <button aria-label="Siguiente">→</button>
+      </div>
+    </div>
+
+    <div class="hero-copy">
+      <div class="eyebrow">CAMPAÑAS DE 30 DÍAS · POR EMPRESAS</div>
+      <h1 class="hero-title">COMPRA<span class="amp">&amp;</span>AYUDA</h1>
+      <p class="hero-sub">Cada venta genera una aportación <b>directa y verificable</b> a la fundación. Sin intermediarios. Sin letra pequeña.</p>
+
+      <div class="hero-actions">
+        <div class="counter">
+          <div class="ring">
+            <svg width="96" height="96" viewBox="0 0 96 96">
+              <circle class="ring-track" cx="48" cy="48" r="42"></circle>
+              <circle class="ring-fill" id="ringFill" cx="48" cy="48" r="42"></circle>
+            </svg>
+            <div class="ring-num"><b>18</b></div>
           </div>
+          <div class="ring-label"><b>DÍAS</b>RESTANTES</div>
+        </div>
+        <a href="#campanas" class="btn-primary">Explorar campañas →</a>
+      </div>
 
-          <!-- CONTENEDOR DE TARJETAS EN PILA (STACK) -->
-          <div class="card-stack" id="cardStack">
-
-            <!-- Tarjeta 1 -->
-            <div class="swipe-card" data-index="0">
-              <div class="card-badge">APORTA RD$50 / UNIDAD</div>
-              <div class="card-image">
-                <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=600&q=80" alt="Alimento Canino Premium">
-              </div>
-              <div class="card-info">
-                <h3>ALIMENTO CANINO PREMIUM 15KG</h3>
-                <p class="sponsor">Patrocinado por: <strong>Purina RD</strong></p>
-                <div class="impact-info">Donación directa por unidad: <strong>RD$ 50.00</strong></div>
-              </div>
-            </div>
-
-            <!-- Tarjeta 2 -->
-            <div class="swipe-card" data-index="1">
-              <div class="card-badge">APORTA RD$25 / UNIDAD</div>
-              <div class="card-image">
-                <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&q=80" alt="Kit Higiénico Felino">
-              </div>
-              <div class="card-info">
-                <h3>KIT HIGIÉNICO FELINO BIODEGRADABLE</h3>
-                <p class="sponsor">Patrocinado por: <strong>EcoPet RD</strong></p>
-                <div class="impact-info">Donación directa por unidad: <strong>RD$ 25.00</strong></div>
-              </div>
-            </div>
-
-            <!-- Tarjeta 3 -->
-            <div class="swipe-card" data-index="2">
-              <div class="card-badge">APORTA RD$40 / UNIDAD</div>
-              <div class="card-image">
-                <img src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=600&q=80" alt="Cama Ortopédica para Mascotas">
-              </div>
-              <div class="card-info">
-                <h3>CAMA ORTOPÉDICA REFORZADA</h3>
-                <p class="sponsor">Patrocinado por: <strong>PetComfort</strong></p>
-                <div class="impact-info">Donación directa por unidad: <strong>RD$ 40.00</strong></div>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- CONTROLES MÓVILES ABAJO (BOTONES X Y CHECK) -->
-          <div class="mobile-actions">
-            <button class="action-btn btn-reject" id="btnReject" title="Pasar">✕</button>
-            <button class="action-btn btn-accept" id="btnAccept" title="Ver / Comprar">✓</button>
-          </div>
+      <div class="trust reveal">
+        <div>
+          <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V6l8-4z"/></svg></div>
+          <div><b>Aportaciones verificables</b><span>Transparencia total</span></div>
+        </div>
+        <div>
+          <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 15c2.8 0 5 2 5 5"/></svg></div>
+          <div><b>Empresas comprometidas</b><span>Marcas que crean impacto</span></div>
+        </div>
+        <div>
+          <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.6-9.5-9C.9 8.5 2.5 5 6 5c2 0 3.5 1.1 4.5 2.4C11.5 6.1 13 5 15 5c3.5 0 5.1 3.5 3.5 7-2.5 4.4-9.5 9-9.5 9z"/></svg></div>
+          <div><b>Compras que cambian vidas</b><span>Tú compras, ellos reciben</span></div>
+        </div>
+        <div>
+          <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
+          <div><b>Campañas de 30 días</b><span>Tiempo limitado, impacto real</span></div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- FOOTER -->
-  <footer id="empresas" class="pray-footer">
-    <div class="footer-container">
-      <h3>¿ERES UNA EMPRESA O MARCA?</h3>
-      <p>Lanza tu campaña promocional de 30 días con Causa30 y conecta ventas con impacto real.</p>
-      <a href="mailto:contacto@altrua.one" class="btn-footer-emerald">CONTACTAR CON CAUSA30</a>
-      <p class="copyright">&copy; 2026 Causa30 — Un servicio de Altrua Global. Soluciones que financian soluciones.</p>
+  <div class="scroll-cue"><span>Descubre más</span><span class="arrow">↓</span></div>
+</section>
+
+<!-- CAMPAÑAS -->
+<section class="campaigns" id="campanas">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">PROMOCIONES ACTIVAS</div>
+      <h2 class="sec-title">Cada campaña dura 30 días.</h2>
+      <p class="sec-sub">Elige un producto que ya consumirías. La empresa participante dona un monto fijo por cada venta, directamente a la fundación.</p>
     </div>
-  </footer>
 
-  <script src="app.js"></script>
+    <div class="camp-grid">
+      <div class="camp-card reveal">
+        <img class="camp-photo" src="https://picsum.photos/seed/causa30camp1/500/400" alt="">
+        <div class="camp-body">
+          <div class="camp-top"><span class="camp-brand">Nutrilife</span><span class="camp-time">18 días</span></div>
+          <div class="camp-name">Magnesio Ultra 400mg</div>
+          <div class="camp-row"><span class="camp-price">RD$790</span><span class="camp-give">Dona RD$50</span></div>
+          <div class="camp-cta">Ver campaña →</div>
+        </div>
+      </div>
+      <div class="camp-card reveal">
+        <img class="camp-photo" src="https://picsum.photos/seed/causa30camp2/500/400" alt="">
+        <div class="camp-body">
+          <div class="camp-top"><span class="camp-brand">Botanika</span><span class="camp-time">18 días</span></div>
+          <div class="camp-name">Jabón Líquido Avena &amp; Coco</div>
+          <div class="camp-row"><span class="camp-price">RD$550</span><span class="camp-give">Dona RD$40</span></div>
+          <div class="camp-cta">Ver campaña →</div>
+        </div>
+      </div>
+      <div class="camp-card reveal">
+        <img class="camp-photo" src="https://picsum.photos/seed/causa30camp3/500/400" alt="">
+        <div class="camp-body">
+          <div class="camp-top"><span class="camp-brand">Café Origen</span><span class="camp-time">18 días</span></div>
+          <div class="camp-name">Café Premium 100% Arábica</div>
+          <div class="camp-row"><span class="camp-price">RD$650</span><span class="camp-give">Dona RD$45</span></div>
+          <div class="camp-cta">Ver campaña →</div>
+        </div>
+      </div>
+      <div class="camp-card reveal">
+        <img class="camp-photo" src="https://picsum.photos/seed/causa30camp4/500/400" alt="">
+        <div class="camp-body">
+          <div class="camp-top"><span class="camp-brand">Colmena Real</span><span class="camp-time">11 días</span></div>
+          <div class="camp-name">Miel Pura de Abeja 500ml</div>
+          <div class="camp-row"><span class="camp-price">RD$480</span><span class="camp-give">Dona RD$35</span></div>
+          <div class="camp-cta">Ver campaña →</div>
+        </div>
+      </div>
+      <div class="camp-card reveal">
+        <img class="camp-photo" src="https://picsum.photos/seed/causa30camp5/500/400" alt="">
+        <div class="camp-body">
+          <div class="camp-top"><span class="camp-brand">Luz Natural</span><span class="camp-time">11 días</span></div>
+          <div class="camp-name">Vela Aromática de Soya</div>
+          <div class="camp-row"><span class="camp-price">RD$390</span><span class="camp-give">Dona RD$30</span></div>
+          <div class="camp-cta">Ver campaña →</div>
+        </div>
+      </div>
+      <div class="camp-card reveal">
+        <img class="camp-photo" src="https://picsum.photos/seed/causa30camp6/500/400" alt="">
+        <div class="camp-body">
+          <div class="camp-top"><span class="camp-brand">Raíz Viva</span><span class="camp-time">6 días</span></div>
+          <div class="camp-name">Té Herbal Orgánico x20</div>
+          <div class="camp-row"><span class="camp-price">RD$320</span><span class="camp-give">Dona RD$25</span></div>
+          <div class="camp-cta">Ver campaña →</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="how" id="como-funciona">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">EL PROCESO</div>
+      <h2 class="sec-title">De la compra al impacto, sin fricción.</h2>
+      <p class="sec-sub">Cuatro pasos. Ningún intermediario retiene el dinero de la donación.</p>
+    </div>
+
+    <div class="flow">
+      <div class="flow-step reveal">
+        <div class="flow-num">01</div>
+        <div class="flow-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6h15l-1.5 9h-12L4 3H2"/><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/></svg></div>
+        <div class="flow-title">Compra</div>
+        <div class="flow-desc">Eliges un producto que ya consumirías, dentro de una campaña activa.</div>
+      </div>
+      <div class="flow-step reveal">
+        <div class="flow-num">02</div>
+        <div class="flow-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg></div>
+        <div class="flow-title">Empresa</div>
+        <div class="flow-desc">La empresa participante registra la venta y calcula el monto a donar.</div>
+      </div>
+      <div class="flow-step reveal">
+        <div class="flow-num">03</div>
+        <div class="flow-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-4.6-9.5-9C.9 8.5 2.5 5 6 5c2 0 3.5 1.1 4.5 2.4C11.5 6.1 13 5 15 5c3.5 0 5.1 3.5 3.5 7-2.5 4.4-9.5 9-9.5 9z"/></svg></div>
+        <div class="flow-title">Fundación</div>
+        <div class="flow-desc">La donación llega directo a la fundación. Causa30 nunca la recibe.</div>
+      </div>
+      <div class="flow-step reveal">
+        <div class="flow-num">04</div>
+        <div class="flow-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/><circle cx="12" cy="12" r="4"/></svg></div>
+        <div class="flow-title">Impacto</div>
+        <div class="flow-desc">Al cerrar la campaña se publica el resultado completo y verificable.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPARENCIA -->
+<section class="transparency">
+  <div class="wrap trans-grid">
+    <div class="reveal">
+      <div class="sec-eyebrow">TRANSPARENCIA</div>
+      <h2 class="sec-title" style="margin-bottom:32px;">El dinero nunca pasa por Causa30.</h2>
+      <div class="trans-list">
+        <div class="trans-item">
+          <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h6l2-9 4 18 2-9h4"/></svg></div>
+          <div><h4>Donación directa</h4><p>La empresa participante transfiere el monto acordado directamente a la fundación, sin pasar por nuestra plataforma.</p></div>
+        </div>
+        <div class="trans-item">
+          <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div>
+          <div><h4>Comprobante publicado</h4><p>Cada campaña cierra con un comprobante real de la donación, visible para cualquier persona.</p></div>
+        </div>
+        <div class="trans-item">
+          <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <div><h4>Cero intermediarios</h4><p>Causa30 conecta a empresas, consumidores y fundaciones. El dinero jamás toca nuestras cuentas.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trans-visual reveal">
+      <div class="receipt-badge">✓ Comprobante verificado</div>
+      <div class="receipt">
+        <div class="receipt-row"><span>Empresa</span><span>Nutrilife RD</span></div>
+        <div class="receipt-row"><span>Fundación</span><span>Refugio Esperanza</span></div>
+        <div class="receipt-row"><span>Compras registradas</span><span>412</span></div>
+        <div class="receipt-row"><span>Monto donado</span><span>RD$ 20,600</span></div>
+        <div class="receipt-row"><span>Fecha de entrega</span><span>30 ago 2026</span></div>
+        <div class="receipt-row"><span>Estado</span><span style="color:var(--mint-300)">Comprobante recibido</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUNDACION -->
+<section class="foundation" id="fundacion">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">LA FUNDACIÓN</div>
+      <h2 class="sec-title">Refugio Esperanza</h2>
+    </div>
+    <div class="fnd-grid reveal">
+      <div class="fnd-photo">
+        <img src="https://picsum.photos/seed/causa30fnd/700/900" alt="Refugio Esperanza">
+        <div class="fnd-logo">RE</div>
+      </div>
+      <div class="fnd-body">
+        <h3>Rescatando y dando hogar, un día a la vez.</h3>
+        <p>Desde hace más de ocho años, Refugio Esperanza rescata, rehabilita y encuentra hogar a perros y gatos en situación de calle en Santo Domingo. Cada campaña en Causa30 se traduce en alimento, atención veterinaria y esterilizaciones para más animales.</p>
+        <div class="fnd-contact">
+          <a href="tel:+18095551234">📞 (809) 555-1234</a>
+          <a href="mailto:contacto@refugioesperanza.org">✉ contacto@refugioesperanza.org</a>
+          <a href="#">📷 @refugioesperanza</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MASCOTAS -->
+<section class="pets">
+  <div class="wrap">
+    <div class="pets-head reveal">
+      <div>
+        <div class="sec-eyebrow">EN ADOPCIÓN</div>
+        <h2 class="sec-title" style="margin-bottom:0;">Ayúdanos a darles visibilidad.</h2>
+      </div>
+    </div>
+
+    <div class="pet-grid">
+      <div class="pet-card reveal">
+        <img src="https://picsum.photos/seed/causa30pet1/400/540" alt="">
+        <div class="pet-scrim"></div>
+        <div class="pet-avail">Disponible</div>
+        <div class="pet-info">
+          <h4>Luna</h4><span>2 años · Mestiza</span>
+          <div class="pet-actions"><button class="pet-adopt">Adoptar</button><button class="pet-share">↗ Compartir</button></div>
+        </div>
+      </div>
+      <div class="pet-card reveal">
+        <img src="https://picsum.photos/seed/causa30pet2/400/540" alt="">
+        <div class="pet-scrim"></div>
+        <div class="pet-avail">Disponible</div>
+        <div class="pet-info">
+          <h4>Simón</h4><span>4 años · Criollo</span>
+          <div class="pet-actions"><button class="pet-adopt">Adoptar</button><button class="pet-share">↗ Compartir</button></div>
+        </div>
+      </div>
+      <div class="pet-card reveal">
+        <img src="https://picsum.photos/seed/causa30pet3/400/540" alt="">
+        <div class="pet-scrim"></div>
+        <div class="pet-avail">Disponible</div>
+        <div class="pet-info">
+          <h4>Nala</h4><span>1 año · Gata</span>
+          <div class="pet-actions"><button class="pet-adopt">Adoptar</button><button class="pet-share">↗ Compartir</button></div>
+        </div>
+      </div>
+      <div class="pet-card reveal">
+        <img src="https://picsum.photos/seed/causa30pet4/400/540" alt="">
+        <div class="pet-scrim"></div>
+        <div class="pet-avail">Disponible</div>
+        <div class="pet-info">
+          <h4>Rocco</h4><span>3 años · Mestizo</span>
+          <div class="pet-actions"><button class="pet-adopt">Adoptar</button><button class="pet-share">↗ Compartir</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTADOS -->
+<section class="results" id="resultados">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">RESULTADOS</div>
+      <h2 class="sec-title">Cada campaña, rendida en público.</h2>
+      <p class="sec-sub">Compromiso, compras, monto donado y comprobante. Todo visible, todo verificable.</p>
+    </div>
+
+    <div class="results-panel reveal">
+      <div class="res-row head">
+        <div>Empresa</div><div>Compromiso</div><div>Compras</div><div>Donado</div><div class="hide-mobile">Estado</div><div class="hide-mobile">Entrega</div>
+      </div>
+      <div class="res-row">
+        <div class="res-company"><div class="res-avatar">NU</div>Nutrilife</div>
+        <div class="res-cell">RD$50 / venta</div>
+        <div class="res-cell"><b>412</b></div>
+        <div class="res-cell"><b>RD$20,600</b></div>
+        <div class="res-cell hide-mobile"><span class="status ok">✓ Recibido</span></div>
+        <div class="res-cell hide-mobile">30 ago 2026</div>
+      </div>
+      <div class="res-row">
+        <div class="res-company"><div class="res-avatar">BK</div>Botanika</div>
+        <div class="res-cell">RD$40 / venta</div>
+        <div class="res-cell"><b>287</b></div>
+        <div class="res-cell"><b>RD$11,480</b></div>
+        <div class="res-cell hide-mobile"><span class="status ok">✓ Recibido</span></div>
+        <div class="res-cell hide-mobile">30 ago 2026</div>
+      </div>
+      <div class="res-row">
+        <div class="res-company"><div class="res-avatar">CO</div>Café Origen</div>
+        <div class="res-cell">RD$45 / venta</div>
+        <div class="res-cell"><b>331</b></div>
+        <div class="res-cell"><b>RD$14,895</b></div>
+        <div class="res-cell hide-mobile"><span class="status pending">◐ En proceso</span></div>
+        <div class="res-cell hide-mobile">18 ago 2026</div>
+      </div>
+      <div class="res-row">
+        <div class="res-company"><div class="res-avatar">CR</div>Colmena Real</div>
+        <div class="res-cell">RD$35 / venta</div>
+        <div class="res-cell"><b>154</b></div>
+        <div class="res-cell"><b>RD$5,390</b></div>
+        <div class="res-cell hide-mobile"><span class="status pending">◐ En proceso</span></div>
+        <div class="res-cell hide-mobile">25 ago 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROPONER -->
+<section class="propose">
+  <div class="wrap propose-inner reveal">
+    <h3>¿Qué producto te gustaría ver en una próxima campaña?</h3>
+    <form class="propose-form" onsubmit="event.preventDefault(); this.querySelector('input').value='¡Gracias! La leemos pronto.';">
+      <input type="text" placeholder="Escribe tu propuesta..." required>
+      <button type="submit">Enviar</button>
+    </form>
+    <div class="propose-note">O escríbenos directo a <a href="mailto:promo@causa30.com">promo@causa30.com</a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a class="logo" href="#top"><span class="mark"></span>CAUSA<b>30</b></a>
+        <p>Conectamos empresas, consumidores y fundaciones a través de campañas de 30 días con propósito real.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Plataforma</h5>
+        <a href="#campanas">Promociones</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#resultados">Resultados</a>
+      </div>
+      <div class="foot-col">
+        <h5>Fundación</h5>
+        <a href="#fundacion">Refugio Esperanza</a>
+        <a href="#">Mascotas en adopción</a>
+        <a href="#">Transparencia</a>
+      </div>
+      <div class="foot-col">
+        <h5>Empresas</h5>
+        <a href="mailto:promo@causa30.com">Lanza una campaña</a>
+        <a href="mailto:promo@causa30.com">promo@causa30.com</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Causa30. Todos los derechos reservados.</span>
+      <div class="foot-social">
+        <a href="#">IG</a><a href="#">FB</a><a href="#">TT</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // nav glass on scroll
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // ring animation
+  window.addEventListener('load', () => {
+    const ring = document.getElementById('ringFill');
+    const circumference = 264;
+    const daysLeft = 18, totalDays = 30;
+    const offset = circumference - (daysLeft/totalDays) * circumference;
+    requestAnimationFrame(() => { ring.style.strokeDashoffset = offset; });
+  });
+
+  // reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // tilt on hero + campaign cards
+  function addTilt(el, strength){
+    el.addEventListener('mousemove', (e) => {
+      const r = el.getBoundingClientRect();
+      const x = (e.clientX - r.left)/r.width - 0.5;
+      const y = (e.clientY - r.top)/r.height - 0.5;
+      el.style.transform += ` rotate(${x*strength}deg)`;
+    });
+  }
+  document.querySelectorAll('.camp-card').forEach(c => {
+    c.addEventListener('mousemove', (e)=>{
+      const r = c.getBoundingClientRect();
+      const x = (e.clientX - r.left)/r.width - 0.5;
+      const y = (e.clientY - r.top)/r.height - 0.5;
+      c.style.transform = `translateY(-6px) rotateX(${y*-4}deg) rotateY(${x*4}deg)`;
+    });
+    c.addEventListener('mouseleave', ()=>{ c.style.transform=''; });
+  });
+
+  // hero stack subtle cycle (visual only)
+  let idx = 0;
+  const dots = document.querySelectorAll('.dots span');
+  setInterval(() => {
+    idx = (idx + 1) % dots.length;
+    dots.forEach((d,i) => d.classList.toggle('on', i===idx));
+  }, 3800);
+</script>
+
 </body>
 </html>
