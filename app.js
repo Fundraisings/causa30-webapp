@@ -1,82 +1,295 @@
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('✅ Swipe Slider de Causa30 cargado con éxito.');
+/*
+======================================================
+CAUSA30
+Archivo: app.js
+Versión: 0.1.0
+Arquitectura Vanilla JS
+======================================================
+*/
 
-  const btnReject = document.getElementById('btnReject');
-  const btnAccept = document.getElementById('btnAccept');
-  const cardStack = document.getElementById('cardStack');
+"use strict";
 
-  // Función para reordenar las tarjetas en la pila tras un deslizado
-  function updateStack() {
-    const cards = Array.from(cardStack.querySelectorAll('.swipe-card:not(.swipe-right):not(.swipe-left)'));
-    cards.forEach((card, idx) => {
-      card.setAttribute('data-index', idx);
+/*=====================================================
+CONFIGURACIÓN
+=====================================================*/
+
+const APP = {
+
+    name: "Causa30",
+
+    version: "0.1.0",
+
+    debug: true
+
+};
+
+/*=====================================================
+ESTADO GLOBAL
+=====================================================*/
+
+const state = {
+
+    currentScreen: "home",
+
+    initialized: false,
+
+    splashDuration: 1800,
+
+    darkMode: false
+
+};
+
+/*=====================================================
+SELECTORES
+=====================================================*/
+
+const UI = {
+
+    splash: document.getElementById("splash"),
+
+    app: document.getElementById("app"),
+
+    startButton: document.getElementById("startButton"),
+
+    bottomButtons: document.querySelectorAll(".bottom-nav button")
+
+};
+
+/*=====================================================
+UTILIDADES
+=====================================================*/
+
+function log(message) {
+
+    if (APP.debug) {
+
+        console.log("[CAUSA30]", message);
+
+    }
+
+}
+
+function sleep(ms) {
+
+    return new Promise(resolve => setTimeout(resolve, ms));
+
+}
+
+/*=====================================================
+SPLASH
+=====================================================*/
+
+async function showSplash() {
+
+    if (!UI.splash) return;
+
+    UI.splash.style.display = "flex";
+
+    await sleep(state.splashDuration);
+
+    UI.splash.classList.add("hide");
+
+    await sleep(600);
+
+    UI.splash.remove();
+
+}
+
+/*=====================================================
+NAVEGACIÓN
+=====================================================*/
+
+function activateNavigation(button) {
+
+    UI.bottomButtons.forEach(btn => {
+
+        btn.classList.remove("active");
+
     });
 
-    // Si ya no quedan tarjetas activas, las reinicia todas para mantener el loop
-    if (cards.length === 0) {
-      setTimeout(() => {
-        const allCards = cardStack.querySelectorAll('.swipe-card');
-        allCards.forEach(card => {
-          card.classList.remove('swipe-right', 'swipe-left');
+    button.classList.add("active");
+
+}
+
+function navigate(screen) {
+
+    state.currentScreen = screen;
+
+    log("Pantalla actual: " + screen);
+
+    /*
+        Aquí más adelante
+        cargaremos cada pantalla.
+
+        Inicio
+        Explorar
+        Publicar
+        Favoritos
+        Perfil
+    */
+
+}
+
+/*=====================================================
+EVENTOS
+=====================================================*/
+
+function registerEvents() {
+
+    if (UI.startButton) {
+
+        UI.startButton.addEventListener("click", () => {
+
+            log("Botón comenzar");
+
+            navigate("explorar");
+
         });
-        updateStack();
-      }, 500);
+
     }
-  }
 
-  // Deslizar la tarjeta superior hacia la derecha (Check / Aceptar)
-  btnAccept.addEventListener('click', () => {
-    const topCard = cardStack.querySelector('.swipe-card[data-index="0"]');
-    if (topCard) {
-      topCard.classList.add('swipe-right');
-      setTimeout(updateStack, 300);
+    UI.bottomButtons.forEach((button, index) => {
+
+        button.addEventListener("click", () => {
+
+            activateNavigation(button);
+
+            switch (index) {
+
+                case 0:
+
+                    navigate("home");
+
+                    break;
+
+                case 1:
+
+                    navigate("explorar");
+
+                    break;
+
+                case 2:
+
+                    navigate("publicar");
+
+                    break;
+
+                case 3:
+
+                    navigate("favoritos");
+
+                    break;
+
+                case 4:
+
+                    navigate("perfil");
+
+                    break;
+
+            }
+
+        });
+
+    });
+
+}
+
+/*=====================================================
+PREFERENCIAS
+=====================================================*/
+
+function loadPreferences() {
+
+    const dark = localStorage.getItem("causa30-dark");
+
+    if (dark === "true") {
+
+        state.darkMode = true;
+
+        document.body.classList.add("dark");
+
     }
-  });
 
-  // Deslizar la tarjeta superior hacia la izquierda (X / Rechazar)
-  btnReject.addEventListener('click', () => {
-    const topCard = cardStack.querySelector('.swipe-card[data-index="0"]');
-    if (topCard) {
-      topCard.classList.add('swipe-left');
-      setTimeout(updateStack, 300);
-    }
-  });
+}
 
-  // Soporte de Arrastre (Drag / Touch Swipe) en pantalla táctil o mouse
-  let isDragging = false;
-  let startX = 0;
-  let currentCard = null;
+function savePreferences() {
 
-  cardStack.addEventListener('pointerdown', (e) => {
-    currentCard = cardStack.querySelector('.swipe-card[data-index="0"]');
-    if (!currentCard) return;
-    isDragging = true;
-    startX = e.clientX;
-    currentCard.style.transition = 'none';
-  });
+    localStorage.setItem("causa30-dark", state.darkMode);
 
-  window.addEventListener('pointermove', (e) => {
-    if (!isDragging || !currentCard) return;
-    const deltaX = e.clientX - startX;
-    const rotate = deltaX * 0.08;
-    currentCard.style.transform = `translateX(${deltaX}px) rotate(${rotate}deg)`;
-  });
+}
 
-  window.addEventListener('pointerup', (e) => {
-    if (!isDragging || !currentCard) return;
-    isDragging = false;
-    currentCard.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
+/*=====================================================
+MODO OSCURO
+=====================================================*/
 
-    const deltaX = e.clientX - startX;
-    if (deltaX > 100) {
-      currentCard.classList.add('swipe-right');
-      setTimeout(updateStack, 300);
-    } else if (deltaX < -100) {
-      currentCard.classList.add('swipe-left');
-      setTimeout(updateStack, 300);
-    } else {
-      currentCard.style.transform = '';
-    }
-    currentCard = null;
-  });
-});
+function toggleDarkMode() {
+
+    state.darkMode = !state.darkMode;
+
+    document.body.classList.toggle("dark");
+
+    savePreferences();
+
+}
+
+/*=====================================================
+ANIMACIONES
+=====================================================*/
+
+function fadeIn(element) {
+
+    if (!element) return;
+
+    element.style.opacity = 0;
+
+    requestAnimationFrame(() => {
+
+        element.style.transition = "opacity .4s";
+
+        element.style.opacity = 1;
+
+    });
+
+}
+
+/*=====================================================
+INICIALIZACIÓN
+=====================================================*/
+
+async function initialize() {
+
+    log("Inicializando...");
+
+    loadPreferences();
+
+    registerEvents();
+
+    fadeIn(UI.app);
+
+    await showSplash();
+
+    state.initialized = true;
+
+    log("Aplicación lista");
+
+}
+
+/*=====================================================
+DOM READY
+=====================================================*/
+
+document.addEventListener("DOMContentLoaded", initialize);
+
+/*=====================================================
+API PÚBLICA
+=====================================================*/
+
+window.Causa30 = {
+
+    navigate,
+
+    toggleDarkMode,
+
+    state
+
+};
