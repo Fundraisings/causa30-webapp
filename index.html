@@ -1,902 +1,936 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Causa30 — Compra & Ayuda</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CAUSA30 | Compra & Ayuda</title>
+  <style>
+    /* ==========================================================================
+       VARIABLES Y RECEPTÁCULOS DE ESTILO (Sistemas de Color y Tipografía)
+       ========================================================================== */
+    :root {
+      --primary-forest: #0d3b2e;
+      --primary-forest-light: #165242;
+      --accent-coral: #ff6b52;
+      --accent-coral-hover: #e0553c;
+      --bg-warm-white: #faf9f5;
+      --bg-card: #ffffff;
+      --text-dark: #121816;
+      --text-muted: #5a6561;
+      --border-color: rgba(13, 59, 46, 0.08);
+      --glass-bg: rgba(255, 255, 255, 0.75);
+      --glass-border: rgba(255, 255, 255, 0.4);
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.08);
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 8px;
+      --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
 
-  :root{
-    --forest-950:#081912;
-    --forest-900:#0c2318;
-    --forest-800:#12331f;
-    --forest-600:#1f6f47;
-    --forest-500:#2c8a5a;
-    --mint-300:#8fe3b0;
-    --mint-200:#c3f3d6;
-    --coral-500:#ff7a59;
-    --coral-400:#ffa07a;
-    --cream:#faf7f0;
-    --cream-alt:#f2ede2;
-    --paper:#ffffff;
-    --ink:#0f1f16;
-    --ink-soft:#4b5a51;
-    --line:#e4ddce;
-    --shadow-soft: 0 20px 60px -20px rgba(8,25,18,0.35);
-    --radius-lg: 28px;
-    --radius-md: 18px;
-    --ease: cubic-bezier(.16,.84,.44,1);
-  }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    font-family:'Inter', sans-serif;
-    background:var(--cream);
-    color:var(--ink);
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
-  img{max-width:100%; display:block;}
-  .display{font-family:'Outfit', sans-serif;}
-  a{color:inherit; text-decoration:none;}
-  button{font-family:inherit; cursor:pointer; border:none; background:none;}
-  ::selection{background:var(--mint-300); color:var(--forest-950);}
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-warm-white);
+      color: var(--text-dark);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
 
-  .wrap{max-width:1320px; margin:0 auto; padding:0 40px;}
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-  @media (prefers-reduced-motion: reduce){
-    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
-  }
+    img {
+      max-width: 100%;
+      display: block;
+      object-fit: cover;
+    }
 
-  /* ---------- reveal on scroll ---------- */
-  .reveal{opacity:0; transform:translateY(28px); transition:opacity .8s var(--ease), transform .8s var(--ease);}
-  .reveal.in{opacity:1; transform:translateY(0);}
+    /* ==========================================================================
+       HERO (App-like 100vh Fullview)
+       ========================================================================== */
+    .hero-container {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px 16px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(13, 59, 46, 0.4) 0%, rgba(13, 59, 46, 0.85) 100%),
+                  url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+    }
 
-  /* ---------- NAV ---------- */
-  header{
-    position:fixed; top:0; left:0; right:0; z-index:100;
-    padding:22px 0;
-    transition:background .4s var(--ease), padding .4s var(--ease), backdrop-filter .4s var(--ease), border-color .4s var(--ease);
-    border-bottom:1px solid transparent;
-  }
-  header.scrolled{
-    background:rgba(250,247,240,0.72);
-    backdrop-filter:blur(16px) saturate(160%);
-    -webkit-backdrop-filter:blur(16px) saturate(160%);
-    padding:14px 0;
-    border-bottom:1px solid var(--line);
-  }
-  nav{display:flex; align-items:center; justify-content:space-between;}
-  .logo{display:flex; align-items:center; gap:10px; font-family:'Outfit',sans-serif; font-weight:700; font-size:20px; letter-spacing:-0.01em; color:var(--cream);}
-  header.scrolled .logo{color:var(--ink);}
-  .logo .mark{
-    width:30px; height:30px; border-radius:50%;
-    background:conic-gradient(from 200deg, var(--mint-300), var(--forest-500) 60%, var(--mint-300));
-    display:flex; align-items:center; justify-content:center;
-    box-shadow:inset 0 0 0 2px rgba(255,255,255,.25);
-  }
-  .logo .mark::after{content:''; width:8px; height:8px; border-radius:50%; background:var(--forest-950);}
-  .logo b{color:var(--mint-300); font-weight:800;}
+    .hero-header {
+      text-align: center;
+      color: #ffffff;
+      padding-top: 12px;
+      z-index: 2;
+    }
 
-  .nav-links{display:flex; align-items:center; gap:36px; list-style:none;}
-  .nav-links a{
-    font-size:14.5px; font-weight:500; color:rgba(250,247,240,0.82);
-    position:relative; padding-bottom:4px; transition:color .3s;
-  }
-  header.scrolled .nav-links a{color:var(--ink-soft);}
-  .nav-links a:hover{color:var(--mint-300);}
-  header.scrolled .nav-links a:hover{color:var(--forest-600);}
-  .nav-links a.active::after{
-    content:''; position:absolute; left:50%; bottom:-2px; transform:translateX(-50%);
-    width:5px; height:5px; border-radius:50%; background:var(--mint-300);
-  }
-  .btn-login{
-    padding:10px 20px; border-radius:100px;
-    border:1px solid rgba(250,247,240,0.35); color:var(--cream);
-    font-size:14px; font-weight:500; display:flex; align-items:center; gap:8px;
-    transition:all .3s;
-  }
-  header.scrolled .btn-login{border-color:var(--line); color:var(--ink);}
-  .btn-login:hover{background:rgba(250,247,240,0.12); border-color:var(--mint-300);}
+    .brand-title {
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
 
-  /* ---------- HERO ---------- */
-  .hero{
-    position:relative; min-height:100vh; display:flex; align-items:center;
-    background:var(--forest-950);
-    overflow:hidden;
-    padding-top:90px;
-  }
-  .hero-bg{
-    position:absolute; inset:0;
-    background-image:url('https://picsum.photos/seed/causa30hope/1800/1200');
-    background-size:cover; background-position:center 30%;
-    filter:sepia(.35) saturate(1.3) hue-rotate(60deg) brightness(.55) contrast(1.05);
-    transform:scale(1.08);
-  }
-  .hero-bg::after{
-    content:'';
-  }
-  .hero-scrim{
-    position:absolute; inset:0;
-    background:
-      radial-gradient(60% 70% at 78% 45%, rgba(8,25,18,0.15), rgba(8,25,18,0.65) 60%),
-      linear-gradient(100deg, rgba(6,18,13,0.96) 0%, rgba(6,18,13,0.86) 34%, rgba(6,18,13,0.35) 62%, rgba(6,18,13,0.55) 100%);
-  }
-  .hero-inner{
-    position:relative; z-index:2; width:100%;
-    display:grid; grid-template-columns:1.05fr 0.95fr; gap:40px; align-items:center;
-    padding:60px 0 40px;
-  }
+    .brand-tagline {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--accent-coral);
+      margin-top: 2px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
 
-  /* left: card stack */
-  .stack{position:relative; height:640px;}
-  .pcard{
-    position:absolute; top:50%; border-radius:24px; overflow:hidden;
-    box-shadow: var(--shadow-soft);
-    background:var(--forest-800);
-    transition: transform .6s var(--ease), opacity .6s var(--ease), filter .6s var(--ease);
-    border:1px solid rgba(255,255,255,0.08);
-  }
-  .pcard .photo{
-    height:62%; width:100%; object-fit:cover; filter:sepia(.25) saturate(1.2) hue-rotate(55deg) brightness(.85);
-  }
-  .pcard .info{padding:20px 22px 22px; background:linear-gradient(180deg, rgba(8,25,18,0.4), rgba(8,25,18,0.92));}
-  .pcard .badge{
-    position:absolute; top:16px; left:16px; z-index:3;
-    background:var(--mint-300); color:var(--forest-950); font-weight:700; font-size:11px;
-    letter-spacing:.06em; padding:6px 12px; border-radius:100px; display:flex; align-items:center; gap:5px;
-  }
-  .pcard .heart{position:absolute; top:16px; right:16px; z-index:3; width:34px; height:34px; border-radius:50%;
-    background:rgba(255,255,255,0.15); backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center; color:#fff; font-size:15px;}
-  .pcard .brand{font-size:11px; letter-spacing:.1em; color:var(--mint-200); font-weight:700; margin-bottom:4px;}
-  .pcard .pname{font-family:'Outfit',sans-serif; font-weight:600; color:#fff; font-size:19px; line-height:1.2; margin-bottom:4px;}
-  .pcard .desc{font-size:12.5px; color:rgba(255,255,255,0.6); margin-bottom:10px;}
-  .pcard .price{font-family:'Outfit',sans-serif; font-weight:700; font-size:22px; color:#fff; margin-bottom:12px;}
-  .pcard .donate{
-    display:flex; align-items:center; gap:8px; font-size:13px; color:var(--mint-200);
-    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:9px 14px; margin-bottom:10px;
-  }
-  .pcard .cta{
-    display:flex; align-items:center; justify-content:center; gap:8px;
-    background:linear-gradient(120deg, var(--mint-300), var(--forest-500));
-    color:var(--forest-950); font-weight:700; font-size:14px; padding:13px; border-radius:14px;
-  }
+    .hero-subtext {
+      font-size: 0.85rem;
+      opacity: 0.9;
+      margin-top: 4px;
+    }
 
-  .pcard.p0{ width:300px; height:520px; left:0; z-index:5; transform:translateY(-50%) rotate(-2deg); }
-  .pcard.p1{ width:230px; height:400px; left:260px; z-index:4; transform:translateY(-58%) rotate(2deg); opacity:.92; filter:brightness(.8);}
-  .pcard.p2{ width:200px; height:340px; left:440px; z-index:3; transform:translateY(-42%) rotate(4deg); opacity:.75; filter:brightness(.65);}
-  .pcard.p1 .info, .pcard.p2 .info{padding:14px 16px 16px;}
-  .pcard.p1 .pname{font-size:15px;} .pcard.p2 .pname{font-size:14px;}
-  .pcard.p1 .cta, .pcard.p2 .cta{padding:9px; font-size:12px;}
+    /* Slider / Carrusel 3D Stack */
+    .hero-slider-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 380px;
+      height: 380px;
+      margin: 20px auto;
+      perspective: 1000px;
+      z-index: 2;
+    }
 
-  .pcard.p0:hover{transform:translateY(-53%) rotate(-1deg) scale(1.015);}
+    .slide-card {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow-lg);
+      transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+    }
 
-  .stack-nav{
-    position:absolute; bottom:-6px; left:0; display:flex; align-items:center; gap:18px; z-index:6;
-  }
-  .stack-nav button{
-    width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.25);
-    color:#fff; display:flex; align-items:center; justify-content:center; transition:all .3s;
-  }
-  .stack-nav button:hover{background:rgba(255,255,255,0.12); border-color:var(--mint-300);}
-  .dots{display:flex; gap:6px;}
-  .dots span{width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.35);}
-  .dots span.on{background:var(--mint-300); width:16px; border-radius:4px; transition:all .3s;}
+    /* Estados de apilamiento 3D */
+    .slide-card[data-position="0"] {
+      transform: translate3d(0, 0, 0) scale(1);
+      z-index: 3;
+      opacity: 1;
+    }
 
-  /* right: hero text */
-  .hero-copy{position:relative; z-index:2; padding-left:10px;}
-  .eyebrow{
-    font-size:13px; font-weight:700; letter-spacing:.16em; color:var(--mint-300);
-    display:flex; align-items:center; gap:12px; margin-bottom:22px;
-  }
-  .eyebrow::before{content:''; width:28px; height:1px; background:var(--mint-300);}
-  h1.hero-title{
-    font-family:'Outfit',sans-serif; font-weight:800; letter-spacing:-0.02em;
-    font-size:clamp(48px, 6vw, 76px); line-height:0.98; color:#fff; margin-bottom:22px;
-  }
-  h1.hero-title .amp{color:var(--mint-300); font-weight:600; display:block;}
-  .hero-sub{
-    font-size:17px; line-height:1.55; color:rgba(255,255,255,0.72); max-width:400px; margin-bottom:34px;
-  }
-  .hero-sub b{color:var(--mint-200); font-weight:600;}
-  .hero-actions{display:flex; align-items:center; gap:28px; flex-wrap:wrap;}
+    .slide-card[data-position="1"] {
+      transform: translate3d(0, -20px, -50px) scale(0.92);
+      z-index: 2;
+      opacity: 0.75;
+      pointer-events: none;
+    }
 
-  .counter{display:flex; align-items:center; gap:16px;}
-  .ring{position:relative; width:96px; height:96px;}
-  .ring svg{transform:rotate(-90deg);}
-  .ring-track{fill:none; stroke:rgba(255,255,255,0.12); stroke-width:6;}
-  .ring-fill{fill:none; stroke:var(--mint-300); stroke-width:6; stroke-linecap:round; stroke-dasharray:264; stroke-dashoffset:264; transition:stroke-dashoffset 1.4s var(--ease);}
-  .ring-num{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff;}
-  .ring-num b{font-family:'Outfit',sans-serif; font-size:26px; font-weight:800; line-height:1;}
-  .ring-label{font-size:11px; color:rgba(255,255,255,0.6); line-height:1.3;}
-  .ring-label b{color:rgba(255,255,255,0.85); display:block; font-weight:700; letter-spacing:.04em; font-size:11px;}
+    .slide-card[data-position="2"] {
+      transform: translate3d(0, -40px, -100px) scale(0.84);
+      z-index: 1;
+      opacity: 0.5;
+      pointer-events: none;
+    }
 
-  .btn-primary{
-    display:inline-flex; align-items:center; gap:10px;
-    background:linear-gradient(120deg, var(--coral-500), var(--coral-400));
-    color:#fff; font-weight:700; font-size:15px; padding:17px 28px; border-radius:100px;
-    box-shadow:0 16px 34px -12px rgba(255,122,89,0.55);
-    transition:transform .35s var(--ease), box-shadow .35s var(--ease);
-  }
-  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 20px 40px -12px rgba(255,122,89,0.7);}
+    .slide-img-container {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
 
-  /* trust bar */
-  .trust{
-    position:relative; z-index:3; margin-top:56px;
-    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12);
-    backdrop-filter:blur(10px); border-radius:20px;
-    display:grid; grid-template-columns:repeat(4,1fr);
-  }
-  .trust > div{padding:22px 26px; display:flex; align-items:center; gap:14px; border-right:1px solid rgba(255,255,255,0.1);}
-  .trust > div:last-child{border-right:none;}
-  .trust .ic{width:38px; height:38px; border-radius:11px; background:rgba(143,227,176,0.15); color:var(--mint-300); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
-  .trust b{display:block; font-size:13.5px; color:#fff; font-weight:600;}
-  .trust span{font-size:12px; color:rgba(255,255,255,0.55);}
+    .slide-img-container img {
+      width: 100%;
+      height: 100%;
+    }
 
-  .scroll-cue{
-    position:absolute; bottom:28px; left:50%; transform:translateX(-50%); z-index:3;
-    display:flex; flex-direction:column; align-items:center; gap:6px;
-    font-size:12px; color:var(--mint-200); letter-spacing:.04em; opacity:.8;
-  }
-  .scroll-cue .arrow{animation:bob 2s ease-in-out infinite;}
-  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
+    .slide-badge-company {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(13, 59, 46, 0.85);
+      color: #fff;
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
 
-  /* ---------- SECTION shell ---------- */
-  section{padding:120px 0;}
-  .sec-head{max-width:640px; margin-bottom:64px;}
-  .sec-eyebrow{font-size:12.5px; font-weight:700; letter-spacing:.14em; color:var(--forest-600); display:flex; align-items:center; gap:10px; margin-bottom:16px;}
-  .sec-eyebrow::before{content:''; width:22px; height:1px; background:var(--forest-600);}
-  .sec-title{font-family:'Outfit',sans-serif; font-weight:700; letter-spacing:-0.02em; font-size:clamp(32px,4vw,46px); line-height:1.06; margin-bottom:16px;}
-  .sec-sub{font-size:16.5px; color:var(--ink-soft); line-height:1.6;}
+    .slide-info {
+      margin-top: 10px;
+    }
 
-  /* ---------- CAMPAIGNS ---------- */
-  .campaigns{background:var(--paper);}
-  .camp-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
-  .camp-card{
-    background:var(--cream); border-radius:var(--radius-md); overflow:hidden; border:1px solid var(--line);
-    transition:transform .45s var(--ease), box-shadow .45s var(--ease);
-  }
-  .camp-card:hover{transform:translateY(-6px); box-shadow:var(--shadow-soft);}
-  .camp-photo{height:200px; width:100%; object-fit:cover; filter:sepia(.3) saturate(1.15) hue-rotate(55deg) brightness(.92);}
-  .camp-body{padding:22px 22px 24px;}
-  .camp-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;}
-  .camp-brand{font-size:11px; font-weight:700; letter-spacing:.08em; color:var(--forest-600); text-transform:uppercase;}
-  .camp-time{font-size:11.5px; color:var(--coral-500); font-weight:600; background:rgba(255,122,89,0.1); padding:4px 10px; border-radius:100px;}
-  .camp-name{font-family:'Outfit',sans-serif; font-weight:600; font-size:19px; margin-bottom:14px; line-height:1.25;}
-  .camp-row{display:flex; justify-content:space-between; align-items:center; padding-top:14px; border-top:1px dashed var(--line);}
-  .camp-price{font-family:'Outfit',sans-serif; font-weight:700; font-size:18px;}
-  .camp-give{font-size:12.5px; color:var(--forest-600); font-weight:600;}
-  .camp-cta{
-    margin-top:16px; width:100%; padding:13px; border-radius:12px; background:var(--forest-900); color:#fff;
-    font-weight:600; font-size:13.5px; display:flex; align-items:center; justify-content:center; gap:8px;
-    transition:background .3s;
-  }
-  .camp-cta:hover{background:var(--forest-600);}
+    .slide-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
 
-  /* ---------- HOW IT WORKS ---------- */
-  .how{background:var(--forest-950); color:#fff; position:relative; overflow:hidden;}
-  .how::before{
-    content:''; position:absolute; top:-20%; right:-10%; width:600px; height:600px; border-radius:50%;
-    background:radial-gradient(circle, rgba(143,227,176,0.12), transparent 70%);
-  }
-  .how .sec-eyebrow, .how .sec-eyebrow::before{color:var(--mint-300); background:var(--mint-300);}
-  .how .sec-sub{color:rgba(255,255,255,0.6);}
-  .flow{display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative; z-index:2; margin-top:20px;}
-  .flow-step{position:relative; padding:36px 26px; text-align:left;}
-  .flow-step:not(:last-child)::after{
-    content:'→'; position:absolute; right:-6px; top:40px; color:var(--mint-300); font-size:22px; opacity:.6;
-  }
-  .flow-num{font-family:'Outfit',sans-serif; font-size:13px; color:var(--mint-300); font-weight:700; letter-spacing:.1em; margin-bottom:18px;}
-  .flow-ic{width:52px; height:52px; border-radius:14px; background:rgba(143,227,176,0.1); border:1px solid rgba(143,227,176,0.25); display:flex; align-items:center; justify-content:center; color:var(--mint-300); margin-bottom:20px;}
-  .flow-title{font-family:'Outfit',sans-serif; font-weight:600; font-size:20px; margin-bottom:10px;}
-  .flow-desc{font-size:14px; color:rgba(255,255,255,0.55); line-height:1.55;}
+    .slide-price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 6px;
+    }
 
-  /* ---------- TRANSPARENCIA ---------- */
-  .transparency{background:var(--paper);}
-  .trans-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;}
-  .trans-list{display:flex; flex-direction:column; gap:28px;}
-  .trans-item{display:flex; gap:18px;}
-  .trans-item .ic{
-    width:46px; height:46px; border-radius:13px; background:var(--cream-alt); color:var(--forest-600);
-    display:flex; align-items:center; justify-content:center; flex-shrink:0; border:1px solid var(--line);
-  }
-  .trans-item h4{font-family:'Outfit',sans-serif; font-weight:600; font-size:17px; margin-bottom:6px;}
-  .trans-item p{font-size:14.5px; color:var(--ink-soft); line-height:1.55;}
-  .trans-visual{
-    background:var(--forest-900); border-radius:var(--radius-lg); padding:36px; color:#fff;
-    position:relative; overflow:hidden;
-  }
-  .receipt{background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:16px; padding:24px; backdrop-filter:blur(6px);}
-  .receipt-row{display:flex; justify-content:space-between; padding:11px 0; border-bottom:1px dashed rgba(255,255,255,0.14); font-size:13.5px;}
-  .receipt-row:last-child{border-bottom:none;}
-  .receipt-row span:first-child{color:rgba(255,255,255,0.55);}
-  .receipt-row span:last-child{font-weight:600;}
-  .receipt-badge{display:inline-flex; align-items:center; gap:6px; background:rgba(143,227,176,0.15); color:var(--mint-300); font-size:11.5px; font-weight:700; padding:5px 12px; border-radius:100px; margin-bottom:16px;}
+    .slide-price {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--primary-forest);
+    }
 
-  /* ---------- FUNDACION ---------- */
-  .foundation{background:var(--cream-alt);}
-  .fnd-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:0; border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-soft);}
-  .fnd-photo{position:relative; min-height:520px;}
-  .fnd-photo img{width:100%; height:100%; object-fit:cover; position:absolute; inset:0; filter:sepia(.3) saturate(1.2) hue-rotate(55deg) brightness(.85);}
-  .fnd-photo::after{content:''; position:absolute; inset:0; background:linear-gradient(0deg, rgba(8,25,18,0.55), transparent 40%);}
-  .fnd-logo{
-    position:absolute; bottom:26px; left:26px; z-index:2; width:64px; height:64px; border-radius:16px;
-    background:rgba(255,255,255,0.92); display:flex; align-items:center; justify-content:center;
-    font-family:'Outfit',sans-serif; font-weight:800; color:var(--forest-700); font-size:22px;
-  }
-  .fnd-body{background:var(--paper); padding:56px; display:flex; flex-direction:column; justify-content:center;}
-  .fnd-body h3{font-family:'Outfit',sans-serif; font-weight:700; font-size:30px; margin-bottom:18px; letter-spacing:-.01em;}
-  .fnd-body p{font-size:15.5px; color:var(--ink-soft); line-height:1.7; margin-bottom:28px;}
-  .fnd-contact{display:flex; flex-wrap:wrap; gap:14px;}
-  .fnd-contact a{
-    display:flex; align-items:center; gap:9px; font-size:13.5px; font-weight:600; color:var(--forest-700);
-    background:var(--cream-alt); padding:11px 16px; border-radius:100px; border:1px solid var(--line);
-    transition:all .3s;
-  }
-  .fnd-contact a:hover{background:var(--forest-700); color:#fff; border-color:var(--forest-700);}
+    .slide-impact-badge {
+      background: rgba(255, 107, 82, 0.15);
+      color: var(--accent-coral-hover);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
 
-  /* ---------- MASCOTAS ---------- */
-  .pets{background:var(--paper);}
-  .pets-head{display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:48px;}
-  .pet-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:22px;}
-  .pet-card{position:relative; border-radius:var(--radius-md); overflow:hidden; aspect-ratio:3/4.1;}
-  .pet-card img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:sepia(.25) saturate(1.15) hue-rotate(55deg) brightness(.92); transition:transform .6s var(--ease);}
-  .pet-card:hover img{transform:scale(1.06);}
-  .pet-scrim{position:absolute; inset:0; background:linear-gradient(0deg, rgba(6,18,13,0.92) 0%, rgba(6,18,13,0.15) 55%, transparent 75%);}
-  .pet-avail{position:absolute; top:14px; left:14px; z-index:2; background:var(--mint-300); color:var(--forest-950); font-size:10.5px; font-weight:700; padding:5px 11px; border-radius:100px; letter-spacing:.03em;}
-  .pet-info{position:absolute; bottom:0; left:0; right:0; padding:20px; z-index:2;}
-  .pet-info h4{font-family:'Outfit',sans-serif; color:#fff; font-weight:600; font-size:19px; margin-bottom:2px;}
-  .pet-info span{color:rgba(255,255,255,0.65); font-size:12.5px;}
-  .pet-actions{display:flex; gap:8px; margin-top:14px;}
-  .pet-actions button{flex:1; padding:10px; border-radius:10px; font-size:12.5px; font-weight:700; display:flex; align-items:center; justify-content:center; gap:6px;}
-  .pet-adopt{background:var(--mint-300); color:var(--forest-950);}
-  .pet-share{background:rgba(255,255,255,0.14); color:#fff; border:1px solid rgba(255,255,255,0.3);}
-  .pet-share:hover{background:var(--coral-500); border-color:var(--coral-500);}
+    .btn-campaign {
+      display: block;
+      width: 100%;
+      background: var(--primary-forest);
+      color: #ffffff;
+      text-align: center;
+      padding: 12px;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-size: 0.9rem;
+      border: none;
+      margin-top: 10px;
+      cursor: pointer;
+    }
 
-  /* ---------- RESULTADOS ---------- */
-  .results{background:var(--cream-alt);}
-  .results-panel{background:var(--paper); border-radius:var(--radius-lg); border:1px solid var(--line); overflow:hidden; box-shadow:var(--shadow-soft);}
-  .res-row{display:grid; grid-template-columns:1.6fr 1.4fr 1fr 1fr 1.2fr 1.3fr; align-items:center; padding:20px 30px; border-bottom:1px solid var(--line); gap:12px;}
-  .res-row.head{background:var(--cream-alt); font-size:11.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft);}
-  .res-row:not(.head):hover{background:rgba(143,227,176,0.06);}
-  .res-row:last-child{border-bottom:none;}
-  .res-company{display:flex; align-items:center; gap:12px; font-weight:600; font-size:14.5px;}
-  .res-avatar{width:34px; height:34px; border-radius:9px; background:var(--forest-700); color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Outfit',sans-serif; font-weight:700; font-size:13px; flex-shrink:0;}
-  .res-cell{font-size:13.5px; color:var(--ink-soft);}
-  .res-cell b{color:var(--ink); font-weight:600;}
-  .status{display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600; padding:6px 12px; border-radius:100px;}
-  .status.ok{background:rgba(44,138,90,0.12); color:var(--forest-600);}
-  .status.pending{background:rgba(255,122,89,0.12); color:var(--coral-500);}
+    /* Hero Footer / Widget Derecho en Desktop */
+    .hero-right-widget {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      color: var(--text-dark);
+      text-align: center;
+      z-index: 2;
+      max-width: 380px;
+      margin: 0 auto;
+      width: 100%;
+    }
 
-  /* ---------- PROPONER ---------- */
-  .propose{background:var(--forest-950); color:#fff; text-align:center; position:relative; overflow:hidden;}
-  .propose::before{content:''; position:absolute; top:-30%; left:50%; transform:translateX(-50%); width:800px; height:800px; border-radius:50%; background:radial-gradient(circle, rgba(143,227,176,0.1), transparent 70%);}
-  .propose-inner{position:relative; z-index:2; max-width:680px; margin:0 auto;}
-  .propose h3{font-family:'Outfit',sans-serif; font-weight:700; font-size:clamp(28px,4vw,42px); line-height:1.15; margin-bottom:28px; letter-spacing:-.01em;}
-  .propose-form{display:flex; gap:10px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); padding:8px; border-radius:100px; margin:0 auto 18px; max-width:520px;}
-  .propose-form input{flex:1; background:none; border:none; color:#fff; padding:12px 18px; font-size:14.5px; font-family:'Inter',sans-serif;}
-  .propose-form input::placeholder{color:rgba(255,255,255,0.4);}
-  .propose-form button{background:var(--mint-300); color:var(--forest-950); font-weight:700; padding:13px 26px; border-radius:100px; font-size:14px;}
-  .propose-note{font-size:13px; color:rgba(255,255,255,0.45);}
-  .propose-note a{color:var(--mint-300); font-weight:600;}
+    .hero-right-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: var(--primary-forest);
+    }
 
-  /* ---------- FOOTER ---------- */
-  footer{background:var(--forest-950); color:rgba(255,255,255,0.6); padding:64px 0 32px; border-top:1px solid rgba(255,255,255,0.08);}
-  .foot-top{display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:40px; padding-bottom:48px;}
-  .foot-brand .logo{color:#fff; margin-bottom:14px;}
-  .foot-brand p{font-size:13.5px; line-height:1.6; max-width:260px; color:rgba(255,255,255,0.45);}
-  .foot-col h5{font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:16px;}
-  .foot-col a{display:block; font-size:14px; margin-bottom:11px; color:rgba(255,255,255,0.62); transition:color .3s;}
-  .foot-col a:hover{color:var(--mint-300);}
-  .foot-bottom{display:flex; justify-content:space-between; align-items:center; padding-top:28px; border-top:1px solid rgba(255,255,255,0.08); font-size:12.5px; color:rgba(255,255,255,0.35);}
-  .foot-social{display:flex; gap:10px;}
-  .foot-social a{width:34px; height:34px; border-radius:50%; border:1px solid rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; transition:all .3s;}
-  .foot-social a:hover{background:var(--mint-300); border-color:var(--mint-300); color:var(--forest-950);}
+    .hero-counter {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin: 8px 0;
+      font-weight: 800;
+      color: var(--accent-coral-hover);
+      font-size: 1rem;
+    }
 
-  /* ---------- responsive ---------- */
-  @media (max-width: 1080px){
-    .wrap{padding:0 24px;}
-    .hero-inner{grid-template-columns:1fr; gap:60px;}
-    .stack{height:460px; margin:0 auto;}
-    .trust{grid-template-columns:repeat(2,1fr);}
-    .trust > div{border-bottom:1px solid rgba(255,255,255,0.1);}
-    .camp-grid{grid-template-columns:repeat(2,1fr);}
-    .flow{grid-template-columns:repeat(2,1fr); row-gap:20px;}
-    .flow-step:nth-child(2)::after{display:none;}
-    .trans-grid{grid-template-columns:1fr;}
-    .fnd-grid{grid-template-columns:1fr;}
-    .fnd-photo{min-height:320px;}
-    .pet-grid{grid-template-columns:repeat(2,1fr);}
-    .res-row{grid-template-columns:1.6fr 1fr 1fr; }
-    .res-cell.hide-mobile{display:none;}
-    .nav-links{display:none;}
-  }
-  @media (max-width: 620px){
-    section{padding:80px 0;}
-    .camp-grid{grid-template-columns:1fr;}
-    .pet-grid{grid-template-columns:1fr;}
-    .flow{grid-template-columns:1fr;}
-    .fnd-body{padding:32px;}
-    .foot-top{grid-template-columns:1fr 1fr; row-gap:32px;}
-    .hero-actions{flex-direction:column; align-items:flex-start; gap:22px;}
-  }
-</style>
+    .btn-explore {
+      background: var(--accent-coral);
+      color: #fff;
+      display: block;
+      width: 100%;
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    /* ==========================================================================
+       ESTILOS GENERALES DE SECCIÓN
+       ========================================================================== */
+    .section-padding {
+      padding: 48px 20px;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary-forest);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    /* SECCIÓN 1: Campañas del Mes */
+    .campaign-img {
+      width: 100%;
+      height: 200px;
+    }
+
+    .campaign-body {
+      padding: 16px;
+    }
+
+    .btn-buy {
+      display: block;
+      width: 100%;
+      background: var(--accent-coral);
+      color: white;
+      text-align: center;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      margin-top: 12px;
+    }
+
+    /* SECCIÓN 2: Fundación */
+    .foundation-card {
+      background: var(--primary-forest);
+      color: white;
+      padding: 24px;
+      border-radius: var(--radius-lg);
+    }
+
+    .foundation-logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #fff;
+      padding: 4px;
+      margin-bottom: 12px;
+    }
+
+    .foundation-info-list {
+      margin: 16px 0;
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+
+    .btn-foundation {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      display: block;
+      text-align: center;
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+    }
+
+    /* SECCIÓN 3: Mascotas */
+    .pets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .pet-card-body {
+      padding: 16px;
+    }
+
+    .pet-btn-group {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .btn-adopt {
+      flex: 1;
+      background: var(--primary-forest);
+      color: white;
+      text-align: center;
+      padding: 8px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .btn-share {
+      flex: 1;
+      background: rgba(255, 107, 82, 0.1);
+      color: var(--accent-coral-hover);
+      border: 1px solid var(--accent-coral);
+      text-align: center;
+      padding: 8px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    /* SECCIÓN 4: Cómo Funciona */
+    .steps-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: white;
+      padding: 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+
+    .step-number {
+      background: var(--primary-forest);
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .important-notice {
+      background: rgba(255, 107, 82, 0.1);
+      border-left: 4px solid var(--accent-coral);
+      padding: 16px;
+      border-radius: 4px;
+      margin-top: 16px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* SECCIÓN 5: Transparencia Grid */
+    .transparency-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .transparency-item {
+      background: white;
+      padding: 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--primary-forest);
+    }
+
+    /* SECCIÓN 6: Panel de Resultados */
+    .results-panel {
+      background: white;
+      border: 2px dashed var(--primary-forest);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+
+    .results-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.9rem;
+    }
+
+    .results-row strong {
+      color: var(--primary-forest);
+    }
+
+    /* SECCIÓN 7: Compartir */
+    .share-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .btn-social {
+      flex: 1 1 calc(50% - 8px);
+      background: white;
+      border: 1px solid var(--border-color);
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    /* SECCIÓN 8 & 9: Form & B2B */
+    .input-box {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      margin-top: 12px;
+      margin-bottom: 12px;
+      font-family: inherit;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--primary-forest);
+      color: white;
+      padding: 32px 20px;
+      font-size: 0.85rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 16px 0;
+    }
+
+    .footer-credits {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.75rem;
+      opacity: 0.7;
+      text-align: center;
+    }
+
+    /* ==========================================================================
+       MEDIA QUERIES (Soporte Desktop Manteniendo Enfoque App)
+       ========================================================================== */
+    @media (min-width: 768px) {
+      .hero-container {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        padding: 40px;
+      }
+      .hero-header {
+        position: absolute;
+        top: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .hero-slider-wrapper {
+        margin: 0;
+      }
+      .hero-right-widget {
+        margin: 0;
+      }
+      .main-content-wrapper {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<header id="siteHeader">
-  <div class="wrap">
-    <nav>
-      <a class="logo" href="#top"><span class="mark"></span>CAUSA<b>30</b></a>
-      <ul class="nav-links">
-        <li><a href="#campanas" class="active">Promociones</a></li>
-        <li><a href="#fundacion">Fundación</a></li>
-        <li><a href="#resultados">Resultados</a></li>
-        <li><a href="#como-funciona">Cómo funciona</a></li>
-      </ul>
-      <a class="btn-login" href="#">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-        Iniciar sesión
-      </a>
-    </nav>
-  </div>
-</header>
-
-<section class="hero" id="top">
-  <div class="hero-bg"></div>
-  <div class="hero-scrim"></div>
-  <div class="wrap hero-inner">
-
-    <div class="stack" id="stack">
-      <div class="pcard p2">
-        <img class="photo" src="https://picsum.photos/seed/causa30coffee/500/650" alt="">
-        <div class="info">
-          <div class="brand">CAFÉ ORIGEN</div>
-          <div class="pname">Café Premium 100% Arábica</div>
-          <div class="price">RD$650</div>
-        </div>
-      </div>
-      <div class="pcard p1">
-        <div class="heart">♡</div>
-        <img class="photo" src="https://picsum.photos/seed/causa30soap/500/650" alt="">
-        <div class="info">
-          <div class="brand">BOTANIKA</div>
-          <div class="pname">Jabón Líquido Avena &amp; Coco</div>
-          <div class="price">RD$550</div>
-          <div class="donate">♥ Dona RD$40</div>
-        </div>
-      </div>
-      <div class="pcard p0">
-        <div class="badge">★ Destacado</div>
-        <div class="heart">♡</div>
-        <img class="photo" src="https://picsum.photos/seed/causa30supp/600/780" alt="">
-        <div class="info">
-          <div class="brand">NUTRILIFE</div>
-          <div class="pname">Magnesio Ultra</div>
-          <div class="desc">Apoyo para tu bienestar diario.</div>
-          <div class="price">RD$790</div>
-          <div class="donate">♥ Dona RD$50 a la fundación</div>
-          <div class="cta">Ver promoción →</div>
-        </div>
-      </div>
-
-      <div class="stack-nav">
-        <button aria-label="Anterior">←</button>
-        <div class="dots"><span class="on"></span><span></span><span></span></div>
-        <button aria-label="Siguiente">→</button>
-      </div>
+  <!-- ==========================================================================
+       HERO / INTERFAZ INICIAL
+       ========================================================================== -->
+  <section class="hero-container">
+    <div class="hero-header">
+      <h1 class="brand-title">CAUSA30</h1>
+      <p class="brand-tagline">Compra & Ayuda</p>
+      <p class="hero-subtext">Cada compra genera un impacto real.</p>
     </div>
 
-    <div class="hero-copy">
-      <div class="eyebrow">CAMPAÑAS DE 30 DÍAS · POR EMPRESAS</div>
-      <h1 class="hero-title">COMPRA<span class="amp">&amp;</span>AYUDA</h1>
-      <p class="hero-sub">Cada venta genera una aportación <b>directa y verificable</b> a la fundación. Sin intermediarios. Sin letra pequeña.</p>
-
-      <div class="hero-actions">
-        <div class="counter">
-          <div class="ring">
-            <svg width="96" height="96" viewBox="0 0 96 96">
-              <circle class="ring-track" cx="48" cy="48" r="42"></circle>
-              <circle class="ring-fill" id="ringFill" cx="48" cy="48" r="42"></circle>
-            </svg>
-            <div class="ring-num"><b>18</b></div>
+    <!-- Carrusel 3D Slide (Lado Izquierdo en Desktop) -->
+    <div class="hero-slider-wrapper" id="heroSlider">
+      
+      <!-- Producto 1 (Protagonista) -->
+      <div class="slide-card" data-position="0">
+        <div class="slide-img-container">
+          <span class="slide-badge-company">Café Santo Domingo</span>
+          <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=600&q=80" alt="Café Especial">
+        </div>
+        <div class="slide-info">
+          <h3 class="slide-title">Pack Café Orgánico 1lb</h3>
+          <div class="slide-price-row">
+            <span class="slide-price">RD$ 450</span>
+            <span class="slide-impact-badge">Aporte: RD$ 100</span>
           </div>
-          <div class="ring-label"><b>DÍAS</b>RESTANTES</div>
         </div>
-        <a href="#campanas" class="btn-primary">Explorar campañas →</a>
+        <button class="btn-campaign" onclick="scrollToSection('campanas')">Ver campaña</button>
       </div>
 
-      <div class="trust reveal">
-        <div>
-          <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V6l8-4z"/></svg></div>
-          <div><b>Aportaciones verificables</b><span>Transparencia total</span></div>
+      <!-- Producto 2 -->
+      <div class="slide-card" data-position="1">
+        <div class="slide-img-container">
+          <span class="slide-badge-company">Agua Planeta Azul</span>
+          <img src="https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=600&q=80" alt="Termo Reutilizable">
         </div>
-        <div>
-          <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 15c2.8 0 5 2 5 5"/></svg></div>
-          <div><b>Empresas comprometidas</b><span>Marcas que crean impacto</span></div>
+        <div class="slide-info">
+          <h3 class="slide-title">Termo Térmico Acero</h3>
+          <div class="slide-price-row">
+            <span class="slide-price">RD$ 1,200</span>
+            <span class="slide-impact-badge">Aporte: RD$ 100</span>
+          </div>
         </div>
-        <div>
-          <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.6-9.5-9C.9 8.5 2.5 5 6 5c2 0 3.5 1.1 4.5 2.4C11.5 6.1 13 5 15 5c3.5 0 5.1 3.5 3.5 7-2.5 4.4-9.5 9-9.5 9z"/></svg></div>
-          <div><b>Compras que cambian vidas</b><span>Tú compras, ellos reciben</span></div>
+        <button class="btn-campaign" onclick="scrollToSection('campanas')">Ver campaña</button>
+      </div>
+
+      <!-- Producto 3 -->
+      <div class="slide-card" data-position="2">
+        <div class="slide-img-container">
+          <span class="slide-badge-company">Ferretería Rodríguez</span>
+          <img src="https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?auto=format&fit=crop&w=600&q=80" alt="Lámpara LED">
         </div>
-        <div>
-          <div class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
-          <div><b>Campañas de 30 días</b><span>Tiempo limitado, impacto real</span></div>
+        <div class="slide-info">
+          <h3 class="slide-title">Kit Herramientas Pro</h3>
+          <div class="slide-price-row">
+            <span class="slide-price">RD$ 5,500</span>
+            <span class="slide-impact-badge">Aporte: RD$ 100</span>
+          </div>
+        </div>
+        <button class="btn-campaign" onclick="scrollToSection('campanas')">Ver campaña</button>
+      </div>
+
+    </div>
+
+    <!-- Widget Derecho / Texto Hero -->
+    <div class="hero-right-widget">
+      <h2 class="hero-right-title">CAMPAÑAS DE 30 DÍAS</h2>
+      <p style="font-size: 0.8rem; margin: 4px 0;">Cada compra genera una aportación directa y verificable a una fundación.</p>
+      <div class="hero-counter">
+        <span>⏱️</span> 18 días restantes
+      </div>
+      <button class="btn-explore" onclick="scrollToSection('campanas')">Ver campañas</button>
+    </div>
+  </section>
+
+  <!-- Wrapper para contenido principal -->
+  <div class="main-content-wrapper">
+
+    <!-- ==========================================================================
+         SECCIÓN 1: CAMPAÑAS DEL MES
+         ========================================================================== -->
+    <section class="section-padding" id="campanas">
+      <h2 class="section-title">Productos que hoy ayudan</h2>
+      <p class="section-subtitle">Durante este mes estas empresas han decidido convertir sus ventas en ayuda para una fundación. Cada compra suma. Cada compra cuenta.</p>
+
+      <div class="card">
+        <img class="campaign-img" src="https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?auto=format&fit=crop&w=800&q=80" alt="Producto Ferretería">
+        <div class="campaign-body">
+          <h3>Set de Herramientas Industriales</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted);">Empresa: Ferretería Rodríguez</p>
+          <p style="font-weight: 800; font-size:1.1rem; margin-top:8px;">RD$ 5,500</p>
+          <div class="important-notice" style="margin: 8px 0; padding: 8px; font-size:0.8rem;">
+            Condición: RD$ 100 serán donados por cada compra superior a RD$ 5,000.
+          </div>
+          <p style="font-size: 0.8rem; color: var(--accent-coral-hover); font-weight:700;">⏱️ 18 días restantes</p>
+          <a href="#" class="btn-buy">Comprar ahora</a>
         </div>
       </div>
-    </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECCIÓN 2: LA FUNDACIÓN BENEFICIARIA
+         ========================================================================== -->
+    <section class="section-padding">
+      <div class="foundation-card">
+        <img class="foundation-logo" src="https://images.unsplash.com/photo-1535294435445-d7249524ef2e?auto=format&fit=crop&w=200&q=80" alt="Logo Fundación">
+        <h2 style="font-size: 1.4rem;">Fundación Huellas Felices</h2>
+        <p style="font-size: 0.85rem; margin-top: 8px; opacity: 0.9;">
+          Esta campaña apoya a una fundación que trabaja cada día rescatando, cuidando y buscando hogares responsables para perros y gatos. Gracias a las compras realizadas durante esta campaña será posible seguir alimentando, vacunando, esterilizando y encontrando familias para muchos animales.
+        </p>
+
+        <div class="foundation-info-list">
+          <p>📍 Dirección: Av. Las Américas #102, Santo Domingo</p>
+          <p>📞 Teléfono: +1 (809) 555-0199</p>
+          <p>✉️ Correo: contacto@huellasfelices.org</p>
+          <p>🌐 Social: @huellasfelicesrd (Instagram / Facebook)</p>
+        </div>
+
+        <a href="https://wa.me/" class="btn-foundation" target="_blank">Conocer la fundación</a>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECCIÓN 3: MASCOTAS EN ADOPCIÓN
+         ========================================================================== -->
+    <section class="section-padding">
+      <h2 class="section-title">Ellos también forman parte de esta campaña</h2>
+      <p class="section-subtitle">Mascotas buscando un hogar responsable.</p>
+
+      <div class="pets-grid">
+        <!-- Mascota 1 -->
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=500&q=80" alt="Mascota" style="height: 180px; width: 100%;">
+          <div class="pet-card-body">
+            <h3>Rocky</h3>
+            <p style="font-size:0.8rem; color:var(--text-muted);">1 año | Macho | Disponible</p>
+            <p style="font-size:0.85rem; margin-top:6px;">Juguetón, rescatado en la zona oriental. Vacunado y listo para dar amor.</p>
+            <div class="pet-btn-group">
+              <button class="btn-adopt">Quiero adoptar</button>
+              <button class="btn-share" onclick="shareMascota('Rocky')">Compartir</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mascota 2 -->
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=500&q=80" alt="Mascota" style="height: 180px; width: 100%;">
+          <div class="pet-card-body">
+            <h3>Luna</h3>
+            <p style="font-size:0.8rem; color:var(--text-muted);">6 meses | Hembra | Disponible</p>
+            <p style="font-size:0.85rem; margin-top:6px;">Tranquila y muy cariñosa. Esterilizada y desparasitada.</p>
+            <div class="pet-btn-group">
+              <button class="btn-adopt">Quiero adoptar</button>
+              <button class="btn-share" onclick="shareMascota('Luna')">Compartir</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p style="text-align: center; font-size: 0.85rem; color: var(--text-muted); margin-top: 12px;">
+        Comparte esta mascota. Quizás la persona indicada esté entre tus contactos.
+      </p>
+    </section>
+
+    <!-- ==========================================================================
+         SECCIÓN 4: ¿CÓMO FUNCIONA?
+         ========================================================================== -->
+    <section class="section-padding" style="background: rgba(13, 59, 46, 0.03);">
+      <h2 class="section-title">¿Cómo funciona?</h2>
+      
+      <div class="steps-container">
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <div><strong>Compras:</strong> Adquieres un producto participante.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <div><strong>Registro:</strong> La empresa registra esa venta.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <div><strong>Donación Directa:</strong> La empresa dona directamente a la fundación.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">4</div>
+          <div><strong>Impacto Público:</strong> La campaña publica el resultado y el comprobante.</div>
+        </div>
+      </div>
+
+      <div class="important-notice">
+        <strong>Importante:</strong> La donación nunca pasa por Causa30. Cada empresa realiza la entrega directamente a la fundación beneficiaria.
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECCIÓN 5: TRANSPARENCIA
+         ========================================================================== -->
+    <section class="section-padding">
+      <h2 class="section-title">Compromisos que sí cumplimos</h2>
+      
+      <div class="transparency-grid" style="margin-top: 16px;">
+        <div class="transparency-item">✓ Empresas identificadas</div>
+        <div class="transparency-item">✓ Fundación identificada</div>
+        <div class="transparency-item">✓ Resultados públicos</div>
+        <div class="transparency-item">✓ Donaciones verificables</div>
+        <div class="transparency-item">✓ Comprobantes publicados</div>
+        <div class="transparency-item">✓ Campañas de 30 días</div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECCIÓN 6: RESULTADOS (PANEL)
+         ========================================================================== -->
+    <section class="section-padding">
+      <h2 class="section-title">Resultados de Campaña</h2>
+      <p class="section-subtitle">Al finalizar cada campaña se publica la evidencia oficial de la donación.</p>
+
+      <div class="results-panel">
+        <div class="results-row">
+          <span>Empresa:</span>
+          <strong>Ferretería Rodríguez</strong>
+        </div>
+        <div class="results-row">
+          <span>Campaña:</span>
+          <span>Agosto 2026</span>
+        </div>
+        <div class="results-row">
+          <span>Compromiso:</span>
+          <span>RD$100 x compra > RD$5,000</span>
+        </div>
+        <div class="results-row">
+          <span>Compras:</span>
+          <strong>184</strong>
+        </div>
+        <div class="results-row">
+          <span>Donación:</span>
+          <strong style="color: var(--primary-forest);">RD$ 18,400</strong>
+        </div>
+        <div class="results-row">
+          <span>Fundación:</span>
+          <span>Fundación Huellas Felices</span>
+        </div>
+        <div class="results-row">
+          <span>Estado:</span>
+          <span>✅ Donación entregada</span>
+        </div>
+        <div class="results-row" style="border:none;">
+          <span>Comprobante:</span>
+          <span>✅ Recibido</span>
+        </div>
+
+        <button class="btn-campaign" style="margin-top: 16px;">Ver comprobante</button>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECCIÓN 7: COMPARTE LA CAMPAÑA
+         ========================================================================== -->
+    <section class="section-padding" style="text-align: center;">
+      <h2 class="section-title">Ayúdanos a llegar a más personas</h2>
+      <p class="section-subtitle">Mientras más personas conozcan esta campaña, mayor será el impacto para la fundación.</p>
+
+      <div class="share-buttons">
+        <button class="btn-social" onclick="shareUrl('WhatsApp')">WhatsApp</button>
+        <button class="btn-social" onclick="shareUrl('Facebook')">Facebook</button>
+        <button class="btn-social" onclick="shareUrl('Telegram')">Telegram</button>
+        <button class="btn-social" onclick="shareUrl('X')">X (Twitter)</button>
+      </div>
+      <button class="btn-explore" style="margin-top: 12px; background: var(--primary-forest);" onclick="copyLink()">Copiar enlace</button>
+    </section>
+
+    <!-- ==========================================================================
+         SECCIÓN 8: ¿QUÉ PRODUCTO TE GUSTARÍA VER AQUÍ?
+         ========================================================================== -->
+    <section class="section-padding" style="background: white;">
+      <h2 class="section-title">¿Qué producto te gustaría ver aquí?</h2>
+      <p class="section-subtitle">Queremos crear campañas con productos que realmente las personas consumen. Cuéntanos qué producto, marca o empresa te gustaría apoyar.</p>
+
+      <form onsubmit="event.preventDefault(); alert('Propuesta enviada. ¡Gracias!');">
+        <input type="email" class="input-box" placeholder="Tu correo electrónico" required>
+        <textarea class="input-box" rows="3" placeholder="Sugiérenos una marca o producto..." required></textarea>
+        <button type="submit" class="btn-explore">Enviar propuesta</button>
+      </form>
+      <p style="font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 8px;">O escribe directamente a promo@causa30.com</p>
+    </section>
+
+    <!-- ==========================================================================
+         SECCIÓN 9: EMPRESAS B2B
+         ========================================================================== -->
+    <section class="section-padding" style="background: var(--primary-forest); color: white;">
+      <h2 class="section-title" style="color: white;">¿Quieres que tu empresa participe?</h2>
+      <p style="font-size: 0.9rem; margin-bottom: 16px; opacity: 0.9;">
+        Si deseas convertir uno de tus productos en una campaña con propósito durante 30 días, estaremos encantados de conversar contigo.
+      </p>
+
+      <ul style="font-size: 0.85rem; margin-left: 20px; margin-bottom: 20px;">
+        <li>Mayor visibilidad.</li>
+        <li>Mayor diferenciación.</li>
+        <li>Impacto social real.</li>
+        <li>Transparencia y resultados públicos.</li>
+      </ul>
+
+      <a href="mailto:empresas@causa30.com" class="btn-buy" style="background: var(--accent-coral);">Solicitar información</a>
+    </section>
+
+    <!-- ==========================================================================
+         FOOTER
+         ========================================================================== -->
+    <footer>
+      <h3 style="font-size: 1.2rem; font-weight: 800;">CAUSA30</h3>
+      <p style="font-size: 0.8rem; opacity: 0.8;">Campañas promocionales con propósito.</p>
+
+      <div class="footer-links">
+        <p><strong>Contacto:</strong> hola@causa30.com</p>
+        <p><strong>Empresas:</strong> empresas@causa30.com</p>
+        <p><strong>Promociones:</strong> promo@causa30.com</p>
+      </div>
+
+      <div style="margin-top: 12px; font-size: 0.8rem;">
+        <a href="#">Privacidad</a> | <a href="#">Términos</a> | <a href="#">Cookies</a>
+      </div>
+
+      <div class="footer-credits">
+        causa30 es un producto del ecosistema altrua
+      </div>
+    </footer>
+
   </div>
 
-  <div class="scroll-cue"><span>Descubre más</span><span class="arrow">↓</span></div>
-</section>
+  <!-- ==========================================================================
+       LÓGICA INTERACTIVA (JS PURO)
+       ========================================================================== -->
+  <script>
+    // Rotación e interacción del carrusel 3D Slide
+    const slider = id => document.getElementById(id);
+    const heroSlider = slider('heroSlider');
+    let cards = Array.from(heroSlider.querySelectorAll('.slide-card'));
 
-<!-- CAMPAÑAS -->
-<section class="campaigns" id="campanas">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="sec-eyebrow">PROMOCIONES ACTIVAS</div>
-      <h2 class="sec-title">Cada campaña dura 30 días.</h2>
-      <p class="sec-sub">Elige un producto que ya consumirías. La empresa participante dona un monto fijo por cada venta, directamente a la fundación.</p>
-    </div>
-
-    <div class="camp-grid">
-      <div class="camp-card reveal">
-        <img class="camp-photo" src="https://picsum.photos/seed/causa30camp1/500/400" alt="">
-        <div class="camp-body">
-          <div class="camp-top"><span class="camp-brand">Nutrilife</span><span class="camp-time">18 días</span></div>
-          <div class="camp-name">Magnesio Ultra 400mg</div>
-          <div class="camp-row"><span class="camp-price">RD$790</span><span class="camp-give">Dona RD$50</span></div>
-          <div class="camp-cta">Ver campaña →</div>
-        </div>
-      </div>
-      <div class="camp-card reveal">
-        <img class="camp-photo" src="https://picsum.photos/seed/causa30camp2/500/400" alt="">
-        <div class="camp-body">
-          <div class="camp-top"><span class="camp-brand">Botanika</span><span class="camp-time">18 días</span></div>
-          <div class="camp-name">Jabón Líquido Avena &amp; Coco</div>
-          <div class="camp-row"><span class="camp-price">RD$550</span><span class="camp-give">Dona RD$40</span></div>
-          <div class="camp-cta">Ver campaña →</div>
-        </div>
-      </div>
-      <div class="camp-card reveal">
-        <img class="camp-photo" src="https://picsum.photos/seed/causa30camp3/500/400" alt="">
-        <div class="camp-body">
-          <div class="camp-top"><span class="camp-brand">Café Origen</span><span class="camp-time">18 días</span></div>
-          <div class="camp-name">Café Premium 100% Arábica</div>
-          <div class="camp-row"><span class="camp-price">RD$650</span><span class="camp-give">Dona RD$45</span></div>
-          <div class="camp-cta">Ver campaña →</div>
-        </div>
-      </div>
-      <div class="camp-card reveal">
-        <img class="camp-photo" src="https://picsum.photos/seed/causa30camp4/500/400" alt="">
-        <div class="camp-body">
-          <div class="camp-top"><span class="camp-brand">Colmena Real</span><span class="camp-time">11 días</span></div>
-          <div class="camp-name">Miel Pura de Abeja 500ml</div>
-          <div class="camp-row"><span class="camp-price">RD$480</span><span class="camp-give">Dona RD$35</span></div>
-          <div class="camp-cta">Ver campaña →</div>
-        </div>
-      </div>
-      <div class="camp-card reveal">
-        <img class="camp-photo" src="https://picsum.photos/seed/causa30camp5/500/400" alt="">
-        <div class="camp-body">
-          <div class="camp-top"><span class="camp-brand">Luz Natural</span><span class="camp-time">11 días</span></div>
-          <div class="camp-name">Vela Aromática de Soya</div>
-          <div class="camp-row"><span class="camp-price">RD$390</span><span class="camp-give">Dona RD$30</span></div>
-          <div class="camp-cta">Ver campaña →</div>
-        </div>
-      </div>
-      <div class="camp-card reveal">
-        <img class="camp-photo" src="https://picsum.photos/seed/causa30camp6/500/400" alt="">
-        <div class="camp-body">
-          <div class="camp-top"><span class="camp-brand">Raíz Viva</span><span class="camp-time">6 días</span></div>
-          <div class="camp-name">Té Herbal Orgánico x20</div>
-          <div class="camp-row"><span class="camp-price">RD$320</span><span class="camp-give">Dona RD$25</span></div>
-          <div class="camp-cta">Ver campaña →</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- COMO FUNCIONA -->
-<section class="how" id="como-funciona">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="sec-eyebrow">EL PROCESO</div>
-      <h2 class="sec-title">De la compra al impacto, sin fricción.</h2>
-      <p class="sec-sub">Cuatro pasos. Ningún intermediario retiene el dinero de la donación.</p>
-    </div>
-
-    <div class="flow">
-      <div class="flow-step reveal">
-        <div class="flow-num">01</div>
-        <div class="flow-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6h15l-1.5 9h-12L4 3H2"/><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/></svg></div>
-        <div class="flow-title">Compra</div>
-        <div class="flow-desc">Eliges un producto que ya consumirías, dentro de una campaña activa.</div>
-      </div>
-      <div class="flow-step reveal">
-        <div class="flow-num">02</div>
-        <div class="flow-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg></div>
-        <div class="flow-title">Empresa</div>
-        <div class="flow-desc">La empresa participante registra la venta y calcula el monto a donar.</div>
-      </div>
-      <div class="flow-step reveal">
-        <div class="flow-num">03</div>
-        <div class="flow-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-4.6-9.5-9C.9 8.5 2.5 5 6 5c2 0 3.5 1.1 4.5 2.4C11.5 6.1 13 5 15 5c3.5 0 5.1 3.5 3.5 7-2.5 4.4-9.5 9-9.5 9z"/></svg></div>
-        <div class="flow-title">Fundación</div>
-        <div class="flow-desc">La donación llega directo a la fundación. Causa30 nunca la recibe.</div>
-      </div>
-      <div class="flow-step reveal">
-        <div class="flow-num">04</div>
-        <div class="flow-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/><circle cx="12" cy="12" r="4"/></svg></div>
-        <div class="flow-title">Impacto</div>
-        <div class="flow-desc">Al cerrar la campaña se publica el resultado completo y verificable.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TRANSPARENCIA -->
-<section class="transparency">
-  <div class="wrap trans-grid">
-    <div class="reveal">
-      <div class="sec-eyebrow">TRANSPARENCIA</div>
-      <h2 class="sec-title" style="margin-bottom:32px;">El dinero nunca pasa por Causa30.</h2>
-      <div class="trans-list">
-        <div class="trans-item">
-          <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h6l2-9 4 18 2-9h4"/></svg></div>
-          <div><h4>Donación directa</h4><p>La empresa participante transfiere el monto acordado directamente a la fundación, sin pasar por nuestra plataforma.</p></div>
-        </div>
-        <div class="trans-item">
-          <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div>
-          <div><h4>Comprobante publicado</h4><p>Cada campaña cierra con un comprobante real de la donación, visible para cualquier persona.</p></div>
-        </div>
-        <div class="trans-item">
-          <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg></div>
-          <div><h4>Cero intermediarios</h4><p>Causa30 conecta a empresas, consumidores y fundaciones. El dinero jamás toca nuestras cuentas.</p></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="trans-visual reveal">
-      <div class="receipt-badge">✓ Comprobante verificado</div>
-      <div class="receipt">
-        <div class="receipt-row"><span>Empresa</span><span>Nutrilife RD</span></div>
-        <div class="receipt-row"><span>Fundación</span><span>Refugio Esperanza</span></div>
-        <div class="receipt-row"><span>Compras registradas</span><span>412</span></div>
-        <div class="receipt-row"><span>Monto donado</span><span>RD$ 20,600</span></div>
-        <div class="receipt-row"><span>Fecha de entrega</span><span>30 ago 2026</span></div>
-        <div class="receipt-row"><span>Estado</span><span style="color:var(--mint-300)">Comprobante recibido</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FUNDACION -->
-<section class="foundation" id="fundacion">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="sec-eyebrow">LA FUNDACIÓN</div>
-      <h2 class="sec-title">Refugio Esperanza</h2>
-    </div>
-    <div class="fnd-grid reveal">
-      <div class="fnd-photo">
-        <img src="https://picsum.photos/seed/causa30fnd/700/900" alt="Refugio Esperanza">
-        <div class="fnd-logo">RE</div>
-      </div>
-      <div class="fnd-body">
-        <h3>Rescatando y dando hogar, un día a la vez.</h3>
-        <p>Desde hace más de ocho años, Refugio Esperanza rescata, rehabilita y encuentra hogar a perros y gatos en situación de calle en Santo Domingo. Cada campaña en Causa30 se traduce en alimento, atención veterinaria y esterilizaciones para más animales.</p>
-        <div class="fnd-contact">
-          <a href="tel:+18095551234">📞 (809) 555-1234</a>
-          <a href="mailto:contacto@refugioesperanza.org">✉ contacto@refugioesperanza.org</a>
-          <a href="#">📷 @refugioesperanza</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- MASCOTAS -->
-<section class="pets">
-  <div class="wrap">
-    <div class="pets-head reveal">
-      <div>
-        <div class="sec-eyebrow">EN ADOPCIÓN</div>
-        <h2 class="sec-title" style="margin-bottom:0;">Ayúdanos a darles visibilidad.</h2>
-      </div>
-    </div>
-
-    <div class="pet-grid">
-      <div class="pet-card reveal">
-        <img src="https://picsum.photos/seed/causa30pet1/400/540" alt="">
-        <div class="pet-scrim"></div>
-        <div class="pet-avail">Disponible</div>
-        <div class="pet-info">
-          <h4>Luna</h4><span>2 años · Mestiza</span>
-          <div class="pet-actions"><button class="pet-adopt">Adoptar</button><button class="pet-share">↗ Compartir</button></div>
-        </div>
-      </div>
-      <div class="pet-card reveal">
-        <img src="https://picsum.photos/seed/causa30pet2/400/540" alt="">
-        <div class="pet-scrim"></div>
-        <div class="pet-avail">Disponible</div>
-        <div class="pet-info">
-          <h4>Simón</h4><span>4 años · Criollo</span>
-          <div class="pet-actions"><button class="pet-adopt">Adoptar</button><button class="pet-share">↗ Compartir</button></div>
-        </div>
-      </div>
-      <div class="pet-card reveal">
-        <img src="https://picsum.photos/seed/causa30pet3/400/540" alt="">
-        <div class="pet-scrim"></div>
-        <div class="pet-avail">Disponible</div>
-        <div class="pet-info">
-          <h4>Nala</h4><span>1 año · Gata</span>
-          <div class="pet-actions"><button class="pet-adopt">Adoptar</button><button class="pet-share">↗ Compartir</button></div>
-        </div>
-      </div>
-      <div class="pet-card reveal">
-        <img src="https://picsum.photos/seed/causa30pet4/400/540" alt="">
-        <div class="pet-scrim"></div>
-        <div class="pet-avail">Disponible</div>
-        <div class="pet-info">
-          <h4>Rocco</h4><span>3 años · Mestizo</span>
-          <div class="pet-actions"><button class="pet-adopt">Adoptar</button><button class="pet-share">↗ Compartir</button></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- RESULTADOS -->
-<section class="results" id="resultados">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="sec-eyebrow">RESULTADOS</div>
-      <h2 class="sec-title">Cada campaña, rendida en público.</h2>
-      <p class="sec-sub">Compromiso, compras, monto donado y comprobante. Todo visible, todo verificable.</p>
-    </div>
-
-    <div class="results-panel reveal">
-      <div class="res-row head">
-        <div>Empresa</div><div>Compromiso</div><div>Compras</div><div>Donado</div><div class="hide-mobile">Estado</div><div class="hide-mobile">Entrega</div>
-      </div>
-      <div class="res-row">
-        <div class="res-company"><div class="res-avatar">NU</div>Nutrilife</div>
-        <div class="res-cell">RD$50 / venta</div>
-        <div class="res-cell"><b>412</b></div>
-        <div class="res-cell"><b>RD$20,600</b></div>
-        <div class="res-cell hide-mobile"><span class="status ok">✓ Recibido</span></div>
-        <div class="res-cell hide-mobile">30 ago 2026</div>
-      </div>
-      <div class="res-row">
-        <div class="res-company"><div class="res-avatar">BK</div>Botanika</div>
-        <div class="res-cell">RD$40 / venta</div>
-        <div class="res-cell"><b>287</b></div>
-        <div class="res-cell"><b>RD$11,480</b></div>
-        <div class="res-cell hide-mobile"><span class="status ok">✓ Recibido</span></div>
-        <div class="res-cell hide-mobile">30 ago 2026</div>
-      </div>
-      <div class="res-row">
-        <div class="res-company"><div class="res-avatar">CO</div>Café Origen</div>
-        <div class="res-cell">RD$45 / venta</div>
-        <div class="res-cell"><b>331</b></div>
-        <div class="res-cell"><b>RD$14,895</b></div>
-        <div class="res-cell hide-mobile"><span class="status pending">◐ En proceso</span></div>
-        <div class="res-cell hide-mobile">18 ago 2026</div>
-      </div>
-      <div class="res-row">
-        <div class="res-company"><div class="res-avatar">CR</div>Colmena Real</div>
-        <div class="res-cell">RD$35 / venta</div>
-        <div class="res-cell"><b>154</b></div>
-        <div class="res-cell"><b>RD$5,390</b></div>
-        <div class="res-cell hide-mobile"><span class="status pending">◐ En proceso</span></div>
-        <div class="res-cell hide-mobile">25 ago 2026</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROPONER -->
-<section class="propose">
-  <div class="wrap propose-inner reveal">
-    <h3>¿Qué producto te gustaría ver en una próxima campaña?</h3>
-    <form class="propose-form" onsubmit="event.preventDefault(); this.querySelector('input').value='¡Gracias! La leemos pronto.';">
-      <input type="text" placeholder="Escribe tu propuesta..." required>
-      <button type="submit">Enviar</button>
-    </form>
-    <div class="propose-note">O escríbenos directo a <a href="mailto:promo@causa30.com">promo@causa30.com</a></div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <div class="foot-top">
-      <div class="foot-brand">
-        <a class="logo" href="#top"><span class="mark"></span>CAUSA<b>30</b></a>
-        <p>Conectamos empresas, consumidores y fundaciones a través de campañas de 30 días con propósito real.</p>
-      </div>
-      <div class="foot-col">
-        <h5>Plataforma</h5>
-        <a href="#campanas">Promociones</a>
-        <a href="#como-funciona">Cómo funciona</a>
-        <a href="#resultados">Resultados</a>
-      </div>
-      <div class="foot-col">
-        <h5>Fundación</h5>
-        <a href="#fundacion">Refugio Esperanza</a>
-        <a href="#">Mascotas en adopción</a>
-        <a href="#">Transparencia</a>
-      </div>
-      <div class="foot-col">
-        <h5>Empresas</h5>
-        <a href="mailto:promo@causa30.com">Lanza una campaña</a>
-        <a href="mailto:promo@causa30.com">promo@causa30.com</a>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <span>© 2026 Causa30. Todos los derechos reservados.</span>
-      <div class="foot-social">
-        <a href="#">IG</a><a href="#">FB</a><a href="#">TT</a>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<script>
-  // nav glass on scroll
-  const header = document.getElementById('siteHeader');
-  window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', window.scrollY > 40);
-  });
-
-  // ring animation
-  window.addEventListener('load', () => {
-    const ring = document.getElementById('ringFill');
-    const circumference = 264;
-    const daysLeft = 18, totalDays = 30;
-    const offset = circumference - (daysLeft/totalDays) * circumference;
-    requestAnimationFrame(() => { ring.style.strokeDashoffset = offset; });
-  });
-
-  // reveal on scroll
-  const revealEls = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.15 });
-  revealEls.forEach(el => io.observe(el));
-
-  // tilt on hero + campaign cards
-  function addTilt(el, strength){
-    el.addEventListener('mousemove', (e) => {
-      const r = el.getBoundingClientRect();
-      const x = (e.clientX - r.left)/r.width - 0.5;
-      const y = (e.clientY - r.top)/r.height - 0.5;
-      el.style.transform += ` rotate(${x*strength}deg)`;
+    // Al hacer clic en una tarjeta secundaria, rotarla al frente
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        let currentPos = parseInt(card.getAttribute('data-position'));
+        if (currentPos !== 0) {
+          rotateSlider();
+        }
+      });
     });
-  }
-  document.querySelectorAll('.camp-card').forEach(c => {
-    c.addEventListener('mousemove', (e)=>{
-      const r = c.getBoundingClientRect();
-      const x = (e.clientX - r.left)/r.width - 0.5;
-      const y = (e.clientY - r.top)/r.height - 0.5;
-      c.style.transform = `translateY(-6px) rotateX(${y*-4}deg) rotateY(${x*4}deg)`;
-    });
-    c.addEventListener('mouseleave', ()=>{ c.style.transform=''; });
-  });
 
-  // hero stack subtle cycle (visual only)
-  let idx = 0;
-  const dots = document.querySelectorAll('.dots span');
-  setInterval(() => {
-    idx = (idx + 1) % dots.length;
-    dots.forEach((d,i) => d.classList.toggle('on', i===idx));
-  }, 3800);
-</script>
+    function rotateSlider() {
+      cards.forEach(card => {
+        let pos = parseInt(card.getAttribute('data-position'));
+        let newPos = (pos + 1) % cards.length;
+        card.setAttribute('data-position', newPos);
+      });
+    }
 
+    // Navegación fluida por scroll
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Funciones auxiliares
+    function shareMascota(nombre) {
+      if (navigator.share) {
+        navigator.share({
+          title: `Adopta a ${nombre} en Causa30`,
+          text: `Conoce a ${nombre} y dale un hogar.`,
+          url: window.location.href,
+        });
+      } else {
+        alert(`Enlace para compartir a ${nombre} copiado al portapapeles.`);
+      }
+    }
+
+    function shareUrl(platform) {
+      alert(`Compartiendo en ${platform}...`);
+    }
+
+    function copyLink() {
+      navigator.clipboard.writeText(window.location.href);
+      alert('¡Enlace copiado al portapapeles!');
+    }
+  </script>
 </body>
 </html>
