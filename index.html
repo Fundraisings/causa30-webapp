@@ -16,12 +16,24 @@
   <div class="hero">
     <div class="brand-center"><div class="word">CAUSA<span>30</span></div></div>
     <p class="intrigue">Hay una razón por la que este producto está aquí.</p>
+    <p class="hero-slogan">Una compra. Dos beneficios.</p>
     <span class="micro-eyebrow">Promoción con propósito</span>
 
     <div class="carousel" id="carousel"></div>
     <div class="dots" id="dots"></div>
 
     <p class="hint-line" style="margin-top:22px;">Toca el producto para ver dónde comprarlo.<span>No necesitas registrar nada — cada compra durante estos 30 días ya cuenta.</span></p>
+
+    <div class="ticker">
+      <div class="ticker-track">
+        <span>🐾 Al comprar este producto, llevas alimento a muchos perritos<span class="dot">●</span></span>
+        <span>Tu compra ayuda a esterilizar perritos sin hogar<span class="dot">●</span></span>
+        <span>Cada compra suma para encontrarles un hogar<span class="dot">●</span></span>
+        <span>🐾 Al comprar este producto, llevas alimento a muchos perritos<span class="dot">●</span></span>
+        <span>Tu compra ayuda a esterilizar perritos sin hogar<span class="dot">●</span></span>
+        <span>Cada compra suma para encontrarles un hogar<span class="dot">●</span></span>
+      </div>
+    </div>
   </div>
 
   <!-- COMO FUNCIONA -->
@@ -43,8 +55,8 @@
   <section style="padding-top:0;">
     <button class="reveal-chip" id="causeChip">
       <div>
-        <div class="txt">🐾 Fundación participante y mascotas en adopción</div>
-        <div class="sub">Toca para conocerlas</div>
+        <div class="txt">🐾 Fundación participante</div>
+        <div class="sub">Toca para conocerla</div>
       </div>
       <span class="arrow">→</span>
     </button>
@@ -69,29 +81,27 @@
     </div>
   </section>
 
-  <!-- SUGERENCIA -->
-  <section style="padding-top:0;">
-    <div class="suggest">
-      <h3>¿Qué producto te gustaría ver aquí?</h3>
-      <p>Queremos crear campañas con productos que realmente las personas consumen. Cuéntanos qué producto, marca o empresa te gustaría apoyar.</p>
-      <input type="text" placeholder="Nombre del producto o marca">
-      <button class="btn-primary">Enviar propuesta</button>
-      <p class="alt">O escribe directamente a promo@causa30.com</p>
+  <!-- VIDEO EXPLICATIVO -->
+  <section style="padding-top:0;padding-bottom:20px;">
+    <div class="video-card" id="videoCard">
+      <div class="video-play">▶</div>
+      <div class="video-label">¿Qué es Causa30? · 15 seg</div>
     </div>
   </section>
 
-  <!-- CTA EMPRESAS -->
+  <!-- SUGERENCIA + CTA EMPRESAS (compacto) -->
   <section style="padding-top:0;">
-    <div class="biz-cta">
-      <h3>¿Quieres que tu empresa participe?</h3>
-      <p>Si deseas convertir uno de tus productos en una campaña con propósito durante 30 días, estaremos encantados de conversar contigo.</p>
-      <div class="biz-list">
-        <div>Mayor visibilidad</div>
-        <div>Mayor diferenciación</div>
-        <div>Impacto social real</div>
-        <div>Transparencia y resultados públicos</div>
+    <div class="mini-ctas">
+      <div class="mini-card mini-suggest">
+        <h3>¿Qué producto quieres ver aquí?</h3>
+        <p>Cuéntanos qué marca te gustaría apoyar.</p>
+        <a class="mini-btn" href="mailto:promo@causa30.com">Sugerir producto</a>
       </div>
-      <a class="btn-white">Solicitar información</a>
+      <div class="mini-card mini-biz">
+        <h3>¿Tu empresa quiere participar?</h3>
+        <p>Convierte tu producto en una campaña con propósito.</p>
+        <a class="mini-btn white" href="mailto:empresas@causa30.com">Quiero participar</a>
+      </div>
     </div>
   </section>
 
@@ -139,13 +149,18 @@
     <div class="modal-handle"></div>
     <button class="modal-close" data-close>✕</button>
     <div id="detailPhoto" class="detail-photo"></div>
-    <span class="eyebrow" id="detailBiz">—</span>
     <h2 class="sec-title" id="whereTitle" style="font-size:22px;">—</h2>
     <div class="price-row" style="margin-top:8px;">
       <span class="price" id="detailPrice" style="font-size:17px;"></span>
       <span class="aporte" id="detailAporte" style="font-size:13px;"></span>
     </div>
-    <div id="whereBody" style="margin-top:14px;"></div>
+
+    <div class="story-block">
+      <div class="story-label" id="storyLabel">Tu compra ayuda a</div>
+      <div class="story-cause" id="storyCause">—</div>
+    </div>
+
+    <div id="whereBody" style="margin-top:6px;"></div>
   </div>
 </div>
 
