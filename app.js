@@ -42,7 +42,12 @@ function render(){
           <div class="price-row"><span class="price">${p.price}</span><span class="aporte">Aporte: ${p.aporte}</span></div>
         </div>
       </div>`;
-    card.addEventListener('click', () => { active = i; render(); resetAutoplay(); });
+    card.addEventListener('click', () => {
+      active = i;
+      render();
+      resetAutoplay();
+      openDetail(p);
+    });
     carousel.appendChild(card);
     const dot = document.createElement('div');
     dot.className = 'dot' + (i === active ? ' active' : '');
@@ -91,19 +96,22 @@ function openModal(el){ el.classList.add('open'); }
 function closeModal(el){ el.classList.remove('open'); }
 
 const causeModal = document.getElementById('causeModal');
+const whereModal = document.getElementById('whereModal');
 document.getElementById('causeChip').addEventListener('click', () => openModal(causeModal));
 
-const whereModal = document.getElementById('whereModal');
-document.getElementById('whereBtn').addEventListener('click', () => {
-  const p = products[active];
-  document.getElementById('whereTitle').textContent = p.biz;
+function openDetail(p){
+  document.getElementById('detailPhoto').style.backgroundImage = `url('${p.img}')`;
+  document.getElementById('detailBiz').textContent = p.biz;
+  document.getElementById('whereTitle').textContent = p.name;
+  document.getElementById('detailPrice').textContent = p.price;
+  document.getElementById('detailAporte').textContent = 'Aporte: ' + p.aporte;
   document.getElementById('whereBody').innerHTML = `
     <div class="where-row"><span class="ic">📍</span><div><span class="k">Dirección</span><span class="v">${p.address}</span></div></div>
     <div class="where-row"><span class="ic">🕒</span><div><span class="k">Horario</span><span class="v">${p.hours}</span></div></div>
-    <div class="where-row"><span class="ic">🛍️</span><div><span class="k">Producto en promoción</span><span class="v">${p.name} — ${p.price}</span></div></div>
+    <div class="where-row"><span class="ic">⏱</span><div><span class="k">Campaña</span><span class="v">18 días restantes</span></div></div>
   `;
   openModal(whereModal);
-});
+}
 
 document.querySelectorAll('[data-close]').forEach(btn=>{
   btn.addEventListener('click', (e) => closeModal(e.target.closest('.modal-overlay')));
