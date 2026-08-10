@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¡Gracias! · CAUSA30</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .gracias-wrap{
+    min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:40px 24px;background:radial-gradient(ellipse at top,#1A4538 0%,var(--verde-deep) 55%,#0D251F 100%);
+    text-align:center;
+  }
+  .check{
+    width:76px;height:76px;border-radius:50%;background:rgba(255,255,255,.1);
+    border:2px solid rgba(255,255,255,.3);
+    display:flex;align-items:center;justify-content:center;font-size:34px;color:#fff;
+    margin-bottom:26px;opacity:0;animation:popIn .5s cubic-bezier(.34,1.56,.64,1) forwards;
+  }
+  @keyframes popIn{ from{opacity:0;transform:scale(.6);} to{opacity:1;transform:scale(1);} }
+  .gracias-wrap h1{
+    color:#fff;font-size:26px;font-weight:800;line-height:1.25;max-width:340px;
+    opacity:0;animation:fadeUp .6s ease .1s forwards;
+  }
+  .gracias-wrap p{
+    color:#C7D6CE;font-size:14px;margin-top:14px;max-width:320px;line-height:1.6;
+    opacity:0;animation:fadeUp .6s ease .2s forwards;
+  }
+  .confirm-box{
+    margin-top:32px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);
+    border-radius:20px;padding:22px 30px;opacity:0;animation:fadeUp .6s ease .3s forwards;
+  }
+  .confirm-box .label{font-size:11px;color:#8FC4AC;text-transform:uppercase;letter-spacing:.08em;font-weight:700;}
+  .confirm-box .number{
+    font-family:'Manrope',sans-serif;font-weight:800;font-size:38px;color:var(--coral);margin-top:6px;
+  }
+  .confirm-box .sub{font-size:12px;color:#9FB6AC;margin-top:6px;}
+  .impact-note{
+    margin-top:26px;font-size:13px;color:#DCE8E2;max-width:320px;line-height:1.6;
+    opacity:0;animation:fadeUp .6s ease .4s forwards;
+  }
+  .impact-note b{color:#fff;}
+  .back-link{
+    margin-top:34px;color:#fff;font-size:13px;font-weight:700;
+    border:1.5px solid rgba(255,255,255,.3);padding:12px 26px;border-radius:100px;
+    opacity:0;animation:fadeUp .6s ease .5s forwards;
+  }
+  .word-mini{
+    position:absolute;top:26px;left:0;right:0;text-align:center;
+    font-family:'Manrope',sans-serif;font-weight:800;font-size:17px;color:#fff;
+  }
+  .word-mini span{color:var(--coral);}
+</style>
+</head>
+<body>
+<div class="gracias-wrap">
+  <div class="word-mini">CAUSA<span>30</span></div>
+  <div class="check">✓</div>
+  <h1 id="msgTitle">¡Gracias por tu compra!</h1>
+  <p id="msgBody">Tu compra de hoy ayuda directamente a Fundación Huellas Felices. Cada confirmación como la tuya nos ayuda a medir el impacto real de esta campaña.</p>
+
+  <div class="confirm-box">
+    <div class="label">Confirmación</div>
+    <div class="number" id="confirmNumber">#—</div>
+    <div class="sub" id="confirmProduct">—</div>
+  </div>
+
+  <p class="impact-note"><b>Nota:</b> este número es una demostración local. En la versión conectada, cada confirmación se guarda automáticamente y el número se asigna en orden real, sin repetirse.</p>
+
+  <a class="back-link" href="index.html">Volver a Causa30</a>
+</div>
+
+<script>
+  // Lee el producto desde el link del QR: gracias.html?producto=chocolate
+  const params = new URLSearchParams(window.location.search);
+  const producto = params.get('producto') || 'este producto';
+
+  const nombres = {
+    chocolate: "Chocolate X · Dark, Coco & Jengibre",
+    helado: "Pinta de Helado X",
+    miel: "Miel Pura X 500ml"
+  };
+  document.getElementById('confirmProduct').textContent = nombres[producto] || producto;
+
+  /*
+    NÚMERO DE CONFIRMACIÓN — DEMO LOCAL
+    ------------------------------------
+    Esta versión genera un número de ejemplo en el navegador, solo para
+    previsualizar cómo se vería. NO es un contador real ni persistente.
+
+    Para producción, reemplazar este bloque por una llamada a Supabase
+    (mismo proyecto que ya usa Habitua.life), por ejemplo:
+
+      const { data, error } = await supabase
+        .from('confirmaciones')
+        .insert([{ producto: producto }])
+        .select();
+      // data[0].id sería el número de confirmación real y consecutivo,
+      // asignado automáticamente por la base de datos.
+
+    Con eso, el número deja de ser una simulación y pasa a ser un
+    conteo real, independiente de lo que reporte cada empresa —
+    exactamente el "segundo número" del que hablamos como respaldo
+    de transparencia.
+  */
+  const demoNumber = Math.floor(100 + Math.random() * 400);
+  document.getElementById('confirmNumber').textContent = '#' + String(demoNumber).padStart(4, '0');
+</script>
+</body>
+</html>
