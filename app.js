@@ -43,10 +43,14 @@ function render(){
         </div>
       </div>`;
     card.addEventListener('click', () => {
-      active = i;
-      render();
-      resetAutoplay();
-      openDetail(p);
+      if(justDragged){ justDragged = false; return; }
+      if(i === active){
+        openDetail(p);
+      } else {
+        active = i;
+        render();
+        resetAutoplay();
+      }
     });
     carousel.appendChild(card);
     const dot = document.createElement('div');
@@ -69,6 +73,38 @@ function resetAutoplay(){
   startAutoplay();
 }
 startAutoplay();
+
+// DESLIZAR CON EL DEDO (o mouse en escritorio)
+let dragStartX = null, dragDeltaX = 0, isDragging = false, justDragged = false;
+const DRAG_THRESHOLD = 40;
+
+carousel.addEventListener('pointerdown', (e) => {
+  isDragging = true;
+  dragStartX = e.clientX;
+  dragDeltaX = 0;
+  clearInterval(autoplayTimer);
+});
+carousel.addEventListener('pointermove', (e) => {
+  if(!isDragging) return;
+  dragDeltaX = e.clientX - dragStartX;
+});
+carousel.addEventListener('pointerup', () => {
+  if(!isDragging) return;
+  isDragging = false;
+  if(Math.abs(dragDeltaX) > DRAG_THRESHOLD){
+    active = dragDeltaX < 0
+      ? (active + 1) % products.length
+      : (active - 1 + products.length) % products.length;
+    render();
+    justDragged = true;
+  }
+  dragStartX = null;
+  dragDeltaX = 0;
+  startAutoplay();
+});
+carousel.addEventListener('pointerleave', () => {
+  if(isDragging){ isDragging = false; startAutoplay(); }
+});
 
 // MASCOTAS
 const pets = [
@@ -101,15 +137,23 @@ document.getElementById('causeChip').addEventListener('click', () => openModal(c
 
 function openDetail(p){
   document.getElementById('detailPhoto').style.backgroundImage = `url('${p.img}')`;
-  document.getElementById('detailBiz').textContent = p.biz;
   document.getElementById('whereTitle').textContent = p.name;
   document.getElementById('detailPrice').textContent = p.price;
   document.getElementById('detailAporte').textContent = 'Aporte: ' + p.aporte;
+  document.getElementById('storyCause').textContent = p.fundacion || 'Fundación Huellas Felices';
   document.getElementById('whereBody').innerHTML = `
-    <div class="where-row"><span class="ic">📍</span><div><span class="k">Dirección</span><span class="v">${p.address}</span></div></div>
-    <div class="where-row"><span class="ic">🕒</span><div><span class="k">Horario</span><span class="v">${p.hours}</span></div></div>
     <div class="where-row"><span class="ic">⏱</span><div><span class="k">Campaña</span><span class="v">18 días restantes</span></div></div>
   `;
+
+  // Reinicia y dispara la mini-historia (fade + slide-up escalonado)
+  const label = document.getElementById('storyLabel');
+  const cause = document.getElementById('storyCause');
+  label.classList.remove('show');
+  cause.classList.remove('show');
+  void label.offsetWidth; // fuerza reflow para que la transición se repita cada vez
+  setTimeout(() => label.classList.add('show'), 200);
+  setTimeout(() => cause.classList.add('show'), 450);
+
   openModal(whereModal);
 }
 
