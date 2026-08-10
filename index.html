@@ -21,8 +21,7 @@
     <div class="carousel" id="carousel"></div>
     <div class="dots" id="dots"></div>
 
-    <div class="cta-row"><button class="btn-primary" id="whereBtn">¿Dónde comprarlo?</button></div>
-    <p class="hint-line">No necesitas registrar nada — cada compra durante estos 30 días ya cuenta.<span>(Si quieres, cuéntaselo al vendedor.)</span></p>
+    <p class="hint-line" style="margin-top:22px;">Toca el producto para ver dónde comprarlo.<span>No necesitas registrar nada — cada compra durante estos 30 días ya cuenta.</span></p>
   </div>
 
   <!-- COMO FUNCIONA -->
@@ -134,14 +133,19 @@
   </div>
 </div>
 
-<!-- MODAL: DÓNDE COMPRARLO -->
+<!-- MODAL: DETALLE DEL PRODUCTO -->
 <div class="modal-overlay" id="whereModal">
-  <div class="modal-sheet" style="max-height:60vh;">
+  <div class="modal-sheet">
     <div class="modal-handle"></div>
     <button class="modal-close" data-close>✕</button>
-    <span class="eyebrow">Punto de venta</span>
+    <div id="detailPhoto" class="detail-photo"></div>
+    <span class="eyebrow" id="detailBiz">—</span>
     <h2 class="sec-title" id="whereTitle" style="font-size:22px;">—</h2>
-    <div id="whereBody" style="margin-top:10px;"></div>
+    <div class="price-row" style="margin-top:8px;">
+      <span class="price" id="detailPrice" style="font-size:17px;"></span>
+      <span class="aporte" id="detailAporte" style="font-size:13px;"></span>
+    </div>
+    <div id="whereBody" style="margin-top:14px;"></div>
   </div>
 </div>
 
