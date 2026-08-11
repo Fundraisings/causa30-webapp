@@ -108,22 +108,39 @@ carousel.addEventListener('pointerleave', () => {
 
 // MASCOTAS
 const pets = [
-  {name:"Lobo", meta:"3 años · Macho · Pequeño", desc:"Cariñoso y juguetón, disfruta del contacto humano.", img:"images/lobo.jpg"},
-  {name:"Shakira", meta:"2 años · Hembra · Pequeño", desc:"Tranquila, de mirada dulce.", img:"images/shakira.jpg"},
-  {name:"Fi", meta:"4 años · Macho · Grande", desc:"Noble y atento, ideal para espacios con patio.", img:"images/fi.jpg"},
+  {name:"Lobo", meta:"3 años · Macho · Pequeño", desc:"Cariñoso y juguetón, disfruta del contacto humano.",
+   story:"Lobo llegó a la fundación hace un año, después de vivir mucho tiempo en la calle. Al principio era desconfiado, pero hoy es de los más juguetones del refugio. Le encanta correr y busca compañía humana constantemente.",
+   img:"images/lobo.jpg"},
+  {name:"Shakira", meta:"2 años · Hembra · Pequeño", desc:"Tranquila, de mirada dulce.",
+   story:"Shakira fue rescatada junto a su camada cuando apenas tenía semanas de nacida. Es tranquila y observadora, y se acerca despacio hasta ganar confianza — una vez la gana, no se separa de tu lado.",
+   img:"images/shakira.jpg"},
+  {name:"Fi", meta:"4 años · Macho · Grande", desc:"Noble y atento, ideal para espacios con patio.",
+   story:"Fi es el más veterano del grupo. Pasó varios años en la calle antes de llegar a la fundación, y a pesar de todo, es un perro noble y agradecido. Se lleva bien con otros animales y adora los espacios abiertos.",
+   img:"images/fi.jpg"},
 ];
 const petScroll = document.getElementById('petScroll');
-pets.forEach(p => {
+pets.forEach((p, idx) => {
   const card = document.createElement('div');
   card.className = 'pet-card';
   card.innerHTML = `
-    <img src="${p.img}" alt="${p.name}">
+    <div class="flip-scene" data-flipped="false">
+      <div class="flip-inner">
+        <div class="flip-front"><img src="${p.img}" alt="${p.name}"></div>
+        <div class="flip-back"><p>${p.story}</p></div>
+      </div>
+    </div>
     <div class="pet-info">
       <div class="pname">${p.name}</div>
       <div class="pmeta">${p.meta} · Disponible</div>
       <div class="pdesc">${p.desc}</div>
-      <div class="pet-actions"><button class="adopt">Quiero adoptar</button><button class="share">Compartir</button></div>
+      <div class="pet-actions"><button class="adopt">Quiero conocerlo/a</button><button class="share">Voy a compartir</button></div>
     </div>`;
+  const scene = card.querySelector('.flip-scene');
+  scene.addEventListener('click', () => {
+    const flipped = scene.getAttribute('data-flipped') === 'true';
+    scene.setAttribute('data-flipped', String(!flipped));
+    scene.classList.toggle('flipped');
+  });
   petScroll.appendChild(card);
 });
 
