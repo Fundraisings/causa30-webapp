@@ -89,21 +89,22 @@
   <!-- SUMAR A CAUSA30 (combinado) -->
   <section style="padding-top:0;">
     <div class="join-band">
-      <h3>¿Qué quieres sumar a Causa30?</h3>
-      <p>Sugiere una marca que te gustaría apoyar o incorpora tu empresa a una campaña con propósito.</p>
+      <h3>Hay muchas formas de ser parte del cambio.</h3>
+      <p>Sugiere un producto que te gustaría ver aquí o incorpora tu empresa a una campaña con propósito.</p>
       <div class="join-actions">
-        <a class="join-btn outline" href="mailto:promo@causa30.com">Sugerir producto</a>
-        <a class="join-btn coral" href="mailto:empresas@causa30.com">Quiero participar</a>
+        <button class="join-btn outline" id="openSuggestForm">Sugerir un producto</button>
+        <button class="join-btn coral" id="openBizForm">Mi empresa quiere participar</button>
       </div>
     </div>
-    <button class="ads-trigger" id="adsTrigger">¿Te gustaría conocer otras promociones activas? <span>Haz clic aquí →</span></button>
+    <button class="ads-trigger" id="adsTrigger">Hay más buenas noticias.<span>Descubre otras promociones que también apoyan una causa →</span></button>
   </section>
 
   <footer>
     <div class="word">CAUSA<span style="color:var(--coral)">30</span></div>
     <div class="links"><a>Privacidad</a><a>Términos</a><a>Cookies</a></div>
-    <div class="credit">Un producto del ecosistema <a href="#">Altrua</a></div>
+    <div class="credit">Causa30 es un producto del ecosistema Altrua.</div>
     <div class="mail">hola@causa30.com · empresas@causa30.com</div>
+    <div class="legal">© 2026 Altrua Global LLC. Todos los derechos reservados.<br>Miami, Florida, USA.</div>
   </footer>
 
 </div>
@@ -163,7 +164,7 @@
   <div class="modal-sheet" style="max-height:70vh;text-align:center;">
     <div class="modal-handle"></div>
     <button class="modal-close" data-close>✕</button>
-    <div class="progress-art" id="progressArt">🐾</div>
+    <div class="progress-art" id="progressArt" style="background-image:url('images/progress.png')"></div>
     <h2 class="sec-title" style="font-size:20px;margin-top:14px;">¡Esta campaña todavía está en marcha!</h2>
     <p style="font-size:13.5px;color:var(--grey);margin-top:12px;line-height:1.6;">Aún puedes ser parte. Compra uno de los 3 productos participantes este mes y ayuda a llevar alimento a muchos perritos que lo necesitan — cada compra suma.</p>
     <button class="btn-ghost" data-close style="margin-top:18px;">Ver productos</button>
@@ -198,6 +199,49 @@
         <div class="ads-dots" id="adsDots"></div>
         <button id="adsNext" class="ads-arrow">›</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: SUGERIR PRODUCTO -->
+<div class="modal-overlay" id="suggestModal">
+  <div class="modal-sheet" style="max-height:70vh;">
+    <div class="modal-handle"></div>
+    <button class="modal-close" data-close>✕</button>
+    <span class="eyebrow">Sugerencia</span>
+    <h2 class="sec-title" style="font-size:20px;">¿Qué producto te gustaría encontrar aquí?</h2>
+    <form id="suggestForm" class="causa-form">
+      <label>Escribe un producto o categoría</label>
+      <input type="text" name="producto" placeholder="Ej.: chocolate, alimento para mascotas, café…" required>
+      <button type="submit" class="promo-cta">Enviar sugerencia</button>
+    </form>
+    <div class="form-success" id="suggestSuccess">
+      <div class="check">✓</div>
+      <p>¡Gracias! Ya tenemos tu sugerencia — la tomaremos en cuenta para futuras campañas.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: EMPRESA QUIERE PARTICIPAR -->
+<div class="modal-overlay" id="bizModal">
+  <div class="modal-sheet" style="max-height:78vh;">
+    <div class="modal-handle"></div>
+    <button class="modal-close" data-close>✕</button>
+    <span class="eyebrow">Empresas</span>
+    <h2 class="sec-title" style="font-size:20px;">¿Tu empresa quiere participar?</h2>
+    <p style="font-size:13px;color:var(--grey);margin-top:8px;">Cuéntanos un poco y te contactamos.</p>
+    <form id="bizForm" class="causa-form">
+      <label>Nombre de la empresa</label>
+      <input type="text" name="empresa" required>
+      <label>Producto que te gustaría promocionar (opcional)</label>
+      <input type="text" name="producto">
+      <label>Correo o teléfono de contacto</label>
+      <input type="text" name="contacto" required>
+      <button type="submit" class="promo-cta">Enviar solicitud</button>
+    </form>
+    <div class="form-success" id="bizSuccess">
+      <div class="check">✓</div>
+      <p>¡Gracias! Recibimos tu solicitud — nuestro equipo te contactará pronto.</p>
     </div>
   </div>
 </div>
