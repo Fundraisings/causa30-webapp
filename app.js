@@ -1,3 +1,6 @@
+// ⚠️ REEMPLAZAR con tu link real de Formspree (formspree.io → New Form → copiar el link)
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/TU_ENDPOINT_AQUI';
+
 const products = [
   {biz:"Empresa X · Chocolate", name:"Chocolate X · Dark, Coco & Jengibre", price:"RD$ 250", aporte:"RD$ 15 por compra", img:"images/producto-chocolate.jpg",
    address:"Dirección pendiente de confirmar", hours:"Horario pendiente de confirmar",
@@ -54,4 +57,262 @@ function render(){
     });
     carousel.appendChild(card);
     const dot = document.createElement('div');
-    dot.className = 'dot' + (i === active
+    dot.className = 'dot' + (i === active ? ' active' : '');
+    dotsWrap.appendChild(dot);
+  });
+  updateResults();
+}
+render();
+
+let autoplayTimer;
+function startAutoplay(){
+  autoplayTimer = setInterval(() => {
+    active = (active + 1) % products.length;
+    render();
+  }, 4500);
+}
+function resetAutoplay(){
+  clearInterval(autoplayTimer);
+  startAutoplay();
+}
+startAutoplay();
+
+// DESLIZAR CON EL DEDO (o mouse en escritorio)
+let dragStartX = null, dragDeltaX = 0, isDragging = false, justDragged = false;
+const DRAG_THRESHOLD = 40;
+
+carousel.addEventListener('pointerdown', (e) => {
+  isDragging = true;
+  dragStartX = e.clientX;
+  dragDeltaX = 0;
+  clearInterval(autoplayTimer);
+});
+carousel.addEventListener('pointermove', (e) => {
+  if(!isDragging) return;
+  dragDeltaX = e.clientX - dragStartX;
+});
+carousel.addEventListener('pointerup', () => {
+  if(!isDragging) return;
+  isDragging = false;
+  if(Math.abs(dragDeltaX) > DRAG_THRESHOLD){
+    active = dragDeltaX < 0
+      ? (active + 1) % products.length
+      : (active - 1 + products.length) % products.length;
+    render();
+    justDragged = true;
+  }
+  dragStartX = null;
+  dragDeltaX = 0;
+  startAutoplay();
+});
+carousel.addEventListener('pointerleave', () => {
+  if(isDragging){ isDragging = false; startAutoplay(); }
+});
+
+// MASCOTAS
+const pets = [
+  {name:"Lobo", meta:"3 años · Macho · Pequeño", desc:"Cariñoso y juguetón, disfruta del contacto humano.",
+   story:"Lobo llegó a la fundación hace un año, después de vivir mucho tiempo en la calle. Al principio era desconfiado, pero hoy es de los más juguetones del refugio. Le encanta correr y busca compañía humana constantemente.",
+   img:"images/lobo.jpg"},
+  {name:"Shakira", meta:"2 años · Hembra · Pequeño", desc:"Tranquila, de mirada dulce.",
+   story:"Shakira fue rescatada junto a su camada cuando apenas tenía semanas de nacida. Es tranquila y observadora, y se acerca despacio hasta ganar confianza — una vez la gana, no se separa de tu lado.",
+   img:"images/shakira.jpg"},
+  {name:"Fi", meta:"4 años · Macho · Grande", desc:"Noble y atento, ideal para espacios con patio.",
+   story:"Fi es el más veterano del grupo. Pasó varios años en la calle antes de llegar a la fundación, y a pesar de todo, es un perro noble y agradecido. Se lleva bien con otros animales y adora los espacios abiertos.",
+   img:"images/fi.jpg"},
+];
+const petScroll = document.getElementById('petScroll');
+pets.forEach((p, idx) => {
+  const card = document.createElement('div');
+  card.className = 'pet-card';
+  card.innerHTML = `
+    <div class="flip-scene" data-flipped="false">
+      <div class="flip-inner">
+        <div class="flip-front"><img src="${p.img}" alt="${p.name}"></div>
+        <div class="flip-back"><p>${p.story}</p></div>
+      </div>
+    </div>
+    <div class="pet-info">
+      <div class="pname">${p.name}</div>
+      <div class="pmeta">${p.meta} · Disponible</div>
+      <div class="pdesc">${p.desc}</div>
+      <div class="pet-actions"><button class="adopt">Quiero conocerlo/a</button><button class="share">Voy a compartir</button></div>
+    </div>`;
+  const scene = card.querySelector('.flip-scene');
+  scene.addEventListener('click', () => {
+    const flipped = scene.getAttribute('data-flipped') === 'true';
+    scene.setAttribute('data-flipped', String(!flipped));
+    scene.classList.toggle('flipped');
+  });
+  petScroll.appendChild(card);
+});
+
+// MODALS
+function openModal(el){ el.classList.add('open'); }
+function closeModal(el){ el.classList.remove('open'); }
+
+const causeModal = document.getElementById('causeModal');
+const whereModal = document.getElementById('whereModal');
+const progressModal = document.getElementById('progressModal');
+document.getElementById('causeChip').addEventListener('click', () => openModal(causeModal));
+document.getElementById('receiptBtn').addEventListener('click', () => openModal(progressModal));
+progressModal.addEventListener('click', (e) => { if(e.target === progressModal) closeModal(progressModal); });
+progressModal.querySelector('.btn-ghost').addEventListener('click', () => {
+  closeModal(progressModal);
+  carousel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+});
+
+function openDetail(p){
+  document.getElementById('detailPhoto').style.backgroundImage = `url('${p.img}')`;
+  document.getElementById('whereTitle').textContent = p.name;
+  document.getElementById('detailPrice').textContent = p.price;
+  document.getElementById('detailAporte').textContent = 'Aporte: ' + p.aporte;
+  document.getElementById('storyCause').textContent = p.fundacion || 'Fundación Huellas Felices';
+  document.getElementById('whereBody').innerHTML = `
+    <div class="where-row"><span class="ic">⏱</span><div><span class="k">Campaña</span><span class="v">18 días restantes</span></div></div>
+  `;
+
+  const label = document.getElementById('storyLabel');
+  const cause = document.getElementById('storyCause');
+  label.classList.remove('show');
+  cause.classList.remove('show');
+  void label.offsetWidth;
+  setTimeout(() => label.classList.add('show'), 200);
+  setTimeout(() => cause.classList.add('show'), 450);
+
+  openModal(whereModal);
+}
+
+document.querySelectorAll('[data-close]').forEach(btn=>{
+  btn.addEventListener('click', (e) => closeModal(e.target.closest('.modal-overlay')));
+});
+[causeModal, whereModal].forEach(m=>{
+  m.addEventListener('click', (e)=>{ if(e.target === m) closeModal(m); });
+});
+
+// FORMULARIOS: Sugerir producto + Mi empresa quiere participar
+const suggestModal = document.getElementById('suggestModal');
+const bizModal = document.getElementById('bizModal');
+
+document.getElementById('openSuggestForm').addEventListener('click', () => {
+  document.getElementById('suggestForm').style.display = 'flex';
+  document.getElementById('suggestSuccess').classList.remove('show');
+  openModal(suggestModal);
+});
+document.getElementById('openBizForm').addEventListener('click', () => {
+  document.getElementById('bizForm').style.display = 'flex';
+  document.getElementById('bizSuccess').classList.remove('show');
+  openModal(bizModal);
+});
+[suggestModal, bizModal].forEach(m => {
+  m.addEventListener('click', (e) => { if(e.target === m) closeModal(m); });
+});
+
+document.getElementById('suggestForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const producto = e.target.producto.value;
+
+  try {
+    await fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ tipo: 'Sugerencia de producto', producto })
+    });
+  } catch (err) {
+    console.error('Error enviando sugerencia:', err);
+  }
+
+  e.target.style.display = 'none';
+  document.getElementById('suggestSuccess').classList.add('show');
+});
+
+document.getElementById('bizForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const data = {
+    tipo: 'Solicitud de empresa',
+    empresa: e.target.empresa.value,
+    producto: e.target.producto.value,
+    contacto: e.target.contacto.value
+  };
+
+  try {
+    await fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    });
+  } catch (err) {
+    console.error('Error enviando solicitud:', err);
+  }
+
+  e.target.style.display = 'none';
+  document.getElementById('bizSuccess').classList.add('show');
+});
+
+// PROMO DE BIENVENIDA — se muestra una sola vez por dispositivo, elige 1 de 3 al azar
+const ads = [
+  {title:"📣 Este espacio puede ser tuyo", text:"Anuncia tu marca frente a una audiencia que ya está lista para comprar con propósito.", img:"images/ad1.png"},
+  {title:"✨ Espacio publicitario disponible", text:"Combina tu promoción con causa social — visibilidad y buena reputación de marca.", img:"images/ad2.png"},
+  {title:"🍦 Espacio publicitario disponible", text:"Anúnciate en Causa30 y llega a personas que prefieren marcas con impacto.", img:"images/ad3.png"},
+];
+
+const promoModal = document.getElementById('promoModal');
+const PROMO_KEY = 'causa30_promo_seen';
+
+if(!localStorage.getItem(PROMO_KEY)){
+  setTimeout(() => {
+    const pick = ads[Math.floor(Math.random() * ads.length)];
+    document.getElementById('promoArt').style.backgroundImage = `url('${pick.img}')`;
+    document.getElementById('promoTitle').textContent = pick.title;
+    document.getElementById('promoText').textContent = pick.text;
+    openModal(promoModal);
+  }, 800);
+}
+promoModal.addEventListener('click', (e) => {
+  if(e.target === promoModal) {
+    closeModal(promoModal);
+    localStorage.setItem(PROMO_KEY, 'true');
+  }
+});
+promoModal.querySelectorAll('[data-close]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    closeModal(promoModal);
+    localStorage.setItem(PROMO_KEY, 'true');
+  });
+});
+
+// GALERÍA DE PROMOCIONES — navegable a propósito
+const adsModal = document.getElementById('adsModal');
+let adsIndex = 0;
+
+function renderAds(){
+  const ad = ads[adsIndex];
+  document.getElementById('adsArt').style.backgroundImage = `url('${ad.img}')`;
+  document.getElementById('adsTitle').textContent = ad.title;
+  document.getElementById('adsText').textContent = ad.text;
+  const dotsWrap = document.getElementById('adsDots');
+  dotsWrap.innerHTML = '';
+  ads.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === adsIndex ? ' active' : '');
+    dotsWrap.appendChild(d);
+  });
+}
+
+document.getElementById('adsTrigger').addEventListener('click', () => {
+  adsIndex = 0;
+  renderAds();
+  openModal(adsModal);
+});
+document.getElementById('adsPrev').addEventListener('click', () => {
+  adsIndex = (adsIndex - 1 + ads.length) % ads.length;
+  renderAds();
+});
+document.getElementById('adsNext').addEventListener('click', () => {
+  adsIndex = (adsIndex + 1) % ads.length;
+  renderAds();
+});
+document.getElementById('adsGo').addEventListener('click', () => {
+  window.location.href = 'mailto:empresas@causa30.com?subject=Quiero anunciarme en Causa30';
+});
+adsModal.addEventListener('click', (e) => { if(e.target === adsModal) closeModal(adsModal); });
