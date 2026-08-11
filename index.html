@@ -54,11 +54,8 @@
   <!-- ENTRADA OCULTA: FUNDACION + MASCOTAS -->
   <section style="padding-top:0;">
     <button class="reveal-chip" id="causeChip">
-      <div>
-        <div class="txt">🐾 Fundación participante</div>
-        <div class="sub">Toca para conocerla</div>
-      </div>
-      <span class="arrow">→</span>
+      <div class="txt">🐾 Fundación participante</div>
+      <div class="sub">Toca para conocerla</div>
     </button>
   </section>
 
@@ -77,7 +74,7 @@
         <div class="rrow"><span class="k">Fundación</span><span class="v">Huellas Felices</span></div>
         <div class="rrow"><span class="k">Estado</span><span class="status-pill" style="background:rgba(240,161,144,.15);color:#F0A190;">Próximamente</span></div>
       </div>
-      <a class="receipt-link">Ver comprobante (disponible al iniciar) →</a>
+      <button class="receipt-link" id="receiptBtn">Ver comprobante (disponible al iniciar) →</button>
     </div>
   </section>
 
@@ -99,6 +96,7 @@
         <a class="join-btn coral" href="mailto:empresas@causa30.com">Quiero participar</a>
       </div>
     </div>
+    <button class="ads-trigger" id="adsTrigger">¿Te gustaría conocer otras promociones activas? <span>Haz clic aquí →</span></button>
   </section>
 
   <footer>
@@ -160,6 +158,49 @@
   </div>
 </div>
 
+<!-- MODAL: CAMPAÑA EN CURSO (al tocar "Ver comprobante" antes de que termine) -->
+<div class="modal-overlay" id="progressModal">
+  <div class="modal-sheet" style="max-height:70vh;text-align:center;">
+    <div class="modal-handle"></div>
+    <button class="modal-close" data-close>✕</button>
+    <div class="progress-art" id="progressArt">🐾</div>
+    <h2 class="sec-title" style="font-size:20px;margin-top:14px;">¡Esta campaña todavía está en marcha!</h2>
+    <p style="font-size:13.5px;color:var(--grey);margin-top:12px;line-height:1.6;">Aún puedes ser parte. Compra uno de los 3 productos participantes este mes y ayuda a llevar alimento a muchos perritos que lo necesitan — cada compra suma.</p>
+    <button class="btn-ghost" data-close style="margin-top:18px;">Ver productos</button>
+    <p style="font-size:11.5px;color:var(--grey);margin-top:18px;">Los resultados oficiales se publican apenas cierre la campaña.</p>
+  </div>
+</div>
+
+<!-- MODAL: PROMO DE BIENVENIDA (una sola vez por dispositivo, elige 1 de 3 al azar) -->
+<div class="modal-overlay promo-overlay" id="promoModal">
+  <div class="promo-sheet">
+    <button class="promo-close" data-close>✕</button>
+    <div class="promo-art" id="promoArt"></div>
+    <div class="promo-body">
+      <h3 id="promoTitle">—</h3>
+      <p id="promoText">—</p>
+      <button class="promo-cta" data-close>Ver promociones</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: GALERÍA DE PROMOCIONES (navegable, a propósito) -->
+<div class="modal-overlay promo-overlay" id="adsModal">
+  <div class="promo-sheet">
+    <button class="promo-close" data-close>✕</button>
+    <div class="promo-art" id="adsArt"></div>
+    <div class="promo-body">
+      <h3 id="adsTitle">—</h3>
+      <p id="adsText">—</p>
+      <button class="btn-ghost" id="adsGo" style="width:100%;">Quiero anunciarme aquí</button>
+      <div class="ads-nav">
+        <button id="adsPrev" class="ads-arrow">‹</button>
+        <div class="ads-dots" id="adsDots"></div>
+        <button id="adsNext" class="ads-arrow">›</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script src="app.js"></script>
 </body>
