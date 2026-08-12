@@ -1,5 +1,5 @@
 // ⚠️ REEMPLAZAR con tu link real de Formspree (formspree.io → New Form → copiar el link)
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/TU_ENDPOINT_AQUI';
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xnpavpkp';
 
 const products = [
   {biz:"Empresa X · Chocolate", name:"Chocolate X · Dark, Coco & Jengibre", price:"RD$ 250", aporte:"RD$ 15 por compra", img:"images/producto-chocolate.jpg",
