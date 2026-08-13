@@ -14,8 +14,8 @@
 
   <!-- HERO -->
   <div class="hero">
-    <img class="promo-stamp" src="images/promo2.png" alt="Ofertas con causa">
-    <div class="brand-center"><div class="word">CAUSA<span>30</span></div></div>
+    <img class="promo-stamp" src="images/promo.png" alt="Ofertas con causa">
+    <div class="brand-center"><img src="images/logo.png" alt="Causa30" class="brand-logo"></div>
     <p class="intrigue">Dale un propósito a tu consumo.</p>
     <p class="hero-slogan">Descubre cómo tus compras apoyan una causa.</p>
     <span class="micro-eyebrow">Una compra. Doble Valor</span>
@@ -36,6 +36,17 @@
       </div>
     </div>
   </div>
+
+  <!-- VIDEO EXPLICATIVO (banner compacto) -->
+  <section style="padding-top:16px;padding-bottom:0;">
+    <button class="video-banner" id="videoBannerBtn">
+      <span class="vb-icon">▶</span>
+      <div class="vb-text">
+        <div class="vb-title">Ver video de presentación</div>
+        <div class="vb-sub">1 min · Conoce Causa30</div>
+      </div>
+    </button>
+  </section>
 
   <!-- COMO FUNCIONA -->
   <section style="padding-top:16px;">
@@ -79,12 +90,19 @@
     </div>
   </section>
 
-  <!-- VIDEO EXPLICATIVO -->
+  <!-- CAUSA30 DESCUBRE (blog) -->
   <section style="padding-top:12px;padding-bottom:28px;">
-    <div class="video-card" id="videoCard">
-      <div class="video-play">▶</div>
-      <div class="video-label">¿Qué es Causa30? · 15 seg</div>
-    </div>
+    <a class="blog-card" href="blog.html" target="_blank" rel="noopener">
+      <div class="blog-inner">
+        <div class="blog-photo"><img src="images/blog-post-1.jpg" alt="Historia destacada"></div>
+        <div class="blog-content">
+          <span class="blog-badge">Causa30 Descubre</span>
+          <p class="blog-desc">Descubre otras historias que con pequeñas acciones generan un gran impacto.</p>
+          <div class="blog-title">Una segunda oportunidad para quienes no tienen voz</div>
+          <div class="blog-meta">🕐 2 min de lectura</div>
+        </div>
+      </div>
+    </a>
   </section>
 
   <!-- SUMAR A CAUSA30 (combinado) -->
@@ -104,7 +122,6 @@
     <div class="word">CAUSA<span style="color:var(--coral)">30</span></div>
     <div class="links"><a>Privacidad</a><a>Términos</a><a>Cookies</a></div>
     <div class="credit">Causa30 es un producto del ecosistema Altrua.</div>
-    <div class="mail">hola@causa30.com · empresas@causa30.com</div>
     <div class="legal">© 2026 Altrua Global LLC. Todos los derechos reservados.<br>Miami, Florida, USA.</div>
   </footer>
 
@@ -254,6 +271,12 @@
       <p>¡Gracias! Recibimos tu solicitud — nuestro equipo te contactará pronto.</p>
     </div>
   </div>
+</div>
+
+<!-- LIGHTBOX: VIDEO A PANTALLA COMPLETA -->
+<div class="video-lightbox" id="videoLightbox">
+  <button class="video-lightbox-close" id="videoLightboxClose">✕</button>
+  <video id="introVideo" src="video/causa30-intro.mp4" playsinline controls></video>
 </div>
 
 <script src="app.js"></script>
