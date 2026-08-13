@@ -1,4 +1,3 @@
-// ⚠️ REEMPLAZAR con tu link real de Formspree (formspree.io → New Form → copiar el link)
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xnpavpkp';
 
 const products = [
@@ -162,6 +161,39 @@ progressModal.querySelector('.btn-ghost').addEventListener('click', () => {
   carousel.scrollIntoView({ behavior: 'smooth', block: 'center' });
 });
 
+// CONTADOR REGRESIVO — fecha de ejemplo, reemplazar por el cierre real de campaña al lanzar
+// Formato: new Date('AAAA-MM-DDTHH:mm:ss')
+const CAMPAIGN_END = new Date(Date.now() + 18 * 24 * 60 * 60 * 1000); // placeholder: 18 días desde ahora
+
+function updateCountdown(){
+  const now = new Date();
+  let diff = CAMPAIGN_END - now;
+  if(diff < 0) diff = 0;
+
+  const days = Math.floor(diff / (1000*60*60*24));
+  const hours = Math.floor((diff / (1000*60*60)) % 24);
+  const mins = Math.floor((diff / (1000*60)) % 60);
+  const secs = Math.floor((diff / 1000) % 60);
+
+  setCdValue('cdDays', days);
+  setCdValue('cdHours', hours);
+  setCdValue('cdMins', mins);
+  setCdValue('cdSecs', secs);
+}
+
+function setCdValue(id, value){
+  const el = document.getElementById(id);
+  const padded = String(value).padStart(2, '0');
+  if(el.textContent !== padded){
+    el.textContent = padded;
+    el.classList.add('tick');
+    setTimeout(() => el.classList.remove('tick'), 200);
+  }
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
 function openDetail(p){
   document.getElementById('detailPhoto').style.backgroundImage = `url('${p.img}')`;
   document.getElementById('whereTitle').textContent = p.name;
@@ -172,11 +204,12 @@ function openDetail(p){
     <div class="where-row"><span class="ic">⏱</span><div><span class="k">Campaña</span><span class="v">18 días restantes</span></div></div>
   `;
 
+  // Reinicia y dispara la mini-historia (fade + slide-up escalonado)
   const label = document.getElementById('storyLabel');
   const cause = document.getElementById('storyCause');
   label.classList.remove('show');
   cause.classList.remove('show');
-  void label.offsetWidth;
+  void label.offsetWidth; // fuerza reflow para que la transición se repita cada vez
   setTimeout(() => label.classList.add('show'), 200);
   setTimeout(() => cause.classList.add('show'), 450);
 
@@ -313,6 +346,9 @@ document.getElementById('adsNext').addEventListener('click', () => {
   renderAds();
 });
 document.getElementById('adsGo').addEventListener('click', () => {
-  window.location.href = 'mailto:empresas@causa30.com?subject=Quiero anunciarme en Causa30';
+  closeModal(adsModal);
+  document.getElementById('bizForm').style.display = 'flex';
+  document.getElementById('bizSuccess').classList.remove('show');
+  openModal(bizModal);
 });
 adsModal.addEventListener('click', (e) => { if(e.target === adsModal) closeModal(adsModal); });
