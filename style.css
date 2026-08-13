@@ -43,17 +43,18 @@
     pointer-events:none;
   }
   .promo-stamp{
-    position:absolute;top:16px;right:16px;width:84px;height:84px;
+    position:absolute;top:16px;left:16px;width:106px;height:106px;
     z-index:10;pointer-events:none;
-    transform:rotate(25deg) scale(2.2);opacity:0;
+    transform:rotate(-25deg) scale(2.2);opacity:0;
     animation:stampIn .55s cubic-bezier(.34,1.6,.5,1) .5s forwards;
   }
   @keyframes stampIn{
-    0%{transform:rotate(25deg) scale(2.2);opacity:0;}
-    60%{transform:rotate(-16deg) scale(0.92);opacity:1;}
-    100%{transform:rotate(-12deg) scale(1);opacity:1;}
+    0%{transform:rotate(-25deg) scale(2.2);opacity:0;}
+    60%{transform:rotate(16deg) scale(0.92);opacity:1;}
+    100%{transform:rotate(12deg) scale(1);opacity:1;}
   }
   .brand-center{text-align:center;margin-bottom:18px;opacity:0;animation:fadeUp .6s ease forwards;}
+  .brand-logo{height:36px;width:auto;margin:0 auto;display:block;}
   .brand-center .word{
     font-family:'Manrope',sans-serif;font-weight:800;font-size:20px;
     color:#fff;letter-spacing:-0.01em;
@@ -158,7 +159,7 @@
   @media (prefers-reduced-motion: reduce){
     .ticker-track{animation:none;}
     .p-card.center .p-card-inner{animation:none;}
-    .brand-center,.intrigue,.hero-slogan,.micro-eyebrow,.carousel,.dots,.hint-line,.ticker,.promo-stamp{animation:none;opacity:1;transform:rotate(-12deg) scale(1);}
+    .brand-center,.intrigue,.hero-slogan,.micro-eyebrow,.carousel,.dots,.hint-line,.ticker,.promo-stamp{animation:none;opacity:1;transform:rotate(12deg) scale(1);}
   }
 
   /* ---------- SECTION GENERIC ---------- */
@@ -390,8 +391,9 @@
     display:flex;align-items:center;justify-content:center;
   }
   .promo-art{
-    width:100%;aspect-ratio:1/1;background-size:cover;background-position:center;
-    background:linear-gradient(160deg,#1A4538,#0D251F);
+    width:100%;aspect-ratio:1/1;background-size:contain;background-repeat:no-repeat;background-position:center;
+    background-color:#12332A;
+    background-image:linear-gradient(160deg,#1A4538,#0D251F);
     display:flex;align-items:center;justify-content:center;font-size:40px;
   }
   .promo-body{padding:20px 22px 24px;text-align:center;}
