@@ -43,7 +43,7 @@
     pointer-events:none;
   }
   .promo-stamp{
-    position:absolute;top:16px;left:16px;width:106px;height:106px;
+    position:absolute;top:10px;left:12px;width:114px;height:114px;
     z-index:10;pointer-events:none;
     transform:rotate(-25deg) scale(2.2);opacity:0;
     animation:stampIn .55s cubic-bezier(.34,1.6,.5,1) .5s forwards;
@@ -83,14 +83,14 @@
   }
 
   .carousel{
-    position:relative;height:430px;
+    position:relative;height:460px;
     display:flex;align-items:center;justify-content:center;
     opacity:0;animation:fadeUp .7s ease 1.15s forwards;
     touch-action:pan-y;cursor:grab;
   }
   .carousel:active{cursor:grabbing;}
   .p-card{
-    position:absolute;width:250px;height:390px;border-radius:var(--radius-lg);
+    position:absolute;width:270px;height:410px;border-radius:var(--radius-lg);
     background:var(--card);box-shadow:0 24px 50px -14px rgba(0,0,0,0.5);
     transition:all .5s cubic-bezier(.22,.9,.35,1);cursor:pointer;
     overflow:hidden;
@@ -115,8 +115,8 @@
   .p-card .price{font-weight:700;font-size:15px;color:var(--verde-deep);}
   .p-card .aporte{font-size:12px;color:var(--coral-deep);font-weight:600;}
   .p-card.center{z-index:5;transform:translateX(0) scale(1);}
-  .p-card.left{z-index:2;transform:translateX(-168px) scale(.82);opacity:.5;filter:saturate(.7) brightness(.85);}
-  .p-card.right{z-index:2;transform:translateX(168px) scale(.82);opacity:.5;filter:saturate(.7) brightness(.85);}
+  .p-card.left{z-index:2;transform:translateX(-181px) scale(.82);opacity:.5;filter:saturate(.7) brightness(.85);}
+  .p-card.right{z-index:2;transform:translateX(181px) scale(.82);opacity:.5;filter:saturate(.7) brightness(.85);}
   .p-card.hidden{opacity:0;pointer-events:none;transform:scale(.7);}
 
   .dots{display:flex;justify-content:center;gap:7px;margin-top:22px;opacity:0;animation:fadeUp .6s ease 1.25s forwards;}
@@ -318,23 +318,53 @@
   .status-pill::before{content:'';width:6px;height:6px;border-radius:50%;background:#8FC4AC;}
   .receipt-link{display:block;text-align:center;margin-top:20px;font-size:12.5px;font-weight:700;color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:100px;padding:12px;}
 
-  /* ---------- VIDEO EXPLICATIVO ---------- */
-  .video-card{
-    position:relative;aspect-ratio:9/16;max-width:300px;
-    margin:0 auto;border-radius:var(--radius-lg);
-    background:linear-gradient(160deg,#1A4538,#0D251F);
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
-    overflow:hidden;cursor:pointer;
+  /* ---------- VIDEO: BANNER COMPACTO + LIGHTBOX ---------- */
+  .video-banner{
+    width:100%;display:flex;align-items:center;gap:14px;
+    background:var(--card);border:1.5px solid var(--line);
+    border-radius:20px;padding:14px 18px;text-align:left;
   }
-  .video-play{
-    width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,.15);
-    border:1.5px solid rgba(255,255,255,.4);color:#fff;font-size:20px;
+  .vb-icon{
+    width:42px;height:42px;border-radius:50%;background:var(--coral);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;
+    box-shadow:0 6px 16px -6px rgba(232,102,74,.6);
+  }
+  .vb-title{font-size:13.5px;font-weight:700;color:var(--ink);}
+  .vb-sub{font-size:11.5px;color:var(--grey);margin-top:2px;}
+
+  .video-lightbox{
+    position:fixed;inset:0;background:#000;z-index:200;
+    display:none;align-items:center;justify-content:center;
+  }
+  .video-lightbox.open{display:flex;}
+  .video-lightbox video{width:100%;height:100%;object-fit:contain;}
+  .video-lightbox-close{
+    position:absolute;top:20px;right:20px;z-index:201;
+    width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.15);
+    color:#fff;font-size:16px;font-weight:700;
     display:flex;align-items:center;justify-content:center;
   }
-  .video-label{color:#DCE8E2;font-size:13px;font-weight:600;}
-  @media(min-width:900px){
-    .video-card{max-width:340px;}
+
+  /* ---------- CAUSA30 DESCUBRE (blog) ---------- */
+  .blog-card{display:block;text-decoration:none;position:relative;margin:8px 6px 6px;}
+  .blog-card::before{
+    content:'';position:absolute;left:-8px;top:16px;bottom:-16px;width:80px;
+    background:var(--coral);border-radius:24px;z-index:0;
   }
+  .blog-inner{position:relative;z-index:1;display:flex;gap:14px;align-items:flex-start;}
+  .blog-photo{
+    width:104px;min-height:150px;border-radius:20px;overflow:hidden;flex-shrink:0;
+    box-shadow:0 14px 26px -12px rgba(0,0,0,.35);background:var(--line);
+  }
+  .blog-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+  .blog-content{flex:1;padding-top:4px;}
+  .blog-badge{
+    display:inline-block;background:var(--verde-deep);color:#fff;font-size:10px;font-weight:800;
+    letter-spacing:.04em;padding:5px 10px;border-radius:8px;text-transform:uppercase;
+  }
+  .blog-desc{font-size:12px;color:var(--grey);margin-top:9px;line-height:1.5;}
+  .blog-title{font-family:'Manrope',sans-serif;font-weight:800;color:var(--verde);font-size:15.5px;margin-top:9px;line-height:1.3;}
+  .blog-meta{font-size:11px;color:var(--grey);margin-top:9px;}
 
   /* ---------- CINTILLO OSCURO: SUMAR A CAUSA30 (combinado) ---------- */
   .join-band{
@@ -446,6 +476,6 @@
   footer .legal{margin-top:14px;font-size:10.5px;color:#A8AFA9;line-height:1.6;}
 
   @media(min-width:900px){
-    .p-card.left{transform:translateX(-230px) scale(.82);}
-    .p-card.right{transform:translateX(230px) scale(.82);}
+    .p-card.left{transform:translateX(-248px) scale(.82);}
+    .p-card.right{transform:translateX(248px) scale(.82);}
   }
