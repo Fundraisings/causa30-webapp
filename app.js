@@ -216,6 +216,25 @@ function openDetail(p){
   openModal(whereModal);
 }
 
+// VIDEO — banner compacto abre lightbox a pantalla completa
+const videoLightbox = document.getElementById('videoLightbox');
+const introVideo = document.getElementById('introVideo');
+document.getElementById('videoBannerBtn').addEventListener('click', () => {
+  videoLightbox.classList.add('open');
+  introVideo.currentTime = 0;
+  introVideo.play().catch(()=>{});
+});
+document.getElementById('videoLightboxClose').addEventListener('click', () => {
+  videoLightbox.classList.remove('open');
+  introVideo.pause();
+});
+videoLightbox.addEventListener('click', (e) => {
+  if(e.target === videoLightbox){
+    videoLightbox.classList.remove('open');
+    introVideo.pause();
+  }
+});
+
 document.querySelectorAll('[data-close]').forEach(btn=>{
   btn.addEventListener('click', (e) => closeModal(e.target.closest('.modal-overlay')));
 });
@@ -314,7 +333,7 @@ promoModal.querySelectorAll('[data-close]').forEach(btn => {
   });
 });
 
-// GALERÍA DE PROMOCIONES — navegable a propósito
+// GALERÍA DE PROMOCIONES — navegable a propósito, vía botón "Ver promociones activas"
 const adsModal = document.getElementById('adsModal');
 let adsIndex = 0;
 
