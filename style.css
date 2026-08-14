@@ -54,7 +54,7 @@
     100%{transform:rotate(12deg) scale(1);opacity:1;}
   }
   .brand-center{text-align:center;margin-bottom:18px;opacity:0;animation:fadeUp .6s ease forwards;}
-  .brand-logo{height:80px;width:auto;margin:0 auto;display:block;}
+  .brand-logo{height:90px;width:auto;margin:0 auto;display:block;}
   .brand-center .word{
     font-family:'Manrope',sans-serif;font-weight:800;font-size:20px;
     color:#fff;letter-spacing:-0.01em;
