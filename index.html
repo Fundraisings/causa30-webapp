@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CAUSA30 · Tu compra tiene doble Valor</title>
+<title>CAUSA30 · Una compra. Doble Valor</title>
 <meta name="description" content="Cada 30 días, productos seleccionados donan parte de su venta a una fundación aliada. Descubre el producto, descubre la causa.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -18,7 +18,7 @@
     <div class="brand-center"><img src="images/logo.png" alt="Causa30" class="brand-logo"></div>
     <p class="intrigue">Dale un propósito a tu consumo.</p>
     <p class="hero-slogan">Descubre cómo tus compras apoyan una causa.</p>
-    <span class="micro-eyebrow">Una compra. Doble Valor</span>
+    <span class="micro-eyebrow">Tu compra tiene doble Valor</span>
 
     <div class="carousel" id="carousel"></div>
     <div class="dots" id="dots"></div>
@@ -37,15 +37,31 @@
     </div>
   </div>
 
-  <!-- VIDEO EXPLICATIVO (banner compacto) -->
+  <!-- VIDEO EXPLICATIVO (banner) -->
   <section style="padding-top:16px;padding-bottom:0;">
-    <button class="video-banner" id="videoBannerBtn">
-      <span class="vb-icon">▶</span>
-      <div class="vb-text">
-        <div class="vb-title">Ver video de presentación</div>
-        <div class="vb-sub">1 min · Conoce Causa30</div>
+    <div class="banner-shadow">
+      <button class="banner-link video-trigger" id="videoBannerBtn">
+        <img src="images/videobanner.png" alt="Ver video de presentación">
+      </button>
+    </div>
+  </section>
+
+  <!-- PATROCINADOR OFICIAL DEL MES -->
+  <section style="padding-top:36px;padding-bottom:0;">
+    <span class="eyebrow" style="text-align:center;display:block;">Patrocinador Oficial del Mes</span>
+    <p class="sponsor-thanks">Agradecemos a esta empresa por hacer posible y apoyar la causa que promovemos.</p>
+    <div class="banner-shadow">
+      <div class="sponsor-flip" id="sponsorFlip">
+        <div class="sponsor-flip-inner">
+          <div class="sponsor-front"><img src="images/bannerpremium.png" alt="Patrocinador del mes"></div>
+          <div class="sponsor-back">
+            <h3>RAMONCITO RACING TEAM</h3>
+            <p>Pasión, velocidad y rendimiento garantizado. Expertos en preparación y mantenimiento automotriz para llevar tu vehículo al siguiente nivel.</p>
+            <div class="sponsor-ig">📷 @ramoncitoracingteam</div>
+          </div>
+        </div>
       </div>
-    </button>
+    </div>
   </section>
 
   <!-- COMO FUNCIONA -->
@@ -54,21 +70,27 @@
       <span class="eyebrow">Así de simple</span>
       <h2 class="sec-title">¿Cómo funciona?</h2>
       <p style="font-size:13.5px;color:#DCE8E2;margin-top:10px;line-height:1.6;">Ayudar a cambiar una vida es más sencillo de lo que crees. No necesitas hacer nada extraordinario — solo lo que ya haces: comprar.</p>
-      <div class="steps">
-        <div class="step"><span class="num">1</span><div class="txt"><b>Eliges con corazón</b><span>Compras un producto participante que te gusta o necesitas. Automáticamente, formas parte del apoyo a una causa.</span></div></div>
-        <div class="step"><span class="num">2</span><div class="txt"><b>La empresa cumple su palabra</b><span>Dona directamente a la fundación aliada del mes, según lo acordado por cada venta.</span></div></div>
-        <div class="step"><span class="num">3</span><div class="txt"><b>Ves el resultado real</b><span>Publicamos el impacto de cada campaña: cuántas compras, cuánto se donó, y a qué fundación — con comprobante.</span></div></div>
+
+      <div class="mecanismo-carousel" id="mecanismoCarousel">
+        <img src="images/Carrusel1.png" alt="Paso 1">
+        <img src="images/Carrusel2.png" alt="Paso 2">
+        <img src="images/Carrusel3.png" alt="Paso 3">
+        <img src="images/Carrusel4.png" alt="Paso 4">
+        <img src="images/Carrusel5.png" alt="Paso 5">
       </div>
-      <div class="trust"><b>Para tu tranquilidad:</b> los fondos van directamente de la empresa a la fundación. Causa30 es solo el puente que conecta tu compra con el cambio real.</div>
+      <div class="mecanismo-dots" id="mecanismoDots"></div>
+
+      <div class="trust"><b>El aporte va directamente a la fundación.</b> La empresa realiza la contribución según lo establecido en cada promoción. Causa30 es el puente que conecta tu compra con la causa y te permite comprobar el resultado.</div>
     </div>
   </section>
 
   <!-- ENTRADA OCULTA: FUNDACION + MASCOTAS -->
   <section style="padding-top:0;">
-    <button class="reveal-chip" id="causeChip">
-      <div class="txt">🐾 Fundación participante</div>
-      <div class="sub">Toca para conocerla</div>
-    </button>
+    <div class="banner-shadow">
+      <button class="banner-link" id="causeChip">
+        <img src="images/bannerconocer_png.png" alt="Conoce la fundación que estamos apoyando">
+      </button>
+    </div>
   </section>
 
   <!-- RESULTADOS -->
@@ -83,31 +105,41 @@
         <div class="rrow"><span class="k">Compromiso</span><span class="v" id="resAporte">—</span></div>
         <div class="rrow"><span class="k">Compras</span><span class="v" id="resCompras">—</span></div>
         <div class="rrow"><span class="k">Donación</span><span class="v money" id="resDonacion">—</span></div>
-        <div class="rrow"><span class="k">Fundación</span><span class="v">Huellas Felices</span></div>
+        <div class="rrow"><span class="k">Fundación</span><span class="v">De Blanck</span></div>
         <div class="rrow"><span class="k">Estado</span><span class="status-pill" style="background:rgba(240,161,144,.15);color:#F0A190;">Próximamente</span></div>
       </div>
       <button class="receipt-link" id="receiptBtn">Ver comprobante (disponible al iniciar) →</button>
     </div>
   </section>
 
-  <!-- CAUSA30 DESCUBRE (blog) -->
-  <section style="padding-top:12px;padding-bottom:28px;">
-    <a class="blog-card" href="blog.html" target="_blank" rel="noopener">
-      <div class="blog-inner">
-        <div class="blog-photo"><img src="images/blog1.png" alt="Historia destacada"></div>
-        <div class="blog-content">
-          <span class="blog-badge">Causa30 Descubre</span>
-          <p class="blog-desc">Descubre otras historias que con pequeñas acciones generan un gran impacto.</p>
-          <div class="blog-title">Una segunda oportunidad para quienes no tienen voz</div>
-          <div class="blog-meta">🕐 2 min de lectura</div>
+  <!-- CAUSA30 DESCUBRE (revista, portada con giro de página) -->
+  <section class="mag-card-wrap" style="padding-top:12px;padding-bottom:28px;">
+    <div class="mag-flip-scene" id="magFlipScene">
+      <div class="mag-flip-inner">
+        <button class="mag-front" id="magCard" style="background-image:url('images/coverc30d.png');"></button>
+        <div class="mag-back">
+          <span class="eyebrow">En esta edición</span>
+          <ul class="mag-topics" id="magTopics"></ul>
+          <div class="mag-divider"></div>
+          <a class="mag-read-btn" id="magReadBtn" href="#" target="_blank" rel="noopener">Leer ahora →</a>
+          <button class="mag-close" id="magClose">✕ Volver a la portada</button>
         </div>
       </div>
-    </a>
+    </div>
   </section>
 
-  <!-- SUMAR A CAUSA30 (combinado) -->
+  <!-- DESCUBRE MÁS (banner) -->
   <section style="padding-top:0;">
-    <div class="join-band">
+    <div class="banner-shadow">
+      <button class="banner-link" id="adsTrigger">
+        <img src="images/bannerC30.png" alt="Descubre otras promociones que también apoyan una causa">
+      </button>
+    </div>
+  </section>
+
+  <!-- SUMAR A CAUSA30 (compacto, al final) -->
+  <section style="padding-top:0;">
+    <div class="join-band join-band-compact">
       <h3>Hay muchas formas de ser parte del cambio.</h3>
       <p>Sugiere un producto que te gustaría ver aquí o incorpora tu empresa a una campaña con propósito.</p>
       <div class="join-actions">
@@ -115,13 +147,16 @@
         <button class="join-btn coral" id="openBizForm">Mi empresa quiere participar</button>
       </div>
     </div>
-    <button class="ads-trigger" id="adsTrigger">Hay más buenas noticias.<span>Descubre otras promociones que también apoyan una causa →</span></button>
   </section>
 
   <footer>
     <div class="word">CAUSA<span style="color:var(--coral)">30</span></div>
+    <div class="footer-scope">
+      <h4>Causa30 comienza en República Dominicana 🇩🇴</h4>
+      <p>Por ahora, nuestras promociones están disponibles aquí. A medida que crezcamos, esperamos llevar Causa30 a nuevos países.</p>
+    </div>
     <div class="links"><a>Privacidad</a><a>Términos</a><a>Cookies</a></div>
-    <div class="credit">Causa30 es un producto del ecosistema Altrua.</div>
+    <div class="credit">Causa30 — powered by Altrua</div>
     <div class="legal">© 2026 Altrua Global LLC. Todos los derechos reservados.<br>Miami, Florida, USA.</div>
   </footer>
 
@@ -134,17 +169,18 @@
     <button class="modal-close" data-close>✕</button>
 
     <span class="eyebrow">Fundación participante</span>
-    <h2 class="sec-title">Fundación Huellas Felices</h2>
+    <h2 class="sec-title">Fundación De Blanck</h2>
     <div class="fund-card">
-      <div class="fund-photo">🐾</div>
+      <div class="fund-photo" style="background-image:url('images/marcologofundacion.png')"></div>
       <div class="fund-body">
-        <p>Trabaja cada día rescatando, cuidando y buscando hogares responsables para perros y gatos. Gracias a las compras realizadas durante esta campaña será posible seguir alimentando, vacunando, esterilizando y encontrando familias para muchos animales.</p>
+        <p>Somos una fundación sin fines de lucro, que lleva más de 27 años en el cuidado de los animales y la continua educación de la población dominicana en materia de protección a los animales, en la preservación del entorno natural, la vida sana y los valores en la familia basados en el amor y respeto.</p>
         <div class="fund-meta">
-          <span><b>Dirección:</b> Av. Las Américas #102, Santo Domingo</span>
-          <span><b>Teléfono:</b> +1 (809) 555-0199</span>
-          <span><b>Redes:</b> @huellasfelicesrd</span>
+          <span><b>Dirección:</b> Santo Domingo, Rep. Dominicana</span>
+          <span><b>Teléfono:</b> (+1) 809 884 5044 / 809 609 6006</span>
+          <span><b>Website:</b> fundaciondeblanck.org</span>
+          <span><b>Instagram:</b> @fundacion_de_blanck</span>
         </div>
-        <a class="btn-ghost">Conocer más</a>
+        <a class="btn-ghost" href="https://fundaciondeblanck.org/" target="_blank" rel="noopener">Conocer más</a>
       </div>
     </div>
 
@@ -176,6 +212,7 @@
     <div id="whereBody" style="margin-top:6px;"></div>
   </div>
 </div>
+
 
 <!-- MODAL: CAMPAÑA EN CURSO (al tocar "Ver comprobante" antes de que termine) -->
 <div class="modal-overlay" id="progressModal">
@@ -273,10 +310,10 @@
   </div>
 </div>
 
-<!-- LIGHTBOX: VIDEO A PANTALLA COMPLETA -->
+<!-- LIGHTBOX: VIDEO A PANTALLA COMPLETA (YouTube) -->
 <div class="video-lightbox" id="videoLightbox">
   <button class="video-lightbox-close" id="videoLightboxClose">✕</button>
-  <video id="introVideo" src="video/causa30-intro.mp4" playsinline controls></video>
+  <div class="yt-frame-wrap" id="ytFrameWrap"></div>
 </div>
 
 <script src="app.js"></script>
