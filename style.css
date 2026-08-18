@@ -190,6 +190,19 @@
   }
   .trust b{color:#fff;}
 
+  .mecanismo-carousel{
+    display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;border-radius:20px;margin-top:22px;
+  }
+  .mecanismo-carousel::-webkit-scrollbar{display:none;}
+  .mecanismo-carousel img{
+    flex:0 0 100%;width:100%;aspect-ratio:1/1;object-fit:cover;
+    scroll-snap-align:start;border-radius:20px;
+  }
+  .mecanismo-dots{display:flex;justify-content:center;gap:6px;margin-top:14px;}
+  .mecanismo-dots .dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.25);transition:all .3s;}
+  .mecanismo-dots .dot.active{background:var(--coral);width:18px;border-radius:4px;}
+
   /* ---------- REVEAL CHIP (Fundación oculta por defecto) ---------- */
   .reveal-chip{
     width:100%;background:var(--coral);border:none;
@@ -230,6 +243,7 @@
   }
   .fund-photo{
     height:150px;background:linear-gradient(135deg,#2A7057,#1F5F4A);
+    background-size:cover;background-position:center;
     display:flex;align-items:center;justify-content:center;font-size:44px;position:relative;
   }
   .fund-body{padding:22px;}
@@ -270,12 +284,28 @@
   .flip-back p{font-size:12px;line-height:1.55;color:#DCE8E2;}
   .pet-info{padding:14px 16px 16px;}
   .pet-info .pname{font-weight:800;font-size:15.5px;}
+  .tap-hint{font-size:10.5px;font-weight:500;color:var(--coral-deep);font-style:italic;}
   .pet-info .pmeta{font-size:11.5px;color:var(--grey);margin-top:2px;}
   .pet-info .pdesc{font-size:12.5px;color:var(--grey);margin-top:8px;line-height:1.5;}
-  .pet-actions{display:flex;gap:8px;margin-top:14px;}
-  .pet-actions button{flex:1;padding:9px 0;border-radius:100px;font-size:11px;font-weight:700;}
-  .pet-actions .adopt{background:var(--verde-deep);color:#fff;}
-  .pet-actions .share{border:1.5px solid var(--line);color:var(--ink);}
+  .pet-actions{display:flex;flex-direction:column;gap:8px;margin-top:14px;}
+  .pet-actions .share{
+    width:100%;padding:10px 8px;border-radius:100px;font-size:11px;font-weight:700;
+    border:1.5px solid var(--line);color:var(--ink);
+  }
+
+  .adopt-flip{width:100%;height:38px;perspective:600px;}
+  .adopt-flip-inner{
+    position:relative;width:100%;height:100%;
+    transition:transform .5s cubic-bezier(.4,.2,.2,1);transform-style:preserve-3d;
+  }
+  .adopt-flip.flipped .adopt-flip-inner{transform:rotateY(180deg);}
+  .adopt-front,.adopt-back{
+    position:absolute;inset:0;backface-visibility:hidden;border-radius:100px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:11px;font-weight:700;background:var(--verde-deep);color:#fff;
+    padding:0 10px;text-align:center;
+  }
+  .adopt-back{transform:rotateY(180deg);text-decoration:none;}
 
   /* where modal */
   .where-row{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:13.5px;}
@@ -337,7 +367,9 @@
     display:none;align-items:center;justify-content:center;
   }
   .video-lightbox.open{display:flex;}
-  .video-lightbox video{width:100%;height:100%;object-fit:contain;}
+  .yt-frame-wrap{width:100%;max-width:420px;aspect-ratio:9/16;margin:0 auto;}
+  .yt-frame-wrap iframe{width:100%;height:100%;border:0;display:block;}
+  .mag-reader-wrap{width:92vw;max-width:600px;margin:0 auto;}
   .video-lightbox-close{
     position:absolute;top:20px;right:20px;z-index:201;
     width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.15);
@@ -345,26 +377,45 @@
     display:flex;align-items:center;justify-content:center;
   }
 
-  /* ---------- CAUSA30 DESCUBRE (blog) ---------- */
-  .blog-card{display:block;text-decoration:none;position:relative;margin:8px 6px 6px;}
-  .blog-card::before{
-    content:'';position:absolute;left:-8px;top:16px;bottom:-16px;width:80px;
-    background:var(--coral);border-radius:24px;z-index:0;
+  /* ---------- CAUSA30 DESCUBRE (revista, giro de página) ---------- */
+  .mag-card-wrap{perspective:1400px;}
+  .mag-flip-scene{position:relative;width:100%;aspect-ratio:4/5;}
+  .mag-flip-inner{
+    position:relative;width:100%;height:100%;
+    transform-style:preserve-3d;transform-origin:left center;
+    transition:transform .7s cubic-bezier(.4,.1,.2,1);
   }
-  .blog-inner{position:relative;z-index:1;display:flex;gap:14px;align-items:flex-start;}
-  .blog-photo{
-    width:104px;min-height:150px;border-radius:20px;overflow:hidden;flex-shrink:0;
-    box-shadow:0 14px 26px -12px rgba(0,0,0,.35);background:var(--line);
+  .mag-flip-scene.flipped .mag-flip-inner{transform:rotateY(-175deg);}
+  .mag-front,.mag-back{
+    position:absolute;inset:0;backface-visibility:hidden;
+    border-radius:22px;overflow:hidden;
   }
-  .blog-photo img{width:100%;height:100%;object-fit:cover;display:block;}
-  .blog-content{flex:1;padding-top:4px;}
-  .blog-badge{
-    display:inline-block;background:var(--verde-deep);color:#fff;font-size:10px;font-weight:800;
-    letter-spacing:.04em;padding:5px 10px;border-radius:8px;text-transform:uppercase;
+  .mag-front{
+    width:100%;height:100%;background-size:cover;background-position:center;
+    box-shadow:0 20px 40px -16px rgba(0,0,0,.35);
   }
-  .blog-desc{font-size:12px;color:var(--grey);margin-top:9px;line-height:1.5;}
-  .blog-title{font-family:'Manrope',sans-serif;font-weight:800;color:var(--verde);font-size:15.5px;margin-top:9px;line-height:1.3;}
-  .blog-meta{font-size:11px;color:var(--grey);margin-top:9px;}
+  .mag-back{
+    transform:rotateY(180deg);background:#fff;
+    padding:28px 26px;display:flex;flex-direction:column;justify-content:center;
+    box-shadow:0 20px 40px -16px rgba(0,0,0,.25);
+  }
+
+  .mag-panel{text-align:left;background:#fff;}
+  .mag-topics{list-style:none;padding:0;margin:18px 0 0;}
+  .mag-topics li{
+    display:flex;gap:10px;align-items:flex-start;
+    font-size:14px;color:#111;line-height:1.5;padding:9px 0;
+  }
+  .mag-topics li::before{content:'✓';color:var(--verde-deep);font-weight:800;flex-shrink:0;}
+  .mag-divider{border-top:1px solid var(--line);margin:16px 0 20px;}
+  .mag-read-btn{
+    display:block;width:100%;text-align:center;background:var(--coral);color:#fff;
+    padding:14px;border-radius:100px;font-weight:800;font-size:14px;
+  }
+  .mag-close{
+    margin-top:14px;text-align:center;font-size:12px;color:var(--grey);
+    font-weight:600;padding:8px;
+  }
 
   /* ---------- CINTILLO OSCURO: SUMAR A CAUSA30 (combinado) ---------- */
   .join-band{
@@ -383,6 +434,11 @@
   @media(max-width:340px){
     .join-actions{flex-direction:column;}
   }
+  .join-band-compact{padding:20px 22px;}
+  .join-band-compact h3{font-size:15.5px;}
+  .join-band-compact p{font-size:12px;margin-top:6px;}
+  .join-band-compact .join-actions{margin-top:14px;}
+  .join-band-compact .join-btn{font-size:11.5px;padding:10px 10px;}
 
   .progress-art{
     width:100%;aspect-ratio:1/1;max-width:200px;margin:6px auto 0;
@@ -434,12 +490,51 @@
     padding:13px;border-radius:100px;font-weight:700;font-size:13.5px;
   }
 
-  .ads-trigger{
-    display:block;width:100%;text-align:center;margin-top:14px;
-    font-size:13px;font-weight:600;color:var(--verde-deep);
-    padding:10px;line-height:1.5;
+  /* ---------- SOMBRA NARANJA INCLINADA (para banners) ---------- */
+  .banner-shadow{position:relative;margin-top:16px;}
+  .banner-shadow::before{
+    content:'';position:absolute;
+    left:-5px;right:11px;top:11px;bottom:-9px;
+    background:var(--coral);border-radius:20px;
+    transform:rotate(-3.5deg);z-index:0;
   }
-  .ads-trigger span{display:block;font-weight:800;color:var(--coral-deep);margin-top:2px;}
+  .banner-shadow > *{position:relative;z-index:1;}
+
+  /* ---------- PATROCINADOR OFICIAL DEL MES ---------- */
+  .sponsor-thanks{
+    text-align:center;font-size:12.5px;color:var(--grey);
+    margin-top:6px;padding:0 20px;line-height:1.5;
+  }
+  .sponsor-flip{
+    position:relative;width:100%;aspect-ratio:3/1;
+    perspective:900px;cursor:pointer;
+  }
+  .sponsor-flip-inner{
+    position:relative;width:100%;height:100%;
+    transition:transform .6s cubic-bezier(.4,.2,.2,1);transform-style:preserve-3d;
+  }
+  .sponsor-flip.flipped .sponsor-flip-inner{transform:rotateY(180deg);}
+  .sponsor-front,.sponsor-back{
+    position:absolute;inset:0;backface-visibility:hidden;
+    border-radius:20px;overflow:hidden;
+  }
+  .sponsor-front img{width:100%;height:100%;object-fit:cover;display:block;}
+  .sponsor-back{
+    transform:rotateY(180deg);background:#000;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:14px 20px;text-align:center;
+  }
+  .sponsor-back h3{
+    color:#FFD84D;font-weight:800;font-style:italic;font-size:15px;letter-spacing:.02em;
+  }
+  .sponsor-back p{
+    color:#fff;font-style:italic;font-size:11px;line-height:1.45;margin-top:8px;
+  }
+  .sponsor-ig{color:#FFD84D;font-size:11.5px;font-weight:700;margin-top:10px;}
+
+  /* ---------- BANNER CLICABLE (reemplaza cintillo de texto) ---------- */
+  .banner-link{width:100%;display:block;border-radius:20px;overflow:hidden;}
+  .banner-link img{width:100%;display:block;}
   .ads-nav{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:16px;}
   .ads-arrow{
     width:34px;height:34px;border-radius:50%;background:var(--verde-soft);
@@ -469,6 +564,9 @@
   /* ---------- FOOTER ---------- */
   footer{padding:44px 24px 60px;text-align:center;}
   footer .word{font-family:'Manrope',sans-serif;font-weight:800;font-size:17px;color:var(--verde-deep);}
+  .footer-scope{margin-top:20px;padding:0 16px;}
+  .footer-scope h4{font-size:13px;font-weight:800;color:var(--verde-deep);}
+  .footer-scope p{font-size:11.5px;color:var(--grey);margin-top:6px;line-height:1.55;}
   footer .links{margin-top:14px;font-size:12px;color:var(--grey);display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
   footer .credit{margin-top:18px;font-size:11.5px;color:#8B958E;}
   footer .credit a{color:var(--verde-deep);font-weight:600;text-decoration:underline;}
