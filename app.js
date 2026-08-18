@@ -1,3 +1,48 @@
+// ═══════════════════════════════════════
+// CAUSA30 DESCUBRE — EDITAR CADA MES AQUÍ
+// (solo cambia el texto entre comillas y el link, no toques nada más)
+// ═══════════════════════════════════════
+const revistaDelMes = {
+  temas: [
+    "Tema principal de la revista",
+    "Segundo contenido destacado",
+    "Tercer contenido destacado"
+  ],
+  link: "https://online.fliphtml5.com/causa30descubre/coverc30-descubre/"
+};
+
+const magFlipScene = document.getElementById('magFlipScene');
+const magCard = document.getElementById('magCard');
+const magClose = document.getElementById('magClose');
+const magTopics = document.getElementById('magTopics');
+const magReadBtn = document.getElementById('magReadBtn');
+
+magTopics.innerHTML = revistaDelMes.temas.map(t => `<li>${t}</li>`).join('');
+
+magCard.addEventListener('click', () => {
+  magFlipScene.classList.add('flipped');
+});
+magClose.addEventListener('click', () => {
+  magFlipScene.classList.remove('flipped');
+});
+
+// LECTOR DE REVISTA — se abre dentro de la app, sin salir a otra pestaña
+const magLightbox = document.getElementById('magLightbox');
+const magReaderWrap = document.getElementById('magReaderWrap');
+
+magReadBtn.addEventListener('click', () => {
+  magReaderWrap.innerHTML = `<div style="position:relative;padding-top:max(60%,324px);width:100%;height:0;"><iframe style="position:absolute;border:none;width:100%;height:100%;left:0;top:0;" src="${revistaDelMes.link}" title="Causa30 Descubre" seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true"></iframe></div>`;
+  magLightbox.classList.add('open');
+});
+function closeMagLightbox(){
+  magLightbox.classList.remove('open');
+  magReaderWrap.innerHTML = '';
+}
+document.getElementById('magLightboxClose').addEventListener('click', closeMagLightbox);
+magLightbox.addEventListener('click', (e) => {
+  if(e.target === magLightbox) closeMagLightbox();
+});
+
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xnpavpkp';
 
 const products = [
@@ -108,22 +153,37 @@ carousel.addEventListener('pointerleave', () => {
   if(isDragging){ isDragging = false; startAutoplay(); }
 });
 
+// CARRUSEL "CÓMO FUNCIONA" — puntos sincronizados con el deslizamiento
+const mecanismoCarousel = document.getElementById('mecanismoCarousel');
+const mecanismoDots = document.getElementById('mecanismoDots');
+const mecanismoSlideCount = mecanismoCarousel.querySelectorAll('img').length;
+for(let i = 0; i < mecanismoSlideCount; i++){
+  const d = document.createElement('div');
+  d.className = 'dot' + (i === 0 ? ' active' : '');
+  mecanismoDots.appendChild(d);
+}
+mecanismoCarousel.addEventListener('scroll', () => {
+  const index = Math.round(mecanismoCarousel.scrollLeft / mecanismoCarousel.clientWidth);
+  mecanismoDots.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === index));
+});
+
 // MASCOTAS
 const pets = [
   {name:"Lobo", meta:"3 años · Macho · Pequeño", desc:"Cariñoso y juguetón, disfruta del contacto humano.",
    story:"Lobo llegó a la fundación hace un año, después de vivir mucho tiempo en la calle. Al principio era desconfiado, pero hoy es de los más juguetones del refugio. Le encanta correr y busca compañía humana constantemente.",
-   img:"images/lobo.jpg"},
+   img:"images/lobo.jpg", phone:"18098845044"},
   {name:"Shakira", meta:"2 años · Hembra · Pequeño", desc:"Tranquila, de mirada dulce.",
    story:"Shakira fue rescatada junto a su camada cuando apenas tenía semanas de nacida. Es tranquila y observadora, y se acerca despacio hasta ganar confianza — una vez la gana, no se separa de tu lado.",
-   img:"images/shakira.jpg"},
+   img:"images/shakira.jpg", phone:"18098845044"},
   {name:"Fi", meta:"4 años · Macho · Grande", desc:"Noble y atento, ideal para espacios con patio.",
    story:"Fi es el más veterano del grupo. Pasó varios años en la calle antes de llegar a la fundación, y a pesar de todo, es un perro noble y agradecido. Se lleva bien con otros animales y adora los espacios abiertos.",
-   img:"images/fi.jpg"},
+   img:"images/fi.jpg", phone:"18098845044"},
 ];
 const petScroll = document.getElementById('petScroll');
 pets.forEach((p, idx) => {
   const card = document.createElement('div');
   card.className = 'pet-card';
+  const phoneDisplay = p.phone.replace(/^1/, '').replace(/(\d{3})(\d{3})(\d{4})/, '$1.$2.$3');
   card.innerHTML = `
     <div class="flip-scene" data-flipped="false">
       <div class="flip-inner">
@@ -132,17 +192,43 @@ pets.forEach((p, idx) => {
       </div>
     </div>
     <div class="pet-info">
-      <div class="pname">${p.name}</div>
+      <div class="pname">${p.name} <span class="tap-hint">(toca la foto)</span></div>
       <div class="pmeta">${p.meta} · Disponible</div>
       <div class="pdesc">${p.desc}</div>
-      <div class="pet-actions"><button class="adopt">Quiero conocerlo/a</button><button class="share">Voy a compartir</button></div>
+      <div class="pet-actions">
+        <div class="adopt-flip" data-flipped="false">
+          <div class="adopt-flip-inner">
+            <button class="adopt-front">Clic aquí para conocer más →</button>
+            <a class="adopt-back" href="tel:+${p.phone}">📞 ${phoneDisplay}</a>
+          </div>
+        </div>
+        <button class="share">Clic aquí para compartir con tus amigos →</button>
+      </div>
     </div>`;
+
   const scene = card.querySelector('.flip-scene');
   scene.addEventListener('click', () => {
     const flipped = scene.getAttribute('data-flipped') === 'true';
     scene.setAttribute('data-flipped', String(!flipped));
     scene.classList.toggle('flipped');
   });
+
+  const adoptFlip = card.querySelector('.adopt-flip');
+  adoptFlip.querySelector('.adopt-front').addEventListener('click', () => {
+    adoptFlip.classList.add('flipped');
+  });
+
+  card.querySelector('.share').addEventListener('click', () => {
+    const shareText = `Conoce a ${p.name} 🐾 está buscando un hogar. Descúbrelo en Causa30:`;
+    const shareUrl = window.location.origin + window.location.pathname;
+    if(navigator.share){
+      navigator.share({ title: 'Causa30', text: shareText, url: shareUrl }).catch(()=>{});
+    } else {
+      const waUrl = `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`;
+      window.open(waUrl, '_blank');
+    }
+  });
+
   petScroll.appendChild(card);
 });
 
@@ -199,7 +285,7 @@ function openDetail(p){
   document.getElementById('whereTitle').textContent = p.name;
   document.getElementById('detailPrice').textContent = p.price;
   document.getElementById('detailAporte').textContent = 'Aporte: ' + p.aporte;
-  document.getElementById('storyCause').textContent = p.fundacion || 'Fundación Huellas Felices';
+  document.getElementById('storyCause').textContent = p.fundacion || 'Fundación De Blanck';
   document.getElementById('whereBody').innerHTML = `
     <div class="where-row"><span class="ic">⏱</span><div><span class="k">Campaña</span><span class="v">18 días restantes</span></div></div>
   `;
@@ -216,23 +302,38 @@ function openDetail(p){
   openModal(whereModal);
 }
 
-// VIDEO — banner compacto abre lightbox a pantalla completa
+// PATROCINADOR OFICIAL DEL MES — click para voltear y ver info del anunciante
+document.getElementById('sponsorFlip').addEventListener('click', function(){
+  this.classList.toggle('flipped');
+});
+
+// VIDEO — lightbox reutilizable con YouTube, a pantalla completa
+// ⚠️ REEMPLAZAR con el ID real del video principal (la parte después de "shorts/" o "watch?v=")
+const YOUTUBE_VIDEO_ID = 'TU_ID_DE_YOUTUBE';
+
 const videoLightbox = document.getElementById('videoLightbox');
-const introVideo = document.getElementById('introVideo');
-document.getElementById('videoBannerBtn').addEventListener('click', () => {
+const ytFrameWrap = document.getElementById('ytFrameWrap');
+
+function openVideoLightbox(videoId){
   videoLightbox.classList.add('open');
-  introVideo.currentTime = 0;
-  introVideo.play().catch(()=>{});
-});
-document.getElementById('videoLightboxClose').addEventListener('click', () => {
+  ytFrameWrap.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&playsinline=1&rel=0" title="Causa30" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+}
+function closeVideoLightbox(){
   videoLightbox.classList.remove('open');
-  introVideo.pause();
+  ytFrameWrap.innerHTML = ''; // vaciar el iframe detiene la reproducción
+}
+
+// Cualquier botón con class="video-trigger" abre el lightbox.
+// Usa data-yt-id="ID_DEL_VIDEO" para un video específico; si no lo tiene, usa el principal.
+document.querySelectorAll('.video-trigger').forEach(btn => {
+  btn.addEventListener('click', () => {
+    openVideoLightbox(btn.dataset.ytId || YOUTUBE_VIDEO_ID);
+  });
 });
+
+document.getElementById('videoLightboxClose').addEventListener('click', closeVideoLightbox);
 videoLightbox.addEventListener('click', (e) => {
-  if(e.target === videoLightbox){
-    videoLightbox.classList.remove('open');
-    introVideo.pause();
-  }
+  if(e.target === videoLightbox) closeVideoLightbox();
 });
 
 document.querySelectorAll('[data-close]').forEach(btn=>{
@@ -303,7 +404,7 @@ document.getElementById('bizForm').addEventListener('submit', async (e) => {
 
 // PROMO DE BIENVENIDA — se muestra una sola vez por dispositivo, elige 1 de 3 al azar
 const ads = [
-  {title:"📣 Este espacio puede ser tuyo", text:"Anuncia tu marca frente a una audiencia que ya está lista para comprar con propósito.", img:"images/1a.png"},
+  {title:"📣 Este espacio puede ser tuyo", text:"Anuncia tu marca frente a una audiencia que ya está lista para comprar con propósito.", img:"images/1a1.png"},
   {title:"✨ Espacio publicitario disponible", text:"Combina tu promoción con causa social — visibilidad y buena reputación de marca.", img:"images/2b.png"},
   {title:"🍦 Espacio publicitario disponible", text:"Anúnciate en Causa30 y llega a personas que prefieren marcas con impacto.", img:"images/3c.png"},
 ];
