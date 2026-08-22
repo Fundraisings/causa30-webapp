@@ -7,13 +7,10 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xnpavpkp';
 
 const products = [
   {biz:"Empresa X · Chocolate", name:"Chocolate X · Dark, Coco & Jengibre", price:"RD$ 250", aporte:"RD$ 15 por compra", img:"images/producto-chocolate.png",
- address:"Dirección pendiente de confirmar", hours:"Horario pendiente de confirmar",
- compras:"212", donacion:"RD$3,180",
- detail:"Este producto puedes comprarlo en: Empresa X. La oferta de venta es de RD$250 pesos por unidad. Aporte: RD$15 por compra."},
-{biz:"Empresa X · Alimento para Mascotas", name:"Alimento para Perros X", price:"RD$ 320", aporte:"RD$ 25 por compra", img:"images/producto-petfood.png",
- address:"Dirección pendiente de confirmar", hours:"Horario pendiente de confirmar",
- compras:"157", donacion:"RD$3,925",
- detail:"Este producto puedes comprarlo en: Empresa X. La oferta de venta es de RD$320 pesos por unidad. Aporte: RD$25 por compra."}, img:"images/producto-helado.jpg",
+   address:"Dirección pendiente de confirmar", hours:"Horario pendiente de confirmar",
+   compras:"212", donacion:"RD$3,180",
+   detail:"Este producto puedes comprarlo en: Empresa X. La oferta de venta es de RD$250 pesos por unidad. Aporte: RD$15 por compra."},
+  {biz:"Empresa X · Alimento para Mascotas", name:"Alimento para Perros X", price:"RD$ 320", aporte:"RD$ 25 por compra", img:"images/producto-petfood.png",
    address:"Dirección pendiente de confirmar", hours:"Horario pendiente de confirmar",
    compras:"157", donacion:"RD$3,925",
    detail:"Este producto puedes comprarlo en: Empresa X. La oferta de venta es de RD$320 pesos por unidad. Aporte: RD$25 por compra."},
@@ -448,9 +445,9 @@ document.getElementById('bizForm').addEventListener('submit', async (e) => {
 
 // PROMO DE BIENVENIDA — se muestra una sola vez por dispositivo, elige 1 de 3 al azar
 const ads = [
-  {title:"📣 Este espacio puede ser tuyo", text:"Anuncia tu marca frente a una audiencia que ya está lista para comprar con propósito.", img:"images/1a1.png"},
-  {title:"✨ Espacio publicitario disponible", text:"Combina tu promoción con causa social — visibilidad y buena reputación de marca.", img:"images/2b.png"},
-  {title:"🍦 Espacio publicitario disponible", text:"Anúnciate en Causa30 y llega a personas que prefieren marcas con impacto.", img:"images/3c.png"},
+  {title:"📣 Este espacio puede ser tuyo", text:"Anuncia tu marca frente a una audiencia que ya está lista para comprar con propósito.", img:"images/ad1.png"},
+  {title:"✨ Espacio publicitario disponible", text:"Combina tu promoción con causa social — visibilidad y buena reputación de marca.", img:"images/ad2.png"},
+  {title:"🍦 Espacio publicitario disponible", text:"Anúnciate en Causa30 y llega a personas que prefieren marcas con impacto.", img:"images/ad3.png"},
 ];
 
 const promoModal = document.getElementById('promoModal');
