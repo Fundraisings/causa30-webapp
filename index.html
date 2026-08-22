@@ -200,15 +200,25 @@
 
 <!-- MODAL: DETALLE DEL PRODUCTO -->
 <div class="modal-overlay" id="whereModal">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
+  <div class="modal-sheet detail-sheet">
     <button class="modal-close" data-close>✕</button>
     <div id="detailPhoto" class="detail-photo"></div>
-    <h2 class="sec-title" id="whereTitle" style="font-size:22px;">—</h2>
-    <div class="price-row" style="margin-top:8px;">
-      <span class="price" id="detailPrice" style="font-size:17px;"></span>
-      <span class="aporte" id="detailAporte" style="font-size:13px;"></span>
+    <div class="detail-content">
+      <h2 class="sec-title" id="whereTitle" style="font-size:22px;">—</h2>
+      <div class="price-row" style="margin-top:8px;">
+        <span class="price" id="detailPrice" style="font-size:17px;"></span>
+        <span class="aporte" id="detailAporte" style="font-size:13px;"></span>
+      </div>
+
+      <div class="story-block">
+        <div class="story-label" id="storyLabel">Tu compra ayuda a</div>
+        <div class="story-cause" id="storyCause">—</div>
+      </div>
+
+      <div id="whereBody" style="margin-top:6px;"></div>
     </div>
+  </div>
+</div>
 
     <div class="story-block">
       <div class="story-label" id="storyLabel">Tu compra ayuda a</div>
