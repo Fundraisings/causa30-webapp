@@ -532,7 +532,7 @@
   .form-success p{font-size:13.5px;color:var(--grey);line-height:1.6;}
 
   /* ---------- FOOTER ---------- */
-  footer{padding:44px 24px 60px;text-align:center;}
+  footer{padding:44px 24px 60px;text-align:center;background:var(--cream);}
   footer .word{font-family:'Manrope',sans-serif;font-weight:800;font-size:17px;color:var(--verde-deep);}
   .footer-scope{margin-top:20px;padding:0 16px;}
   .footer-scope h4{font-size:13px;font-weight:800;color:var(--verde-deep);}
