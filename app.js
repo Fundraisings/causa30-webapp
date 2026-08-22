@@ -1,3 +1,21 @@
+// COVER DE BIENVENIDA — pantalla completa, una vez por sesión (distinto del pop-up de anuncios)
+const welcomeCover = document.getElementById('welcomeCover');
+const WELCOME_KEY = 'causa30_welcome_seen';
+
+if(sessionStorage.getItem(WELCOME_KEY)){
+  welcomeCover.classList.add('hidden');
+} else {
+  document.body.style.overflow = 'hidden';
+  document.getElementById('wcCta').addEventListener('click', () => {
+    welcomeCover.classList.add('closing');
+    sessionStorage.setItem(WELCOME_KEY, 'true');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      welcomeCover.classList.add('hidden');
+    }, 700);
+  });
+}
+
 // CAUSA30 DESCUBRE — el banner visible dispara el visor de Publuu (elemento oculto)
 document.getElementById('magCardVisible').addEventListener('click', () => {
   document.getElementById('publuuHiddenTrigger').click();
