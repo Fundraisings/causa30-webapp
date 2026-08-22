@@ -116,18 +116,55 @@ carousel.addEventListener('pointerleave', () => {
   if(isDragging){ isDragging = false; startAutoplay(); }
 });
 
-// CARRUSEL "CÓMO FUNCIONA" — puntos sincronizados con el deslizamiento
-const mecanismoCarousel = document.getElementById('mecanismoCarousel');
-const mecanismoDots = document.getElementById('mecanismoDots');
-const mecanismoSlideCount = mecanismoCarousel.querySelectorAll('img').length;
-for(let i = 0; i < mecanismoSlideCount; i++){
-  const d = document.createElement('div');
-  d.className = 'dot' + (i === 0 ? ' active' : '');
-  mecanismoDots.appendChild(d);
+// ¿CÓMO FUNCIONA? — cinta animada nativa (sin imágenes)
+const flowSteps = [
+  {num:"01", title:"Descubre", desc:"Encuentra productos y promociones que te interesan."},
+  {num:"02", title:"Elige", desc:"Compra directamente con la empresa que ofrece la promoción."},
+  {num:"03", title:"Genera impacto", desc:"Tu compra activa una acción que beneficia a una causa."},
+  {num:"04", title:"Transparencia", desc:"El dinero no pasa por Causa30. La empresa realiza directamente el aporte a la causa.", final:true},
+];
+
+const flowTrack = document.getElementById('flowTrack');
+function renderFlowStep(s){
+  return `
+    <div class="flow-step">
+      <div class="flow-node${s.final ? ' final' : ''}"><span>${s.num}</span></div>
+      <div>
+        <div class="flow-title">${s.title}</div>
+        <div class="flow-desc">${s.desc}</div>
+      </div>
+    </div>
+    <div class="flow-connector"></div>`;
 }
-mecanismoCarousel.addEventListener('scroll', () => {
-  const index = Math.round(mecanismoCarousel.scrollLeft / mecanismoCarousel.clientWidth);
-  mecanismoDots.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === index));
+// se duplica la secuencia completa para que el loop sea perfectamente continuo
+flowTrack.innerHTML = flowSteps.map(renderFlowStep).join('') + flowSteps.map(renderFlowStep).join('');
+
+const tickerWrap = document.getElementById('tickerWrap');
+const funcionaToggle = document.getElementById('funcionaToggle');
+const funcionaToggleText = document.getElementById('funcionaToggleText');
+const funcionaToggleIcon = document.getElementById('funcionaToggleIcon');
+const funcionaHide = document.getElementById('funcionaHide');
+const tickerPause = document.getElementById('tickerPause');
+
+funcionaToggle.addEventListener('click', () => {
+  tickerWrap.classList.add('open');
+  funcionaToggleText.textContent = 'Cinta activa';
+  funcionaToggleIcon.textContent = '▶';
+});
+funcionaHide.addEventListener('click', () => {
+  tickerWrap.classList.remove('open');
+  funcionaToggleText.textContent = 'Ver cómo funciona';
+  funcionaToggleIcon.textContent = '↓';
+});
+tickerPause.addEventListener('click', () => {
+  const paused = flowTrack.classList.toggle('paused');
+  tickerPause.textContent = paused ? '▶ Continuar' : '⏸ Pausar';
+});
+// pausa mientras el usuario toca la cinta para leer con calma, y sigue al soltar
+flowTrack.addEventListener('pointerdown', () => flowTrack.classList.add('paused'));
+flowTrack.addEventListener('pointerup', () => {
+  if(tickerPause.textContent.includes('Continuar')) return; // respeta si el usuario la pausó a propósito
+  flowTrack.classList.remove('paused');
 });
 
 // MASCOTAS
@@ -204,6 +241,16 @@ const whereModal = document.getElementById('whereModal');
 const progressModal = document.getElementById('progressModal');
 document.getElementById('causeChip').addEventListener('click', () => openModal(causeModal));
 document.getElementById('receiptBtn').addEventListener('click', () => openModal(progressModal));
+
+// Dentro del modal "campaña en marcha" — tocar la foto voltea y muestra los datos
+const progressFlip = document.getElementById('progressFlip');
+document.getElementById('progressArt').addEventListener('click', () => {
+  progressFlip.classList.toggle('flipped');
+});
+document.getElementById('progressBack').addEventListener('click', () => {
+  progressFlip.classList.remove('flipped');
+});
+
 progressModal.addEventListener('click', (e) => { if(e.target === progressModal) closeModal(progressModal); });
 progressModal.querySelector('.btn-ghost').addEventListener('click', () => {
   closeModal(progressModal);
@@ -249,7 +296,6 @@ function openDetail(p){
   document.getElementById('detailPrice').textContent = p.price;
   document.getElementById('detailAporte').textContent = 'Aporte: ' + p.aporte;
   document.getElementById('storyCause').textContent = p.fundacion || 'Fundación De Blanck';
-
   document.getElementById('whereBody').innerHTML = p.detail
     ? `<p style="font-size:12.5px;color:var(--ink);line-height:1.6;">${p.detail}</p>`
     : '';
