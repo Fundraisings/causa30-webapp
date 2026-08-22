@@ -8,17 +8,12 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xnpavpkp';
 const products = [
   {biz:"Empresa X · Chocolate", name:"Chocolate X · Dark, Coco & Jengibre", price:"RD$ 250", aporte:"RD$ 15 por compra", img:"images/producto-chocolate.jpg",
    address:"Dirección pendiente de confirmar", hours:"Horario pendiente de confirmar",
-   compras:"212", donacion:"RD$3,180"},
- {biz:"Empresa X · Chocolate", name:"Chocolate X · Dark, Coco & Jengibre", price:"RD$ 250", aporte:"RD$ 15 por compra", img:"images/producto-chocolate.jpg",
- address:"Dirección pendiente de confirmar", hours:"Horario pendiente de confirmar",
- compras:"212", donacion:"RD$3,180",
- detail:"Este producto puedes comprarlo en: Empresa X. La oferta de venta es de RD$250 pesos por unidad. Aporte: RD$15 por compra."},
-{biz:"Empresa X · Heladería", name:"Pinta de Helado X", price:"RD$ 320", aporte:"RD$ 25 por compra", img:"images/producto-helado.jpg",
- address:"Dirección pendiente de confirmar", hours:"Horario pendiente de confirmar",
- compras:"157", donacion:"RD$3,925",
- detail:"Este producto puedes comprarlo en: Empresa X. La oferta de venta es de RD$320 pesos por unidad. Aporte: RD$25 por compra."}, img:"images/producto-helado.jpg",
+   compras:"212", donacion:"RD$3,180",
+   detail:"Este producto puedes comprarlo en: Empresa X. La oferta de venta es de RD$250 pesos por unidad. Aporte: RD$15 por compra."},
+  {biz:"Empresa X · Heladería", name:"Pinta de Helado X", price:"RD$ 320", aporte:"RD$ 25 por compra", img:"images/producto-helado.jpg",
    address:"Dirección pendiente de confirmar", hours:"Horario pendiente de confirmar",
-   compras:"157", donacion:"RD$3,925"},
+   compras:"157", donacion:"RD$3,925",
+   detail:"Este producto puedes comprarlo en: Empresa X. La oferta de venta es de RD$320 pesos por unidad. Aporte: RD$25 por compra."},
   {biz:"Supermercados La Sirena", name:"Combo Solidario · 4 Botellas de Agua", price:"RD$ 100", aporte:"RD$ 10 por compra", img:"images/producto-agua.png",
    address:"Dirección pendiente de confirmar", hours:"Horario pendiente de confirmar",
    compras:"98", donacion:"RD$980",
@@ -255,8 +250,8 @@ function openDetail(p){
   document.getElementById('detailAporte').textContent = 'Aporte: ' + p.aporte;
   document.getElementById('storyCause').textContent = p.fundacion || 'Fundación De Blanck';
 
-    document.getElementById('whereBody').innerHTML = p.detail
-    ? `<p style="font-size:13.5px;color:var(--ink);line-height:1.6;">${p.detail}</p>`
+  document.getElementById('whereBody').innerHTML = p.detail
+    ? `<p style="font-size:12.5px;color:var(--ink);line-height:1.6;">${p.detail}</p>`
     : '';
 
   // Reinicia y dispara la mini-historia (fade + slide-up escalonado)
