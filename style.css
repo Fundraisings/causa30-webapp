@@ -323,7 +323,8 @@
   background-position:center;background-color:var(--verde-deep);
   border-radius:28px 28px 0 0;
   touch-action:pan-y;cursor:grab;
-}
+}.detail-content{padding:18px 24px 40px;text-align:center;}
+.detail-content .price-row{justify-content:center;}
 
   .story-block{
     margin-top:20px;padding-top:18px;border-top:1px solid var(--line);
