@@ -13,9 +13,10 @@ const products = [
   {biz:"Empresa X · Heladería", name:"Pinta de Helado X", price:"RD$ 320", aporte:"RD$ 25 por compra", img:"images/producto-helado.jpg",
    address:"Dirección pendiente de confirmar", hours:"Horario pendiente de confirmar",
    compras:"157", donacion:"RD$3,925"},
-  {biz:"Empresa X · Miel", name:"Miel Pura X 500ml", price:"RD$ 480", aporte:"RD$ 30 por compra", img:"images/producto-miel.jpg",
-   address:"Dirección pendiente de confirmar", hours:"Horario pendiente de confirmar",
-   compras:"98", donacion:"RD$2,940"},
+  {biz:"Supermercados La Sirena", name:"Combo Solidario · 4 Botellas de Agua", price:"RD$ 100", aporte:"RD$ 10 por compra", img:"images/producto-agua.png",
+ address:"Dirección pendiente de confirmar", hours:"Horario pendiente de confirmar",
+ compras:"98", donacion:"RD$980",
+ detail:"Este producto puedes comprarlo en: Supermercados La Sirena. La oferta de venta es de RD$100 pesos por 4 botellas (combo solidario). Aporte: 10 pesos por compra."},
 ];
 let active = 0;
 const carousel = document.getElementById('carousel');
