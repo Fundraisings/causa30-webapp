@@ -113,11 +113,15 @@
   </section>
 
   <!-- CAUSA30 DESCUBRE (revista, abre popup de Publuu) -->
-  <section style="padding-top:12px;padding-bottom:28px;text-align:center;">
-    <a href="https://publuu.com/flip-book/1163684/2588865/page/1?cover" class="show-publuu-viewer mag-mini-banner" id="magCard">
-     <img src="images/nbcausa30L2.png" alt="Causa30 Descubre">
-      <span class="mag-theme-overlay" id="magThemeOverlay">Tema principal de este mes</span>
-    </a>
+<section style="padding-top:12px;padding-bottom:28px;">
+  <div class="banner-shadow">
+    <button class="banner-link" id="magCardVisible">
+      <img src="images/nbcausa30L2.png" alt="Causa30 Descubre">
+    </button>
+  </div>
+</section>
+<!-- Disparador oculto de Publuu — no se muestra, solo abre su visor -->
+<a href="https://publuu.com/flip-book/1163684/2588865/page/1?cover" class="show-publuu-viewer" id="publuuHiddenTrigger" style="position:absolute;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none;">Revista</a>
   </section>
 
   <!-- DESCUBRE MÁS (banner) -->
