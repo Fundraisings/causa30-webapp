@@ -335,7 +335,7 @@
   }
   .story-label.show{opacity:1;transform:translateY(0);}
   .story-cause{
-    font-family:'Manrope',sans-serif;font-weight:800;font-size:20px;color:var(--verde-deep);
+    font-family:'Manrope',sans-serif;font-weight:800;font-size:18px;color:var(--verde-deep);
     margin-top:4px;
     opacity:0;transform:translateY(8px);transition:opacity .5s ease,transform .5s ease;
   }
