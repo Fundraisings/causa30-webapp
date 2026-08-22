@@ -388,7 +388,7 @@
 
   /* ---------- RESULTADOS ---------- */
   .progress-flip{
-    position:relative;width:100%;max-width:280px;height:320px;
+    position:relative;width:100%;max-width:260px;aspect-ratio:1000/1320;
     margin:6px auto 0;perspective:1200px;
   }
   .progress-flip-inner{
