@@ -112,20 +112,12 @@
     </div>
   </section>
 
-  <!-- CAUSA30 DESCUBRE (revista, portada con giro de página) -->
-  <section class="mag-card-wrap" style="padding-top:12px;padding-bottom:28px;">
-    <div class="mag-flip-scene" id="magFlipScene">
-      <div class="mag-flip-inner">
-        <button class="mag-front" id="magCard" style="background-image:url('images/coverc30d.png');"></button>
-        <div class="mag-back">
-          <span class="eyebrow">En esta edición</span>
-          <ul class="mag-topics" id="magTopics"></ul>
-          <div class="mag-divider"></div>
-          <a class="mag-read-btn" id="magReadBtn" href="#" target="_blank" rel="noopener">Leer ahora →</a>
-          <button class="mag-close" id="magClose">✕ Volver a la portada</button>
-        </div>
-      </div>
-    </div>
+  <!-- CAUSA30 DESCUBRE (revista, abre popup de Publuu) -->
+  <section style="padding-top:12px;padding-bottom:28px;text-align:center;">
+    <a href="https://publuu.com/flip-book/1163684/2588865/page/1?cover" class="show-publuu-viewer mag-mini-banner" id="magCard">
+      <img src="images/nbcausa30.png" alt="Causa30 Descubre">
+      <span class="mag-theme-overlay" id="magThemeOverlay">Tema principal de este mes</span>
+    </a>
   </section>
 
   <!-- DESCUBRE MÁS (banner) -->
@@ -134,6 +126,16 @@
       <button class="banner-link" id="adsTrigger">
         <img src="images/bannerC30.png" alt="Descubre otras promociones que también apoyan una causa">
       </button>
+    </div>
+  </section>
+
+  <!-- LIBROS CON PROPÓSITO -->
+  <section style="padding-top:0;">
+    <div class="banner-shadow">
+      <!-- ⚠️ REEMPLAZAR href con el link real (Payhip u otra tienda) cuando esté listo -->
+      <a class="banner-link" href="https://payhip.com/TU-TIENDA" target="_blank" rel="noopener">
+        <img src="images/LIBROSCP.png" alt="Libros con propósito">
+      </a>
     </div>
   </section>
 
@@ -171,7 +173,7 @@
     <span class="eyebrow">Fundación participante</span>
     <h2 class="sec-title">Fundación De Blanck</h2>
     <div class="fund-card">
-      <div class="fund-photo" style="background-image:url('images/marcologofundacion.png')"></div>
+      <div class="fund-photo" style="background-image:url('images/marcologofundacion2.png')"></div>
       <div class="fund-body">
         <p>Somos una fundación sin fines de lucro, que lleva más de 27 años en el cuidado de los animales y la continua educación de la población dominicana en materia de protección a los animales, en la preservación del entorno natural, la vida sana y los valores en la familia basados en el amor y respeto.</p>
         <div class="fund-meta">
@@ -316,6 +318,7 @@
   <div class="yt-frame-wrap" id="ytFrameWrap"></div>
 </div>
 
+<script src="https://publuu.com/account/js/embed-viewer.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
