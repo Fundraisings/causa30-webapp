@@ -538,7 +538,7 @@ if(!prefersReducedMotion && discoverDynamic){
   const discoverObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if(entry.isIntersecting){
-        if(!discoverTimer) discoverTimer = setInterval(cycleDiscoverPhrase, 2950);
+        if(!discoverTimer) discoverTimer = setInterval(cycleDiscoverPhrase, 2200);
       } else {
         clearInterval(discoverTimer);
         discoverTimer = null;
