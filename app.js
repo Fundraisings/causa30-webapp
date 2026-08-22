@@ -445,7 +445,7 @@ document.getElementById('bizForm').addEventListener('submit', async (e) => {
 
 // PROMO DE BIENVENIDA — se muestra una sola vez por dispositivo, elige 1 de 3 al azar
 const ads = [
-  {title:"📣 Este espacio puede ser tuyo", text:"Anuncia tu marca frente a una audiencia que ya está lista para comprar con propósito.", img:"images/ad1.png"},
+  {title:"❤️ Esta promoción también genera impacto", text:"Al elegirla, tu compra tiene doble valor....", img:"images/ad1.png"},
   {title:"✨ Espacio publicitario disponible", text:"Combina tu promoción con causa social — visibilidad y buena reputación de marca.", img:"images/ad2.png"},
   {title:"🍦 Espacio publicitario disponible", text:"Anúnciate en Causa30 y llega a personas que prefieren marcas con impacto.", img:"images/ad3.png"},
 ];
