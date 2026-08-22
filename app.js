@@ -1,8 +1,8 @@
 // ═══════════════════════════════════════
-// CAUSA30 DESCUBRE — EDITAR CADA MES AQUÍ
-// ═══════════════════════════════════════
-const temaDelMes = "Tema principal de este mes";
-document.getElementById('magThemeOverlay').textContent = temaDelMes;
+// CAUSA30 DESCUBRE — el banner visible dispara el visor de Publuu (elemento oculto)
+document.getElementById('magCardVisible').addEventListener('click', () => {
+  document.getElementById('publuuHiddenTrigger').click();
+});
 
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xnpavpkp';
 
