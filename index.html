@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
-<head><link rel="icon" type="image/png" href="images/favic30.png">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="images/favic30.png">
 <title>CAUSA30 · Una compra. Doble Valor</title>
 <meta name="description" content="Cada 30 días, productos seleccionados donan parte de su venta a una fundación aliada. Descubre el producto, descubre la causa.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,7 +15,6 @@
 
   <!-- HERO -->
   <div class="hero">
-    
     <div class="brand-center"><img src="images/logo.png" alt="Causa30" class="brand-logo"></div>
     <p class="intrigue">Dale un propósito a tu consumo.</p>
     <p class="hero-slogan">Descubre cómo tus compras apoyan una causa.</p>
@@ -66,21 +66,23 @@
 
   <!-- COMO FUNCIONA -->
   <section style="padding-top:16px;">
-    <div class="funciona">
-      <span class="eyebrow">Así de simple</span>
+    <div class="funciona" style="text-align:center;">
       <h2 class="sec-title">¿Cómo funciona?</h2>
-      <p style="font-size:13.5px;color:#DCE8E2;margin-top:10px;line-height:1.6;">Ayudar a cambiar una vida es más sencillo de lo que crees. No necesitas hacer nada extraordinario — solo lo que ya haces: comprar.</p>
+      <p class="funciona-sub">Descubre cómo tu compra puede generar un impacto positivo.</p>
 
-      <div class="mecanismo-carousel" id="mecanismoCarousel">
-        <img src="images/Carrusel1.png" alt="Paso 1">
-        <img src="images/Carrusel2.png" alt="Paso 2">
-        <img src="images/Carrusel3.png" alt="Paso 3">
-        <img src="images/Carrusel4.png" alt="Paso 4">
-        <img src="images/Carrusel5.png" alt="Paso 5">
+      <button class="funciona-toggle" id="funcionaToggle">
+        <span id="funcionaToggleText">Ver cómo funciona</span> <span id="funcionaToggleIcon">↓</span>
+      </button>
+
+      <div class="ticker-wrap" id="tickerWrap">
+        <div class="ticker-controls">
+          <button class="ticker-pause" id="tickerPause">⏸ Pausar</button>
+          <button class="funciona-hide" id="funcionaHide">Ocultar ↑</button>
+        </div>
+        <div class="flow-ticker">
+          <div class="flow-track" id="flowTrack"></div>
+        </div>
       </div>
-      <div class="mecanismo-dots" id="mecanismoDots"></div>
-
-      <div class="trust"><b>El aporte va directamente a la fundación.</b> La empresa realiza la contribución según lo establecido en cada promoción. Causa30 es el puente que conecta tu compra con la causa y te permite comprobar el resultado.</div>
     </div>
   </section>
 
@@ -94,35 +96,22 @@
   </section>
 
   <!-- RESULTADOS -->
-  <section style="padding-top:0;">
-    <div class="results-panel">
-      <span class="eyebrow">Transparencia · Ejemplo ilustrativo</span>
-      <h2 class="sec-title">Resultados de campaña</h2>
-      <p style="font-size:13px;color:#9AA8A1;margin-top:8px;">La campaña aún no ha iniciado — así se vería el panel una vez en marcha.</p>
-      <div class="rgrid">
-        <div class="rrow"><span class="k">Empresa</span><span class="v" id="resBiz">—</span></div>
-        <div class="rrow"><span class="k">Producto</span><span class="v" id="resProd">—</span></div>
-        <div class="rrow"><span class="k">Compromiso</span><span class="v" id="resAporte">—</span></div>
-        <div class="rrow"><span class="k">Compras</span><span class="v" id="resCompras">—</span></div>
-        <div class="rrow"><span class="k">Donación</span><span class="v money" id="resDonacion">—</span></div>
-        <div class="rrow"><span class="k">Fundación</span><span class="v">De Blanck</span></div>
-        <div class="rrow"><span class="k">Estado</span><span class="status-pill" style="background:rgba(240,161,144,.15);color:#F0A190;">Próximamente</span></div>
-      </div>
-      <button class="receipt-link" id="receiptBtn">Ver comprobante (disponible al iniciar) →</button>
-    </div>
+  <section style="padding-top:0;text-align:center;">
+    <span class="eyebrow" style="text-align:center;display:block;">Transparencia · Ejemplo ilustrativo</span>
+    <h2 class="sec-title" style="text-align:center;">Resultados de campaña</h2>
+    <button class="receipt-btn-standalone" id="receiptBtn">Ver comprobante →</button>
   </section>
 
   <!-- CAUSA30 DESCUBRE (revista, abre popup de Publuu) -->
-<section style="padding-top:12px;padding-bottom:28px;">
-  <div class="banner-shadow">
-    <button class="banner-link" id="magCardVisible">
-      <img src="images/nbcausa30L3.png" alt="Causa30 Descubre">
-    </button>
-  </div>
-</section>
-<!-- Disparador oculto de Publuu — no se muestra, solo abre su visor -->
-<a href="https://publuu.com/flip-book/1163684/2588865/page/1?cover" class="show-publuu-viewer" id="publuuHiddenTrigger" style="position:absolute;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none;">Revista</a>
-
+  <section style="padding-top:12px;padding-bottom:28px;">
+    <div class="banner-shadow">
+      <button class="banner-link" id="magCardVisible">
+        <img src="images/nbcausa30L3.png" alt="Causa30 Descubre">
+      </button>
+    </div>
+  </section>
+  <!-- Disparador oculto de Publuu — no se muestra, solo abre su visor -->
+  <a href="https://publuu.com/flip-book/1163684/2588865/page/1?cover" class="show-publuu-viewer" id="publuuHiddenTrigger" style="position:absolute;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none;">Revista</a>
 
   <!-- DESCUBRE MÁS (banner) -->
   <section style="padding-top:0;">
@@ -131,7 +120,7 @@
         <img src="images/bannerC30.png" alt="Descubre otras promociones que también apoyan una causa">
       </button>
     </div>
-
+  </section>
 
   <!-- LIBROS CON PROPÓSITO -->
   <section style="padding-top:0;">
@@ -204,10 +193,10 @@
     <button class="modal-close" data-close>✕</button>
     <div id="detailPhoto" class="detail-photo"></div>
     <div class="detail-content">
-      <h2 class="sec-title" id="whereTitle" style="font-size:22px;">—</h2>
+      <h2 class="sec-title" id="whereTitle" style="font-size:20px;">—</h2>
       <div class="price-row" style="margin-top:8px;">
-        <span class="price" id="detailPrice" style="font-size:17px;"></span>
-        <span class="aporte" id="detailAporte" style="font-size:13px;"></span>
+        <span class="price" id="detailPrice" style="font-size:15px;"></span>
+        <span class="aporte" id="detailAporte" style="font-size:12px;"></span>
       </div>
 
       <div class="story-block">
@@ -220,22 +209,31 @@
   </div>
 </div>
 
-    <div class="story-block">
-      <div class="story-label" id="storyLabel">Tu compra ayuda a</div>
-      <div class="story-cause" id="storyCause">—</div>
-    </div>
-
-    <div id="whereBody" style="margin-top:6px;"></div>
-  </div>
-</div>
-
 
 <!-- MODAL: CAMPAÑA EN CURSO (al tocar "Ver comprobante" antes de que termine) -->
 <div class="modal-overlay" id="progressModal">
   <div class="modal-sheet" style="max-height:70vh;text-align:center;">
     <div class="modal-handle"></div>
     <button class="modal-close" data-close>✕</button>
-    <div class="progress-art" id="progressArt" style="background-image:url('images/progress.png')"></div>
+    <div class="progress-flip" id="progressFlip">
+      <div class="progress-flip-inner">
+        <div class="progress-front">
+          <div class="progress-art" id="progressArt" style="background-image:url('images/progress.png')"></div>
+          <div class="results-tap-hint">(toca la foto)</div>
+        </div>
+        <div class="progress-back" id="progressBack">
+          <div class="rgrid">
+            <div class="rrow"><span class="k">Empresa</span><span class="v" id="resBiz">—</span></div>
+            <div class="rrow"><span class="k">Producto</span><span class="v" id="resProd">—</span></div>
+            <div class="rrow"><span class="k">Compromiso</span><span class="v" id="resAporte">—</span></div>
+            <div class="rrow"><span class="k">Compras</span><span class="v" id="resCompras">—</span></div>
+            <div class="rrow"><span class="k">Donación</span><span class="v money" id="resDonacion">—</span></div>
+            <div class="rrow"><span class="k">Fundación</span><span class="v">De Blanck</span></div>
+            <div class="rrow"><span class="k">Estado</span><span class="status-pill" style="background:rgba(240,161,144,.15);color:#F0A190;">Próximamente</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
     <h2 class="sec-title" style="font-size:20px;margin-top:14px;">¡Esta campaña todavía está en marcha!</h2>
     <p style="font-size:13.5px;color:var(--grey);margin-top:12px;line-height:1.6;">Aún puedes ser parte. Compra uno de los 3 productos participantes este mes y ayuda a llevar alimento a muchos perritos que lo necesitan — cada compra suma.</p>
     <div class="countdown" id="campaignCountdown">
