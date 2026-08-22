@@ -513,3 +513,37 @@ document.getElementById('adsGo').addEventListener('click', () => {
   openModal(bizModal);
 });
 adsModal.addEventListener('click', (e) => { if(e.target === adsModal) closeModal(adsModal); });
+
+// DESCUBRE MÁS — ciclo de frases dinámicas, se pausa fuera de pantalla
+const discoverPhrases = ["una nueva marca.", "una oferta diferente.", "algo que necesitas.", "una compra con doble valor."];
+const discoverDynamic = document.getElementById('discoverDynamic');
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let discoverIndex = 0;
+let discoverTimer = null;
+
+function cycleDiscoverPhrase(){
+  discoverDynamic.classList.add('fade-out');
+  setTimeout(() => {
+    discoverIndex = (discoverIndex + 1) % discoverPhrases.length;
+    discoverDynamic.textContent = discoverPhrases[discoverIndex];
+    discoverDynamic.classList.remove('fade-out');
+    discoverDynamic.classList.add('fade-in-start');
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => discoverDynamic.classList.remove('fade-in-start'));
+    });
+  }, 450);
+}
+
+if(!prefersReducedMotion && discoverDynamic){
+  const discoverObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        if(!discoverTimer) discoverTimer = setInterval(cycleDiscoverPhrase, 2950);
+      } else {
+        clearInterval(discoverTimer);
+        discoverTimer = null;
+      }
+    });
+  }, { threshold: 0.3 });
+  discoverObserver.observe(document.getElementById('adsTrigger'));
+}
