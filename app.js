@@ -1,47 +1,8 @@
 // ═══════════════════════════════════════
 // CAUSA30 DESCUBRE — EDITAR CADA MES AQUÍ
-// (solo cambia el texto entre comillas y el link, no toques nada más)
 // ═══════════════════════════════════════
-const revistaDelMes = {
-  temas: [
-    "Tema principal de la revista",
-    "Segundo contenido destacado",
-    "Tercer contenido destacado"
-  ],
-  link: "https://online.fliphtml5.com/causa30descubre/coverc30-descubre/"
-};
-
-const magFlipScene = document.getElementById('magFlipScene');
-const magCard = document.getElementById('magCard');
-const magClose = document.getElementById('magClose');
-const magTopics = document.getElementById('magTopics');
-const magReadBtn = document.getElementById('magReadBtn');
-
-magTopics.innerHTML = revistaDelMes.temas.map(t => `<li>${t}</li>`).join('');
-
-magCard.addEventListener('click', () => {
-  magFlipScene.classList.add('flipped');
-});
-magClose.addEventListener('click', () => {
-  magFlipScene.classList.remove('flipped');
-});
-
-// LECTOR DE REVISTA — se abre dentro de la app, sin salir a otra pestaña
-const magLightbox = document.getElementById('magLightbox');
-const magReaderWrap = document.getElementById('magReaderWrap');
-
-magReadBtn.addEventListener('click', () => {
-  magReaderWrap.innerHTML = `<div style="position:relative;padding-top:max(60%,324px);width:100%;height:0;"><iframe style="position:absolute;border:none;width:100%;height:100%;left:0;top:0;" src="${revistaDelMes.link}" title="Causa30 Descubre" seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true"></iframe></div>`;
-  magLightbox.classList.add('open');
-});
-function closeMagLightbox(){
-  magLightbox.classList.remove('open');
-  magReaderWrap.innerHTML = '';
-}
-document.getElementById('magLightboxClose').addEventListener('click', closeMagLightbox);
-magLightbox.addEventListener('click', (e) => {
-  if(e.target === magLightbox) closeMagLightbox();
-});
+const temaDelMes = "Tema principal de este mes";
+document.getElementById('magThemeOverlay').textContent = temaDelMes;
 
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xnpavpkp';
 
