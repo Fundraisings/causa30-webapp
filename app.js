@@ -1,7 +1,14 @@
 // ═══════════════════════════════════════
 // CAUSA30 DESCUBRE — el banner visible dispara el visor de Publuu (elemento oculto)
-document.getElementById('magCardVisible').addEventListener('click', () => {
-  document.getElementById('publuuHiddenTrigger').click();
+  let bodyHtml = '';
+  if(p.detail){
+    bodyHtml += `<p style="font-size:13.5px;color:var(--ink);line-height:1.6;margin-bottom:14px;">${p.detail}</p>`;
+  }
+  bodyHtml += `
+    <div class="where-row"><span class="ic">📍</span><div><span class="k">Dirección</span><span class="v">${p.address}</span></div></div>
+    <div class="where-row"><span class="ic">🕒</span><div><span class="k">Horario</span><span class="v">${p.hours}</span></div></div>
+  `;
+  document.getElementById('whereBody').innerHTML = bodyHtml;
 });
 
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xnpavpkp';
