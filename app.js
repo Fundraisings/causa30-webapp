@@ -263,6 +263,36 @@ function openDetail(p){
   openModal(whereModal);
 }
 
+// DESLIZAR DENTRO DE LA FICHA AMPLIADA — cambia de producto sin cerrar el modal
+const detailPhoto = document.getElementById('detailPhoto');
+let detailDragStartX = null, detailDragDeltaX = 0, detailDragging = false;
+const DETAIL_DRAG_THRESHOLD = 50;
+
+detailPhoto.addEventListener('pointerdown', (e) => {
+  detailDragging = true;
+  detailDragStartX = e.clientX;
+  detailDragDeltaX = 0;
+});
+detailPhoto.addEventListener('pointermove', (e) => {
+  if(!detailDragging) return;
+  detailDragDeltaX = e.clientX - detailDragStartX;
+});
+detailPhoto.addEventListener('pointerup', () => {
+  if(!detailDragging) return;
+  detailDragging = false;
+  if(Math.abs(detailDragDeltaX) > DETAIL_DRAG_THRESHOLD){
+    active = detailDragDeltaX < 0
+      ? (active + 1) % products.length
+      : (active - 1 + products.length) % products.length;
+    render();
+    openDetail(products[active]);
+  }
+  detailDragStartX = null;
+  detailDragDeltaX = 0;
+});
+detailPhoto.addEventListener('pointerleave', () => {
+  detailDragging = false;
+});
 // PATROCINADOR OFICIAL DEL MES — click para voltear y ver info del anunciante
 document.getElementById('sponsorFlip').addEventListener('click', function(){
   this.classList.toggle('flipped');
