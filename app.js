@@ -1,14 +1,6 @@
-// ═══════════════════════════════════════
 // CAUSA30 DESCUBRE — el banner visible dispara el visor de Publuu (elemento oculto)
-  let bodyHtml = '';
-  if(p.detail){
-    bodyHtml += `<p style="font-size:13.5px;color:var(--ink);line-height:1.6;margin-bottom:14px;">${p.detail}</p>`;
-  }
-  bodyHtml += `
-    <div class="where-row"><span class="ic">📍</span><div><span class="k">Dirección</span><span class="v">${p.address}</span></div></div>
-    <div class="where-row"><span class="ic">🕒</span><div><span class="k">Horario</span><span class="v">${p.hours}</span></div></div>
-  `;
-  document.getElementById('whereBody').innerHTML = bodyHtml;
+document.getElementById('magCardVisible').addEventListener('click', () => {
+  document.getElementById('publuuHiddenTrigger').click();
 });
 
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xnpavpkp';
@@ -21,9 +13,9 @@ const products = [
    address:"Dirección pendiente de confirmar", hours:"Horario pendiente de confirmar",
    compras:"157", donacion:"RD$3,925"},
   {biz:"Supermercados La Sirena", name:"Combo Solidario · 4 Botellas de Agua", price:"RD$ 100", aporte:"RD$ 10 por compra", img:"images/producto-agua.png",
- address:"Dirección pendiente de confirmar", hours:"Horario pendiente de confirmar",
- compras:"98", donacion:"RD$980",
- detail:"Este producto puedes comprarlo en: Supermercados La Sirena. La oferta de venta es de RD$100 pesos por 4 botellas (combo solidario). Aporte: 10 pesos por compra."},
+   address:"Dirección pendiente de confirmar", hours:"Horario pendiente de confirmar",
+   compras:"98", donacion:"RD$980",
+   detail:"Este producto puedes comprarlo en: Supermercados La Sirena. La oferta de venta es de RD$100 pesos por 4 botellas (combo solidario). Aporte: 10 pesos por compra."},
 ];
 let active = 0;
 const carousel = document.getElementById('carousel');
@@ -255,9 +247,16 @@ function openDetail(p){
   document.getElementById('detailPrice').textContent = p.price;
   document.getElementById('detailAporte').textContent = 'Aporte: ' + p.aporte;
   document.getElementById('storyCause').textContent = p.fundacion || 'Fundación De Blanck';
-  document.getElementById('whereBody').innerHTML = `
-    <div class="where-row"><span class="ic">⏱</span><div><span class="k">Campaña</span><span class="v">18 días restantes</span></div></div>
+
+  let bodyHtml = '';
+  if(p.detail){
+    bodyHtml += `<p style="font-size:13.5px;color:var(--ink);line-height:1.6;margin-bottom:14px;">${p.detail}</p>`;
+  }
+  bodyHtml += `
+    <div class="where-row"><span class="ic">📍</span><div><span class="k">Dirección</span><span class="v">${p.address}</span></div></div>
+    <div class="where-row"><span class="ic">🕒</span><div><span class="k">Horario</span><span class="v">${p.hours}</span></div></div>
   `;
+  document.getElementById('whereBody').innerHTML = bodyHtml;
 
   // Reinicia y dispara la mini-historia (fade + slide-up escalonado)
   const label = document.getElementById('storyLabel');
@@ -301,6 +300,7 @@ detailPhoto.addEventListener('pointerup', () => {
 detailPhoto.addEventListener('pointerleave', () => {
   detailDragging = false;
 });
+
 // PATROCINADOR OFICIAL DEL MES — click para voltear y ver info del anunciante
 document.getElementById('sponsorFlip').addEventListener('click', function(){
   this.classList.toggle('flipped');
