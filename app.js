@@ -531,7 +531,7 @@ function cycleDiscoverPhrase(){
     requestAnimationFrame(() => {
       requestAnimationFrame(() => discoverDynamic.classList.remove('fade-in-start'));
     });
-  }, 450);
+  }, 350);
 }
 
 if(!prefersReducedMotion && discoverDynamic){
