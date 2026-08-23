@@ -615,3 +615,9 @@ if(!prefersReducedMotion && discoverDynamic){
   }, { threshold: 0.3 });
   discoverObserver.observe(document.getElementById('adsTrigger'));
 }
+// PWA — registra el service worker para que la app sea instalable
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  });
+}
