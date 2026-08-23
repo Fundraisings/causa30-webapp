@@ -550,7 +550,7 @@ const ads = [
 
 const promoModal = document.getElementById('promoModal');
 const PROMO_KEY = 'causa30_promo_last_shown';
-const PROMO_REPEAT_DAYS = 3; // ✏️ cada cuántos días puede volver a aparecer
+const PROMO_REPEAT_DAYS = 1; // ✏️ cada cuántos días puede volver a aparecer
 
 const lastShown = localStorage.getItem(PROMO_KEY);
 const daysSinceShown = lastShown ? (Date.now() - Number(lastShown)) / (1000*60*60*24) : Infinity;
