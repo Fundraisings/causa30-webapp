@@ -374,7 +374,7 @@ document.getElementById('sponsorFlip').addEventListener('click', function(){
 
 // VIDEO — lightbox reutilizable con YouTube, a pantalla completa
 // ⚠️ REEMPLAZAR con el ID real del video principal (la parte después de "shorts/" o "watch?v=")
-const YOUTUBE_VIDEO_ID = 'TU_ID_DE_YOUTUBE';
+const YOUTUBE_VIDEO_ID = 'IHvtin5GeK8';
 
 const videoLightbox = document.getElementById('videoLightbox');
 const ytFrameWrap = document.getElementById('ytFrameWrap');
