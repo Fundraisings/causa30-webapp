@@ -1,18 +1,24 @@
 // COVER DE BIENVENIDA — pantalla completa, una vez por sesión (distinto del pop-up de anuncios)
 const welcomeCover = document.getElementById('welcomeCover');
 const WELCOME_KEY = 'causa30_welcome_seen';
+let welcomeFlowActive = false;
+
+function finishWelcomeCover(){
+  welcomeCover.classList.add('closing');
+  sessionStorage.setItem(WELCOME_KEY, 'true');
+  document.body.style.overflow = '';
+  setTimeout(() => {
+    welcomeCover.classList.add('hidden');
+  }, 700);
+}
 
 if(sessionStorage.getItem(WELCOME_KEY)){
   welcomeCover.classList.add('hidden');
 } else {
   document.body.style.overflow = 'hidden';
   document.getElementById('wcCta').addEventListener('click', () => {
-    welcomeCover.classList.add('closing');
-    sessionStorage.setItem(WELCOME_KEY, 'true');
-    document.body.style.overflow = '';
-    setTimeout(() => {
-      welcomeCover.classList.add('hidden');
-    }, 700);
+    welcomeFlowActive = true;
+    openVideoLightbox(YOUTUBE_VIDEO_ID);
   });
 }
 
@@ -380,6 +386,10 @@ function openVideoLightbox(videoId){
 function closeVideoLightbox(){
   videoLightbox.classList.remove('open');
   ytFrameWrap.innerHTML = ''; // vaciar el iframe detiene la reproducción
+  if(welcomeFlowActive){
+    welcomeFlowActive = false;
+    finishWelcomeCover();
+  }
 }
 
 // Cualquier botón con class="video-trigger" abre el lightbox.
@@ -391,6 +401,7 @@ document.querySelectorAll('.video-trigger').forEach(btn => {
 });
 
 document.getElementById('videoLightboxClose').addEventListener('click', closeVideoLightbox);
+document.getElementById('videoLightboxSkip').addEventListener('click', closeVideoLightbox);
 videoLightbox.addEventListener('click', (e) => {
   if(e.target === videoLightbox) closeVideoLightbox();
 });
