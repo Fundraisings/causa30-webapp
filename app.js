@@ -69,7 +69,7 @@ const products = [
   {biz:"Supermercados La Sirena", name:"Combo Solidario · 4 Botellas de Agua", price:"RD$ 100", aporte:"RD$ 10 por compra", img:"images/producto-agua.png",
    address:"Supermercados La Sirena — Sucursal [NOMBRE DE LA SUCURSAL ACTIVA ESTA SEMANA]", hours:"Horario pendiente de confirmar",
    compras:"98", donacion:"RD$980",
-   detail:`Este producto puedes comprarlo en: <b>Supermercados La Sirena — Sucursal [NOMBRE DE LA SUCURSAL]</b>. La oferta es de RD$100 pesos por el combo solidario (4 botellas). Aporte: RD$10 por compra.<br><br>📸 <b>Envía tu comprobante de compra por WhatsApp</b> para que tu compra cuente en la campaña: <a href="https://wa.me/1XXXXXXXXXX" target="_blank" style="color:var(--coral-deep);text-decoration:underline;font-weight:700;">Enviar comprobante →</a>`},
+   detail:"Este producto puedes comprarlo en: Supermercados La Sirena — Sucursal [NOMBRE DE LA SUCURSAL ACTIVA ESTA SEMANA]. La oferta es de RD$100 pesos por el combo solidario (4 botellas). Aporte: RD$10 por compra."<br><br>📸 <b>Envía tu comprobante de compra por WhatsApp</b> para que tu compra cuente en la campaña: <a href="https://wa.me/1XXXXXXXXXX" target="_blank" style="color:var(--coral-deep);text-decoration:underline;font-weight:700;">Enviar comprobante →</a>`},
 ];
 let active = 0;
 const carousel = document.getElementById('carousel');
