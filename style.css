@@ -713,7 +713,7 @@
   .libro-where-list{margin-top:12px;}
   .libro-store{padding:10px 0;}
   .libro-store-name{font-weight:700;font-size:12.5px;color:#fff;}
-  .libro-store-detail{font-size:11.5px;color:#DCE8E2;margin-top:3px;line-height:1.5;}
+  .libro-store-detail{font-size:11px;color:#DCE8E2;margin-top:3px;line-height:1.5;}
   .libro-store-divider{border-top:1px solid rgba(255,255,255,.15);margin:6px 0;}
 
   .libro-support{font-size:12.5px;color:var(--grey);margin-top:20px;}
