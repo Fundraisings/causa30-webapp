@@ -682,7 +682,7 @@
   .libro-reveal.open{max-height:900px;opacity:1;margin-top:24px;}
 
   .libro-flip{
-    position:relative;width:100%;max-width:260px;aspect-ratio:1000/1320;
+    position:relative;width:100%;max-width:300px;aspect-ratio:1000/1320;
     margin:0 auto;perspective:1200px;
     transform:translateY(24px);opacity:0;
     transition:transform .6s cubic-bezier(.34,1.15,.4,1) .15s, opacity .5s ease .15s;
