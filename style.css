@@ -507,7 +507,7 @@
   .vb-sub{font-size:11.5px;color:var(--grey);margin-top:2px;}
 
   .video-lightbox{
-    position:fixed;inset:0;background:#000;z-index:200;
+    position:fixed;inset:0;background:#000;z-index:600;
     display:none;align-items:center;justify-content:center;
   }
   .video-lightbox.open{display:flex;}
