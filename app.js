@@ -1,5 +1,16 @@
 // FECHA DE CIERRE DE LA CAMPAÑA ACTUAL — actualizar cada 30 días
-const CAMPAIGN_END = new Date('2026-09-30T23:59:00');
+// CICLO AUTOMÁTICO DE 30 DÍAS — nunca hay que tocar esto a mano otra vez
+const REFERENCE_START = new Date('2026-09-01T00:00:00'); // fecha del primer ciclo oficial
+const CYCLE_MS = 30 * 24 * 60 * 60 * 1000;
+
+function getCurrentCycleEnd(){
+  const now = new Date();
+  let elapsed = now - REFERENCE_START;
+  if(elapsed < 0) elapsed = 0;
+  const cyclesPassed = Math.floor(elapsed / CYCLE_MS);
+  return new Date(REFERENCE_START.getTime() + (cyclesPassed + 1) * CYCLE_MS - 60000);
+}
+const CAMPAIGN_END = getCurrentCycleEnd();
 
 function getDaysRemainingText(){
   const now = new Date();
