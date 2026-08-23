@@ -682,7 +682,7 @@
   .libro-reveal.open{max-height:900px;opacity:1;margin-top:24px;}
 
   .libro-cover{
-    width:100%;max-width:240px;margin:0 auto;border-radius:16px;
+    width:100%;max-width:260px;margin:0 auto;border-radius:16px;
     box-shadow:0 20px 40px -16px rgba(0,0,0,.35);
     transform:translateY(24px);opacity:0;
     transition:transform .6s cubic-bezier(.34,1.15,.4,1) .15s, opacity .5s ease .15s;
