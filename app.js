@@ -373,7 +373,6 @@ document.getElementById('sponsorFlip').addEventListener('click', function(){
 });
 
 // VIDEO — lightbox reutilizable con YouTube, a pantalla completa
-// ⚠️ REEMPLAZAR con el ID real del video principal (la parte después de "shorts/" o "watch?v=")
 const YOUTUBE_VIDEO_ID = 'IHvtin5GeK8';
 
 const videoLightbox = document.getElementById('videoLightbox');
@@ -470,6 +469,26 @@ document.getElementById('bizForm').addEventListener('submit', async (e) => {
 
   e.target.style.display = 'none';
   document.getElementById('bizSuccess').classList.add('show');
+});
+
+// LIBRO DEL MES — toggle que revela la portada y la causa que apoya
+// ✏️ EDITAR CADA MES: datos de la fundación que apoya el libro del mes
+const libroDelMes = {
+  fundacion: "Happy Animal Rescue RD",
+  descripcion: "Dedicada al rescate, rehabilitación y adopción de animales callejeros.",
+  link: "https://www.instagram.com/happyanimalsrescuerd/"
+};
+document.getElementById('libroFundName').textContent = libroDelMes.fundacion;
+document.getElementById('libroFundDesc').textContent = libroDelMes.descripcion;
+document.getElementById('libroFundLink').href = libroDelMes.link;
+
+const libroReveal = document.getElementById('libroReveal');
+const libroToggleText = document.getElementById('libroToggleText');
+const libroToggleIcon = document.getElementById('libroToggleIcon');
+document.getElementById('libroToggle').addEventListener('click', () => {
+  const isOpen = libroReveal.classList.toggle('open');
+  libroToggleText.textContent = isOpen ? 'Libro descubierto' : '✦ Descubrir el libro';
+  libroToggleIcon.textContent = isOpen ? '✓' : '↓';
 });
 
 // PROMO DE BIENVENIDA — se muestra una sola vez por dispositivo, elige 1 de 3 al azar
