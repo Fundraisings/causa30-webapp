@@ -538,9 +538,13 @@ const ads = [
 ];
 
 const promoModal = document.getElementById('promoModal');
-const PROMO_KEY = 'causa30_promo_seen';
+const PROMO_KEY = 'causa30_promo_last_shown';
+const PROMO_REPEAT_DAYS = 3; // ✏️ cada cuántos días puede volver a aparecer
 
-if(!localStorage.getItem(PROMO_KEY)){
+const lastShown = localStorage.getItem(PROMO_KEY);
+const daysSinceShown = lastShown ? (Date.now() - Number(lastShown)) / (1000*60*60*24) : Infinity;
+
+if(daysSinceShown >= PROMO_REPEAT_DAYS){
   setTimeout(() => {
     const pick = ads[Math.floor(Math.random() * ads.length)];
     document.getElementById('promoArt').style.backgroundImage = `url('${pick.img}')`;
@@ -552,8 +556,14 @@ if(!localStorage.getItem(PROMO_KEY)){
 promoModal.addEventListener('click', (e) => {
   if(e.target === promoModal) {
     closeModal(promoModal);
-    localStorage.setItem(PROMO_KEY, 'true');
+    localStorage.setItem(PROMO_KEY, String(Date.now()));
   }
+});
+promoModal.querySelectorAll('[data-close]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    closeModal(promoModal);
+    localStorage.setItem(PROMO_KEY, String(Date.now()));
+  });
 });
 promoModal.querySelectorAll('[data-close]').forEach(btn => {
   btn.addEventListener('click', () => {
