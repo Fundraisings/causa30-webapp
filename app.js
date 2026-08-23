@@ -1,3 +1,14 @@
+// FECHA DE CIERRE DE LA CAMPAÑA ACTUAL — actualizar cada 30 días
+const CAMPAIGN_END = new Date('2026-09-30T23:59:00');
+
+function getDaysRemainingText(){
+  const now = new Date();
+  let diff = CAMPAIGN_END - now;
+  if(diff < 0) diff = 0;
+  const days = Math.ceil(diff / (1000*60*60*24));
+  return `${days} día${days === 1 ? '' : 's'} restante${days === 1 ? '' : 's'}`;
+}
+
 // COVER DE BIENVENIDA — pantalla completa, una vez por sesión (distinto del pop-up de anuncios)
 const welcomeCover = document.getElementById('welcomeCover');
 const WELCOME_KEY = 'causa30_welcome_seen';
@@ -19,6 +30,13 @@ if(sessionStorage.getItem(WELCOME_KEY)){
   document.getElementById('wcCta').addEventListener('click', () => {
     welcomeFlowActive = true;
     openVideoLightbox(YOUTUBE_VIDEO_ID);
+  });
+}
+
+// PWA — registra el service worker para que la app sea instalable
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
   });
 }
 
@@ -69,7 +87,7 @@ function render(){
     card.className = 'p-card ' + posClass;
     card.innerHTML = `
       <div class="p-card-inner">
-        <div class="art" style="background-image:url('${p.img}')"><span class="badge">18 días restantes</span></div>
+        <div class="art" style="background-image:url('${p.img}')"><span class="badge">${getDaysRemainingText()}</span></div>
         <div class="info">
           <div class="biz">${p.biz}</div>
           <div class="name">${p.name}</div>
@@ -281,10 +299,6 @@ progressModal.querySelector('.btn-ghost').addEventListener('click', () => {
   carousel.scrollIntoView({ behavior: 'smooth', block: 'center' });
 });
 
-// CONTADOR REGRESIVO — fecha de ejemplo, reemplazar por el cierre real de campaña al lanzar
-// Formato: new Date('AAAA-MM-DDTHH:mm:ss')
-const CAMPAIGN_END = new Date(Date.now() + 18 * 24 * 60 * 60 * 1000); // placeholder: 18 días desde ahora
-
 function updateCountdown(){
   const now = new Date();
   let diff = CAMPAIGN_END - now;
@@ -299,6 +313,11 @@ function updateCountdown(){
   setCdValue('cdHours', hours);
   setCdValue('cdMins', mins);
   setCdValue('cdSecs', secs);
+
+  setCdValue('cdDays2', days);
+  setCdValue('cdHours2', hours);
+  setCdValue('cdMins2', mins);
+  setCdValue('cdSecs2', secs);
 }
 
 function setCdValue(id, value){
@@ -614,10 +633,4 @@ if(!prefersReducedMotion && discoverDynamic){
     });
   }, { threshold: 0.3 });
   discoverObserver.observe(document.getElementById('adsTrigger'));
-}
-// PWA — registra el service worker para que la app sea instalable
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch(() => {});
-  });
 }
