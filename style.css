@@ -544,6 +544,10 @@
   .cd-label{display:block;font-size:9px;color:#9FB6AC;text-transform:uppercase;letter-spacing:.05em;margin-top:2px;}
   .cd-sep{font-weight:800;color:var(--line);font-size:16px;}
 
+  .countdown-lg{margin-top:22px;}
+  .countdown-lg .cd-unit{padding:14px 16px;min-width:60px;}
+  .countdown-lg .cd-num{font-size:23px;}
+
   /* ---------- PROMO POP-UP (una sola vez, primera visita) ---------- */
   .promo-overlay{align-items:center;padding:20px;}
   .promo-sheet{
