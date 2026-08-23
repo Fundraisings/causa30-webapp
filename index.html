@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" href="images/favic30.png"><link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="images/favic30.png">
+<link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#12332A">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -266,6 +267,16 @@
       </div>
 
       <div id="whereBody" style="margin-top:6px;"></div>
+
+      <div class="countdown countdown-lg" id="campaignCountdown2">
+        <div class="cd-unit"><span class="cd-num" id="cdDays2">00</span><span class="cd-label">Días</span></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit"><span class="cd-num" id="cdHours2">00</span><span class="cd-label">Hrs</span></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit"><span class="cd-num" id="cdMins2">00</span><span class="cd-label">Min</span></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit"><span class="cd-num" id="cdSecs2">00</span><span class="cd-label">Seg</span></div>
+      </div>
     </div>
   </div>
 </div>
@@ -349,9 +360,9 @@
     <button class="modal-close" data-close>✕</button>
     <span class="eyebrow">Sugerencia</span>
     <h2 class="sec-title" style="font-size:20px;">¿Qué causa o fundación crees que merece apoyo?</h2>
-<form id="suggestForm" class="causa-form">
-  <label>Nombre de la fundación o causa</label>
-  <input type="text" name="producto" placeholder="Ej.: refugio de animales, banco de alimentos, apoyo escolar…" required>
+    <form id="suggestForm" class="causa-form">
+      <label>Nombre de la fundación o causa</label>
+      <input type="text" name="producto" placeholder="Ej.: refugio de animales, banco de alimentos, apoyo escolar…" required>
       <button type="submit" class="promo-cta">Enviar sugerencia</button>
     </form>
     <div class="form-success" id="suggestSuccess">
