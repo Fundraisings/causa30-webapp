@@ -244,22 +244,6 @@
   .funciona{background:var(--verde-deep);color:#fff;border-radius:32px;margin:0 16px;padding:44px 24px 40px;}
   .funciona .eyebrow{color:#8FC4AC;}
   .funciona .sec-title{color:#fff;}
-  .steps{display:grid;grid-template-columns:1fr;gap:0;margin-top:30px;}
-  .step{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.12);}
-  .step:last-child{border-bottom:none;}
-  .step .num{font-family:'Manrope',sans-serif;font-weight:800;font-size:13px;color:var(--coral);min-width:22px;}
-  .step .txt b{display:block;font-size:15px;font-weight:700;margin-bottom:3px;}
-  .step .txt span{font-size:13px;color:#C7D6CE;line-height:1.5;}
-  .impact-line{
-    margin-top:22px;font-size:13.5px;color:#DCE8E2;font-weight:600;
-    padding-top:18px;border-top:1px solid rgba(255,255,255,.12);
-  }
-  .trust{
-    margin-top:16px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
-    border-radius:16px;padding:16px 18px;font-size:13px;line-height:1.55;color:#DCE8E2;
-  }
-  .trust b{color:#fff;}
-
   .funciona-sub{font-size:13px;color:#DCE8E2;margin-top:8px;line-height:1.5;}
   .funciona-toggle{
     margin-top:18px;display:inline-flex;align-items:center;gap:8px;
@@ -316,16 +300,6 @@
   @media (prefers-reduced-motion: reduce){
     .flow-track{animation:none;}
   }
-
-  /* ---------- REVEAL CHIP (Fundación oculta por defecto) ---------- */
-  .reveal-chip{
-    width:100%;background:var(--coral);border:none;
-    border-radius:20px;padding:18px 18px;display:flex;flex-direction:column;
-    align-items:center;justify-content:center;text-align:center;
-    box-shadow:0 8px 20px -8px rgba(232,102,74,.5);
-  }
-  .reveal-chip .txt{font-size:15.5px;font-weight:700;color:#fff;}
-  .reveal-chip .sub{font-size:12px;color:rgba(255,255,255,.85);margin-top:5px;font-weight:400;}
 
   /* ---------- MODAL ---------- */
   .modal-overlay{
@@ -685,6 +659,43 @@
   }
   @media (prefers-reduced-motion: reduce){
     .discover-dynamic{transition:none;}
+  }
+
+  /* ---------- LIBRO DEL MES ---------- */
+  .libro-mes{
+    background:var(--card);border:1.5px solid var(--line);
+    border-radius:var(--radius-lg);padding:28px 24px;
+  }
+  .libro-sub{font-size:13.5px;color:var(--grey);margin-top:8px;line-height:1.5;font-weight:600;}
+  .libro-hint{font-size:12px;color:var(--coral-deep);margin-top:10px;font-style:italic;}
+  .libro-toggle{
+    margin-top:18px;display:inline-flex;align-items:center;gap:8px;
+    background:var(--coral);color:#fff;
+    padding:13px 26px;border-radius:100px;font-size:13px;font-weight:700;
+    box-shadow:0 10px 22px -10px rgba(232,102,74,.5);
+  }
+
+  .libro-reveal{
+    max-height:0;overflow:hidden;opacity:0;
+    transition:max-height .6s cubic-bezier(.22,.9,.35,1), opacity .5s ease;
+  }
+  .libro-reveal.open{max-height:900px;opacity:1;margin-top:24px;}
+
+  .libro-cover{
+    width:100%;max-width:220px;margin:0 auto;border-radius:16px;
+    box-shadow:0 20px 40px -16px rgba(0,0,0,.35);
+    transform:translateY(24px);opacity:0;
+    transition:transform .6s cubic-bezier(.34,1.15,.4,1) .15s, opacity .5s ease .15s;
+  }
+  .libro-reveal.open .libro-cover{transform:translateY(0);opacity:1;}
+
+  .libro-support{font-size:12.5px;color:var(--grey);margin-top:20px;}
+  .libro-fund-name{font-size:18px;font-weight:800;color:var(--verde-deep);margin-top:4px;}
+  .libro-fund-desc{font-size:12.5px;color:var(--grey);margin-top:8px;line-height:1.55;max-width:320px;margin-left:auto;margin-right:auto;}
+  .libro-fund-link{display:inline-block;margin-top:14px;font-size:12.5px;font-weight:700;color:var(--coral-deep);}
+
+  @media (prefers-reduced-motion: reduce){
+    .libro-cover{transition:none;}
   }
 
   /* ---------- FORMULARIOS ---------- */
