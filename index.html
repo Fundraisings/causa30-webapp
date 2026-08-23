@@ -167,7 +167,18 @@
       </button>
 
       <div class="libro-reveal" id="libroReveal">
-        <img src="images/libromesc30.png" alt="Libro del mes" class="libro-cover">
+        <div class="libro-flip" id="libroFlip">
+          <div class="libro-flip-inner">
+            <div class="libro-flip-front">
+              <img src="images/libromesc30.png" alt="Libro del mes" class="libro-cover">
+              <div class="libro-tap-hint">Clic en la imagen para ver dónde comprarlo</div>
+            </div>
+            <div class="libro-flip-back" id="libroFlipBack">
+              <div class="libro-where-title">¿Dónde comprarlo?</div>
+              <div class="libro-where-list" id="libroWhereList"></div>
+            </div>
+          </div>
+        </div>
         <p class="libro-support">Con la compra de este libro apoyas a:</p>
         <h3 class="libro-fund-name" id="libroFundName">—</h3>
         <p class="libro-fund-desc" id="libroFundDesc">—</p>
