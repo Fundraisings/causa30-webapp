@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="images/favic30.png">
-<title>CAUSA30 · Tu compra tiene doble Valor</title>
+<title>CAUSA30 · Una compra. Doble Valor</title>
 <meta name="description" content="Cada 30 días, productos seleccionados donan parte de su venta a una fundación aliada. Descubre el producto, descubre la causa.">
 
 <!-- Vista previa al compartir (WhatsApp, Facebook, Instagram) -->
-<meta property="og:title" content="Causa30 · Tu compra tiene doble Valor">
+<meta property="og:title" content="Causa30 · Una compra. Doble Valor">
 <meta property="og:description" content="Te invito a un consumo más inteligente. Tu compra tiene doble valor.">
 <meta property="og:image" content="https://causa30.com/images/og-cover.png">
 <meta property="og:url" content="https://causa30.com/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Causa30 · Tu compra tiene doble Valor">
+<meta name="twitter:title" content="Causa30 · Una compra. Doble Valor">
 <meta name="twitter:description" content="Te invito a un consumo más inteligente. Tu compra tiene doble valor.">
 <meta name="twitter:image" content="https://causa30.com/images/og-cover.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -155,13 +155,24 @@
     </button>
   </section>
 
-  <!-- LIBROS CON PROPÓSITO -->
+  <!-- LIBRO DEL MES -->
   <section style="padding-top:0;">
-    <div class="banner-shadow">
-      <!-- ⚠️ REEMPLAZAR href con el link real (Payhip u otra tienda) cuando esté listo -->
-      <a class="banner-link" href="https://payhip.com/TU-TIENDA" target="_blank" rel="noopener">
-        <img src="images/LIBROSCP.png" alt="Libros con propósito">
-      </a>
+    <div class="libro-mes" style="text-align:center;">
+      <h2 class="sec-title">El Libro del Mes</h2>
+      <p class="libro-sub">Leer también tiene doble valor. Aprendes y ayudas.</p>
+      <p class="libro-hint">Toca para descubrir el libro seleccionado este mes.</p>
+
+      <button class="libro-toggle" id="libroToggle">
+        <span id="libroToggleText">✦ Descubrir el libro</span> <span id="libroToggleIcon">↓</span>
+      </button>
+
+      <div class="libro-reveal" id="libroReveal">
+        <img src="images/libromesc30.png" alt="Libro del mes" class="libro-cover">
+        <p class="libro-support">Con la compra de este libro apoyas a:</p>
+        <h3 class="libro-fund-name" id="libroFundName">—</h3>
+        <p class="libro-fund-desc" id="libroFundDesc">—</p>
+        <a class="libro-fund-link" id="libroFundLink" href="#" target="_blank" rel="noopener">Conocer la causa →</a>
+      </div>
     </div>
   </section>
 
