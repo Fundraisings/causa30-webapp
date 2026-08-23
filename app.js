@@ -1,4 +1,3 @@
-// FECHA DE CIERRE DE LA CAMPAÑA ACTUAL — actualizar cada 30 días
 // CICLO AUTOMÁTICO DE 30 DÍAS — nunca hay que tocar esto a mano otra vez
 const REFERENCE_START = new Date('2026-09-01T00:00:00'); // fecha del primer ciclo oficial
 const CYCLE_MS = 30 * 24 * 60 * 60 * 1000;
@@ -68,9 +67,9 @@ const products = [
    compras:"157", donacion:"RD$3,925",
    detail:"Este producto puedes comprarlo en: Empresa X. La oferta de venta es de RD$320 pesos por unidad. Aporte: RD$25 por compra."},
   {biz:"Supermercados La Sirena", name:"Combo Solidario · 4 Botellas de Agua", price:"RD$ 100", aporte:"RD$ 10 por compra", img:"images/producto-agua.png",
-   address:"Dirección pendiente de confirmar", hours:"Horario pendiente de confirmar",
+   address:"Supermercados La Sirena — Sucursal [NOMBRE DE LA SUCURSAL ACTIVA ESTA SEMANA]", hours:"Horario pendiente de confirmar",
    compras:"98", donacion:"RD$980",
-   detail:"Este producto puedes comprarlo en: Supermercados La Sirena. La oferta de venta es de RD$100 pesos por 4 botellas (combo solidario). Aporte: 10 pesos por compra."},
+   detail:`Este producto puedes comprarlo en: <b>Supermercados La Sirena — Sucursal [NOMBRE DE LA SUCURSAL]</b>. La oferta es de RD$100 pesos por el combo solidario (4 botellas). Aporte: RD$10 por compra.<br><br>📸 <b>Envía tu comprobante de compra por WhatsApp</b> para que tu compra cuente en la campaña: <a href="https://wa.me/1XXXXXXXXXX" target="_blank" style="color:var(--coral-deep);text-decoration:underline;font-weight:700;">Enviar comprobante →</a>`},
 ];
 let active = 0;
 const carousel = document.getElementById('carousel');
@@ -541,7 +540,34 @@ libroFlip.addEventListener('click', () => {
   libroFlip.classList.toggle('flipped');
 });
 
-// PROMO DE BIENVENIDA — se muestra una sola vez por dispositivo, elige 1 de 3 al azar
+// COMPARTIR PROMOCIÓN — componente reutilizable, funciona para cualquier producto abierto en la ficha
+const shareAnimOverlay = document.getElementById('shareAnimOverlay');
+const shareAnimProduct = document.getElementById('shareAnimProduct');
+const productEmojis = { "Chocolate X · Dark, Coco & Jengibre":"🍫", "Alimento para Perros X":"🐾", "Combo Solidario · 4 Botellas de Agua":"💧" };
+
+function shareProductViaWhatsApp(product){
+  const shareUrl = window.location.origin + window.location.pathname;
+  const message = `Encontré esta promoción en Causa30. ❤️\n\nCreo que este producto podría interesarte. Además, al elegirlo también apoyas una causa.\n\n${product.name}\n\nTu compra tiene doble valor.\n\nMira la promoción aquí:\n${shareUrl}`;
+  const waUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+
+  if(prefersReducedMotion){
+    window.open(waUrl, '_blank');
+    return;
+  }
+
+  shareAnimProduct.textContent = productEmojis[product.name] || '🛍️';
+  shareAnimOverlay.classList.add('active');
+  setTimeout(() => {
+    shareAnimOverlay.classList.remove('active');
+    window.open(waUrl, '_blank');
+  }, 900);
+}
+
+document.getElementById('sharePromoBtn').addEventListener('click', () => {
+  shareProductViaWhatsApp(products[active]);
+});
+
+// PROMO DE BIENVENIDA — reaparece cada X días (no solo una vez para siempre)
 const ads = [
   {title:"❤️ Esta promoción también genera impacto", text:"Al elegirla, tu compra tiene doble valor....", img:"images/ad1.png"},
   {title:"✨ Espacio publicitario disponible", text:"Combina tu promoción con causa social — visibilidad y buena reputación de marca.", img:"images/ad2.png"},
@@ -550,7 +576,7 @@ const ads = [
 
 const promoModal = document.getElementById('promoModal');
 const PROMO_KEY = 'causa30_promo_last_shown';
-const PROMO_REPEAT_DAYS = 1; // ✏️ cada cuántos días puede volver a aparecer
+const PROMO_REPEAT_DAYS = 3; // ✏️ cada cuántos días puede volver a aparecer
 
 const lastShown = localStorage.getItem(PROMO_KEY);
 const daysSinceShown = lastShown ? (Date.now() - Number(lastShown)) / (1000*60*60*24) : Infinity;
@@ -574,12 +600,6 @@ promoModal.querySelectorAll('[data-close]').forEach(btn => {
   btn.addEventListener('click', () => {
     closeModal(promoModal);
     localStorage.setItem(PROMO_KEY, String(Date.now()));
-  });
-});
-promoModal.querySelectorAll('[data-close]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    closeModal(promoModal);
-    localStorage.setItem(PROMO_KEY, 'true');
   });
 });
 
