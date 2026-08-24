@@ -396,10 +396,8 @@ detailPhoto.addEventListener('pointerleave', () => {
   detailDragging = false;
 });
 
-// PATROCINADOR OFICIAL DEL MES — click para voltear y ver info del anunciante
-document.getElementById('sponsorFlip').addEventListener('click', function(){
-  this.classList.toggle('flipped');
-});
+// PATROCINADOR OFICIAL DEL MES — ahora abre un video (data-yt-id propio, independiente del video de la intro)
+// ✏️ ACTUALIZAR cada mes: el data-yt-id del botón #sponsorBtn en el HTML, y el texto/caption si cambia el patrocinador
 
 // VIDEO — lightbox reutilizable con YouTube, a pantalla completa
 const YOUTUBE_VIDEO_ID = 'IHvtin5GeK8';
@@ -421,7 +419,7 @@ function closeVideoLightbox(){
 }
 
 // Cualquier botón con class="video-trigger" abre el lightbox.
-// Usa data-yt-id="ID_DEL_VIDEO" para un video específico; si no lo tiene, usa el principal.
+// Usa data-yt-id="ID_DEL_VIDEO" para un video específico (independiente); si no lo tiene, usa el principal.
 document.querySelectorAll('.video-trigger').forEach(btn => {
   btn.addEventListener('click', () => {
     openVideoLightbox(btn.dataset.ytId || YOUTUBE_VIDEO_ID);
