@@ -595,12 +595,13 @@
   .banner-shadow > *{position:relative;z-index:1;}
 
   /* ---------- PATROCINADOR OFICIAL DEL MES ---------- */
-  .sponsor-thanks{.sponsor-caption{
-  text-align:center;font-size:11.5px;color:var(--grey);
-  margin-top:10px;padding:0 24px;line-height:1.5;
-}
+  .sponsor-thanks{
     text-align:center;font-size:12.5px;color:var(--grey);
     margin-top:6px;padding:0 20px;line-height:1.5;
+  }
+  .sponsor-caption{
+    text-align:center;font-size:11.5px;color:var(--grey);
+    margin-top:10px;padding:0 24px;line-height:1.5;
   }
   .sponsor-flip{
     position:relative;width:100%;aspect-ratio:2.4/1;
