@@ -61,15 +61,15 @@ const products = [
   {biz:"Empresa X · Chocolate", name:"Chocolate X · Dark, Coco & Jengibre", price:"RD$ 250", aporte:"RD$ 15 por compra", img:"images/producto-chocolate.png",
    address:"Dirección pendiente de confirmar", hours:"Horario pendiente de confirmar",
    compras:"212", donacion:"RD$3,180",
-   detail:"Este producto puedes comprarlo en: Empresa X. La oferta de venta es de RD$250 pesos por unidad. Aporte: RD$15 por compra."},
+   detail:"Adquiere este producto en <b>Empresa X</b> por RD$250. Al hacerlo, desbloqueas automáticamente un impacto de <b>RD$15</b>."},
   {biz:"Empresa X · Alimento para Mascotas", name:"Alimento para Perros X", price:"RD$ 320", aporte:"RD$ 25 por compra", img:"images/producto-petfood.png",
    address:"Dirección pendiente de confirmar", hours:"Horario pendiente de confirmar",
    compras:"157", donacion:"RD$3,925",
-   detail:"Este producto puedes comprarlo en: Empresa X. La oferta de venta es de RD$320 pesos por unidad. Aporte: RD$25 por compra."},
+   detail:"Adquiere este producto en <b>Empresa X</b> por RD$320. Al hacerlo, desbloqueas automáticamente un impacto de <b>RD$25</b>."},
   {biz:"Supermercados La Sirena", name:"Combo Solidario · 4 Botellas de Agua", price:"RD$ 100", aporte:"RD$ 10 por compra", img:"images/producto-agua.png",
    address:"Supermercados La Sirena — Sucursal [NOMBRE DE LA SUCURSAL ACTIVA ESTA SEMANA]", hours:"Horario pendiente de confirmar",
    compras:"98", donacion:"RD$980",
-   ddetail:"Este producto puedes comprarlo en: Supermercados La Sirena — Sucursal [NOMBRE DE LA SUCURSAL ACTIVA ESTA SEMANA]. La oferta es de RD$100 pesos por el combo solidario (4 botellas). Aporte: RD$10 por compra."},
+   detail:"Adquiere este producto en <b>Supermercados La Sirena — Sucursal [NOMBRE DE LA SUCURSAL ACTIVA ESTA SEMANA]</b> por RD$100 (combo solidario, 4 botellas). Al hacerlo, desbloqueas automáticamente un impacto de <b>RD$10</b>."},
 ];
 let active = 0;
 const carousel = document.getElementById('carousel');
@@ -347,7 +347,7 @@ function openDetail(p){
   document.getElementById('detailPhoto').style.backgroundImage = `url('${p.img}')`;
   document.getElementById('whereTitle').textContent = p.name;
   document.getElementById('detailPrice').textContent = p.price;
-  document.getElementById('detailAporte').textContent = 'Aporte: ' + p.aporte;
+  document.getElementById('detailAporte').textContent = 'Tu impacto directo: ' + p.aporte;
   document.getElementById('storyCause').textContent = p.fundacion || 'Fundación De Blanck';
   document.getElementById('whereBody').innerHTML = p.detail
     ? `<p style="font-size:12.5px;color:var(--ink);line-height:1.6;">${p.detail}</p>`
@@ -531,7 +531,7 @@ const libroToggleText = document.getElementById('libroToggleText');
 const libroToggleIcon = document.getElementById('libroToggleIcon');
 document.getElementById('libroToggle').addEventListener('click', () => {
   const isOpen = libroReveal.classList.toggle('open');
-  libroToggleText.textContent = isOpen ? 'Libro descubierto' : '✦ Descubrir el libro';
+  libroToggleText.textContent = isOpen ? 'Libro descubierto' : '✦ Ver libro y apoyar';
   libroToggleIcon.textContent = isOpen ? '✓' : '↓';
 });
 
