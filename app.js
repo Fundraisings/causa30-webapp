@@ -396,10 +396,10 @@ detailPhoto.addEventListener('pointerleave', () => {
   detailDragging = false;
 });
 
-// PATROCINADOR OFICIAL DEL MES — ahora abre un video (data-yt-id propio, independiente del video de la intro)
-// ✏️ ACTUALIZAR cada mes: el data-yt-id del botón #sponsorBtn en el HTML, y el texto/caption si cambia el patrocinador
-
 // VIDEO — lightbox reutilizable con YouTube, a pantalla completa
+// Los 3 videos (intro, banner frontal, patrocinador) son independientes:
+// cada botón con class="video-trigger" puede tener su propio data-yt-id en el HTML.
+// Si un botón no tiene data-yt-id, usa este video por defecto:
 const YOUTUBE_VIDEO_ID = 'IHvtin5GeK8';
 
 const videoLightbox = document.getElementById('videoLightbox');
@@ -418,8 +418,6 @@ function closeVideoLightbox(){
   }
 }
 
-// Cualquier botón con class="video-trigger" abre el lightbox.
-// Usa data-yt-id="ID_DEL_VIDEO" para un video específico (independiente); si no lo tiene, usa el principal.
 document.querySelectorAll('.video-trigger').forEach(btn => {
   btn.addEventListener('click', () => {
     openVideoLightbox(btn.dataset.ytId || YOUTUBE_VIDEO_ID);
@@ -567,7 +565,7 @@ document.getElementById('sharePromoBtn').addEventListener('click', () => {
 
 // PROMO DE BIENVENIDA — reaparece cada X días (no solo una vez para siempre)
 const ads = [
-  {title:"❤️ Esta promoción también genera impacto", text:"Al elegirla, tu compra tiene doble valor....", img:"images/ad1.png"},
+  {title:"❤️ Esta promoción también genera impacto", text:"Al elegirla, tu compra tiene doble valor....", img:"images/ad1a.png"},
   {title:"✨ Espacio publicitario disponible", text:"Combina tu promoción con causa social — visibilidad y buena reputación de marca.", img:"images/ad2.png"},
   {title:"🍦 Espacio publicitario disponible", text:"Anúnciate en Causa30 y llega a personas que prefieren marcas con impacto.", img:"images/ad3.png"},
 ];
