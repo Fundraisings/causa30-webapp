@@ -723,7 +723,7 @@
   .ad-caption-text.active{opacity:1;transform:translateY(0);}
   .ad-tap-hint{margin-top:12px;font-size:10.5px;color:var(--grey);font-style:italic;}
 
-  /* ---------- LIBRO DEL MES ---------- */
+    /* ---------- LEGADO DOMINICANO ---------- */
   .libro-mes{
     background:var(--card);border:1.5px solid var(--line);
     border-radius:var(--radius-lg);padding:28px 24px;
@@ -744,11 +744,11 @@
   .libro-reveal.open{max-height:900px;opacity:1;margin-top:24px;}
 
   .libro-flip{
-  position:relative;width:100%;max-width:340px;aspect-ratio:9/16;
-  margin:0 auto;perspective:1200px;
-  transform:translateY(24px);opacity:0;
-  transition:transform .6s cubic-bezier(.34,1.15,.4,1) .15s, opacity .5s ease .15s;
-}
+    position:relative;width:100%;max-width:340px;aspect-ratio:9/16;
+    margin:0 auto;perspective:1200px;
+    transform:translateY(24px);opacity:0;
+    transition:transform .6s cubic-bezier(.34,1.15,.4,1) .15s, opacity .5s ease .15s;
+  }
   .libro-reveal.open .libro-flip{transform:translateY(0);opacity:1;}
   .libro-flip-inner{
     position:relative;width:100%;height:100%;
@@ -758,7 +758,7 @@
   .libro-flip-front,.libro-flip-back{
     position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;
   }
-  .libro-flip-front{cursor:pointer;display:flex;flex-direction:column;}
+  .libro-flip-front{cursor:pointer;display:flex;flex-direction:column;overflow:hidden;}
   .libro-cover{
     width:100%;flex:1;border-radius:16px;object-fit:cover;
     box-shadow:0 20px 40px -16px rgba(0,0,0,.35);
@@ -786,7 +786,6 @@
   @media (prefers-reduced-motion: reduce){
     .libro-flip,.libro-flip-inner{transition:none;}
   }
-
   /* ---------- COMPARTIR PROMOCIÓN ---------- */
   .share-promo-block{margin-top:26px;padding-top:20px;border-top:1px solid var(--line);text-align:center;}
   .share-promo-title{font-family:'Manrope',sans-serif;font-weight:800;font-size:15px;color:var(--verde-deep);}
