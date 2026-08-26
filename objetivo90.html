@@ -3,42 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Preview — Objetivo 90 (página completa)</title>
+<link rel="icon" type="image/png" href="images/favic30.png">
+<title>Objetivo 90 · Causa30</title>
+<meta name="description" content="Objetivo 90 — una meta de 90 días. Descubre cómo tu compra ayuda a lograrla.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <style>
-  :root{
-    --verde:#1F5F4A; --verde-deep:#12332A; --verde-soft:#EAF1EE;
-    --coral:#E8664A; --coral-deep:#C94F36;
-    --cream:#F8F5EF; --card:#FFFFFF; --ink:#1B231F; --grey:#6B756F; --line:#E4DFD5;
-  }
-  *{box-sizing:border-box;}
-  body{margin:0;background:var(--cream);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;}
-  h1,h2,h3{font-family:'Manrope',sans-serif;letter-spacing:-0.02em;margin:0;}
-  a{color:inherit;text-decoration:none;}
-  button{font-family:inherit;cursor:pointer;border:none;background:none;}
-  img{display:block;max-width:100%;}
-  .wrap{max-width:480px;margin:0 auto;position:relative;}
-
-  /* ---------- Encabezado ---------- */
+  /* ---------- Estilos exclusivos de la página Objetivo 90 ---------- */
   .o90-header{
-    position:relative;overflow:hidden;
     background:radial-gradient(ellipse at top,#1A4538 0%,var(--verde-deep) 60%,#0D251F 100%);
-    padding:20px 24px 40px;text-align:center;border-radius:0 0 32px 32px;
-  }
-  .o90-header::before{
-    content:'';position:absolute;top:-40px;right:-50px;width:180px;height:180px;
-    border-radius:50%;background:radial-gradient(circle,rgba(232,102,74,.18),transparent 70%);
-  }
-  .o90-header::after{
-    content:'';position:absolute;bottom:-60px;left:-40px;width:200px;height:200px;
-    border-radius:50%;background:radial-gradient(circle,rgba(143,196,172,.12),transparent 70%);
+    padding:20px 24px 34px;text-align:center;border-radius:0 0 32px 32px;
   }
   .o90-back{
-    position:relative;z-index:2;
     display:inline-flex;align-items:center;gap:6px;color:#DCE8E2;font-size:13px;font-weight:700;
     float:left;padding:6px 0;
   }
-  .o90-header-content{position:relative;z-index:2;clear:both;padding-top:36px;}
+  .o90-header-content{clear:both;padding-top:36px;}
   .o90-eyebrow2{
     display:inline-flex;align-items:center;gap:6px;
     background:rgba(232,102,74,.15);color:var(--coral);
@@ -53,9 +34,6 @@
     display:inline-block;margin-top:16px;background:var(--coral);color:#fff;
     font-family:'Manrope',sans-serif;font-weight:800;font-size:13px;
     padding:8px 20px;border-radius:100px;letter-spacing:.03em;
-  }
-  .o90-paw-decor{
-    position:relative;z-index:2;margin-top:20px;font-size:22px;letter-spacing:14px;opacity:.35;
   }
 
   .o90-section{padding:32px 24px;}
@@ -76,16 +54,11 @@
 
   /* Barra de progreso */
   .o90-progress-card{
-    position:relative;overflow:hidden;
     background:var(--verde-deep);border-radius:24px;padding:26px 22px;color:#fff;
   }
-  .o90-progress-card::before{
-    content:'🎯';position:absolute;top:-14px;right:-10px;font-size:80px;opacity:.06;
-  }
-  .o90-progress-goal{position:relative;z-index:1;font-size:12.5px;color:#8FC4AC;font-weight:700;text-transform:uppercase;letter-spacing:.04em;}
+  .o90-progress-goal{font-size:12.5px;color:#8FC4AC;font-weight:700;text-transform:uppercase;letter-spacing:.04em;}
   .o90-progress-goal b{color:#fff;font-size:15px;}
   .o90-progress-track{
-    position:relative;z-index:1;
     width:100%;height:16px;background:rgba(255,255,255,.1);border-radius:100px;
     margin-top:12px;overflow:hidden;
   }
@@ -93,33 +66,22 @@
     height:100%;width:0%;background:linear-gradient(90deg,var(--coral),#F0A190);
     border-radius:100px;transition:width 1.4s cubic-bezier(.22,.9,.35,1);
   }
-  .o90-progress-stats{position:relative;z-index:1;display:flex;justify-content:space-between;margin-top:14px;align-items:baseline;}
+  .o90-progress-stats{display:flex;justify-content:space-between;margin-top:14px;align-items:baseline;}
   .o90-progress-amount{font-family:'Manrope',sans-serif;font-weight:800;font-size:19px;color:#fff;}
   .o90-progress-amount span{font-size:11px;color:#9FB6AC;font-weight:600;display:block;margin-top:2px;}
   .o90-progress-pct{font-family:'Manrope',sans-serif;font-weight:800;font-size:24px;color:var(--coral);}
   .o90-progress-updated{
-    position:relative;z-index:1;
     margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.12);
     font-size:11px;color:#9FB6AC;text-align:center;
   }
 
   /* Etapas */
-  .o90-stages{display:flex;flex-direction:column;gap:12px;margin-top:18px;position:relative;}
-  .o90-stages::before{
-    content:'';position:absolute;left:26px;top:20px;bottom:20px;width:2px;
-    background:linear-gradient(var(--verde),var(--line));z-index:0;
-  }
+  .o90-stages{display:flex;flex-direction:column;gap:12px;margin-top:18px;}
   .o90-stage{
-    position:relative;z-index:1;
     background:var(--card);border:1.5px solid var(--line);border-radius:16px;
     padding:16px 18px;display:flex;gap:14px;align-items:flex-start;
   }
-  .o90-stage-icon{
-    font-size:15px;flex-shrink:0;margin-top:1px;width:26px;height:26px;border-radius:50%;
-    display:flex;align-items:center;justify-content:center;background:var(--verde-soft);color:var(--verde);
-  }
-  .o90-stage.done .o90-stage-icon{background:var(--verde);color:#fff;}
-  .o90-stage.active .o90-stage-icon{background:var(--coral);color:#fff;}
+  .o90-stage-icon{font-size:18px;flex-shrink:0;margin-top:1px;}
   .o90-stage-title{font-family:'Manrope',sans-serif;font-weight:800;font-size:13.5px;color:var(--ink);}
   .o90-stage-desc{font-size:12px;color:var(--grey);margin-top:3px;line-height:1.5;}
   .o90-stage-status{font-size:11px;font-weight:700;margin-top:6px;}
@@ -133,7 +95,7 @@
   .o90-product-img{
     width:100%;max-width:260px;aspect-ratio:1000/1320;margin:18px auto 0;
     border-radius:20px;background:linear-gradient(135deg,#2A7057,#1F5F4A);
-    display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:12px;
+    background-size:cover;background-position:center;
     box-shadow:0 20px 40px -16px rgba(0,0,0,.35);
   }
   .o90-product-name{font-family:'Manrope',sans-serif;font-weight:800;font-size:17px;color:var(--verde-deep);margin-top:16px;}
@@ -146,24 +108,17 @@
   }
 
   /* Cómo lo vamos a lograr */
-  .o90-steps{display:flex;flex-direction:column;align-items:center;gap:2px;margin-top:18px;}
-  .o90-step{
-    text-align:center;background:var(--card);border:1.5px solid var(--line);border-radius:16px;
-    padding:14px 20px;width:100%;max-width:280px;
-  }
-  .o90-step-icon{
-    width:44px;height:44px;border-radius:50%;background:var(--verde-soft);
-    display:flex;align-items:center;justify-content:center;font-size:20px;margin:0 auto;
-  }
+  .o90-steps{display:flex;flex-direction:column;align-items:center;gap:4px;margin-top:18px;}
+  .o90-step{text-align:center;}
+  .o90-step-icon{font-size:26px;}
   .o90-step-label{
     font-family:'Manrope',sans-serif;font-weight:800;font-size:12px;color:var(--verde-deep);
-    text-transform:uppercase;letter-spacing:.03em;margin-top:8px;line-height:1.4;
+    text-transform:uppercase;letter-spacing:.03em;margin-top:6px;line-height:1.4;
   }
-  .o90-step-arrow{font-size:16px;color:var(--coral);margin:2px 0;}
+  .o90-step-arrow{font-size:16px;color:var(--coral);margin:4px 0;}
 
   /* Qué lograremos */
   .o90-result-card{
-    position:relative;overflow:hidden;
     background:var(--verde-deep);border-radius:20px;padding:22px;color:#fff;
   }
   .o90-result-item{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#DCE8E2;line-height:1.5;padding:8px 0;}
@@ -183,32 +138,33 @@
     padding:13px 26px;border-radius:100px;font-weight:700;font-size:13px;
     box-shadow:0 8px 18px -8px rgba(37,211,102,.5);
   }
-
-  footer{padding:44px 24px 60px;text-align:center;background:var(--cream);}
-  footer .word{font-family:'Manrope',sans-serif;font-weight:800;font-size:17px;color:var(--verde-deep);}
-  footer .credit{margin-top:18px;font-size:11.5px;color:#8B958E;}
+  @media (prefers-reduced-motion: reduce){
+    .o90-progress-fill{transition:none;}
+  }
 </style>
 </head>
 <body>
 
+<!-- 1. ENCABEZADO -->
 <div class="o90-header">
-  <a href="#" class="o90-back">← Volver</a>
+  <a href="index.html" class="o90-back">← Volver</a>
   <div class="o90-header-content">
     <span class="o90-eyebrow2">🎯 Objetivo 90</span>
     <h1 class="o90-header-title">3 meses. Una meta.<br>Un resultado real.</h1>
-    <span class="o90-day-badge">Día 34 de 90</span>
-    <div class="o90-paw-decor">🐾 🐾 🐾</div>
+    <span class="o90-day-badge" id="o90DayBadge">Día — de —</span>
   </div>
 </div>
 
 <div class="wrap">
 
+  <!-- 2. LA META ACTUAL -->
   <section class="o90-section" style="text-align:center;">
     <span class="o90-eyebrow3">Nuestra meta actual</span>
     <h2 class="o90-section-title">🐾 Hagamos posible una gran jornada de esterilización canina</h2>
     <p class="o90-text">Durante los próximos 90 días trabajaremos para reunir los recursos necesarios para hacer posible esta jornada.</p>
   </section>
 
+  <!-- 3. ¿POR QUÉ ESTA META? -->
   <section class="o90-section" style="padding-top:0;">
     <div class="o90-why-card">
       <span class="o90-eyebrow3">¿Por qué lo hacemos?</span>
@@ -216,20 +172,22 @@
     </div>
   </section>
 
+  <!-- 4. BARRA DE PROGRESO -->
   <section class="o90-section" style="padding-top:0;">
     <div class="o90-progress-card">
-      <div class="o90-progress-goal">Meta: <b>RD$300,000</b></div>
+      <div class="o90-progress-goal">Meta: <b id="o90MetaTotal">RD$ —</b></div>
       <div class="o90-progress-track">
-        <div class="o90-progress-fill" id="fillBar"></div>
+        <div class="o90-progress-fill" id="o90ProgressFill"></div>
       </div>
       <div class="o90-progress-stats">
-        <div class="o90-progress-amount">RD$185,000<span>Recaudados</span></div>
-        <div class="o90-progress-pct">62%</div>
+        <div class="o90-progress-amount" id="o90Recaudado">RD$ —<span>Recaudados</span></div>
+        <div class="o90-progress-pct" id="o90Pct">—%</div>
       </div>
-      <div class="o90-progress-updated">Última actualización: 15 de septiembre de 2026</div>
+      <div class="o90-progress-updated">Última actualización: <span id="o90Fecha">—</span></div>
     </div>
   </section>
 
+  <!-- 5. ETAPAS -->
   <section class="o90-section" style="padding-top:0;">
     <h2 class="o90-section-title" style="text-align:center;">El camino hacia la meta</h2>
     <div class="o90-stages">
@@ -260,29 +218,32 @@
     </div>
   </section>
 
+  <!-- 6. EL PRODUCTO -->
   <section class="o90-section" style="padding-top:0;">
     <div class="o90-product-card">
       <h2 class="o90-section-title">Este producto nos acerca a la meta</h2>
-      <div class="o90-product-img">Imagen 1000×1320</div>
-      <h3 class="o90-product-name">Nombre del producto</h3>
-      <p class="o90-product-desc">Cada compra registrada de este producto ayuda a avanzar hacia la meta actual de Objetivo 90.</p>
-      <a class="o90-product-btn" href="#">Ver dónde comprar →</a>
+      <div class="o90-product-img" id="o90ProductImg"></div>
+      <h3 class="o90-product-name" id="o90ProductName">Nombre del producto</h3>
+      <p class="o90-product-desc" id="o90ProductDesc">Cada compra registrada de este producto ayuda a avanzar hacia la meta actual de Objetivo 90.</p>
+      <a class="o90-product-btn" href="index.html" id="o90ProductBtn">Ver dónde comprar →</a>
     </div>
   </section>
 
+  <!-- 7. ¿CÓMO LO VAMOS A LOGRAR? -->
   <section class="o90-section" style="padding-top:0;">
     <h2 class="o90-section-title" style="text-align:center;">¿Cómo lo vamos a lograr?</h2>
     <div class="o90-steps">
-      <div class="o90-step"><div class="o90-step-icon">🛒</div><div class="o90-step-label">Compras el producto participante</div></div>
+      <div class="o90-step"><div class="o90-step-icon">🛒</div><div class="o90-step-label">Compras el producto<br>participante</div></div>
       <div class="o90-step-arrow">↓</div>
-      <div class="o90-step"><div class="o90-step-icon">🧾</div><div class="o90-step-label">La compra es registrada</div></div>
+      <div class="o90-step"><div class="o90-step-icon">🧾</div><div class="o90-step-label">La compra es<br>registrada</div></div>
       <div class="o90-step-arrow">↓</div>
-      <div class="o90-step"><div class="o90-step-icon">🤝</div><div class="o90-step-label">La empresa realiza su aporte</div></div>
+      <div class="o90-step"><div class="o90-step-icon">🤝</div><div class="o90-step-label">La empresa realiza<br>su aporte</div></div>
       <div class="o90-step-arrow">↓</div>
-      <div class="o90-step"><div class="o90-step-icon">🎯</div><div class="o90-step-label">Avanzamos hacia el objetivo</div></div>
+      <div class="o90-step"><div class="o90-step-icon">🎯</div><div class="o90-step-label">Avanzamos hacia<br>el objetivo</div></div>
     </div>
   </section>
 
+  <!-- 8. ¿QUÉ LOGRAREMOS? -->
   <section class="o90-section" style="padding-top:0;">
     <div class="o90-result-card">
       <h2 class="o90-section-title" style="color:#fff;text-align:center;">Cuando alcancemos la meta</h2>
@@ -294,21 +255,24 @@
     </div>
   </section>
 
+  <!-- 9. TRANSPARENCIA -->
   <section class="o90-section" style="padding-top:0;text-align:center;">
     <h2 class="o90-section-title">Podremos seguir el objetivo juntos</h2>
     <p class="o90-text">Actualizaremos periódicamente el progreso para que puedas ver cómo las compras participantes nos acercan a la meta.</p>
   </section>
 
+  <!-- 10. SI SUPERAMOS LA META -->
   <section class="o90-section" style="padding-top:0;">
     <div class="o90-overflow-note">
       Si superamos nuestra meta, el excedente será destinado a apoyar la causa o institución relacionada con este Objetivo 90.
     </div>
   </section>
 
+  <!-- 11. COMPARTIR -->
   <section class="o90-section o90-share">
     <h2 class="o90-section-title">❤️ Ayuda a que esta meta llegue más lejos</h2>
     <p class="o90-text">Quizás tú no necesites este producto hoy, pero alguien que conoces sí.</p>
-    <button class="o90-share-btn">🟢 Compartir por WhatsApp</button>
+    <button class="o90-share-btn" id="o90ShareBtn">🟢 Compartir por WhatsApp</button>
   </section>
 
   <footer>
@@ -319,7 +283,48 @@
 </div>
 
 <script>
-setTimeout(() => { document.getElementById('fillBar').style.width = '62%'; }, 300);
+// ✏️ EDITAR AQUÍ CADA VEZ QUE ACTUALICES EL PROGRESO DE OBJETIVO 90
+const objetivo90 = {
+  diaActual: 34,
+  diaTotal: 90,
+  metaTotal: 300000,      // en RD$
+  recaudado: 185000,      // en RD$
+  fechaActualizacion: "15 de septiembre de 2026",
+  producto: {
+    nombre: "Combo Solidario · 4 Botellas de Agua",
+    imagen: "images/producto-agua.png"
+  }
+};
+
+document.getElementById('o90DayBadge').textContent = `Día ${objetivo90.diaActual} de ${objetivo90.diaTotal}`;
+document.getElementById('o90MetaTotal').textContent = `RD$${objetivo90.metaTotal.toLocaleString('es-DO')}`;
+document.getElementById('o90Recaudado').innerHTML = `RD$${objetivo90.recaudado.toLocaleString('es-DO')}<span>Recaudados</span>`;
+document.getElementById('o90Fecha').textContent = objetivo90.fechaActualizacion;
+document.getElementById('o90ProductName').textContent = objetivo90.producto.nombre;
+document.getElementById('o90ProductImg').style.backgroundImage = `url('${objetivo90.producto.imagen}')`;
+
+// El porcentaje SIEMPRE se calcula solo — nunca se edita a mano, así nunca queda desincronizado
+const pct = Math.min(100, Math.round((objetivo90.recaudado / objetivo90.metaTotal) * 100));
+document.getElementById('o90Pct').textContent = `${pct}%`;
+
+// La barra se llena con una animación suave al entrar en pantalla
+const progressFill = document.getElementById('o90ProgressFill');
+const progressObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      progressFill.style.width = pct + '%';
+      progressObserver.disconnect();
+    }
+  });
+}, { threshold: 0.4 });
+progressObserver.observe(progressFill);
+
+// Compartir por WhatsApp
+document.getElementById('o90ShareBtn').addEventListener('click', () => {
+  const shareUrl = window.location.origin + window.location.pathname;
+  const message = `🎯 Objetivo 90 — Causa30\n\nHagamos posible una gran jornada de esterilización canina.\n\nQuizás tú no necesites este producto hoy, pero alguien que conoces sí. Cada compra nos acerca a la meta.\n\nDescúbrelo aquí:\n${shareUrl}`;
+  window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+});
 </script>
 </body>
 </html>
