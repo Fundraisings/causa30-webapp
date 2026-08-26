@@ -240,15 +240,12 @@
   }
   .sec-title{font-size:26px;font-weight:800;color:var(--verde-deep);line-height:1.15;}
 
-  /* ---------- COMO FUNCIONA ---------- */
+  /* ---------- COMO FUNCIONA (fusionado con el video) ---------- */
   .funciona{background:var(--verde-deep);color:#fff;border-radius:32px;margin:0 16px;padding:44px 24px 40px;}
   .funciona .eyebrow{color:#8FC4AC;}
   .funciona .sec-title{color:#fff;}
-  .funciona-sub{font-size:13px;color:#DCE8E2;margin-top:8px;line-height:1.5;}
-  .funciona-toggle{
-    margin-top:18px;display:inline-flex;align-items:center;gap:8px;
-    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);
-    color:#fff;padding:11px 20px;border-radius:100px;font-size:12.5px;font-weight:700;
+  .funciona-main-title{
+    font-size:21px;line-height:1.35;color:#fff;text-transform:uppercase;letter-spacing:.01em;
   }
 
   .ticker-wrap{
@@ -257,10 +254,24 @@
   }
   .ticker-wrap.open{max-height:260px;opacity:1;margin-top:20px;}
 
-  .ticker-controls{display:flex;justify-content:space-between;margin-bottom:12px;}
+  .ticker-controls{display:flex;justify-content:space-between;margin-top:14px;}
   .ticker-pause,.funciona-hide{
     background:none;border:none;color:#8FC4AC;font-size:11.5px;font-weight:700;
     display:flex;align-items:center;gap:4px;
+  }
+
+  .funciona-show-again{
+    margin-top:18px;display:none;align-items:center;gap:6px;
+    background:none;border:1px solid rgba(255,255,255,.25);color:#DCE8E2;
+    padding:9px 18px;border-radius:100px;font-size:12px;font-weight:700;
+  }
+  .funciona-show-again.visible{display:inline-flex;}
+
+  .funciona-video-btn{
+    margin-top:22px;display:inline-flex;align-items:center;gap:8px;
+    background:var(--coral);color:#fff;
+    padding:13px 26px;border-radius:100px;font-size:13px;font-weight:700;
+    box-shadow:0 10px 22px -10px rgba(232,102,74,.5);
   }
 
   .flow-ticker{
@@ -466,20 +477,7 @@
   .status-pill::before{content:'';width:6px;height:6px;border-radius:50%;background:#8FC4AC;}
   .receipt-link{display:block;text-align:center;margin-top:20px;font-size:12.5px;font-weight:700;color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:100px;padding:12px;}
 
-  /* ---------- VIDEO: BANNER COMPACTO + LIGHTBOX ---------- */
-  .video-banner{
-    width:100%;display:flex;align-items:center;gap:14px;
-    background:var(--card);border:1.5px solid var(--line);
-    border-radius:20px;padding:14px 18px;text-align:left;
-  }
-  .vb-icon{
-    width:42px;height:42px;border-radius:50%;background:var(--coral);color:#fff;
-    display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;
-    box-shadow:0 6px 16px -6px rgba(232,102,74,.6);
-  }
-  .vb-title{font-size:13.5px;font-weight:700;color:var(--ink);}
-  .vb-sub{font-size:11.5px;color:var(--grey);margin-top:2px;}
-
+  /* ---------- VIDEO: LIGHTBOX (compartido por todos los video-trigger) ---------- */
   .video-lightbox{
     position:fixed;inset:0;background:#000;z-index:600;
     display:none;align-items:center;justify-content:center;
@@ -497,6 +495,45 @@
     position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
     z-index:201;background:rgba(255,255,255,.15);color:#fff;
     padding:11px 24px;border-radius:100px;font-size:12.5px;font-weight:700;
+  }
+
+  /* ---------- OBJETIVO 90 ---------- */
+  .obj90-card{
+    background:radial-gradient(ellipse at top,#1A4538 0%,var(--verde-deep) 60%,#0D251F 100%);
+    border-radius:28px;padding:30px 26px 32px;text-align:center;
+  }
+  .obj90-eyebrow{
+    display:inline-flex;align-items:center;gap:6px;
+    background:rgba(232,102,74,.15);color:var(--coral);
+    font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+    padding:6px 14px;border-radius:100px;
+  }
+  .obj90-video-trigger{
+    position:relative;display:block;width:100%;aspect-ratio:16/9;margin-top:20px;
+    border-radius:20px;overflow:hidden;background-size:cover;background-position:center;
+    background-color:#1F5F4A;box-shadow:0 20px 40px -16px rgba(0,0,0,.4);
+  }
+  .obj90-play-icon{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.92);
+    display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--verde-deep);
+    box-shadow:0 8px 20px -6px rgba(0,0,0,.5);
+  }
+  .obj90-video-label{
+    position:absolute;bottom:10px;left:0;right:0;text-align:center;
+    font-size:10.5px;color:rgba(255,255,255,.85);font-weight:600;
+  }
+  .obj90-text-link{display:block;margin-top:20px;}
+  .obj90-headline{
+    font-family:'Manrope',sans-serif;font-weight:800;font-size:19px;color:#fff;
+    line-height:1.3;padding:0 6px;
+  }
+  .obj90-sub{
+    font-size:12.5px;color:#C7D6CE;line-height:1.55;margin-top:10px;padding:0 8px;
+  }
+  .obj90-cta{
+    display:inline-flex;align-items:center;gap:6px;margin-top:14px;
+    font-size:13px;font-weight:700;color:var(--coral);
   }
 
   /* ---------- CINTILLO OSCURO: SUMAR A CAUSA30 (combinado) ---------- */
@@ -617,12 +654,7 @@
   .ads-dots .dot{width:6px;height:6px;border-radius:50%;background:var(--line);}
   .ads-dots .dot.active{background:var(--coral);width:18px;border-radius:4px;}
 
-  /* ---------- DESCUBRE MÁS (interludio de descubrimiento) ---------- */
-  .discover-cta{
-    display:block;width:100%;text-align:center;
-    background:transparent;border:none;padding:26px 20px;
-    position:relative;
-  }
+  /* ---------- DESCUBRE MÁS (texto rotativo + imagen visible rotando) ---------- */
   .discover-intro{
     display:block;font-size:11px;font-weight:600;color:var(--grey);
     text-transform:uppercase;letter-spacing:.06em;
@@ -637,20 +669,32 @@
   }
   .discover-dynamic.fade-out{opacity:0;transform:translateY(-8px);}
   .discover-dynamic.fade-in-start{opacity:0;transform:translateY(8px);}
-  .discover-action{
-    display:inline-flex;align-items:center;gap:6px;margin-top:14px;
-    font-size:12.5px;font-weight:700;color:var(--coral-deep);
-  }
-  .discover-arrow{display:inline-block;transition:transform .3s ease;}
-  .discover-cta:hover .discover-arrow{transform:translateX(3px);}
-  .discover-line{
-    position:absolute;bottom:6px;left:50%;width:56px;height:2px;
-    background:linear-gradient(90deg,transparent,var(--coral),transparent);
-    transform:translateX(-50%);opacity:.55;
-  }
   @media (prefers-reduced-motion: reduce){
     .discover-dynamic{transition:none;}
   }
+
+  .ad-rotator{
+    position:relative;width:100%;max-width:260px;aspect-ratio:1000/1320;
+    margin:20px auto 0;border-radius:16px;overflow:hidden;
+    box-shadow:0 20px 40px -16px rgba(0,0,0,.35);cursor:pointer;
+  }
+  .ad-slide-img{
+    position:absolute;inset:0;background-size:cover;background-position:center;
+    opacity:0;transition:opacity .5s ease;
+  }
+  .ad-slide-img.active{opacity:1;}
+  .ad-caption{margin-top:14px;max-width:280px;margin-left:auto;margin-right:auto;}
+  .ad-caption-title{
+    font-family:'Manrope',sans-serif;font-weight:800;font-size:14px;color:var(--verde-deep);
+    opacity:0;transform:translateY(6px);transition:opacity .4s ease,transform .4s ease;
+  }
+  .ad-caption-title.active{opacity:1;transform:translateY(0);}
+  .ad-caption-text{
+    font-size:12px;color:var(--grey);line-height:1.5;margin-top:4px;
+    opacity:0;transform:translateY(6px);transition:opacity .4s ease .05s,transform .4s ease .05s;
+  }
+  .ad-caption-text.active{opacity:1;transform:translateY(0);}
+  .ad-tap-hint{margin-top:12px;font-size:10.5px;color:var(--grey);font-style:italic;}
 
   /* ---------- LIBRO DEL MES ---------- */
   .libro-mes{
@@ -798,9 +842,9 @@
   .footer-social-icon{
     display:flex;align-items:center;justify-content:center;
     width:36px;height:36px;border-radius:50%;
-    background:var(--verde-deep);color:#fff;
-    font-size:10.5px;font-weight:800;letter-spacing:.02em;
+    background:var(--card);border:1px solid var(--line);
   }
+  .footer-social-icon img{width:20px;height:20px;object-fit:contain;}
   footer .links{margin-top:14px;font-size:12px;color:var(--grey);display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
   footer .credit{margin-top:18px;font-size:11.5px;color:#8B958E;}
   footer .credit a{color:var(--verde-deep);font-weight:600;text-decoration:underline;}
