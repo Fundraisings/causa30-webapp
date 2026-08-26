@@ -50,11 +50,6 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-// CAUSA30 DESCUBRE — el banner visible dispara el visor de Publuu (elemento oculto)
-document.getElementById('magCardVisible').addEventListener('click', () => {
-  document.getElementById('publuuHiddenTrigger').click();
-});
-
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xnpavpkp';
 
 const products = [
@@ -168,7 +163,7 @@ carousel.addEventListener('pointerleave', () => {
   if(isDragging){ isDragging = false; startAutoplay(); }
 });
 
-// ¿CÓMO FUNCIONA? — cinta animada nativa (sin imágenes)
+// ¿CÓMO FUNCIONA? — cinta animada nativa (sin imágenes), fusionada con el acceso al video
 const flowSteps = [
   {num:"01", title:"Descubre", desc:"Encuentra productos y promociones que te interesan."},
   {num:"02", title:"Elige", desc:"Compra directamente con la empresa que ofrece la promoción."},
@@ -192,21 +187,17 @@ function renderFlowStep(s){
 flowTrack.innerHTML = flowSteps.map(renderFlowStep).join('') + flowSteps.map(renderFlowStep).join('');
 
 const tickerWrap = document.getElementById('tickerWrap');
-const funcionaToggle = document.getElementById('funcionaToggle');
-const funcionaToggleText = document.getElementById('funcionaToggleText');
-const funcionaToggleIcon = document.getElementById('funcionaToggleIcon');
 const funcionaHide = document.getElementById('funcionaHide');
+const funcionaShowAgain = document.getElementById('funcionaShowAgain');
 const tickerPause = document.getElementById('tickerPause');
 
-funcionaToggle.addEventListener('click', () => {
-  tickerWrap.classList.add('open');
-  funcionaToggleText.textContent = 'Cinta activa';
-  funcionaToggleIcon.textContent = '▶';
-});
 funcionaHide.addEventListener('click', () => {
   tickerWrap.classList.remove('open');
-  funcionaToggleText.textContent = 'Ver cómo funciona';
-  funcionaToggleIcon.textContent = '↓';
+  funcionaShowAgain.classList.add('visible');
+});
+funcionaShowAgain.addEventListener('click', () => {
+  tickerWrap.classList.add('open');
+  funcionaShowAgain.classList.remove('visible');
 });
 tickerPause.addEventListener('click', () => {
   const paused = flowTrack.classList.toggle('paused');
@@ -397,9 +388,8 @@ detailPhoto.addEventListener('pointerleave', () => {
 });
 
 // VIDEO — lightbox reutilizable con YouTube, a pantalla completa
-// Los 3 videos (intro, banner frontal, patrocinador) son independientes:
-// cada botón con class="video-trigger" puede tener su propio data-yt-id en el HTML.
-// Si un botón no tiene data-yt-id, usa este video por defecto:
+// Cada botón con class="video-trigger" puede tener su propio data-yt-id en el HTML (intro, patrocinador, cómo funciona, Objetivo 90).
+// Si no tiene data-yt-id, usa este video por defecto:
 const YOUTUBE_VIDEO_ID = 'IHvtin5GeK8';
 
 const videoLightbox = document.getElementById('videoLightbox');
@@ -437,7 +427,7 @@ document.querySelectorAll('[data-close]').forEach(btn=>{
   m.addEventListener('click', (e)=>{ if(e.target === m) closeModal(m); });
 });
 
-// FORMULARIOS: Sugerir producto + Mi empresa quiere participar
+// FORMULARIOS: Sugerir causa + Sumar mi empresa
 const suggestModal = document.getElementById('suggestModal');
 const bizModal = document.getElementById('bizModal');
 
@@ -463,7 +453,7 @@ document.getElementById('suggestForm').addEventListener('submit', async (e) => {
     await fetch(FORMSPREE_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ tipo: 'Sugerencia de producto', producto })
+      body: JSON.stringify({ tipo: 'Sugerencia de causa', producto })
     });
   } catch (err) {
     console.error('Error enviando sugerencia:', err);
@@ -599,7 +589,7 @@ promoModal.querySelectorAll('[data-close]').forEach(btn => {
   });
 });
 
-// GALERÍA DE PROMOCIONES — navegable a propósito, vía botón "Ver promociones activas"
+// GALERÍA DE PROMOCIONES — navegable, se abre al tocar la imagen que rota en "Descubre más"
 const adsModal = document.getElementById('adsModal');
 let adsIndex = 0;
 
@@ -608,17 +598,17 @@ function renderAds(){
   document.getElementById('adsArt').style.backgroundImage = `url('${ad.img}')`;
   document.getElementById('adsTitle').textContent = ad.title;
   document.getElementById('adsText').textContent = ad.text;
-  const dotsWrap = document.getElementById('adsDots');
-  dotsWrap.innerHTML = '';
+  const dotsWrap2 = document.getElementById('adsDots');
+  dotsWrap2.innerHTML = '';
   ads.forEach((_, i) => {
     const d = document.createElement('div');
     d.className = 'dot' + (i === adsIndex ? ' active' : '');
-    dotsWrap.appendChild(d);
+    dotsWrap2.appendChild(d);
   });
 }
 
 document.getElementById('adsTrigger').addEventListener('click', () => {
-  adsIndex = 0;
+  adsIndex = mainAdIndex;
   renderAds();
   openModal(adsModal);
 });
@@ -638,7 +628,7 @@ document.getElementById('adsGo').addEventListener('click', () => {
 });
 adsModal.addEventListener('click', (e) => { if(e.target === adsModal) closeModal(adsModal); });
 
-// DESCUBRE MÁS — ciclo de frases dinámicas, se pausa fuera de pantalla
+// DESCUBRE MÁS — texto rotativo + las 3 imágenes de anuncio VISIBLES, rotando solas cada 4s, con texto sincronizado debajo
 const discoverPhrases = ["una nueva marca.", "una oferta diferente.", "algo que necesitas.", "una compra con doble valor."];
 const discoverDynamic = document.getElementById('discoverDynamic');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -671,3 +661,35 @@ if(!prefersReducedMotion && discoverDynamic){
   }, { threshold: 0.3 });
   discoverObserver.observe(document.getElementById('adsTrigger'));
 }
+
+// Imágenes de anuncios visibles, rotando solas (reutiliza el mismo array "ads" de arriba)
+const adSlideImgs = [
+  document.getElementById('adSlideImg0'),
+  document.getElementById('adSlideImg1'),
+  document.getElementById('adSlideImg2')
+];
+const adCaptionTitleMain = document.getElementById('adCaptionTitle');
+const adCaptionTextMain = document.getElementById('adCaptionText');
+let mainAdIndex = 0;
+
+adSlideImgs.forEach((el, i) => {
+  el.style.backgroundImage = `url('${ads[i].img}')`;
+});
+adCaptionTitleMain.textContent = ads[0].title;
+adCaptionTextMain.textContent = ads[0].text;
+adCaptionTitleMain.classList.add('active');
+adCaptionTextMain.classList.add('active');
+
+setInterval(() => {
+  adSlideImgs[mainAdIndex].classList.remove('active');
+  adCaptionTitleMain.classList.remove('active');
+  adCaptionTextMain.classList.remove('active');
+  mainAdIndex = (mainAdIndex + 1) % adSlideImgs.length;
+  adSlideImgs[mainAdIndex].classList.add('active');
+  setTimeout(() => {
+    adCaptionTitleMain.textContent = ads[mainAdIndex].title;
+    adCaptionTextMain.textContent = ads[mainAdIndex].text;
+    adCaptionTitleMain.classList.add('active');
+    adCaptionTextMain.classList.add('active');
+  }, 150);
+}, 4000);
