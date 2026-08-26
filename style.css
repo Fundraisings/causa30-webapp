@@ -500,7 +500,7 @@
   /* ---------- OBJETIVO 90 ---------- */
   .obj90-card{
     background:radial-gradient(ellipse at top,#1A4538 0%,var(--verde-deep) 60%,#0D251F 100%);
-    border-radius:28px;padding:30px 26px 32px;text-align:center;
+    border-radius:28px;padding:30px 26px 32px;
   }
   .obj90-eyebrow-row{
   position:relative;height:30px;display:flex;align-items:center;
