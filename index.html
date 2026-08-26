@@ -74,12 +74,24 @@
     </div>
   </div>
 
-  <!-- VIDEO EXPLICATIVO (banner) -->
-  <section style="padding-top:16px;padding-bottom:0;">
-    <div class="banner-shadow">
-      <button class="banner-link video-trigger" id="videoBannerBtn">
-        <img src="images/videobanner.png" alt="Ver video de presentación">
-      </button>
+  <!-- ¿CÓMO FUNCIONA? — sección fusionada: cinta + acceso al video (reemplaza el banner de video anterior) -->
+  <section style="padding-top:16px;">
+    <div class="funciona" style="text-align:center;">
+      <h2 class="sec-title funciona-main-title">Descubre cómo tu compra puede apoyar una causa</h2>
+
+      <div class="ticker-wrap open" id="tickerWrap">
+        <div class="flow-ticker">
+          <div class="flow-track" id="flowTrack"></div>
+        </div>
+        <div class="ticker-controls">
+          <button class="ticker-pause" id="tickerPause">⏸ Pausar</button>
+          <button class="funciona-hide" id="funcionaHide">Ocultar ↑</button>
+        </div>
+      </div>
+
+      <button class="funciona-show-again" id="funcionaShowAgain">Leer cómo funciona ↓</button>
+
+      <button class="funciona-video-btn video-trigger" id="funcionaVideoBtn">▶ Ver cómo funciona</button>
     </div>
   </section>
 
@@ -89,39 +101,17 @@
     <p class="sponsor-thanks">Mira cómo Ramoncito Racing Team apoya la causa de este mes →</p>
     <div class="banner-shadow">
       <button class="banner-link video-trigger" id="sponsorBtn" data-yt-id="JHbT0u5wxnY">
-        <img src="images/bannerp2.png" alt="Patrocinador del mes">
+        <img src="images/bannerpremium2.png" alt="Patrocinador del mes">
       </button>
     </div>
     <p class="sponsor-caption">Pasión, velocidad y rendimiento garantizado. Expertos en preparación y mantenimiento automotriz. 📷 @ramoncitoracingteam</p>
-  </section>
-
-  <!-- COMO FUNCIONA -->
-  <section style="padding-top:16px;">
-    <div class="funciona" style="text-align:center;">
-      <h2 class="sec-title">¿Cómo funciona Causa30?</h2>
-      <p class="funciona-sub">Descubre cómo tu compra puede apoyar una causa.</p>
-
-      <button class="funciona-toggle" id="funcionaToggle">
-        <span id="funcionaToggleText">Ver cómo funciona</span> <span id="funcionaToggleIcon">↓</span>
-      </button>
-
-      <div class="ticker-wrap" id="tickerWrap">
-        <div class="ticker-controls">
-          <button class="ticker-pause" id="tickerPause">⏸ Pausar</button>
-          <button class="funciona-hide" id="funcionaHide">Ocultar ↑</button>
-        </div>
-        <div class="flow-ticker">
-          <div class="flow-track" id="flowTrack"></div>
-        </div>
-      </div>
-    </div>
   </section>
 
   <!-- ENTRADA OCULTA: FUNDACION + MASCOTAS -->
   <section style="padding-top:0;">
     <div class="banner-shadow">
       <button class="banner-link" id="causeChip">
-        <img src="images/bannerconocer3.png" alt="Conoce la fundación que estamos apoyando">
+        <img src="images/bannerconocer2.png" alt="Conoce la fundación que estamos apoyando">
       </button>
     </div>
   </section>
@@ -133,27 +123,43 @@
     <button class="receipt-btn-standalone" id="receiptBtn">Ver comprobante →</button>
   </section>
 
-  <!-- CAUSA30 DESCUBRE (revista, abre popup de Publuu) -->
-  <section style="padding-top:12px;padding-bottom:28px;">
-    <div class="banner-shadow">
-      <button class="banner-link" id="magCardVisible">
-        <img src="images/nbcausa30L4.png" alt="Causa30 Descubre">
+  <!-- OBJETIVO 90 (bloque de entrada — la página completa vive en objetivo90.html) -->
+  <section style="padding-top:12px;">
+    <div class="obj90-card">
+      <span class="obj90-eyebrow">🎯 Objetivo 90</span>
+
+      <button class="obj90-video-trigger video-trigger" id="obj90VideoBtn" data-yt-id="ID_DEL_VIDEO_OBJETIVO90" style="background-image:url('images/objetivo90-portada.jpg');">
+        <span class="obj90-play-icon">▶</span>
+        <span class="obj90-video-label">Toca para ver el video</span>
       </button>
+
+      <a class="obj90-text-link" href="objetivo90.html">
+        <h2 class="obj90-headline">Hagamos posible una gran jornada de esterilización canina.</h2>
+        <p class="obj90-sub">Para ayudar a controlar la sobrepoblación y mejorar la vida de cientos de animales.</p>
+        <span class="obj90-cta">Descubre cómo podemos lograrlo →</span>
+      </a>
     </div>
   </section>
-  <!-- Disparador oculto de Publuu — no se muestra, solo abre su visor -->
-  <a href="https://publuu.com/flip-book/1163684/2588865/page/1?cover" class="show-publuu-viewer" id="publuuHiddenTrigger" style="position:absolute;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none;">Revista</a>
 
-  <!-- DESCUBRE MÁS (interludio de descubrimiento) -->
+  <!-- DESCUBRE MÁS (texto rotativo + 3 imágenes visibles rotando, con texto sincronizado debajo) -->
   <section style="padding-top:0;">
-    <button class="discover-cta" id="adsTrigger">
+    <div style="text-align:center;">
       <span class="discover-intro">Hoy podrías descubrir...</span>
       <div class="discover-dynamic-wrap">
         <span class="discover-dynamic" id="discoverDynamic">una nueva marca.</span>
       </div>
-      <span class="discover-action">Descubre qué hay para ti <span class="discover-arrow">→</span></span>
-      <span class="discover-line"></span>
-    </button>
+
+      <div class="ad-rotator" id="adsTrigger">
+        <div class="ad-slide-img active" id="adSlideImg0"></div>
+        <div class="ad-slide-img" id="adSlideImg1"></div>
+        <div class="ad-slide-img" id="adSlideImg2"></div>
+      </div>
+      <div class="ad-caption">
+        <div class="ad-caption-title" id="adCaptionTitle">—</div>
+        <div class="ad-caption-text" id="adCaptionText">—</div>
+      </div>
+      <p class="ad-tap-hint">Toca la imagen para ver más</p>
+    </div>
   </section>
 
   <!-- LIBRO DEL MES -->
@@ -212,9 +218,9 @@
     </div>
     <p class="footer-social-text">Síguenos @somoscausa30 — novedades y sorpresas que vienen pronto</p>
     <div class="footer-social">
-      <a class="footer-social-icon" href="https://instagram.com/somoscausa30" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
-      <a class="footer-social-icon" href="https://tiktok.com/@somoscausa30" target="_blank" rel="noopener" aria-label="TikTok">TT</a>
-      <a class="footer-social-icon" href="https://facebook.com/somoscausa30" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+      <a class="footer-social-icon" href="https://instagram.com/somoscausa30" target="_blank" rel="noopener" aria-label="Instagram"><img src="images/icon-instagram.png" alt="Instagram"></a>
+      <a class="footer-social-icon" href="https://tiktok.com/@somoscausa30" target="_blank" rel="noopener" aria-label="TikTok"><img src="images/icon-tiktok.png" alt="TikTok"></a>
+      <a class="footer-social-icon" href="https://facebook.com/somoscausa30" target="_blank" rel="noopener" aria-label="Facebook"><img src="images/icon-facebook.png" alt="Facebook"></a>
     </div>
     <div class="links"><a>Privacidad</a><a>Términos</a><a>Cookies</a></div>
     <div class="credit">Causa30 — powered by Altrua</div>
@@ -426,7 +432,6 @@
   <p class="share-anim-caption">Una compra puede ayudar.<br>Compartir puede multiplicarla.</p>
 </div>
 
-<script src="https://publuu.com/account/js/embed-viewer.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
