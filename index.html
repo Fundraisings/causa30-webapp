@@ -184,37 +184,39 @@
     </div>
   </section>
 
-  <!-- LIBRO DEL MES -->
-  <section style="padding-top:0;">
-    <div class="libro-mes" style="text-align:center;">
-      <h2 class="sec-title">Lectura con Propósito</h2>
-      <p class="libro-sub">Aprende algo nuevo y apoya una causa al mismo tiempo.</p>
-      <p class="libro-hint">Toca para descubrir el libro seleccionado este mes.</p>
+ <!-- LEGADO DOMINICANO -->
+<section style="padding-top:0;">
+  <div class="libro-mes" style="text-align:center;">
+    <h2 class="sec-title">Legado Dominicano 🇩🇴</h2>
+    <p class="libro-sub">Aprende nuestra historia y apoya una causa al mismo tiempo.</p>
+    <p class="libro-hint">Toca para descubrir el libro seleccionado este mes.</p>
 
-      <button class="libro-toggle" id="libroToggle">
-        <span id="libroToggleText">✦ Ver libro y apoyar</span> <span id="libroToggleIcon">↓</span>
-      </button>
+    <button class="libro-toggle" id="libroToggle">
+      <span id="libroToggleText">✦ Ver libro y apoyar</span> <span id="libroToggleIcon">↓</span>
+    </button>
 
-      <div class="libro-reveal" id="libroReveal">
-        <div class="libro-flip" id="libroFlip">
-          <div class="libro-flip-inner">
-            <div class="libro-flip-front">
-              <img src="images/libromesc230.png" alt="Libro del mes" class="libro-cover">
-              <div class="libro-tap-hint">Clic en la imagen para ver dónde comprarlo</div>
-            </div>
-            <div class="libro-flip-back" id="libroFlipBack">
-              <div class="libro-where-title">¿Dónde comprarlo?</div>
-              <div class="libro-where-list" id="libroWhereList"></div>
-            </div>
+    <div class="libro-reveal" id="libroReveal">
+      <div class="libro-flip" id="libroFlip">
+        <div class="libro-flip-inner">
+          <div class="libro-flip-front">
+            <video class="libro-cover" autoplay muted loop playsinline>
+              <source src="images/legado-video.mp4" type="video/mp4">
+            </video>
+            <div class="libro-tap-hint">Toca para ver dónde comprarlo</div>
+          </div>
+          <div class="libro-flip-back" id="libroFlipBack">
+            <div class="libro-where-title">¿Dónde comprarlo?</div>
+            <div class="libro-where-list" id="libroWhereList"></div>
           </div>
         </div>
-        <p class="libro-support">Con la compra de este libro apoyas a:</p>
-        <h3 class="libro-fund-name" id="libroFundName">—</h3>
-        <p class="libro-fund-desc" id="libroFundDesc">—</p>
-        <a class="libro-fund-link" id="libroFundLink" href="#" target="_blank" rel="noopener">Conocer la causa →</a>
       </div>
+      <p class="libro-support">Con la compra de este libro apoyas a:</p>
+      <h3 class="libro-fund-name" id="libroFundName">—</h3>
+      <p class="libro-fund-desc" id="libroFundDesc">—</p>
+      <a class="libro-fund-link" id="libroFundLink" href="#" target="_blank" rel="noopener">Conocer la causa →</a>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- SUMAR A CAUSA30 (compacto, al final) -->
   <section style="padding-top:0;">
