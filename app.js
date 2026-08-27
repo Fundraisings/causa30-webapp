@@ -629,7 +629,7 @@ document.getElementById('adsGo').addEventListener('click', () => {
 adsModal.addEventListener('click', (e) => { if(e.target === adsModal) closeModal(adsModal); });
 
 // DESCUBRE MÁS — texto rotativo + las 3 imágenes de anuncio VISIBLES, rotando solas cada 4s, con texto sincronizado debajo
-const discoverPhrases = ["una nueva marca.", "una oferta diferente.", "algo que necesitas.", "una compra con doble valor."];
+const discoverPhrases = ["una nueva marca.", "una oferta diferente.", "algo que necesitas.", "una compra con doble propósito."];
 const discoverDynamic = document.getElementById('discoverDynamic');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 let discoverIndex = 0;
