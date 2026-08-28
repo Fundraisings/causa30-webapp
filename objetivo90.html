@@ -43,6 +43,24 @@
   }
   .o90-text{font-size:13.5px;color:var(--grey);line-height:1.6;margin-top:10px;}
 
+  .o90-stamp-box{
+    position:relative;width:100%;height:56px;margin-top:16px;
+    border:2px dashed var(--line);border-radius:16px;
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+  }
+  .o90-stamp-phrase{
+    position:absolute;font-family:'Manrope',sans-serif;font-weight:800;font-size:17px;
+    color:var(--coral-deep);opacity:0;transform:scale(2) rotate(-8deg);
+  }
+  .o90-stamp-phrase.stamping{ animation:o90StampCycle 2.2s ease-in-out; }
+  @keyframes o90StampCycle{
+    0%{opacity:0;transform:scale(2) rotate(-8deg);}
+    15%{opacity:1;transform:scale(.95) rotate(2deg);}
+    25%{opacity:1;transform:scale(1) rotate(0deg);}
+    80%{opacity:1;transform:scale(1) rotate(0deg);}
+    100%{opacity:0;transform:scale(.9) rotate(0deg);}
+  }
+
   .o90-progress-card{
     position:relative;overflow:hidden;
     background:var(--verde-deep);border-radius:24px;padding:26px 22px;color:#fff;
@@ -71,61 +89,75 @@
     font-size:11px;color:#9FB6AC;text-align:center;
   }
 
-  .o90-stages{display:flex;flex-direction:column;gap:12px;margin-top:18px;position:relative;}
-  .o90-stages::before{
-    content:'';position:absolute;left:26px;top:20px;bottom:20px;width:2px;
-    background:linear-gradient(var(--verde),var(--line));z-index:0;
+  .o90-stages-section{background:var(--verde-deep);}
+  .o90-stages-section .o90-section-title{color:#fff;text-align:center;}
+  .o90-stages-ticker{margin-top:24px;overflow:hidden;position:relative;padding:24px 0;}
+  .o90-stages-ticker::before,.o90-stages-ticker::after{
+    content:'';position:absolute;top:0;bottom:0;width:40px;z-index:3;pointer-events:none;
   }
-  .o90-stage{
-    position:relative;z-index:1;
-    background:var(--card);border:1.5px solid var(--line);border-radius:16px;
-    padding:16px 18px;display:flex;gap:14px;align-items:flex-start;
+  .o90-stages-ticker::before{left:0;background:linear-gradient(90deg,var(--verde-deep),transparent);}
+  .o90-stages-ticker::after{right:0;background:linear-gradient(-90deg,var(--verde-deep),transparent);}
+  .o90-stages-track{display:flex;gap:20px;width:max-content;animation:o90StagesScroll 16s linear infinite;}
+  .o90-stage-card{
+    position:relative;width:190px;background:#173D31;border-radius:20px;
+    padding:20px 18px;text-align:left;
   }
+  .o90-stage-card.done{box-shadow:0 0 30px 6px rgba(143,196,172,.7);}
+  .o90-stage-card.active{box-shadow:0 0 30px 6px rgba(232,102,74,.65);}
+  .o90-stage-card.pending{box-shadow:0 0 18px 3px rgba(255,255,255,.12);opacity:.75;}
   .o90-stage-icon{
-    font-size:15px;flex-shrink:0;margin-top:1px;width:26px;height:26px;border-radius:50%;
-    display:flex;align-items:center;justify-content:center;background:var(--verde-soft);color:var(--verde);
+    width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:800;color:#fff;
   }
-  .o90-stage.done .o90-stage-icon{background:var(--verde);color:#fff;}
-  .o90-stage.active .o90-stage-icon{background:var(--coral);color:#fff;}
-  .o90-stage-title{font-family:'Manrope',sans-serif;font-weight:800;font-size:13.5px;color:var(--ink);}
-  .o90-stage-desc{font-size:12px;color:var(--grey);margin-top:3px;line-height:1.5;}
-  .o90-stage-status{font-size:11px;font-weight:700;margin-top:6px;}
-  .o90-stage.done .o90-stage-status{color:#1F5F4A;}
-  .o90-stage.active .o90-stage-status{color:var(--coral-deep);}
-  .o90-stage.pending{opacity:.55;}
-  .o90-stage.pending .o90-stage-status{color:var(--grey);}
+  .o90-stage-card.done .o90-stage-icon{background:#8FC4AC;color:#12332A;}
+  .o90-stage-card.active .o90-stage-icon{background:var(--coral);}
+  .o90-stage-card.pending .o90-stage-icon{background:rgba(255,255,255,.15);}
+  .o90-stage-title{font-family:'Manrope',sans-serif;font-weight:800;font-size:13px;color:#fff;margin-top:10px;}
+  .o90-stage-desc{font-size:11px;color:#C7D6CE;margin-top:4px;line-height:1.5;}
+  .o90-stage-status{font-size:10.5px;font-weight:700;margin-top:8px;}
+  .o90-stage-card.done .o90-stage-status{color:#8FC4AC;}
+  .o90-stage-card.active .o90-stage-status{color:#F0A190;}
+  .o90-stage-card.pending .o90-stage-status{color:rgba(255,255,255,.5);}
+  @keyframes o90StagesScroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
 
   .o90-prod-tag{
     display:block;margin-top:6px;font-size:10.5px;font-weight:800;color:var(--coral-deep);
     text-transform:uppercase;letter-spacing:.06em;
   }
-  .o90-prod-carousel{
-    position:relative;height:320px;margin-top:24px;
+  .o90-g-carousel{
+    position:relative;height:280px;margin-top:24px;
     display:flex;align-items:center;justify-content:center;
-    touch-action:pan-y;cursor:grab;
+    touch-action:pan-y;cursor:grab;overflow:visible;
   }
-  .o90-prod-card{
-    position:absolute;width:170px;height:225px;border-radius:18px;
-    background:var(--card);box-shadow:0 14px 30px -10px rgba(0,0,0,.25);
+  .o90-g-card{
+    position:absolute;border-radius:16px;
+    background:var(--card);box-shadow:0 10px 24px -10px rgba(0,0,0,.25);
     transition:all .4s cubic-bezier(.22,.9,.35,1);cursor:pointer;overflow:hidden;
   }
-  .o90-prod-card .art{width:100%;height:100%;background-size:cover;background-position:center;display:flex;align-items:flex-end;padding:10px;}
-  .o90-prod-card .name-tag{
-    background:rgba(255,255,255,.92);border-radius:10px;padding:5px 8px;
-    font-size:10px;font-weight:700;color:var(--verde-deep);
+  .o90-g-card .art{width:100%;height:100%;background-size:cover;background-position:center;display:flex;align-items:flex-end;padding:8px;}
+  .o90-g-card .name-tag{
+    background:rgba(255,255,255,.92);border-radius:8px;padding:3px 6px;
+    font-size:9px;font-weight:700;color:var(--verde-deep);
   }
-  .o90-prod-card.center{
-    z-index:5;transform:translateX(0) scale(1);
-    box-shadow:0 0 0 3px var(--gold), 0 0 45px 12px rgba(240,194,75,.85), 0 14px 30px -10px rgba(0,0,0,.3);
+  .o90-g-card.pos-0{
+    width:150px;height:198px;z-index:5;transform:translateX(0) scale(1);
+    box-shadow:0 0 0 3px var(--gold), 0 0 35px 8px rgba(240,194,75,.75), 0 10px 24px -10px rgba(0,0,0,.3);
   }
-  .o90-prod-card.left{z-index:2;transform:translateX(-122px) scale(.78);opacity:.55;filter:saturate(.7) brightness(.9);}
-  .o90-prod-card.right{z-index:2;transform:translateX(122px) scale(.78);opacity:.55;filter:saturate(.7) brightness(.9);}
-  .o90-prod-card.hidden{opacity:0;pointer-events:none;transform:scale(.6);}
+  .o90-g-card.pos-1{width:110px;height:145px;z-index:4;transform:translateX(92px) scale(1);opacity:.85;}
+  .o90-g-card.pos--1{width:110px;height:145px;z-index:4;transform:translateX(-92px) scale(1);opacity:.85;}
+  .o90-g-card.pos-2{width:80px;height:106px;z-index:3;transform:translateX(158px) scale(1);opacity:.5;filter:saturate(.7) brightness(.92);}
+  .o90-g-card.pos--2{width:80px;height:106px;z-index:3;transform:translateX(-158px) scale(1);opacity:.5;filter:saturate(.7) brightness(.92);}
+  .o90-g-card.pos-hidden{opacity:0;pointer-events:none;transform:scale(.5);}
 
-  .o90-prod-dots{display:flex;justify-content:center;gap:6px;margin-top:16px;}
-  .o90-prod-dot{width:6px;height:6px;border-radius:50%;background:var(--line);}
-  .o90-prod-dot.active{background:var(--gold);width:18px;border-radius:4px;}
-  .o90-prod-hint{font-size:11.5px;color:var(--grey);margin-top:10px;font-style:italic;}
+  .o90-g-nav{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:18px;}
+  .o90-g-arrow{
+    width:38px;height:38px;border-radius:50%;background:var(--card);border:1.5px solid var(--line);
+    display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--verde-deep);font-weight:800;
+  }
+  .o90-g-dots{display:flex;gap:6px;}
+  .o90-g-dot{width:6px;height:6px;border-radius:50%;background:var(--line);}
+  .o90-g-dot.active{background:var(--gold);width:16px;border-radius:4px;}
+  .o90-g-hint{font-size:11.5px;color:var(--grey);margin-top:10px;font-style:italic;}
 
   .o90-prod-modal-overlay{
     position:fixed;inset:0;background:rgba(18,25,22,.55);
@@ -154,9 +186,7 @@
 
   .o90-steps-section{background:var(--verde-deep);}
   .o90-steps-section .o90-section-title{color:#fff;text-align:center;}
-  .o90-steps-ticker{
-    margin-top:24px;overflow:hidden;position:relative;padding:24px 0;
-  }
+  .o90-steps-ticker{margin-top:24px;overflow:hidden;position:relative;padding:24px 0;}
   .o90-steps-ticker::before,.o90-steps-ticker::after{
     content:'';position:absolute;top:0;bottom:0;width:40px;z-index:3;pointer-events:none;
   }
@@ -166,9 +196,9 @@
   .o90-step-card{
     position:relative;width:150px;background:#173D31;border-radius:20px;
     padding:22px 16px;text-align:center;
-    box-shadow:0 0 0 0 transparent, 0 0 30px 6px rgba(232,102,74,.65);
+    box-shadow:0 0 30px 6px rgba(232,102,74,.65);
   }
-  .o90-step-card.final{box-shadow:0 0 0 0 transparent, 0 0 30px 6px rgba(143,196,172,.7);}
+  .o90-step-card.final{box-shadow:0 0 30px 6px rgba(143,196,172,.7);}
   .o90-step-icon{font-size:26px;}
   .o90-step-label{
     font-family:'Manrope',sans-serif;font-weight:800;font-size:11.5px;color:#fff;
@@ -226,6 +256,7 @@
   @media (prefers-reduced-motion: reduce){
     .o90-progress-fill{transition:none;}
     .o90-steps-track{animation:none;}
+    .o90-stages-track{animation:none;}
   }
 </style>
 </head>
@@ -243,8 +274,12 @@
   <section class="o90-section" style="text-align:center;">
     <span class="o90-eyebrow3">Nuestra meta actual</span>
     <h2 class="o90-section-title">🐾 Hagamos posible una gran jornada de esterilización canina</h2>
-    <p class="o90-text">90 días. Una meta. Cientos de vidas que podemos ayudar a transformar.</p>
-    <p class="o90-text" style="margin-top:4px;">Para ayudar a controlar la sobrepoblación y mejorar la vida de cientos de animales.</p>
+
+    <div class="o90-stamp-box">
+      <span class="o90-stamp-phrase" id="o90StampPhrase">90 días</span>
+    </div>
+
+    <p class="o90-text">Para ayudar a controlar la sobrepoblación y mejorar la vida de cientos de animales.</p>
   </section>
 
   <section class="o90-section" style="padding-top:0;">
@@ -261,43 +296,24 @@
     </div>
   </section>
 
-  <section class="o90-section" style="padding-top:0;">
-    <h2 class="o90-section-title" style="text-align:center;">El camino hacia la meta</h2>
-    <div class="o90-stages">
-      <div class="o90-stage done">
-        <span class="o90-stage-icon">✓</span>
-        <div>
-          <div class="o90-stage-title">Mes 1 — Preparación</div>
-          <div class="o90-stage-desc">Reunir los recursos necesarios para los equipos.</div>
-          <div class="o90-stage-status">✓ Completado</div>
-        </div>
-      </div>
-      <div class="o90-stage active">
-        <span class="o90-stage-icon">●</span>
-        <div>
-          <div class="o90-stage-title">Mes 2 — Organización</div>
-          <div class="o90-stage-desc">Cubrir logística y necesidades operativas.</div>
-          <div class="o90-stage-status">● En progreso</div>
-        </div>
-      </div>
-      <div class="o90-stage pending">
-        <span class="o90-stage-icon">○</span>
-        <div>
-          <div class="o90-stage-title">Mes 3 — Acción</div>
-          <div class="o90-stage-desc">Completar los recursos necesarios para realizar la jornada.</div>
-          <div class="o90-stage-status">○ Próximamente</div>
-        </div>
-      </div>
+  <section class="o90-section o90-stages-section">
+    <h2 class="o90-section-title">El camino hacia la meta</h2>
+    <div class="o90-stages-ticker">
+      <div class="o90-stages-track" id="o90StagesTrack"></div>
     </div>
   </section>
 
-  <section class="o90-section" style="padding-top:0;text-align:center;">
+  <section class="o90-section" style="padding-top:32px;text-align:center;">
     <h2 class="o90-section-title">Cada compra suma</h2>
     <span class="o90-prod-tag" id="o90ProdCount">— productos participantes</span>
 
-    <div class="o90-prod-carousel" id="o90ProdCarousel"></div>
-    <div class="o90-prod-dots" id="o90ProdDots"></div>
-    <p class="o90-prod-hint">Desliza para ver los productos · toca para más detalles</p>
+    <div class="o90-g-carousel" id="o90GCarousel"></div>
+    <div class="o90-g-nav">
+      <button class="o90-g-arrow" id="o90GPrev">‹</button>
+      <div class="o90-g-dots" id="o90GDots"></div>
+      <button class="o90-g-arrow" id="o90GNext">›</button>
+    </div>
+    <p class="o90-g-hint">Desliza o toca las flechas · toca el producto central para más detalles</p>
   </section>
 
   <section class="o90-section o90-steps-section">
@@ -390,11 +406,13 @@ const objetivo90 = {
   fechaActualizacion: "15 de septiembre de 2026",
 };
 
-// ✏️ EDITAR AQUÍ LOS PRODUCTOS PARTICIPANTES DE ESTE OBJETIVO 90
+// ✏️ EDITAR AQUÍ LOS 5 PRODUCTOS PARTICIPANTES DE ESTE OBJETIVO 90
 const o90Products = [
-  {name:"Combo Solidario · Agua", price:"RD$ 100 · Aporte RD$10", img:"images/producto-agua.png", desc:"4 botellas de agua. Cada compra registrada suma para el Objetivo 90."},
-  {name:"Chocolate Dark & Jengibre", price:"RD$ 250 · Aporte RD$15", img:"images/producto-chocolate.png", desc:"Chocolate artesanal. Cada compra registrada suma para el Objetivo 90."},
-  {name:"Alimento para Perros", price:"RD$ 320 · Aporte RD$25", img:"images/producto-petfood.png", desc:"Alimento premium. Cada compra registrada suma para el Objetivo 90."},
+  {name:"Producto 1", price:"RD$ — · Aporte RD$—", img:"images/producto-obj90-1.png", desc:"Cada compra registrada suma para el Objetivo 90."},
+  {name:"Producto 2", price:"RD$ — · Aporte RD$—", img:"images/producto-obj90-2.png", desc:"Cada compra registrada suma para el Objetivo 90."},
+  {name:"Producto 3", price:"RD$ — · Aporte RD$—", img:"images/producto-obj90-3.png", desc:"Cada compra registrada suma para el Objetivo 90."},
+  {name:"Producto 4", price:"RD$ — · Aporte RD$—", img:"images/producto-obj90-4.png", desc:"Cada compra registrada suma para el Objetivo 90."},
+  {name:"Producto 5", price:"RD$ — · Aporte RD$—", img:"images/producto-obj90-5.png", desc:"Cada compra registrada suma para el Objetivo 90."},
 ];
 
 document.getElementById('o90DayBadge').textContent = `Día ${objetivo90.diaActual} de ${objetivo90.diaTotal}`;
@@ -408,11 +426,7 @@ document.getElementById('o90Pct').textContent = `${pct}%`;
 
 const progressFill = document.getElementById('o90ProgressFill');
 new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      progressFill.style.width = pct + '%';
-    }
-  });
+  entries.forEach(entry => { if(entry.isIntersecting){ progressFill.style.width = pct + '%'; } });
 }, { threshold: 0.4 }).observe(progressFill);
 
 const chartSvg = document.getElementById('o90ChartSvg');
@@ -425,51 +439,89 @@ new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.4 }).observe(chartSvg);
 
-let o90Active = 0;
-const o90Carousel = document.getElementById('o90ProdCarousel');
-const o90DotsWrap = document.getElementById('o90ProdDots');
-let o90JustDragged = false;
+const stampPhrases = ["90 días", "Una meta", "Cientos de vidas transformadas"];
+let stampIdx = 0;
+const stampEl = document.getElementById('o90StampPhrase');
+function o90Stamp(){
+  stampEl.textContent = stampPhrases[stampIdx];
+  stampEl.classList.remove('stamping');
+  void stampEl.offsetWidth;
+  stampEl.classList.add('stamping');
+  stampIdx = (stampIdx + 1) % stampPhrases.length;
+}
+o90Stamp();
+setInterval(o90Stamp, 2200);
 
-function o90Render(){
-  o90Carousel.innerHTML = '';
-  o90DotsWrap.innerHTML = '';
+const o90Stages = [
+  {icon:"✓", title:"Mes 1 — Preparación", desc:"Reunir los recursos necesarios para los equipos.", status:"✓ Completado", state:"done"},
+  {icon:"●", title:"Mes 2 — Organización", desc:"Cubrir logística y necesidades operativas.", status:"● En progreso", state:"active"},
+  {icon:"○", title:"Mes 3 — Acción", desc:"Completar los recursos necesarios para realizar la jornada.", status:"○ Próximamente", state:"pending"},
+];
+function o90RenderStage(s){
+  return `<div class="o90-stage-card ${s.state}">
+    <div class="o90-stage-icon">${s.icon}</div>
+    <div class="o90-stage-title">${s.title}</div>
+    <div class="o90-stage-desc">${s.desc}</div>
+    <div class="o90-stage-status">${s.status}</div>
+  </div>`;
+}
+document.getElementById('o90StagesTrack').innerHTML = o90Stages.map(o90RenderStage).join('') + o90Stages.map(o90RenderStage).join('');
+
+let gActive = 0;
+const gCarousel = document.getElementById('o90GCarousel');
+const gDotsWrap = document.getElementById('o90GDots');
+let gJustDragged = false;
+
+function gRender(){
+  gCarousel.innerHTML = '';
+  gDotsWrap.innerHTML = '';
   o90Products.forEach((p, i) => {
     const card = document.createElement('div');
-    const diff = (i - o90Active + o90Products.length) % o90Products.length;
-    let posClass = 'hidden';
-    if(diff === 0) posClass = 'center';
-    else if(diff === 1) posClass = 'right';
-    else if(diff === o90Products.length - 1) posClass = 'left';
-    card.className = 'o90-prod-card ' + posClass;
+    let diff = i - gActive;
+    if(diff > o90Products.length/2) diff -= o90Products.length;
+    if(diff < -o90Products.length/2) diff += o90Products.length;
+
+    let posClass = 'pos-hidden';
+    if(diff === 0) posClass = 'pos-0';
+    else if(diff === 1) posClass = 'pos-1';
+    else if(diff === -1) posClass = 'pos--1';
+    else if(diff === 2) posClass = 'pos-2';
+    else if(diff === -2) posClass = 'pos--2';
+
+    card.className = 'o90-g-card ' + posClass;
     card.innerHTML = `<div class="art" style="background-image:url('${p.img}')">
       <span class="name-tag">${p.name}</span>
     </div>`;
     card.addEventListener('click', () => {
-      if(o90JustDragged){ o90JustDragged = false; return; }
-      if(i === o90Active){ o90OpenModal(p); }
-      else { o90Active = i; o90Render(); }
+      if(gJustDragged){ gJustDragged = false; return; }
+      if(diff === 0){ o90OpenModal(p); }
+      else { gActive = i; gRender(); }
     });
-    o90Carousel.appendChild(card);
+    gCarousel.appendChild(card);
+
     const dot = document.createElement('div');
-    dot.className = 'o90-prod-dot' + (i === o90Active ? ' active' : '');
-    o90DotsWrap.appendChild(dot);
+    dot.className = 'o90-g-dot' + (i === gActive ? ' active' : '');
+    gDotsWrap.appendChild(dot);
   });
 }
-o90Render();
+gRender();
 
-let o90DragStartX=null, o90DragDeltaX=0, o90IsDragging=false;
-o90Carousel.addEventListener('pointerdown', e => { o90IsDragging=true; o90DragStartX=e.clientX; o90DragDeltaX=0; });
-o90Carousel.addEventListener('pointermove', e => { if(!o90IsDragging) return; o90DragDeltaX = e.clientX - o90DragStartX; });
-o90Carousel.addEventListener('pointerup', () => {
-  if(!o90IsDragging) return;
-  o90IsDragging=false;
-  if(Math.abs(o90DragDeltaX) > 40){
-    o90Active = o90DragDeltaX < 0 ? (o90Active+1)%o90Products.length : (o90Active-1+o90Products.length)%o90Products.length;
-    o90Render();
-    o90JustDragged = true;
+document.getElementById('o90GPrev').addEventListener('click', () => { gActive = (gActive-1+o90Products.length)%o90Products.length; gRender(); });
+document.getElementById('o90GNext').addEventListener('click', () => { gActive = (gActive+1)%o90Products.length; gRender(); });
+
+let gDragStartX=null, gDragDeltaX=0, gIsDragging=false;
+gCarousel.addEventListener('pointerdown', e => { gIsDragging=true; gDragStartX=e.clientX; gDragDeltaX=0; });
+gCarousel.addEventListener('pointermove', e => { if(!gIsDragging) return; gDragDeltaX = e.clientX - gDragStartX; });
+gCarousel.addEventListener('pointerup', () => {
+  if(!gIsDragging) return;
+  gIsDragging=false;
+  if(Math.abs(gDragDeltaX) > 40){
+    gActive = gDragDeltaX < 0 ? (gActive+1)%o90Products.length : (gActive-1+o90Products.length)%o90Products.length;
+    gRender();
+    gJustDragged = true;
   }
 });
-o90Carousel.addEventListener('pointerleave', () => { o90IsDragging = false; });
+gCarousel.addEventListener('pointerleave', () => { gIsDragging = false; });
 
 const o90ProdModal = document.getElementById('o90ProdModal');
 function o90OpenModal(p){
