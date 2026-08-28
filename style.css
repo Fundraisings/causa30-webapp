@@ -819,6 +819,7 @@
   display:flex;align-items:center;justify-content:center;
   box-shadow:0 8px 18px -6px rgba(37,211,102,.55);
   transition:transform .15s ease;cursor:pointer;border:none;
+  forced-color-adjust:none;
 }
 .share-pulse-btn-sm:active{transform:scale(.92);}
 
