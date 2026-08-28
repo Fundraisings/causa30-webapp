@@ -497,70 +497,108 @@
     padding:11px 24px;border-radius:100px;font-size:12.5px;font-weight:700;
   }
 
-  /* ---------- OBJETIVO 90 ---------- */
+    /* ---------- OBJETIVO 90 ---------- */
   .obj90-card{
-  background:radial-gradient(ellipse at top,#1A4538 0%,var(--verde-deep) 60%,#0D251F 100%);
-  border-radius:28px;padding:30px 0 32px;
-}
+    background:radial-gradient(ellipse at top,#1A4538 0%,var(--verde-deep) 60%,#0D251F 100%);
+    border-radius:28px;padding:34px 26px 38px;
+    box-shadow:0 20px 44px -18px rgba(0,0,0,.4);
+  }
   .obj90-eyebrow-row{
-  position:relative;height:30px;display:flex;align-items:center;
-  padding-left:26px;
-}
-.obj90-eyebrow-fixed{
-  position:relative;z-index:2;
-  display:inline-flex;align-items:center;gap:6px;
-  background:var(--verde-deep);color:var(--coral);
-  font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
-  padding:6px 12px 6px 0;
-  white-space:nowrap;
-}
-.obj90-word-ticker{
-  position:absolute;left:26px;right:0;top:0;bottom:0;
-  overflow:hidden;
-}
-.obj90-word-ticker::after{
-  content:'';position:absolute;top:0;bottom:0;left:0;width:70px;z-index:1;
-  background:linear-gradient(90deg,var(--verde-deep) 20%,transparent);
-}
-.obj90-word-track{
-  display:flex;align-items:center;gap:14px;height:100%;
-  padding-left:70px;
-  white-space:nowrap;width:max-content;
-  animation:obj90Scroll 14s linear infinite;
-  font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
-  color:rgba(255,255,255,.55);
-}
-.obj90-word-track .dot{color:var(--coral);font-size:8px;}
-@keyframes obj90Scroll{
-  from{transform:translateX(0);}
-  to{transform:translateX(-50%);}
-}
-  .obj90-video-trigger{
-  position:relative;display:block;width:calc(100% - 52px);aspect-ratio:16/9;margin:20px auto 0;
-  border-radius:20px;overflow:hidden;background-size:cover;background-position:center;
-  background-color:#1F5F4A;box-shadow:0 20px 40px -16px rgba(0,0,0,.4);
-}
-  .obj90-play-icon{
-    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-    width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.92);
-    display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--verde-deep);
-    box-shadow:0 8px 20px -6px rgba(0,0,0,.5);
+    position:relative;height:30px;display:flex;align-items:center;
+    padding-left:26px;
   }
-  .obj90-video-label{
-    position:absolute;bottom:10px;left:0;right:0;text-align:center;
-    font-size:10.5px;color:rgba(255,255,255,.85);font-weight:600;
+  .obj90-eyebrow-fixed{
+    position:relative;z-index:2;
+    display:inline-flex;align-items:center;gap:6px;
+    background:var(--verde-deep);color:var(--coral);
+    font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+    padding:6px 12px 6px 0;
+    white-space:nowrap;
   }
-  .obj90-text-link{display:block;margin-top:20px;padding:0 26px;text-align:center;}
+  .obj90-word-ticker{
+    position:absolute;left:26px;right:0;top:0;bottom:0;overflow:hidden;
+  }
+  .obj90-word-ticker::after{
+    content:'';position:absolute;top:0;bottom:0;left:0;width:70px;z-index:1;
+    background:linear-gradient(90deg,var(--verde-deep) 20%,transparent);
+  }
+  .obj90-word-track{
+    display:flex;align-items:center;gap:14px;height:100%;padding-left:70px;
+    white-space:nowrap;width:max-content;
+    animation:obj90Scroll 14s linear infinite;
+    font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+    color:rgba(255,255,255,.55);
+  }
+  .obj90-word-track .dot{color:var(--coral);font-size:8px;}
+  @keyframes obj90Scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
   .obj90-headline{
-    font-family:'Manrope',sans-serif;font-weight:800;font-size:19px;color:#fff;
-    line-height:1.3;padding:0 6px;
+    font-family:'Manrope',sans-serif;font-weight:800;font-size:21px;color:#fff;
+    line-height:1.35;margin-top:22px;padding:0 4px;text-align:center;
   }
-  .obj90-sub{
-    font-size:12.5px;color:#C7D6CE;line-height:1.55;margin-top:10px;padding:0 8px;
+
+  .obj90-video-zone{
+    position:relative;width:100%;aspect-ratio:16/10;margin-top:24px;
+    border-radius:20px;overflow:hidden;
+    background:linear-gradient(160deg,#1F5F4A,#0D251F);
+    border:1px solid rgba(255,255,255,.08);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
   }
-  .obj90-cta{
-    display:inline-flex;align-items:center;gap:6px;margin-top:14px;
-    font-size:13px;font-weight:700;color:var(--coral);
+  .obj90-halo{
+    position:absolute;width:70px;height:70px;border-radius:50%;
+    background:radial-gradient(circle, rgba(232,102,74,.65) 0%, rgba(232,102,74,.25) 45%, transparent 72%);
+    animation:obj90HaloPulse 2.8s ease-in-out infinite;
+  }
+  @keyframes obj90HaloPulse{
+    0%{transform:scale(.5);opacity:0;}
+    35%{opacity:1;}
+    100%{transform:scale(2.6);opacity:0;}
+  }
+  .obj90-play-circle{
+    position:relative;z-index:2;width:58px;height:58px;border-radius:50%;
+    background:rgba(13,37,31,.75);backdrop-filter:blur(2px);
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-size:20px;
+    box-shadow:0 4px 16px -4px rgba(0,0,0,.4);
+  }
+
+  .obj90-tap-hint{
+    position:absolute;bottom:26px;right:26px;z-index:3;
+    animation:obj90TapTravel 2.6s ease-in-out infinite;
+  }
+  @keyframes obj90TapTravel{
+    0%{transform:translate(0,0);opacity:0;}
+    15%{opacity:1;}
+    55%{transform:translate(-34px,-30px);opacity:1;}
+    80%{opacity:0;transform:translate(-34px,-30px);}
+    100%{transform:translate(0,0);opacity:0;}
+  }
+  .obj90-tap-ripple{
+    opacity:0;
+    animation:obj90TapRipple 2.6s ease-out infinite;
+  }
+  @keyframes obj90TapRipple{
+    0%,50%{opacity:0;r:4;}
+    62%{opacity:.6;r:5;}
+    78%{opacity:0;r:10;}
+    100%{opacity:0;r:4;}
+  }
+
+  .obj90-video-cta{
+    text-align:center;font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;
+    color:#DCE8E2;margin-top:14px;
+  }
+
+  .obj90-fullpage-cta{
+    display:block;text-align:center;margin-top:28px;padding-top:22px;
+    border-top:1px solid rgba(255,255,255,.12);
+    font-family:'Manrope',sans-serif;font-weight:800;font-size:14px;
+    color:var(--coral);text-decoration:none;line-height:1.5;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .obj90-halo,.obj90-tap-hint,.obj90-tap-ripple{animation:none;}
   }
 
   /* ---------- CINTILLO OSCURO: SUMAR A CAUSA30 (combinado) ---------- */
