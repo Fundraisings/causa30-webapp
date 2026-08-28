@@ -701,7 +701,7 @@
   }
 
   .ad-rotator{
-    position:relative;width:100%;max-width:400px;aspect-ratio:1000/1320;
+    position:relative;width:100%;max-width:500px;aspect-ratio:1000/1320;
     margin:20px auto 0;border-radius:16px;overflow:hidden;
     box-shadow:0 20px 40px -16px rgba(0,0,0,.35);cursor:pointer;
   }
