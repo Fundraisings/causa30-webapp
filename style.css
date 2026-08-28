@@ -721,7 +721,10 @@
     opacity:0;transform:translateY(6px);transition:opacity .4s ease .05s,transform .4s ease .05s;
   }
   .ad-caption-text.active{opacity:1;transform:translateY(0);}
-  .ad-tap-hint{margin-top:12px;font-size:10.5px;color:var(--grey);font-style:italic;}
+  .ad-invite-link{
+  display:block;margin:12px auto 0;font-size:12px;font-weight:700;
+  color:var(--coral-deep);text-align:center;
+}
 
     /* ---------- LEGADO DOMINICANO ---------- */
   .libro-mes{
