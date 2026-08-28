@@ -890,3 +890,44 @@
     .p-card.left{transform:translateX(-257px) scale(.82);}
     .p-card.right{transform:translateX(257px) scale(.82);}
   }
+
+  /* ---------- ESTE MES APOYAMOS A... (círculo con ondas) ---------- */
+  .fund-pulse-label{
+    font-family:'Manrope',sans-serif;font-weight:800;font-size:15px;color:var(--verde-deep);
+    text-transform:uppercase;letter-spacing:.04em;
+  }
+
+  .fund-pulse-wrap{
+    position:relative;width:140px;height:140px;margin:24px auto 0;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .fund-pulse-ring{
+    position:absolute;top:50%;left:50%;width:76px;height:76px;
+    margin:-38px 0 0 -38px;border-radius:50%;
+    border:2px solid var(--coral);opacity:0;
+  }
+  .fund-pulse-ring-1{animation:fundPulse 2.8s ease-out infinite;}
+  .fund-pulse-ring-2{animation:fundPulse 2.8s ease-out .95s infinite;}
+  .fund-pulse-ring-3{animation:fundPulse 2.8s ease-out 1.9s infinite;}
+  @keyframes fundPulse{
+    0%{transform:scale(1);opacity:.55;}
+    100%{transform:scale(1.9);opacity:0;}
+  }
+
+  .fund-pulse-btn{
+    position:relative;z-index:2;width:76px;height:76px;border-radius:50%;
+    background:var(--coral);color:#fff;font-size:28px;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 24px -8px rgba(232,102,74,.5);
+    transition:transform .15s ease;
+  }
+  .fund-pulse-btn:active{transform:scale(.92);}
+
+  .fund-pulse-cta{
+    margin-top:14px;font-family:'Manrope',sans-serif;font-weight:800;font-size:12.5px;
+    color:var(--coral-deep);text-transform:uppercase;letter-spacing:.05em;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .fund-pulse-ring{animation:none;}
+  }
