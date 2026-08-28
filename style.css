@@ -925,7 +925,7 @@
 
   .fund-pulse-cta{
     margin-top:14px;font-family:'Manrope',sans-serif;font-weight:800;font-size:14.5px;
-    color:var(--verde-deep);text-transform:uppercase;letter-spacing:.05em;
+    color:#000;text-transform:uppercase;letter-spacing:.05em;
   }
 
   @media (prefers-reduced-motion: reduce){
