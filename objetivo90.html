@@ -534,6 +534,22 @@ function o90OpenModal(p){
 document.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', () => o90ProdModal.classList.remove('open')));
 o90ProdModal.addEventListener('click', e => { if(e.target === o90ProdModal) o90ProdModal.classList.remove('open'); });
 
+// Deslizar dentro de la ficha ampliada — cambia de producto sin cerrar el modal
+const o90ProdModalImg = document.getElementById('o90ProdModalImg');
+let o90ModalDragStartX=null, o90ModalDragDeltaX=0, o90ModalDragging=false;
+o90ProdModalImg.addEventListener('pointerdown', e => { o90ModalDragging=true; o90ModalDragStartX=e.clientX; o90ModalDragDeltaX=0; });
+o90ProdModalImg.addEventListener('pointermove', e => { if(!o90ModalDragging) return; o90ModalDragDeltaX = e.clientX - o90ModalDragStartX; });
+o90ProdModalImg.addEventListener('pointerup', () => {
+  if(!o90ModalDragging) return;
+  o90ModalDragging=false;
+  if(Math.abs(o90ModalDragDeltaX) > 50){
+    gActive = o90ModalDragDeltaX < 0 ? (gActive+1)%o90Products.length : (gActive-1+o90Products.length)%o90Products.length;
+    gRender();
+    o90OpenModal(o90Products[gActive]);
+  }
+});
+o90ProdModalImg.addEventListener('pointerleave', () => { o90ModalDragging = false; });
+
 const o90Steps = [
   {icon:"🛒", label:"Compras el producto participante"},
   {icon:"🧾", label:"La compra es registrada"},
