@@ -607,10 +607,10 @@ function renderAds(){
   });
 }
 
-document.getElementById('adsTrigger').addEventListener('click', () => {
-  adsIndex = mainAdIndex;
-  renderAds();
-  openModal(adsModal);
+document.getElementById('adInviteLink').addEventListener('click', () => {
+  document.getElementById('bizForm').style.display = 'flex';
+  document.getElementById('bizSuccess').classList.remove('show');
+  openModal(bizModal);
 });
 document.getElementById('adsPrev').addEventListener('click', () => {
   adsIndex = (adsIndex - 1 + ads.length) % ads.length;
