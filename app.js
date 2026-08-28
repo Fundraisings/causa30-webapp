@@ -555,9 +555,9 @@ document.getElementById('sharePromoBtn').addEventListener('click', () => {
 
 // PROMO DE BIENVENIDA — reaparece cada X días (no solo una vez para siempre)
 const ads = [
-  {title:"❤️ Esta promoción también genera impacto", text:"Al elegirla, tu compra tiene doble valor....", img:"images/ad1a.png"},
-  {title:"✨ Espacio publicitario disponible", text:"Combina tu promoción con causa social — visibilidad y buena reputación de marca.", img:"images/ad2.png"},
-  {title:"🍦 Espacio publicitario disponible", text:"Anúnciate en Causa30 y llega a personas que prefieren marcas con impacto.", img:"images/ad3.png"},
+  {title:"❤️ Esta promoción también genera impacto", text:"Al elegirla, tu compra tiene doble propósito.", img:"images/ad-1a.png"},
+  {title:"✨ Espacio publicitario disponible", text:"Combina tu promoción con causa social — visibilidad y buena reputación de marca.", img:"images/ad-2b.png"},
+  {title:"🍦 Espacio publicitario disponible", text:"Anúnciate en Causa30 y llega a personas que prefieren marcas con impacto.", img:"images/ad-3c.png"},
 ];
 
 const promoModal = document.getElementById('promoModal');
