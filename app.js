@@ -164,27 +164,21 @@ carousel.addEventListener('pointerleave', () => {
 });
 
 // ¿CÓMO FUNCIONA? — cinta animada nativa (sin imágenes), fusionada con el acceso al video
-const flowSteps = [
-  {num:"01", title:"Descubre", desc:"Encuentra productos y promociones que te interesan."},
-  {num:"02", title:"Elige", desc:"Compra directamente con la empresa que ofrece la promoción."},
-  {num:"03", title:"Genera impacto", desc:"Tu compra activa una acción que beneficia a una causa."},
-  {num:"04", title:"Transparencia", desc:"El dinero no pasa por Causa30. La empresa realiza directamente el aporte a la causa.", final:true},
+const flowPhrases = [
+  "DESCUBRES EL PRODUCTO",
+  "VES DÓNDE COMPRARLO",
+  "LO COMPRAS",
+  "NOS ENVÍAS EL COMPROBANTE",
+  "LA EMPRESA HACE SU APORTE",
+  "UNA CAUSA RECIBE APOYO",
 ];
 
 const flowTrack = document.getElementById('flowTrack');
-function renderFlowStep(s){
-  return `
-    <div class="flow-step">
-      <div class="flow-node${s.final ? ' final' : ''}"><span>${s.num}</span></div>
-      <div>
-        <div class="flow-title">${s.title}</div>
-        <div class="flow-desc">${s.desc}</div>
-      </div>
-    </div>
-    <div class="flow-connector"></div>`;
+function renderFlowPhrase(p){
+  return `<span class="flow-phrase">${p}</span><span class="flow-dot">●</span>`;
 }
 // se duplica la secuencia completa para que el loop sea perfectamente continuo
-flowTrack.innerHTML = flowSteps.map(renderFlowStep).join('') + flowSteps.map(renderFlowStep).join('');
+flowTrack.innerHTML = flowPhrases.map(renderFlowPhrase).join('') + flowPhrases.map(renderFlowPhrase).join('');
 
 const tickerWrap = document.getElementById('tickerWrap');
 const funcionaHide = document.getElementById('funcionaHide');
