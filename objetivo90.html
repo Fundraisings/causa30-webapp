@@ -626,7 +626,7 @@ document.getElementById('o90ShareBtn').addEventListener('click', function(){
   this.classList.add('tapped');
   setTimeout(() => this.classList.remove('tapped'), 300);
   const shareUrl = window.location.origin + window.location.pathname;
-  const message = `🎯 Objetivo 90 — Causa30\n\nHagamos posible una gran jornada de esterilización felina.\n\nQuizás tú no necesites este producto hoy, pero alguien que conoces sí. Cada compra nos acerca a la meta.\n\nDescúbrelo aquí:\n${shareUrl}`;
+  const message = `🎯 Objetivo 90 — Causa30\n\nHagamos posible una gran jornada de esterilización felina.\n\nQuizás tú no necesites este producto hoy, pero alguien que conoces sí. Cada compra nos acerca a la meta.\n\nDescúbrelo aquí:\n${shareUrl}\n\n📱 Si usas iPhone y el link no carga bien, mantenlo presionado y elige "Abrir en Safari".`;
   setTimeout(() => window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank'), 200);
 });
 </script>
