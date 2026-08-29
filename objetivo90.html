@@ -61,64 +61,62 @@
     100%{opacity:0;transform:scale(.9) rotate(0deg);}
   }
 
-  .o90-progress-card{
-    position:relative;overflow:hidden;
-    background:var(--verde-deep);border-radius:24px;padding:26px 22px;color:#fff;
+  /* Bloque META / OBJETIVO */
+  .meta-obj-card{
+    background:var(--verde-deep);border-radius:22px;padding:24px 22px;color:#fff;
   }
-  .o90-progress-card::before{
-    content:'🎯';position:absolute;top:-14px;right:-10px;font-size:80px;opacity:.06;
+  .meta-obj-row{padding:10px 0;}
+  .meta-obj-row:first-child{padding-top:0;}
+  .meta-obj-row:not(:last-child){border-bottom:1px solid rgba(255,255,255,.12);}
+  .meta-obj-label{
+    font-family:'Manrope',sans-serif;font-weight:800;font-size:11px;color:var(--coral);
+    text-transform:uppercase;letter-spacing:.06em;
   }
-  .o90-progress-goal{position:relative;z-index:1;font-size:12.5px;color:#8FC4AC;font-weight:700;text-transform:uppercase;letter-spacing:.04em;}
-  .o90-progress-goal b{color:#fff;font-size:15px;}
-  .o90-progress-track{
-    position:relative;z-index:1;
-    width:100%;height:16px;background:rgba(255,255,255,.1);border-radius:100px;
-    margin-top:12px;overflow:hidden;
-  }
-  .o90-progress-fill{
-    height:100%;width:0%;background:linear-gradient(90deg,var(--coral),#F0A190);
-    border-radius:100px;transition:width 1.4s cubic-bezier(.22,.9,.35,1);
-  }
-  .o90-progress-stats{position:relative;z-index:1;display:flex;justify-content:space-between;margin-top:14px;align-items:baseline;}
-  .o90-progress-amount{font-family:'Manrope',sans-serif;font-weight:800;font-size:19px;color:#fff;}
-  .o90-progress-amount span{font-size:11px;color:#9FB6AC;font-weight:600;display:block;margin-top:2px;}
-  .o90-progress-pct{font-family:'Manrope',sans-serif;font-weight:800;font-size:24px;color:var(--coral);}
-  .o90-progress-updated{
-    position:relative;z-index:1;
-    margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.12);
-    font-size:11px;color:#9FB6AC;text-align:center;
-  }
+  .meta-obj-value{font-size:14px;color:#fff;margin-top:6px;line-height:1.5;}
+  .meta-obj-value b{font-family:'Manrope',sans-serif;font-weight:800;}
 
-  .o90-stages-section{background:var(--verde-deep);}
-  .o90-stages-section .o90-section-title{color:#fff;text-align:center;}
-  .o90-stages-ticker{margin-top:24px;overflow:hidden;position:relative;padding:24px 0;}
-  .o90-stages-ticker::before,.o90-stages-ticker::after{
-    content:'';position:absolute;top:0;bottom:0;width:40px;z-index:3;pointer-events:none;
+  /* Más vida, más bienestar — de borde a borde con gatitos */
+  .bienestar-fullbleed{
+    position:relative;width:100vw;margin-left:calc(50% - 50vw);
+    background:var(--verde-deep);overflow:hidden;
+    padding:36px 24px 40px;
   }
-  .o90-stages-ticker::before{left:0;background:linear-gradient(90deg,var(--verde-deep),transparent);}
-  .o90-stages-ticker::after{right:0;background:linear-gradient(-90deg,var(--verde-deep),transparent);}
-  .o90-stages-track{display:flex;gap:20px;width:max-content;animation:o90StagesScroll 16s linear infinite;}
-  .o90-stage-card{
-    position:relative;width:190px;background:#173D31;border-radius:20px;
-    padding:20px 18px;text-align:left;
+  .gato-superior{
+    position:absolute;top:0;left:0;width:150px;height:150px;z-index:1;
+    background-image:url('images/obj90-gato1-superior.png');
+    background-size:contain;background-repeat:no-repeat;background-position:top left;
   }
-  .o90-stage-card.done{box-shadow:0 0 30px 6px rgba(143,196,172,.7);}
-  .o90-stage-card.active{box-shadow:0 0 30px 6px rgba(232,102,74,.65);}
-  .o90-stage-card.pending{box-shadow:0 0 18px 3px rgba(255,255,255,.12);opacity:.75;}
-  .o90-stage-icon{
-    width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-    font-size:13px;font-weight:800;color:#fff;
+  .gato-inferior{
+    position:absolute;bottom:0;right:0;width:150px;height:150px;z-index:1;
+    background-image:url('images/obj90-gato2-inferior.png');
+    background-size:contain;background-repeat:no-repeat;background-position:bottom right;
   }
-  .o90-stage-card.done .o90-stage-icon{background:#8FC4AC;color:#12332A;}
-  .o90-stage-card.active .o90-stage-icon{background:var(--coral);}
-  .o90-stage-card.pending .o90-stage-icon{background:rgba(255,255,255,.15);}
-  .o90-stage-title{font-family:'Manrope',sans-serif;font-weight:800;font-size:13px;color:#fff;margin-top:10px;}
-  .o90-stage-desc{font-size:11px;color:#C7D6CE;margin-top:4px;line-height:1.5;}
-  .o90-stage-status{font-size:10.5px;font-weight:700;margin-top:8px;}
-  .o90-stage-card.done .o90-stage-status{color:#8FC4AC;}
-  .o90-stage-card.active .o90-stage-status{color:#F0A190;}
-  .o90-stage-card.pending .o90-stage-status{color:rgba(255,255,255,.5);}
-  @keyframes o90StagesScroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+  .bienestar-grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px;}
+  .bienestar-group-label{
+    grid-column:1/-1;display:flex;flex-direction:column;align-items:center;gap:4px;
+    font-family:'Manrope',sans-serif;font-weight:800;font-size:11.5px;
+    color:#fff;text-transform:uppercase;letter-spacing:.05em;margin-top:10px;
+  }
+  .bienestar-group-label:first-child{margin-top:0;}
+  .cat-icon{display:block;}
+  .bienestar-card{
+    position:relative;z-index:2;
+    background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);border-radius:14px;
+    padding:12px 10px;text-align:center;backdrop-filter:blur(2px);
+  }
+  .bienestar-card.good{border-color:#8FC4AC;background:rgba(143,196,172,.15);}
+  .bienestar-years{font-family:'Manrope',sans-serif;font-weight:800;font-size:22px;color:#fff;}
+  .bienestar-card.good .bienestar-years{color:#8FC4AC;}
+  .bienestar-label{font-size:10px;color:#C7D6CE;margin-top:3px;line-height:1.4;}
+
+  /* Puente a productos */
+  .puente-card{
+    background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:22px;text-align:center;
+  }
+  .puente-highlight{
+    background:var(--verde-soft);border-radius:14px;padding:14px 16px;margin-top:14px;
+    font-size:12.5px;color:var(--verde-deep);line-height:1.55;font-weight:600;
+  }
 
   .o90-prod-tag{
     display:block;margin-top:6px;font-size:10.5px;font-weight:800;color:var(--coral-deep);
@@ -206,13 +204,6 @@
   }
   @keyframes o90StepsScroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
 
-  .o90-result-card{
-    position:relative;overflow:hidden;
-    background:var(--verde-deep);border-radius:20px;padding:22px;color:#fff;
-  }
-  .o90-result-item{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#DCE8E2;line-height:1.5;padding:8px 0;}
-  .o90-result-item:not(:last-child){border-bottom:1px solid rgba(255,255,255,.1);}
-
   .o90-chart-wrap{margin-top:20px;}
   .o90-bar{transform:scaleY(0);transform-origin:bottom;transition:transform 1s cubic-bezier(.22,.9,.35,1);}
   .o90-bar.grow{transform:scaleY(1);}
@@ -254,9 +245,7 @@
   }
 
   @media (prefers-reduced-motion: reduce){
-    .o90-progress-fill{transition:none;}
     .o90-steps-track{animation:none;}
-    .o90-stages-track{animation:none;}
   }
 </style>
 </head>
@@ -271,39 +260,100 @@
 
 <div class="wrap">
 
+  <!-- 1. LA META ACTUAL -->
   <section class="o90-section" style="text-align:center;">
     <span class="o90-eyebrow3">Nuestra meta actual</span>
-    <h2 class="o90-section-title">🐾 Hagamos posible una gran jornada de esterilización canina</h2>
+    <h2 class="o90-section-title">Hagamos posible una gran jornada de esterilización felina.</h2>
 
     <div class="o90-stamp-box">
       <span class="o90-stamp-phrase" id="o90StampPhrase">90 días</span>
     </div>
-
-    <p class="o90-text">Para ayudar a controlar la sobrepoblación y mejorar la vida de cientos de animales.</p>
   </section>
 
+  <!-- 2. META / OBJETIVO -->
   <section class="o90-section" style="padding-top:0;">
-    <div class="o90-progress-card">
-      <div class="o90-progress-goal">Meta: <b id="o90MetaTotal">RD$ —</b></div>
-      <div class="o90-progress-track">
-        <div class="o90-progress-fill" id="o90ProgressFill"></div>
+    <div class="meta-obj-card">
+      <div class="meta-obj-row">
+        <span class="meta-obj-label">Meta</span>
+        <p class="meta-obj-value">Castrar <b>100 gatos</b> a través del programa Catlovers en República Dominicana.</p>
       </div>
-      <div class="o90-progress-stats">
-        <div class="o90-progress-amount" id="o90Recaudado">RD$ —<span>Recaudados</span></div>
-        <div class="o90-progress-pct" id="o90Pct">—%</div>
+      <div class="meta-obj-row">
+        <span class="meta-obj-label">Objetivo</span>
+        <p class="meta-obj-value">Reunir <b>RD$350,000</b> para hacer posible esta campaña.</p>
       </div>
-      <div class="o90-progress-updated">Última actualización: <span id="o90Fecha">—</span></div>
     </div>
   </section>
 
-  <section class="o90-section o90-stages-section">
-    <h2 class="o90-section-title">El camino hacia la meta</h2>
-    <div class="o90-stages-ticker">
-      <div class="o90-stages-track" id="o90StagesTrack"></div>
+  <!-- 3. MÁS VIDA, MÁS BIENESTAR -->
+  <div class="bienestar-fullbleed">
+    <div class="gato-superior"></div>
+    <div class="gato-inferior"></div>
+
+    <h2 class="o90-section-title" style="color:#fff;text-align:center;">Más vida, más bienestar</h2>
+    <p class="o90-text" style="color:#C7D6CE;text-align:center;">La esterilización puede marcar una gran diferencia en la vida de un gato.</p>
+
+    <div class="bienestar-grid">
+      <div class="bienestar-group-label">
+        <svg class="cat-icon" width="40" height="40" viewBox="0 0 44 44">
+          <path d="M12 14 L8 4 L18 11 Z" fill="#E8664A"/>
+          <path d="M32 14 L36 4 L26 11 Z" fill="#E8664A"/>
+          <circle cx="22" cy="20" r="14" fill="#E8664A"/>
+          <path d="M17 19 q5 4 10 0" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+          <circle cx="17" cy="17" r="1.6" fill="#fff"/>
+          <circle cx="27" cy="17" r="1.6" fill="#fff"/>
+          <path d="M22 21 l-1.4 2 h2.8 Z" fill="#fff"/>
+          <circle cx="33" cy="9" r="3.2" fill="#F0C24B"/>
+          <circle cx="30.5" cy="10.5" r="2.6" fill="#F0C24B"/>
+          <circle cx="33" cy="10" r="1.4" fill="#C94F36"/>
+        </svg>
+        <span>Hembras</span>
+      </div>
+      <div class="bienestar-card good">
+        <div class="bienestar-years">10.5</div>
+        <div class="bienestar-label">años · Esterilizadas</div>
+      </div>
+      <div class="bienestar-card">
+        <div class="bienestar-years">4.7</div>
+        <div class="bienestar-label">años · No esterilizadas</div>
+      </div>
+
+      <div class="bienestar-group-label">
+        <svg class="cat-icon" width="40" height="40" viewBox="0 0 44 44">
+          <path d="M12 14 L8 4 L18 11 Z" fill="#8FC4AC"/>
+          <path d="M32 14 L36 4 L26 11 Z" fill="#8FC4AC"/>
+          <circle cx="22" cy="20" r="14" fill="#8FC4AC"/>
+          <path d="M17 19 q5 4 10 0" stroke="#12332A" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+          <circle cx="17" cy="17" r="1.6" fill="#12332A"/>
+          <circle cx="27" cy="17" r="1.6" fill="#12332A"/>
+          <path d="M22 21 l-1.4 2 h2.8 Z" fill="#12332A"/>
+        </svg>
+        <span>Machos</span>
+      </div>
+      <div class="bienestar-card good">
+        <div class="bienestar-years">9.8</div>
+        <div class="bienestar-label">años · Castrados</div>
+      </div>
+      <div class="bienestar-card">
+        <div class="bienestar-years">3.7</div>
+        <div class="bienestar-label">años · No castrados</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. PUENTE HACIA LOS PRODUCTOS -->
+  <section class="o90-section" style="padding-top:32px;">
+    <div class="puente-card">
+      <span class="o90-eyebrow3">¿Cómo vamos a lograrlo?</span>
+      <p class="o90-text" style="margin-top:2px;">Para hacer realidad esta campaña necesitamos reunir <b>RD$350,000</b>.</p>
+      <p class="o90-text">Una empresa participante ha decidido apoyar este objetivo destinando un porcentaje de las ventas de 5 productos a esta causa.</p>
+      <div class="puente-highlight">
+        Tú eliges. Compras el producto que quieras, sin aportar dinero extra para la causa — y esa compra ayuda a acercarnos a la meta.
+      </div>
     </div>
   </section>
 
-  <section class="o90-section" style="padding-top:32px;text-align:center;">
+  <!-- 5. CADA COMPRA SUMA — carrusel estilo galería -->
+  <section class="o90-section" style="padding-top:0;text-align:center;">
     <h2 class="o90-section-title">Cada compra suma</h2>
     <span class="o90-prod-tag" id="o90ProdCount">— productos participantes</span>
 
@@ -316,6 +366,7 @@
     <p class="o90-g-hint">Desliza o toca las flechas · toca el producto central para más detalles</p>
   </section>
 
+  <!-- 6. ¿CÓMO LO VAMOS A LOGRAR? -->
   <section class="o90-section o90-steps-section">
     <h2 class="o90-section-title">¿Cómo lo vamos a lograr?</h2>
     <div class="o90-steps-ticker">
@@ -323,17 +374,7 @@
     </div>
   </section>
 
-  <section class="o90-section" style="padding-top:0;">
-    <div class="o90-result-card">
-      <h2 class="o90-section-title" style="color:#fff;text-align:center;">Cuando alcancemos la meta</h2>
-      <div style="margin-top:14px;">
-        <div class="o90-result-item">🐾 Realizaremos una jornada de esterilización.</div>
-        <div class="o90-result-item">📍 En la comunidad o lugar seleccionado.</div>
-        <div class="o90-result-item">🐶 Con capacidad para atender aproximadamente 300 animales.</div>
-      </div>
-    </div>
-  </section>
-
+  <!-- 7. SIGAMOS LA META JUNTOS -->
   <section class="o90-section" style="padding-top:0;text-align:center;">
     <h2 class="o90-section-title">Sigamos la meta juntos</h2>
     <p class="o90-text">Actualizaremos periódicamente el progreso para que puedas ver cómo las compras participantes nos acercan a la meta.</p>
@@ -353,12 +394,14 @@
     </div>
   </section>
 
+  <!-- 8. SI SUPERAMOS LA META -->
   <section class="o90-section" style="padding-top:0;">
     <div class="o90-overflow-note">
       Si superamos nuestra meta, el excedente será destinado a apoyar la causa o institución relacionada con este Objetivo 90.
     </div>
   </section>
 
+  <!-- 9. COMPARTIR -->
   <section class="o90-section o90-share">
     <h2 class="o90-section-title">❤️ Ayuda a que esta meta llegue más lejos</h2>
     <p class="o90-text">Quizás tú no necesites este producto hoy, pero alguien que conoces sí.</p>
@@ -390,20 +433,17 @@
       <h3 class="o90-prod-modal-name" id="o90ProdModalName">—</h3>
       <div class="o90-prod-modal-price" id="o90ProdModalPrice">—</div>
       <p class="o90-prod-modal-desc" id="o90ProdModalDesc">—</p>
-      <p class="o90-prod-modal-btn" id="o90ProdModalBtn">Compra este producto en: Empresa X</p></a>
+      <p class="o90-prod-modal-btn" id="o90ProdModalBtn">Compra este producto en: Empresa X</p>
       <button class="o90-prod-modal-close" data-close>Cerrar ✕</button>
     </div>
   </div>
 </div>
 
 <script>
-// ✏️ EDITAR AQUÍ CADA VEZ QUE ACTUALICES EL PROGRESO DE OBJETIVO 90
+// ✏️ EDITAR AQUÍ CADA VEZ QUE ACTUALICES OBJETIVO 90
 const objetivo90 = {
   diaActual: 34,
   diaTotal: 90,
-  metaTotal: 300000,      // en RD$
-  recaudado: 185000,      // en RD$
-  fechaActualizacion: "15 de septiembre de 2026",
 };
 
 // ✏️ EDITAR AQUÍ LOS 5 PRODUCTOS PARTICIPANTES DE ESTE OBJETIVO 90
@@ -416,18 +456,7 @@ const o90Products = [
 ];
 
 document.getElementById('o90DayBadge').textContent = `Día ${objetivo90.diaActual} de ${objetivo90.diaTotal}`;
-document.getElementById('o90MetaTotal').textContent = `RD$${objetivo90.metaTotal.toLocaleString('es-DO')}`;
-document.getElementById('o90Recaudado').innerHTML = `RD$${objetivo90.recaudado.toLocaleString('es-DO')}<span>Recaudados</span>`;
-document.getElementById('o90Fecha').textContent = objetivo90.fechaActualizacion;
 document.getElementById('o90ProdCount').textContent = `${o90Products.length} productos participantes`;
-
-const pct = Math.min(100, Math.round((objetivo90.recaudado / objetivo90.metaTotal) * 100));
-document.getElementById('o90Pct').textContent = `${pct}%`;
-
-const progressFill = document.getElementById('o90ProgressFill');
-new IntersectionObserver((entries) => {
-  entries.forEach(entry => { if(entry.isIntersecting){ progressFill.style.width = pct + '%'; } });
-}, { threshold: 0.4 }).observe(progressFill);
 
 const chartSvg = document.getElementById('o90ChartSvg');
 new IntersectionObserver((entries) => {
@@ -451,21 +480,6 @@ function o90Stamp(){
 }
 o90Stamp();
 setInterval(o90Stamp, 2200);
-
-const o90Stages = [
-  {icon:"✓", title:"Mes 1 — Preparación", desc:"Reunir los recursos necesarios para los equipos.", status:"✓ Completado", state:"done"},
-  {icon:"●", title:"Mes 2 — Organización", desc:"Cubrir logística y necesidades operativas.", status:"● En progreso", state:"active"},
-  {icon:"○", title:"Mes 3 — Acción", desc:"Completar los recursos necesarios para realizar la jornada.", status:"○ Próximamente", state:"pending"},
-];
-function o90RenderStage(s){
-  return `<div class="o90-stage-card ${s.state}">
-    <div class="o90-stage-icon">${s.icon}</div>
-    <div class="o90-stage-title">${s.title}</div>
-    <div class="o90-stage-desc">${s.desc}</div>
-    <div class="o90-stage-status">${s.status}</div>
-  </div>`;
-}
-document.getElementById('o90StagesTrack').innerHTML = o90Stages.map(o90RenderStage).join('') + o90Stages.map(o90RenderStage).join('');
 
 let gActive = 0;
 const gCarousel = document.getElementById('o90GCarousel');
@@ -534,7 +548,6 @@ function o90OpenModal(p){
 document.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', () => o90ProdModal.classList.remove('open')));
 o90ProdModal.addEventListener('click', e => { if(e.target === o90ProdModal) o90ProdModal.classList.remove('open'); });
 
-// Deslizar dentro de la ficha ampliada — cambia de producto sin cerrar el modal
 const o90ProdModalImg = document.getElementById('o90ProdModalImg');
 let o90ModalDragStartX=null, o90ModalDragDeltaX=0, o90ModalDragging=false;
 o90ProdModalImg.addEventListener('pointerdown', e => { o90ModalDragging=true; o90ModalDragStartX=e.clientX; o90ModalDragDeltaX=0; });
@@ -568,7 +581,7 @@ document.getElementById('o90ShareBtn').addEventListener('click', function(){
   this.classList.add('tapped');
   setTimeout(() => this.classList.remove('tapped'), 300);
   const shareUrl = window.location.origin + window.location.pathname;
-  const message = `🎯 Objetivo 90 — Causa30\n\nHagamos posible una gran jornada de esterilización canina.\n\nQuizás tú no necesites este producto hoy, pero alguien que conoces sí. Cada compra nos acerca a la meta.\n\nDescúbrelo aquí:\n${shareUrl}`;
+  const message = `🎯 Objetivo 90 — Causa30\n\nHagamos posible una gran jornada de esterilización felina.\n\nQuizás tú no necesites este producto hoy, pero alguien que conoces sí. Cada compra nos acerca a la meta.\n\nDescúbrelo aquí:\n${shareUrl}`;
   setTimeout(() => window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank'), 200);
 });
 </script>
