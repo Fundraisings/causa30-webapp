@@ -13,7 +13,6 @@
 <link rel="apple-touch-icon" href="images/icon192.png">
 <title>CAUSA30 · Una compra. Doble propósito</title>
 <meta name="description" content="Cada 30 días, productos seleccionados donan parte de su venta a una fundación aliada. Descubre el producto, descubre la causa.">
-
 <!-- Vista previa al compartir (WhatsApp, Facebook, Instagram) -->
 <meta property="og:title" content="Causa30 · Una compra. Doble propósito">
 <meta property="og:description" content="Te invito a un consumo más inteligente. Tu compra tiene doble propósito.">
@@ -29,475 +28,410 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 <!-- COVER DE BIENVENIDA — pantalla completa, una vez por sesión -->
 <div class="welcome-cover" id="welcomeCover">
-  <img src="images/logo.png" alt="Causa30" class="wc-logo-img">
-
-  <div class="wc-shapes">
-    <div class="wc-lobe wc-lobe-a"></div>
-    <div class="wc-lobe wc-lobe-b"></div>
-  </div>
-
-  <p class="wc-text">Descubre productos y marcas que aportan valor a tu vida y, al mismo tiempo, apoyan una causa social.</p>
-  <p class="wc-slogan">Tu compra tiene doble propósito.</p>
-
-  <button class="wc-cta" id="wcCta">
-    Descubrir Causa30
-    <span class="wc-arrow">↓</span>
-  </button>
+<img src="images/logo.png" alt="Causa30" class="wc-logo-img">
+<div class="wc-shapes">
+<div class="wc-lobe wc-lobe-a"></div>
+<div class="wc-lobe wc-lobe-b"></div>
 </div>
-
+<p class="wc-text">Descubre productos y marcas que aportan valor a tu vida y, al mismo tiempo, apoyan una causa social.</p>
+<p class="wc-slogan">Tu compra tiene doble propósito.</p>
+<button class="wc-cta" id="wcCta">
+Descubrir Causa30
+<span class="wc-arrow">↓</span>
+</button>
+</div>
 <div class="wrap">
-
-  <!-- HERO -->
-  <div class="hero">
-    <div class="brand-center"><img src="images/logo.png" alt="Causa30" class="brand-logo"></div>
-    <p class="intrigue">Elige con propósito. Apoya con tu compra.</p>
-    <p class="hero-slogan">Cada producto que ves aquí destina fondos directamente a una causa. Tu elección marca la diferencia.</p>
-    <span class="micro-eyebrow">Tu compra tiene doble propósito</span>
-
-    <div class="carousel" id="carousel"></div>
-    <div class="dots" id="dots"></div>
-
-    <p class="hint-line" style="margin-top:22px;">Toca el producto para ver dónde comprarlo.<span>No necesitas registrarte — cada compra durante estos 30 días ya cuenta.</span></p>
-
-    <div class="ticker">
-      <div class="ticker-track">
-        <span>🐾 Al comprar este producto, llevas alimento a muchos perritos<span class="dot">●</span></span>
-        <span>Tu compra ayuda a esterilizar perritos sin hogar<span class="dot">●</span></span>
-        <span>Cada compra suma para encontrarles un hogar<span class="dot">●</span></span>
-        <span>🐾 Al comprar este producto, llevas alimento a muchos perritos<span class="dot">●</span></span>
-        <span>Tu compra ayuda a esterilizar perritos sin hogar<span class="dot">●</span></span>
-        <span>Cada compra suma para encontrarles un hogar<span class="dot">●</span></span>
-      </div>
-    </div>
-  </div>
-
-  <!-- ENTRADA OCULTA: FUNDACION + MASCOTAS -->
+<!-- HERO -->
+<div class="hero">
+<div class="brand-center"><img src="images/logo.png" alt="Causa30" class="brand-logo"></div>
+<p class="intrigue">Elige con propósito. Apoya con tu compra.</p>
+<p class="hero-slogan">Cada producto que ves aquí destina fondos directamente a una causa. Tu elección marca la diferencia.</p>
+<span class="micro-eyebrow">Tu compra tiene doble propósito</span>
+<div class="carousel" id="carousel"></div>
+<div class="dots" id="dots"></div>
+<p class="hint-line" style="margin-top:22px;">Toca el producto para ver dónde comprarlo.<span>No necesitas registrarte — cada compra durante estos 30 días ya cuenta.</span></p>
+<div class="ticker">
+<div class="ticker-track">
+<span>🐾 Al comprar este producto, llevas alimento a muchos perritos<span class="dot">●</span></span>
+<span>Tu compra ayuda a esterilizar perritos sin hogar<span class="dot">●</span></span>
+<span>Cada compra suma para encontrarles un hogar<span class="dot">●</span></span>
+<span>🐾 Al comprar este producto, llevas alimento a muchos perritos<span class="dot">●</span></span>
+<span>Tu compra ayuda a esterilizar perritos sin hogar<span class="dot">●</span></span>
+<span>Cada compra suma para encontrarles un hogar<span class="dot">●</span></span>
+</div>
+</div>
+</div>
+<!-- ENTRADA OCULTA: FUNDACION + MASCOTAS -->
 <section style="padding-top:32px;padding-bottom:0;text-align:center;">
-  <span class="fund-pulse-label">Este mes apoyamos a esta fundación</span>
-  <div class="fund-pulse-wrap">
-    <div class="fund-pulse-ring fund-pulse-ring-1"></div>
-    <div class="fund-pulse-ring fund-pulse-ring-2"></div>
-    <div class="fund-pulse-ring fund-pulse-ring-3"></div>
-    <button class="fund-pulse-btn" id="causeChip">❤️</button>
-  </div>
-  <div class="fund-pulse-cta">Toca para conocerla</div>
+<span class="fund-pulse-label">Este mes apoyamos a esta fundación</span>
+<div class="fund-pulse-wrap">
+<div class="fund-pulse-ring fund-pulse-ring-1"></div>
+<div class="fund-pulse-ring fund-pulse-ring-2"></div>
+<div class="fund-pulse-ring fund-pulse-ring-3"></div>
+<button class="fund-pulse-btn" id="causeChip">❤️</button>
+</div>
+<div class="fund-pulse-cta">Toca para conocerla</div>
 </section>
-
 <!-- PATROCINADOR OFICIAL DEL MES -->
 <section style="padding-top:36px;padding-bottom:0;">
-  <span class="eyebrow" style="text-align:center;display:block;">Patrocinador Oficial del Mes</span>
-  <p class="sponsor-thanks">¿Tu marca quiere anunciarse aquí? Escríbenos: ad@causa30.com</p>
-  <div class="banner-shadow">
-    <div class="banner-link">
-      <img src="images/banner-anunciate2.webp" alt="Anúnciate con Causa30">
-    </div>
-  </div>
+<span class="eyebrow" style="text-align:center;display:block;">Patrocinador Oficial del Mes</span>
+<p class="sponsor-thanks">¿Tu marca quiere anunciarse aquí? Escríbenos: ad@causa30.com</p>
+<div class="banner-shadow">
+<div class="banner-link">
+<img src="images/banner-anunciate2.webp" alt="Anúnciate con Causa30">
+</div>
+</div>
 </section>
-
 <!-- ¿CÓMO FUNCIONA? — sección fusionada: cinta + acceso al video -->
 <section style="padding-top:16px;">
-  <div class="funciona" style="text-align:center;">
-    <h2 class="sec-title funciona-main-title">Así funciona Causa30</h2>
-    <p class="funciona-subtitle">Tú compras. La empresa aporta. Una causa recibe apoyo.</p>
-    <div class="ticker-wrap open" id="tickerWrap">
-      <div class="flow-ticker">
-        <div class="flow-track" id="flowTrack"></div>
-      </div>
-      <div class="ticker-controls">
-        <button class="ticker-pause" id="tickerPause">⏸ Pausar</button>
-        <button class="funciona-hide" id="funcionaHide">Ocultar ↑</button>
-      </div>
-    </div>
-    <button class="funciona-show-again" id="funcionaShowAgain">Leer cómo funciona ↓</button>
-    <p class="funciona-simple-text">Así de simple.<br>Encuentra. Compra. Envía tu comprobante.<br>La empresa hace el aporte acordado.</p>
-    <button class="funciona-video-btn video-trigger" id="funcionaVideoBtn" data-yt-id="jWonJ8oFlA8">▶ Ver cómo funciona</button>
-  </div>
-</section>
-
-  <!-- PATROCINADOR OFICIAL DEL MES -->
-  <section style="padding-top:36px;padding-bottom:0;">
-    <span class="eyebrow" style="text-align:center;display:block;">Patrocinador Oficial del Mes</span>
-    <p class="sponsor-thanks">¿Tu marca quiere anunciarse aquí? Escríbenos: ad@causa30.com</p>
-    <div class="banner-shadow">
-  <div class="banner-link">
-    <img src="images/banner-anunciate2.webp" alt="Anúnciate con Causa30">
-  </div>
+<div class="funciona" style="text-align:center;">
+<h2 class="sec-title funciona-main-title">Así funciona Causa30</h2>
+<p class="funciona-subtitle">Tú compras. La empresa aporta. Una causa recibe apoyo.</p>
+<div class="ticker-wrap open" id="tickerWrap">
+<div class="flow-ticker">
+<div class="flow-track" id="flowTrack"></div>
 </div>
-    
-
- <!-- ENTRADA OCULTA: FUNDACION + MASCOTAS -->
-<section style="padding-top:32px;padding-bottom:0;text-align:center;">
-  <span class="fund-pulse-label">Este mes apoyamos a esta fundación</span>
-  <div class="fund-pulse-wrap">
-    <div class="fund-pulse-ring fund-pulse-ring-1"></div>
-    <div class="fund-pulse-ring fund-pulse-ring-2"></div>
-    <div class="fund-pulse-ring fund-pulse-ring-3"></div>
-    <button class="fund-pulse-btn" id="causeChip">❤️</button>
-  </div>
-  <div class="fund-pulse-cta">Toca para conocerla</div>
+<div class="ticker-controls">
+<button class="ticker-pause" id="tickerPause">⏸ Pausar</button>
+<button class="funciona-hide" id="funcionaHide">Ocultar ↑</button>
+</div>
+</div>
+<button class="funciona-show-again" id="funcionaShowAgain">Leer cómo funciona ↓</button>
+<p class="funciona-simple-text">Así de simple.<br>Encuentra. Compra. Envía tu comprobante.<br>La empresa hace el aporte acordado.</p>
+<button class="funciona-video-btn video-trigger" id="funcionaVideoBtn" data-yt-id="jWonJ8oFlA8">▶ Ver cómo funciona</button>
+</div>
 </section>
-
-  <!-- RESULTADOS -->
-  <section style="padding-top:0;text-align:center;">
-    <span class="eyebrow" style="text-align:center;display:block;">Transparencia · Ejemplo ilustrativo</span>
-    <h2 class="sec-title" style="text-align:center;">Resultados de campaña</h2>
-    <button class="receipt-btn-standalone" id="receiptBtn">Ver comprobante →</button>
-  </section>
-
- <!-- OBJETIVO 90 (bloque de entrada — la página completa vive en objetivo90.html) -->
+<!-- RESULTADOS -->
+<section style="padding-top:0;text-align:center;">
+<span class="eyebrow" style="text-align:center;display:block;">Transparencia · Ejemplo ilustrativo</span>
+<h2 class="sec-title" style="text-align:center;">Resultados de campaña</h2>
+<button class="receipt-btn-standalone" id="receiptBtn">Ver comprobante →</button>
+</section>
+<!-- OBJETIVO 90 (bloque de entrada — la página completa vive en objetivo90.html) -->
 <section style="padding-top:12px;">
-  <div class="obj90-card">
-    <div class="obj90-eyebrow-row">
-      <span class="obj90-eyebrow-fixed">🎯 Objetivo 90</span>
-      <div class="obj90-word-ticker">
-        <div class="obj90-word-track">
-          <span>PROTEGER</span><span class="dot">●</span>
-          <span>RESCATAR</span><span class="dot">●</span>
-          <span>ESTERILIZAR</span><span class="dot">●</span>
-          <span>SANAR</span><span class="dot">●</span>
-          <span>EDUCAR</span><span class="dot">●</span>
-          <span>EQUIPAR</span><span class="dot">●</span>
-          <span>SALVAR</span><span class="dot">●</span>
-          <span>CONSTRUIR</span><span class="dot">●</span>
-          <span>PROTEGER</span><span class="dot">●</span>
-          <span>RESCATAR</span><span class="dot">●</span>
-          <span>ESTERILIZAR</span><span class="dot">●</span>
-          <span>SANAR</span><span class="dot">●</span>
-          <span>EDUCAR</span><span class="dot">●</span>
-          <span>EQUIPAR</span><span class="dot">●</span>
-          <span>SALVAR</span><span class="dot">●</span>
-          <span>CONSTRUIR</span><span class="dot">●</span>
-        </div>
-      </div>
-    </div>
-
-    <h2 class="obj90-headline">Hagamos posible una gran jornada de esterilización canina.</h2>
-
-    <button class="obj90-video-zone video-trigger" id="obj90VideoBtn" data-yt-id="ID_DEL_VIDEO_OBJETIVO90">
-      <span class="obj90-halo"></span>
-      <div class="obj90-play-circle">▶</div>
-      <svg class="obj90-tap-hint" width="56" height="56" viewBox="0 0 24 24">
-        <circle class="obj90-tap-ripple" cx="10" cy="9" r="6" fill="none" stroke="#fff" stroke-width="1.2"/>
-        <path d="M8 3.5a1 1 0 0 1 2 0v5.2l.9-.3a1.6 1.6 0 0 1 2 1v.4a1.6 1.6 0 0 1 1.6-1.1c.9 0 1.6.7 1.6 1.6v.3a1.5 1.5 0 0 1 1.4-.9c.8 0 1.5.7 1.5 1.5v3c0 2.5-2 4.5-4.5 4.5h-1.2c-1.4 0-2.7-.6-3.5-1.7l-2.9-3.7a1.2 1.2 0 0 1 1.8-1.6l1.3 1.2V3.5Z"
-              fill="rgba(255,255,255,.95)" stroke="none"/>
-      </svg>
-    </button>
-    <p class="obj90-video-cta">Toca para conocer Objetivo 90</p>
-
-    <a class="obj90-fullpage-cta" href="objetivo90.html">¿Te gustaría ser parte de este objetivo?<br>Descubre cómo aquí →</a>
-  </div>
-</section>
-
-  <!-- DESCUBRE MÁS (texto rotativo + 3 imágenes visibles rotando, con texto sincronizado debajo) -->
-  <section style="padding-top:0;">
-    <div style="text-align:center;">
-      <span class="discover-intro">Hoy podrías descubrir...</span>
-      <div class="discover-dynamic-wrap">
-        <span class="discover-dynamic" id="discoverDynamic">una nueva marca.</span>
-      </div>
-
-      <div class="ad-rotator" id="adsTrigger">
-        <div class="ad-slide-img active" id="adSlideImg0"></div>
-        <div class="ad-slide-img" id="adSlideImg1"></div>
-        <div class="ad-slide-img" id="adSlideImg2"></div>
-      </div>
-      <div class="ad-caption">
-  <div class="ad-caption-title" id="adCaptionTitle">—</div>
-  <div class="ad-caption-text" id="adCaptionText">—</div>
-  <button class="ad-invite-link" id="adInviteLink">¿Quieres anunciarte aquí? →</button>
+<div class="obj90-card">
+<div class="obj90-eyebrow-row">
+<span class="obj90-eyebrow-fixed">🎯 Objetivo 90</span>
+<div class="obj90-word-ticker">
+<div class="obj90-word-track">
+<span>PROTEGER</span><span class="dot">●</span>
+<span>RESCATAR</span><span class="dot">●</span>
+<span>ESTERILIZAR</span><span class="dot">●</span>
+<span>SANAR</span><span class="dot">●</span>
+<span>EDUCAR</span><span class="dot">●</span>
+<span>EQUIPAR</span><span class="dot">●</span>
+<span>SALVAR</span><span class="dot">●</span>
+<span>CONSTRUIR</span><span class="dot">●</span>
+<span>PROTEGER</span><span class="dot">●</span>
+<span>RESCATAR</span><span class="dot">●</span>
+<span>ESTERILIZAR</span><span class="dot">●</span>
+<span>SANAR</span><span class="dot">●</span>
+<span>EDUCAR</span><span class="dot">●</span>
+<span>EQUIPAR</span><span class="dot">●</span>
+<span>SALVAR</span><span class="dot">●</span>
+<span>CONSTRUIR</span><span class="dot">●</span>
 </div>
-    </div>
-  </section>
-
- <!-- LEGADO DOMINICANO -->
+</div>
+</div>
+<h2 class="obj90-headline">Hagamos posible una gran jornada de esterilización canina.</h2>
+<button class="obj90-video-zone video-trigger" id="obj90VideoBtn" data-yt-id="ID_DEL_VIDEO_OBJETIVO90">
+<span class="obj90-halo"></span>
+<div class="obj90-play-circle">▶</div>
+<svg class="obj90-tap-hint" width="56" height="56" viewBox="0 0 24 24">
+<circle class="obj90-tap-ripple" cx="10" cy="9" r="6" fill="none" stroke="#fff" stroke-width="1.2"/>
+<path d="M8 3.5a1 1 0 0 1 2 0v5.2l.9-.3a1.6 1.6 0 0 1 2 1v.4a1.6 1.6 0 0 1 1.6-1.1c.9 0 1.6.7 1.6 1.6v.3a1.5 1.5 0 0 1 1.4-.9c.8 0 1.5.7 1.5 1.5v3c0 2.5-2 4.5-4.5 4.5h-1.2c-1.4 0-2.7-.6-3.5-1.7l-2.9-3.7a1.2 1.2 0 0 1 1.8-1.6l1.3 1.2V3.5Z"
+fill="rgba(255,255,255,.95)" stroke="none"/>
+</svg>
+</button>
+<p class="obj90-video-cta">Toca para conocer Objetivo 90</p>
+<a class="obj90-fullpage-cta" href="objetivo90.html">¿Te gustaría ser parte de este objetivo?<br>Descubre cómo aquí →</a>
+</div>
+</section>
+<!-- DESCUBRE MÁS (texto rotativo + 3 imágenes visibles rotando, con texto sincronizado debajo) -->
 <section style="padding-top:0;">
-  <div class="libro-mes" style="text-align:center;">
-    <h2 class="sec-title">Legado Dominicano 🇩🇴</h2>
-    <p class="libro-sub">Aprende nuestra historia y apoya una causa al mismo tiempo.</p>
-    <p class="libro-hint">Toca para descubrir el libro seleccionado este mes.</p>
-
-    <button class="libro-toggle" id="libroToggle">
-      <span id="libroToggleText">✦ Ver libro y apoyar</span> <span id="libroToggleIcon">↓</span>
-    </button>
-
-    <div class="libro-reveal" id="libroReveal">
-      <div class="libro-flip" id="libroFlip">
-        <div class="libro-flip-inner">
-          <div class="libro-flip-front">
-  <div class="libro-cover-yt">
-    <iframe src="https://www.youtube.com/embed/fq4MuraFTEg?autoplay=1&mute=1&loop=1&playlist=fq4MuraFTEg&controls=0&modestbranding=1&playsinline=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-  </div>
-  <div class="libro-tap-hint">Toca para ver dónde comprarlo</div>
+<div style="text-align:center;">
+<span class="discover-intro">Hoy podrías descubrir...</span>
+<div class="discover-dynamic-wrap">
+<span class="discover-dynamic" id="discoverDynamic">una nueva marca.</span>
 </div>
-          <div class="libro-flip-back" id="libroFlipBack">
-            <div class="libro-where-title">¿Dónde comprarlo?</div>
-            <div class="libro-where-list" id="libroWhereList"></div>
-          </div>
-        </div>
-      </div>
-      <p class="libro-support">Con la compra de este libro apoyas a:</p>
-      <h3 class="libro-fund-name" id="libroFundName">—</h3>
-      <p class="libro-fund-desc" id="libroFundDesc">—</p>
-      <a class="libro-fund-link" id="libroFundLink" href="#" target="_blank" rel="noopener">Conocer la causa →</a>
-    </div>
-  </div>
+<div class="ad-rotator" id="adsTrigger">
+<div class="ad-slide-img active" id="adSlideImg0"></div>
+<div class="ad-slide-img" id="adSlideImg1"></div>
+<div class="ad-slide-img" id="adSlideImg2"></div>
+</div>
+<div class="ad-caption">
+<div class="ad-caption-title" id="adCaptionTitle">—</div>
+<div class="ad-caption-text" id="adCaptionText">—</div>
+<button class="ad-invite-link" id="adInviteLink">¿Quieres anunciarte aquí? →</button>
+</div>
+</div>
 </section>
-
-  <!-- SUMAR A CAUSA30 (compacto, al final) -->
-  <section style="padding-top:0;">
-    <div class="join-band join-band-compact">
-      <h3>Tu voz construye el movimiento.</h3>
-      <p>¿Conoces una causa que necesita ayuda? ¿O tienes una empresa con propósito? Construyamos juntos el impacto de los próximos meses.</p>
-      <div class="join-actions">
-        <button class="join-btn outline" id="openSuggestForm">Sugerir una causa</button>
-        <button class="join-btn coral" id="openBizForm">Sumar mi empresa</button>
-      </div>
-      <div class="join-receipt-block">
-        <p class="join-receipt-text">📸 ¿Ya compraste? Envía tu comprobante y ayuda a que tu compra cuente en la campaña.</p>
-        <a class="join-receipt-link" href="https://wa.me/1XXXXXXXXXX" target="_blank" rel="noopener">Enviar comprobante por WhatsApp →</a>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="word">CAUSA<span style="color:var(--coral)">30</span></div>
-    <div class="footer-scope">
-      <h4>Causa30 es una plataforma de marketing con causa que conecta empresas, productos y causas sociales.</h4>
+<!-- LEGADO DOMINICANO -->
+<section style="padding-top:0;">
+<div class="libro-mes" style="text-align:center;">
+<h2 class="sec-title">Legado Dominicano 🇩🇴</h2>
+<p class="libro-sub">Aprende nuestra historia y apoya una causa al mismo tiempo.</p>
+<p class="libro-hint">Toca para descubrir el libro seleccionado este mes.</p>
+<button class="libro-toggle" id="libroToggle">
+<span id="libroToggleText">✦ Ver libro y apoyar</span> <span id="libroToggleIcon">↓</span>
+</button>
+<div class="libro-reveal" id="libroReveal">
+<div class="libro-flip" id="libroFlip">
+<div class="libro-flip-inner">
+<div class="libro-flip-front">
+<div class="libro-cover-yt">
+<iframe src="https://www.youtube.com/embed/fq4MuraFTEg?autoplay=1&mute=1&loop=1&playlist=fq4MuraFTEg&controls=0&modestbranding=1&playsinline=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
+<div class="libro-tap-hint">Toca para ver dónde comprarlo</div>
+</div>
+<div class="libro-flip-back" id="libroFlipBack">
+<div class="libro-where-title">¿Dónde comprarlo?</div>
+<div class="libro-where-list" id="libroWhereList"></div>
+</div>
+</div>
+</div>
+<p class="libro-support">Con la compra de este libro apoyas a:</p>
+<h3 class="libro-fund-name" id="libroFundName">—</h3>
+<p class="libro-fund-desc" id="libroFundDesc">—</p>
+<a class="libro-fund-link" id="libroFundLink" href="#" target="_blank" rel="noopener">Conocer la causa →</a>
+</div>
+</div>
+</section>
+<!-- SUMAR A CAUSA30 (compacto, al final) -->
+<section style="padding-top:0;">
+<div class="join-band join-band-compact">
+<h3>Tu voz construye el movimiento.</h3>
+<p>¿Conoces una causa que necesita ayuda? ¿O tienes una empresa con propósito? Construyamos juntos el impacto de los próximos meses.</p>
+<div class="join-actions">
+<button class="join-btn outline" id="openSuggestForm">Sugerir una causa</button>
+<button class="join-btn coral" id="openBizForm">Sumar mi empresa</button>
+</div>
+<div class="join-receipt-block">
+<p class="join-receipt-text">📸 ¿Ya compraste? Envía tu comprobante y ayuda a que tu compra cuente en la campaña.</p>
+<a class="join-receipt-link" href="https://wa.me/1XXXXXXXXXX" target="_blank" rel="noopener">Enviar comprobante por WhatsApp →</a>
+</div>
+</div>
+</section>
+<footer>
+<div class="word">CAUSA<span style="color:var(--coral)">30</span></div>
+<div class="footer-scope">
+<h4>Causa30 es una plataforma de marketing con causa que conecta empresas, productos y causas sociales.</h4>
 <p>Iniciamos en República Dominicana 🇩🇴 — con el tiempo, esperamos llevar Causa30 a nuevos países.</p>
-    <p class="footer-social-text">Síguenos @somoscausa30 — novedades y sorpresas que vienen pronto</p>
-    <div class="footer-social">
-      <a class="footer-social-icon" href="https://instagram.com/somoscausa30" target="_blank" rel="noopener" aria-label="Instagram"><img src="images/icon-instagram.png" alt="Instagram"></a>
-      <a class="footer-social-icon" href="https://tiktok.com/@somoscausa30" target="_blank" rel="noopener" aria-label="TikTok"><img src="images/icon-tiktok.png" alt="TikTok"></a>
-      <a class="footer-social-icon" href="https://facebook.com/somoscausa30" target="_blank" rel="noopener" aria-label="Facebook"><img src="images/icon-facebook.png" alt="Facebook"></a>
-    </div>
-    <div class="links">
-  <a href="legal.html#privacidad">Privacidad</a>
-  <a href="legal.html#terminos">Términos</a>
-  <a href="legal.html#cookies">Cookies</a>
 </div>
-    <div class="credit">Causa30 — powered by Altrua</div>
-    <div class="legal">© 2026 Altrua Global LLC. Todos los derechos reservados.<br>Miami, Florida, USA.</div>
-  </footer>
-
+<p class="footer-social-text">Síguenos @somoscausa30 — novedades y sorpresas que vienen pronto</p>
+<div class="footer-social">
+<a class="footer-social-icon" href="https://instagram.com/somoscausa30" target="_blank" rel="noopener" aria-label="Instagram"><img src="images/icon-instagram.png" alt="Instagram"></a>
+<a class="footer-social-icon" href="https://tiktok.com/@somoscausa30" target="_blank" rel="noopener" aria-label="TikTok"><img src="images/icon-tiktok.png" alt="TikTok"></a>
+<a class="footer-social-icon" href="https://facebook.com/somoscausa30" target="_blank" rel="noopener" aria-label="Facebook"><img src="images/icon-facebook.png" alt="Facebook"></a>
 </div>
-
+<div class="links">
+<a href="legal.html#privacidad">Privacidad</a>
+<a href="legal.html#terminos">Términos</a>
+<a href="legal.html#cookies">Cookies</a>
+</div>
+<div class="credit">Causa30 — powered by Altrua</div>
+<div class="legal">© 2026 Altrua Global LLC. Todos los derechos reservados.<br>Miami, Florida, USA.</div>
+</footer>
+</div>
 <!-- MODAL: FUNDACIÓN + MASCOTAS -->
 <div class="modal-overlay" id="causeModal">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
-    <button class="modal-close" data-close>✕</button>
-
-    <span class="eyebrow">Fundación participante</span>
-    <h2 class="sec-title">Fundación De Blanck</h2>
-    <div class="fund-card">
-      <div class="fund-photo" style="background-image:url('images/marcologofundacion2.png')"></div>
-      <div class="fund-body">
-        <p>Somos una fundación sin fines de lucro, que lleva más de 27 años en el cuidado de los animales y la continua educación de la población dominicana en materia de protección a los animales, en la preservación del entorno natural, la vida sana y los valores en la familia basados en el amor y respeto.</p>
-        <div class="fund-meta">
-          <span><b>Dirección:</b> Santo Domingo, Rep. Dominicana</span>
-          <span><b>Teléfono:</b> (+1) 809 884 5044 / 809 609 6006</span>
-          <span><b>Website:</b> fundaciondeblanck.org</span>
-          <span><b>Instagram:</b> @fundacion_de_blanck</span>
-        </div>
-        <a class="btn-ghost" href="https://fundaciondeblanck.org/" target="_blank" rel="noopener">Conocer más</a>
-      </div>
-    </div>
-
-    <div class="pet-section-title">
-      <span class="eyebrow">Ellos también son parte</span>
-      <h2 class="sec-title" style="font-size:21px;">Buscan un hogar responsable</h2>
-    </div>
-    <div class="pet-scroll" id="petScroll"></div>
-  </div>
+<div class="modal-sheet">
+<div class="modal-handle"></div>
+<button class="modal-close" data-close>✕</button>
+<span class="eyebrow">Fundación participante</span>
+<h2 class="sec-title">Fundación De Blanck</h2>
+<div class="fund-card">
+<div class="fund-photo" style="background-image:url('images/marcologofundacion2.png')"></div>
+<div class="fund-body">
+<p>Somos una fundación sin fines de lucro, que lleva más de 27 años en el cuidado de los animales y la continua educación de la población dominicana en materia de protección a los animales, en la preservación del entorno natural, la vida sana y los valores en la familia basados en el amor y respeto.</p>
+<div class="fund-meta">
+<span><b>Dirección:</b> Santo Domingo, Rep. Dominicana</span>
+<span><b>Teléfono:</b> (+1) 809 884 5044 / 809 609 6006</span>
+<span><b>Website:</b> fundaciondeblanck.org</span>
+<span><b>Instagram:</b> @fundacion_de_blanck</span>
 </div>
-
+<a class="btn-ghost" href="https://fundaciondeblanck.org/" target="_blank" rel="noopener">Conocer más</a>
+</div>
+</div>
+<div class="pet-section-title">
+<span class="eyebrow">Ellos también son parte</span>
+<h2 class="sec-title" style="font-size:21px;">Buscan un hogar responsable</h2>
+</div>
+<div class="pet-scroll" id="petScroll"></div>
+</div>
+</div>
 <!-- MODAL: DETALLE DEL PRODUCTO -->
 <div class="modal-overlay" id="whereModal">
-  <div class="modal-sheet detail-sheet">
-    <button class="modal-close" data-close>✕</button>
-    <div id="detailPhoto" class="detail-photo"></div>
-    <div class="detail-content">
-      <h2 class="sec-title" id="whereTitle" style="font-size:20px;">—</h2>
-      <div class="price-row" style="margin-top:8px;">
-        <span class="price" id="detailPrice" style="font-size:15px;"></span>
-        <span class="aporte" id="detailAporte" style="font-size:12px;"></span>
-      </div>
-
-      <div class="story-block">
-        <div class="story-label" id="storyLabel">Tu compra ayuda a</div>
-        <div class="story-cause" id="storyCause">—</div>
-      </div>
-
-      <div id="whereBody" style="margin-top:6px;"></div>
-
-      <div class="countdown countdown-lg" id="campaignCountdown2">
-        <div class="cd-unit"><span class="cd-num" id="cdDays2">00</span><span class="cd-label">Días</span></div>
-        <div class="cd-sep">:</div>
-        <div class="cd-unit"><span class="cd-num" id="cdHours2">00</span><span class="cd-label">Hrs</span></div>
-        <div class="cd-sep">:</div>
-        <div class="cd-unit"><span class="cd-num" id="cdMins2">00</span><span class="cd-label">Min</span></div>
-        <div class="cd-sep">:</div>
-        <div class="cd-unit"><span class="cd-num" id="cdSecs2">00</span><span class="cd-label">Seg</span></div>
-      </div>
-
-      <div class="share-promo-block">
-  <div class="share-promo-divider"></div>
-  <h3 class="share-promo-title">❤️ Multiplica tu impacto</h3>
-  <p class="share-promo-text">Quizás tú no necesites este producto hoy, pero tu recomendación puede ser justo lo que alguien más estaba esperando. Comparte y súmalo a la causa.</p>
-
-  <div class="share-pulse-wrap-sm">
-    <div class="share-pulse-ring-sm share-pulse-ring-sm-1"></div>
-    <div class="share-pulse-ring-sm share-pulse-ring-sm-2"></div>
-    <div class="share-pulse-ring-sm share-pulse-ring-sm-3"></div>
-    <button class="share-pulse-btn-sm" id="sharePromoBtn">
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff">
-        <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.005c5.46 0 9.91-4.45 9.91-9.91C21.98 6.45 17.53 2 12.04 2zm5.79 14.13c-.24.68-1.4 1.3-1.93 1.38-.49.08-1.11.11-1.79-.11-.41-.13-.94-.3-1.62-.59-2.86-1.23-4.72-4.12-4.86-4.31-.14-.19-1.16-1.55-1.16-2.95 0-1.41.74-2.1 1-2.39.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.57.81 1.98.88 2.12.07.14.12.31.02.5-.1.19-.15.31-.29.48-.14.17-.3.38-.43.51-.14.14-.29.29-.12.57.17.29.76 1.25 1.63 2.02 1.12 1 2.06 1.31 2.35 1.46.29.14.46.12.63-.07.17-.19.72-.84.92-1.13.19-.29.38-.24.64-.14.26.1 1.65.78 1.94.92.29.14.48.21.55.33.07.12.07.69-.17 1.37z"/>
-      </svg>
-    </button>
-  </div>
-  <div class="share-pulse-cta-sm">Toca para compartir</div>
+<div class="modal-sheet detail-sheet">
+<button class="modal-close" data-close>✕</button>
+<div id="detailPhoto" class="detail-photo"></div>
+<div class="detail-content">
+<h2 class="sec-title" id="whereTitle" style="font-size:20px;">—</h2>
+<div class="price-row" style="margin-top:8px;">
+<span class="price" id="detailPrice" style="font-size:15px;"></span>
+<span class="aporte" id="detailAporte" style="font-size:12px;"></span>
 </div>
-    </div>
-  </div>
+<div class="story-block">
+<div class="story-label" id="storyLabel">Tu compra ayuda a</div>
+<div class="story-cause" id="storyCause">—</div>
 </div>
-
-
+<div id="whereBody" style="margin-top:6px;"></div>
+<div class="countdown countdown-lg" id="campaignCountdown2">
+<div class="cd-unit"><span class="cd-num" id="cdDays2">00</span><span class="cd-label">Días</span></div>
+<div class="cd-sep">:</div>
+<div class="cd-unit"><span class="cd-num" id="cdHours2">00</span><span class="cd-label">Hrs</span></div>
+<div class="cd-sep">:</div>
+<div class="cd-unit"><span class="cd-num" id="cdMins2">00</span><span class="cd-label">Min</span></div>
+<div class="cd-sep">:</div>
+<div class="cd-unit"><span class="cd-num" id="cdSecs2">00</span><span class="cd-label">Seg</span></div>
+</div>
+<div class="share-promo-block">
+<div class="share-promo-divider"></div>
+<h3 class="share-promo-title">❤️ Multiplica tu impacto</h3>
+<p class="share-promo-text">Quizás tú no necesites este producto hoy, pero tu recomendación puede ser justo lo que alguien más estaba esperando. Comparte y súmalo a la causa.</p>
+<div class="share-pulse-wrap-sm">
+<div class="share-pulse-ring-sm share-pulse-ring-sm-1"></div>
+<div class="share-pulse-ring-sm share-pulse-ring-sm-2"></div>
+<div class="share-pulse-ring-sm share-pulse-ring-sm-3"></div>
+<button class="share-pulse-btn-sm" id="sharePromoBtn">
+<svg width="26" height="26" viewBox="0 0 24 24" fill="#fff">
+<path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.005c5.46 0 9.91-4.45 9.91-9.91C21.98 6.45 17.53 2 12.04 2zm5.79 14.13c-.24.68-1.4 1.3-1.93 1.38-.49.08-1.11.11-1.79-.11-.41-.13-.94-.3-1.62-.59-2.86-1.23-4.72-4.12-4.86-4.31-.14-.19-1.16-1.55-1.16-2.95 0-1.41.74-2.1 1-2.39.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.57.81 1.98.88 2.12.07.14.12.31.02.5-.1.19-.15.31-.29.48-.14.17-.3.38-.43.51-.14.14-.29.29-.12.57.17.29.76 1.25 1.63 2.02 1.12 1 2.06 1.31 2.35 1.46.29.14.46.12.63-.07.17-.19.72-.84.92-1.13.19-.29.38-.24.64-.14.26.1 1.65.78 1.94.92.29.14.48.21.55.33.07.12.07.69-.17 1.37z"/>
+</svg>
+</button>
+</div>
+<div class="share-pulse-cta-sm">Toca para compartir</div>
+</div>
+</div>
+</div>
+</div>
 <!-- MODAL: CAMPAÑA EN CURSO (al tocar "Ver comprobante" antes de que termine) -->
 <div class="modal-overlay" id="progressModal">
-  <div class="modal-sheet" style="max-height:70vh;text-align:center;">
-    <div class="modal-handle"></div>
-    <button class="modal-close" data-close>✕</button>
-    <div class="progress-flip" id="progressFlip">
-      <div class="progress-flip-inner">
-        <div class="progress-front">
-          <div class="progress-art" id="progressArt" style="background-image:url('images/progress2.png')"></div>
-          <div class="results-tap-hint">(toca la foto)</div>
-        </div>
-        <div class="progress-back" id="progressBack">
-          <div class="rgrid">
-            <div class="rrow"><span class="k">Empresa</span><span class="v" id="resBiz">—</span></div>
-            <div class="rrow"><span class="k">Producto</span><span class="v" id="resProd">—</span></div>
-            <div class="rrow"><span class="k">Compromiso</span><span class="v" id="resAporte">—</span></div>
-            <div class="rrow"><span class="k">Compras</span><span class="v" id="resCompras">—</span></div>
-            <div class="rrow"><span class="k">Donación</span><span class="v money" id="resDonacion">—</span></div>
-            <div class="rrow"><span class="k">Fundación</span><span class="v">De Blanck</span></div>
-            <div class="rrow"><span class="k">Estado</span><span class="status-pill" style="background:rgba(240,161,144,.15);color:#F0A190;">Próximamente</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <h2 class="sec-title" style="font-size:20px;margin-top:14px;">¡Esta campaña todavía está en marcha!</h2>
-    <p style="font-size:13.5px;color:var(--grey);margin-top:12px;line-height:1.6;">Aún puedes ser parte. Compra uno de los 3 productos participantes este mes y ayuda a llevar alimento a muchos perritos que lo necesitan — cada compra suma.</p>
-    <div class="countdown" id="campaignCountdown">
-      <div class="cd-unit"><span class="cd-num" id="cdDays">00</span><span class="cd-label">Días</span></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-unit"><span class="cd-num" id="cdHours">00</span><span class="cd-label">Hrs</span></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-unit"><span class="cd-num" id="cdMins">00</span><span class="cd-label">Min</span></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-unit"><span class="cd-num" id="cdSecs">00</span><span class="cd-label">Seg</span></div>
-    </div>
-    <button class="btn-ghost" data-close style="margin-top:18px;">Ver productos</button>
-    <p style="font-size:11.5px;color:var(--grey);margin-top:18px;">Los resultados oficiales se publican apenas cierre la campaña.</p>
-  </div>
+<div class="modal-sheet" style="max-height:70vh;text-align:center;">
+<div class="modal-handle"></div>
+<button class="modal-close" data-close>✕</button>
+<div class="progress-flip" id="progressFlip">
+<div class="progress-flip-inner">
+<div class="progress-front">
+<div class="progress-art" id="progressArt" style="background-image:url('images/progress2.png')"></div>
+<div class="results-tap-hint">(toca la foto)</div>
 </div>
-
+<div class="progress-back" id="progressBack">
+<div class="rgrid">
+<div class="rrow"><span class="k">Empresa</span><span class="v" id="resBiz">—</span></div>
+<div class="rrow"><span class="k">Producto</span><span class="v" id="resProd">—</span></div>
+<div class="rrow"><span class="k">Compromiso</span><span class="v" id="resAporte">—</span></div>
+<div class="rrow"><span class="k">Compras</span><span class="v" id="resCompras">—</span></div>
+<div class="rrow"><span class="k">Donación</span><span class="v money" id="resDonacion">—</span></div>
+<div class="rrow"><span class="k">Fundación</span><span class="v">De Blanck</span></div>
+<div class="rrow"><span class="k">Estado</span><span class="status-pill" style="background:rgba(240,161,144,.15);color:#F0A190;">Próximamente</span></div>
+</div>
+</div>
+</div>
+</div>
+<h2 class="sec-title" style="font-size:20px;margin-top:14px;">¡Esta campaña todavía está en marcha!</h2>
+<p style="font-size:13.5px;color:var(--grey);margin-top:12px;line-height:1.6;">Aún puedes ser parte. Compra uno de los 3 productos participantes este mes y ayuda a llevar alimento a muchos perritos que lo necesitan — cada compra suma.</p>
+<div class="countdown" id="campaignCountdown">
+<div class="cd-unit"><span class="cd-num" id="cdDays">00</span><span class="cd-label">Días</span></div>
+<div class="cd-sep">:</div>
+<div class="cd-unit"><span class="cd-num" id="cdHours">00</span><span class="cd-label">Hrs</span></div>
+<div class="cd-sep">:</div>
+<div class="cd-unit"><span class="cd-num" id="cdMins">00</span><span class="cd-label">Min</span></div>
+<div class="cd-sep">:</div>
+<div class="cd-unit"><span class="cd-num" id="cdSecs">00</span><span class="cd-label">Seg</span></div>
+</div>
+<button class="btn-ghost" data-close style="margin-top:18px;">Ver productos</button>
+<p style="font-size:11.5px;color:var(--grey);margin-top:18px;">Los resultados oficiales se publican apenas cierre la campaña.</p>
+</div>
+</div>
 <!-- MODAL: PROMO DE BIENVENIDA (una sola vez por dispositivo, elige 1 de 3 al azar) -->
 <div class="modal-overlay promo-overlay" id="promoModal">
-  <div class="promo-sheet">
-    <button class="promo-close" data-close>✕</button>
-    <div class="promo-art" id="promoArt"></div>
-    <div class="promo-body">
-      <h3 id="promoTitle">—</h3>
-      <p id="promoText">—</p>
-      <button class="promo-cta" data-close>Ver promociones</button>
-    </div>
-  </div>
+<div class="promo-sheet">
+<button class="promo-close" data-close>✕</button>
+<div class="promo-art" id="promoArt"></div>
+<div class="promo-body">
+<h3 id="promoTitle">—</h3>
+<p id="promoText">—</p>
+<button class="promo-cta" data-close>Ver promociones</button>
 </div>
-
+</div>
+</div>
 <!-- MODAL: GALERÍA DE PROMOCIONES (navegable, a propósito) -->
 <div class="modal-overlay promo-overlay" id="adsModal">
-  <div class="promo-sheet">
-    <button class="promo-close" data-close>✕</button>
-    <div class="promo-art" id="adsArt"></div>
-    <div class="promo-body">
-      <h3 id="adsTitle">—</h3>
-      <p id="adsText">—</p>
-      <button class="btn-ghost" id="adsGo" style="width:100%;">Quiero anunciarme aquí</button>
-      <div class="ads-nav">
-        <button id="adsPrev" class="ads-arrow">‹</button>
-        <div class="ads-dots" id="adsDots"></div>
-        <button id="adsNext" class="ads-arrow">›</button>
-      </div>
-    </div>
-  </div>
+<div class="promo-sheet">
+<button class="promo-close" data-close>✕</button>
+<div class="promo-art" id="adsArt"></div>
+<div class="promo-body">
+<h3 id="adsTitle">—</h3>
+<p id="adsText">—</p>
+<button class="btn-ghost" id="adsGo" style="width:100%;">Quiero anunciarme aquí</button>
+<div class="ads-nav">
+<button id="adsPrev" class="ads-arrow">‹</button>
+<div class="ads-dots" id="adsDots"></div>
+<button id="adsNext" class="ads-arrow">›</button>
 </div>
-
+</div>
+</div>
+</div>
 <!-- MODAL: SUGERIR PRODUCTO -->
 <div class="modal-overlay" id="suggestModal">
-  <div class="modal-sheet" style="max-height:70vh;">
-    <div class="modal-handle"></div>
-    <button class="modal-close" data-close>✕</button>
-    <span class="eyebrow">Sugerencia</span>
-    <h2 class="sec-title" style="font-size:20px;">¿Qué causa o fundación crees que merece apoyo?</h2>
-    <form id="suggestForm" class="causa-form">
-      <label>Nombre de la fundación o causa</label>
-      <input type="text" name="producto" placeholder="Ej.: refugio de animales, banco de alimentos, apoyo escolar…" required>
-      <button type="submit" class="promo-cta">Enviar sugerencia</button>
-    </form>
-    <div class="form-success" id="suggestSuccess">
-      <div class="check">✓</div>
-      <p>¡Gracias! Ya tenemos tu sugerencia — la tomaremos en cuenta para futuras campañas.</p>
-    </div>
-  </div>
+<div class="modal-sheet" style="max-height:70vh;">
+<div class="modal-handle"></div>
+<button class="modal-close" data-close>✕</button>
+<span class="eyebrow">Sugerencia</span>
+<h2 class="sec-title" style="font-size:20px;">¿Qué causa o fundación crees que merece apoyo?</h2>
+<form id="suggestForm" class="causa-form">
+<label>Nombre de la fundación o causa</label>
+<input type="text" name="producto" placeholder="Ej.: refugio de animales, banco de alimentos, apoyo escolar…" required>
+<button type="submit" class="promo-cta">Enviar sugerencia</button>
+</form>
+<div class="form-success" id="suggestSuccess">
+<div class="check">✓</div>
+<p>¡Gracias! Ya tenemos tu sugerencia — la tomaremos en cuenta para futuras campañas.</p>
 </div>
-
+</div>
+</div>
 <!-- MODAL: EMPRESA QUIERE PARTICIPAR -->
 <div class="modal-overlay" id="bizModal">
-  <div class="modal-sheet" style="max-height:78vh;">
-    <div class="modal-handle"></div>
-    <button class="modal-close" data-close>✕</button>
-    <span class="eyebrow">Empresas</span>
-    <h2 class="sec-title" style="font-size:20px;">¿Tu empresa quiere participar?</h2>
-    <p style="font-size:13px;color:var(--grey);margin-top:8px;">Cuéntanos un poco y te contactamos.</p>
-    <form id="bizForm" class="causa-form">
-      <label>Nombre de la empresa</label>
-      <input type="text" name="empresa" required>
-      <label>Producto que te gustaría promocionar (opcional)</label>
-      <input type="text" name="producto">
-      <label>Correo o teléfono de contacto</label>
-      <input type="text" name="contacto" required>
-      <button type="submit" class="promo-cta">Enviar solicitud</button>
-    </form>
-    <div class="form-success" id="bizSuccess">
-      <div class="check">✓</div>
-      <p>¡Gracias! Recibimos tu solicitud — nuestro equipo te contactará pronto.</p>
-    </div>
-  </div>
+<div class="modal-sheet" style="max-height:78vh;">
+<div class="modal-handle"></div>
+<button class="modal-close" data-close>✕</button>
+<span class="eyebrow">Empresas</span>
+<h2 class="sec-title" style="font-size:20px;">¿Tu empresa quiere participar?</h2>
+<p style="font-size:13px;color:var(--grey);margin-top:8px;">Cuéntanos un poco y te contactamos.</p>
+<form id="bizForm" class="causa-form">
+<label>Nombre de la empresa</label>
+<input type="text" name="empresa" required>
+<label>Producto que te gustaría promocionar (opcional)</label>
+<input type="text" name="producto">
+<label>Correo o teléfono de contacto</label>
+<input type="text" name="contacto" required>
+<button type="submit" class="promo-cta">Enviar solicitud</button>
+</form>
+<div class="form-success" id="bizSuccess">
+<div class="check">✓</div>
+<p>¡Gracias! Recibimos tu solicitud — nuestro equipo te contactará pronto.</p>
 </div>
-
+</div>
+</div>
 <!-- LIGHTBOX: VIDEO A PANTALLA COMPLETA (YouTube) -->
 <div class="video-lightbox" id="videoLightbox">
-  <button class="video-lightbox-close" id="videoLightboxClose">✕</button>
-  <button class="video-lightbox-skip" id="videoLightboxSkip">Saltar →</button>
-  <div class="yt-frame-wrap" id="ytFrameWrap"></div>
+<button class="video-lightbox-close" id="videoLightboxClose">✕</button>
+<button class="video-lightbox-skip" id="videoLightboxSkip">Saltar →</button>
+<div class="yt-frame-wrap" id="ytFrameWrap"></div>
 </div>
-
 <!-- ANIMACIÓN: COMPARTIR PROMOCIÓN (breve, antes de abrir WhatsApp) -->
 <div class="share-anim-overlay" id="shareAnimOverlay">
-  <div class="share-anim-icon-wrap">
-    <span class="share-anim-product" id="shareAnimProduct">🛍️</span>
-    <span class="share-anim-heart">❤️</span>
-    <span class="share-anim-ring share-anim-ring-1"></span>
-    <span class="share-anim-ring share-anim-ring-2"></span>
-    <span class="share-anim-ring share-anim-ring-3"></span>
-  </div>
-  <p class="share-anim-caption">Una compra puede ayudar.<br>Compartir puede multiplicarla.</p>
+<div class="share-anim-icon-wrap">
+<span class="share-anim-product" id="shareAnimProduct">🛍️</span>
+<span class="share-anim-heart">❤️</span>
+<span class="share-anim-ring share-anim-ring-1"></span>
+<span class="share-anim-ring share-anim-ring-2"></span>
+<span class="share-anim-ring share-anim-ring-3"></span>
 </div>
-
+<p class="share-anim-caption">Una compra puede ayudar.<br>Compartir puede multiplicarla.</p>
+</div>
 <script src="app.js"></script>
 </body>
 </html>
