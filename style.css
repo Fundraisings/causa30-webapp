@@ -350,7 +350,11 @@
     height:150px;background:linear-gradient(135deg,#2A7057,#1F5F4A);
     background-size:cover;background-position:center;
     display:flex;align-items:center;justify-content:center;font-size:44px;position:relative;
-  }
+  }.obj90-video-cat{
+  position:absolute;inset:0;z-index:1;
+  background-image:url('images/obj90-gato-video.png');
+  background-size:contain;background-repeat:no-repeat;background-position:center;
+}
   .fund-body{padding:22px;}
   .fund-body h3{font-size:19px;font-weight:800;color:var(--verde-deep);}
   .fund-body p{font-size:13.5px;color:var(--grey);line-height:1.6;margin-top:10px;}
