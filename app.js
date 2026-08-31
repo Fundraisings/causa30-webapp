@@ -480,45 +480,7 @@ document.getElementById('bizForm').addEventListener('submit', async (e) => {
   document.getElementById('bizSuccess').classList.add('show');
 });
 
-// LIBRO DEL MES — toggle que revela la portada; tocar la portada voltea a "dónde comprarlo"
-// ✏️ EDITAR CADA MES: fundación y las 4 librerías donde se vende el libro
-const libroDelMes = {
-  fundacion: "Happy Animal Rescue RD",
-  descripcion: "Dedicada al rescate, rehabilitación y adopción de animales callejeros.",
-  link: "https://www.instagram.com/happyanimalsrescuerd/",
-  librerias: [
-    {nombre:"Librería 1", direccion:"Dirección pendiente de confirmar", telefono:"Teléfono pendiente de confirmar"},
-    {nombre:"Librería 2", direccion:"Dirección pendiente de confirmar", telefono:"Teléfono pendiente de confirmar"},
-    {nombre:"Librería 3", direccion:"Dirección pendiente de confirmar", telefono:"Teléfono pendiente de confirmar"},
-    {nombre:"Librería 4", direccion:"Dirección pendiente de confirmar", telefono:"Teléfono pendiente de confirmar"},
-  ]
-};
-document.getElementById('libroFundName').textContent = libroDelMes.fundacion;
-document.getElementById('libroFundDesc').textContent = libroDelMes.descripcion;
-document.getElementById('libroFundLink').href = libroDelMes.link;
 
-document.getElementById('libroWhereList').innerHTML = libroDelMes.librerias.map((l, i) => `
-  ${i > 0 ? '<div class="libro-store-divider"></div>' : ''}
-  <div class="libro-store">
-    <div class="libro-store-name">✦ ${l.nombre}</div>
-    <div class="libro-store-detail">Dirección: ${l.direccion}</div>
-    <div class="libro-store-detail">Teléfono: ${l.telefono}</div>
-  </div>
-`).join('');
-
-const libroReveal = document.getElementById('libroReveal');
-const libroToggleText = document.getElementById('libroToggleText');
-const libroToggleIcon = document.getElementById('libroToggleIcon');
-document.getElementById('libroToggle').addEventListener('click', () => {
-  const isOpen = libroReveal.classList.toggle('open');
-  libroToggleText.textContent = isOpen ? 'Libro descubierto' : '✦ Ver libro y apoyar';
-  libroToggleIcon.textContent = isOpen ? '✓' : '↓';
-});
-
-const libroFlip = document.getElementById('libroFlip');
-libroFlip.addEventListener('click', () => {
-  libroFlip.classList.toggle('flipped');
-});
 
 // COMPARTIR PROMOCIÓN — componente reutilizable, funciona para cualquier producto abierto en la ficha
 const shareAnimOverlay = document.getElementById('shareAnimOverlay');
