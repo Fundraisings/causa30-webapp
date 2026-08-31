@@ -164,45 +164,8 @@ carousel.addEventListener('pointerleave', () => {
 });
 
 // ¿CÓMO FUNCIONA? — cinta animada nativa (sin imágenes), fusionada con el acceso al video
-const flowPhrases = [
-  "DESCUBRES EL PRODUCTO",
-  "VES DÓNDE COMPRARLO",
-  "LO COMPRAS",
-  "NOS ENVÍAS EL COMPROBANTE",
-  "LA EMPRESA HACE SU APORTE",
-  "UNA CAUSA RECIBE APOYO",
-];
 
-const flowTrack = document.getElementById('flowTrack');
-function renderFlowPhrase(p){
-  return `<span class="flow-phrase">${p}</span><span class="flow-dot">●</span>`;
-}
-// se duplica la secuencia completa para que el loop sea perfectamente continuo
-flowTrack.innerHTML = flowPhrases.map(renderFlowPhrase).join('') + flowPhrases.map(renderFlowPhrase).join('');
 
-const tickerWrap = document.getElementById('tickerWrap');
-const funcionaHide = document.getElementById('funcionaHide');
-const funcionaShowAgain = document.getElementById('funcionaShowAgain');
-const tickerPause = document.getElementById('tickerPause');
-
-funcionaHide.addEventListener('click', () => {
-  tickerWrap.classList.remove('open');
-  funcionaShowAgain.classList.add('visible');
-});
-funcionaShowAgain.addEventListener('click', () => {
-  tickerWrap.classList.add('open');
-  funcionaShowAgain.classList.remove('visible');
-});
-tickerPause.addEventListener('click', () => {
-  const paused = flowTrack.classList.toggle('paused');
-  tickerPause.textContent = paused ? '▶ Continuar' : '⏸ Pausar';
-});
-// pausa mientras el usuario toca la cinta para leer con calma, y sigue al soltar
-flowTrack.addEventListener('pointerdown', () => flowTrack.classList.add('paused'));
-flowTrack.addEventListener('pointerup', () => {
-  if(tickerPause.textContent.includes('Continuar')) return; // respeta si el usuario la pausó a propósito
-  flowTrack.classList.remove('paused');
-});
 
 // MASCOTAS
 const pets = [
