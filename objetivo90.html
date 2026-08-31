@@ -10,625 +10,621 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
-  :root{ --gold:#F0C24B; }
-
-  .o90-header{
-    position:relative;overflow:hidden;
-    background-image:url('images/banner090.png');
-    background-size:cover;background-position:center;
-    padding:20px 24px 34px;text-align:center;border-radius:0 0 32px 32px;
-    min-height:260px;display:flex;flex-direction:column;
-  }
-  .o90-back{
-    position:relative;z-index:2;
-    display:inline-flex;align-items:center;gap:6px;color:#fff;font-size:13px;font-weight:700;
-    float:left;padding:6px 0;text-shadow:0 1px 4px rgba(0,0,0,.4);
-  }
-  .o90-header-content{position:relative;z-index:2;clear:both;padding-top:36px;margin-top:auto;}
-  .o90-day-badge{
-    display:inline-block;background:var(--coral);color:#fff;
-    font-family:'Manrope',sans-serif;font-weight:800;font-size:13px;
-    padding:8px 20px;border-radius:100px;letter-spacing:.03em;
-    box-shadow:0 8px 18px -6px rgba(0,0,0,.4);
-  }
-
-  .o90-section{padding:32px 24px;}
-  .o90-section-title{
-    font-family:'Manrope',sans-serif;font-weight:800;font-size:20px;color:var(--verde-deep);
-    line-height:1.3;
-  }
-  .o90-eyebrow3{
-    display:block;font-size:11px;font-weight:700;color:var(--coral-deep);
-    text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;
-  }
-  .o90-text{font-size:13.5px;color:var(--grey);line-height:1.6;margin-top:10px;}
-
-  .o90-stamp-box{
-    position:relative;width:100%;height:56px;margin-top:16px;
-    border:2px dashed var(--line);border-radius:16px;
-    display:flex;align-items:center;justify-content:center;overflow:hidden;
-  }
-  .o90-stamp-phrase{
-    position:absolute;font-family:'Manrope',sans-serif;font-weight:800;font-size:17px;
-    color:var(--coral-deep);opacity:0;transform:scale(2) rotate(-8deg);
-  }
-  .o90-stamp-phrase.stamping{ animation:o90StampCycle 2.2s ease-in-out; }
-  @keyframes o90StampCycle{
-    0%{opacity:0;transform:scale(2) rotate(-8deg);}
-    15%{opacity:1;transform:scale(.95) rotate(2deg);}
-    25%{opacity:1;transform:scale(1) rotate(0deg);}
-    80%{opacity:1;transform:scale(1) rotate(0deg);}
-    100%{opacity:0;transform:scale(.9) rotate(0deg);}
-  }
-
-  /* Bloque META / OBJETIVO */
-  .meta-obj-card{
-    background:var(--verde-deep);border-radius:22px;padding:24px 22px;color:#fff;
-  }
-  .meta-obj-row{padding:10px 0;}
-  .meta-obj-row:first-child{padding-top:0;}
-  .meta-obj-row:not(:last-child){border-bottom:1px solid rgba(255,255,255,.12);}
-  .meta-obj-label{
-    font-family:'Manrope',sans-serif;font-weight:800;font-size:11px;color:var(--coral);
-    text-transform:uppercase;letter-spacing:.06em;
-  }
-  .meta-obj-value{font-size:14px;color:#fff;margin-top:6px;line-height:1.5;}
-  .meta-obj-value b{font-family:'Manrope',sans-serif;font-weight:800;}
-
-  /* Más vida, más bienestar — de borde a borde con gatitos */
-  .bienestar-fullbleed{
-    position:relative;width:100vw;margin-left:calc(50% - 50vw);
-    background:var(--verde-deep);overflow:hidden;
-    padding:36px 24px 40px;
-  }
-  .gato-superior{
-    position:absolute;top:0;left:0;width:150px;height:150px;z-index:1;
-    background-image:url('images/obj90-gato1-superior.png');
-    background-size:contain;background-repeat:no-repeat;background-position:top left;
-  }
-  .gato-inferior{
-    position:absolute;bottom:0;right:0;width:150px;height:150px;z-index:1;
-    background-image:url('images/obj90-gato2-inferior.png');
-    background-size:contain;background-repeat:no-repeat;background-position:bottom right;
-  }
-  .bienestar-grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px;}
-  .bienestar-group-label{
-    grid-column:1/-1;display:flex;flex-direction:column;align-items:center;gap:4px;
-    font-family:'Manrope',sans-serif;font-weight:800;font-size:11.5px;
-    color:#fff;text-transform:uppercase;letter-spacing:.05em;margin-top:10px;
-  }
-  .bienestar-group-label:first-child{margin-top:0;}
-  .cat-icon{display:block;}
-  .bienestar-card{
-    position:relative;z-index:2;
-    background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);border-radius:14px;
-    padding:12px 10px;text-align:center;backdrop-filter:blur(2px);
-  }
-  .bienestar-card.good{border-color:#8FC4AC;background:rgba(143,196,172,.15);}
-  .bienestar-years{font-family:'Manrope',sans-serif;font-weight:800;font-size:22px;color:#fff;}
-  .bienestar-card.good .bienestar-years{color:#8FC4AC;}
-  .bienestar-label{font-size:10px;color:#C7D6CE;margin-top:3px;line-height:1.4;}
-
-  /* Puente a productos */
-  .puente-card{
-    background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:22px;text-align:center;
-  }
-  .puente-highlight{
-    background:var(--verde-soft);border-radius:14px;padding:14px 16px;margin-top:14px;
-    font-size:12.5px;color:var(--verde-deep);line-height:1.55;font-weight:600;
-  }
-
-  .o90-prod-tag{
-    display:block;margin-top:6px;font-size:10.5px;font-weight:800;color:var(--coral-deep);
-    text-transform:uppercase;letter-spacing:.06em;
-  }
-  .o90-g-carousel{
-    position:relative;height:280px;margin-top:24px;
-    display:flex;align-items:center;justify-content:center;
-    touch-action:pan-y;cursor:grab;overflow:visible;
-  }
-  .o90-g-card{
-    position:absolute;border-radius:16px;
-    background:var(--card);box-shadow:0 10px 24px -10px rgba(0,0,0,.25);
-    transition:all .4s cubic-bezier(.22,.9,.35,1);cursor:pointer;overflow:hidden;
-  }
-  .o90-g-card .art{width:100%;height:100%;background-size:cover;background-position:center;display:flex;align-items:flex-end;padding:8px;}
-  .o90-g-card .name-tag{
-    background:rgba(255,255,255,.92);border-radius:8px;padding:3px 6px;
-    font-size:9px;font-weight:700;color:var(--verde-deep);
-  }
-  .o90-g-card.pos-0{
-    width:150px;height:198px;z-index:5;transform:translateX(0) scale(1);
-    box-shadow:0 0 0 3px var(--gold), 0 0 35px 8px rgba(240,194,75,.75), 0 10px 24px -10px rgba(0,0,0,.3);
-  }
-  .o90-g-card.pos-1{width:110px;height:145px;z-index:4;transform:translateX(92px) scale(1);opacity:.85;}
-  .o90-g-card.pos--1{width:110px;height:145px;z-index:4;transform:translateX(-92px) scale(1);opacity:.85;}
-  .o90-g-card.pos-2{width:80px;height:106px;z-index:3;transform:translateX(158px) scale(1);opacity:.5;filter:saturate(.7) brightness(.92);}
-  .o90-g-card.pos--2{width:80px;height:106px;z-index:3;transform:translateX(-158px) scale(1);opacity:.5;filter:saturate(.7) brightness(.92);}
-  .o90-g-card.pos-hidden{opacity:0;pointer-events:none;transform:scale(.5);}
-
-  .o90-g-nav{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:18px;}
-  .o90-g-arrow{
-    width:38px;height:38px;border-radius:50%;background:var(--card);border:1.5px solid var(--line);
-    display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--verde-deep);font-weight:800;
-  }
-  .o90-g-dots{display:flex;gap:6px;}
-  .o90-g-dot{width:6px;height:6px;border-radius:50%;background:var(--line);}
-  .o90-g-dot.active{background:var(--gold);width:16px;border-radius:4px;}
-  .o90-g-hint{font-size:11.5px;color:var(--grey);margin-top:10px;font-style:italic;}
-
-  .o90-prod-modal-overlay{
-    position:fixed;inset:0;background:rgba(18,25,22,.55);
-    display:flex;align-items:flex-end;justify-content:center;
-    opacity:0;pointer-events:none;transition:opacity .3s;z-index:60;
-  }
-  .o90-prod-modal-overlay.open{opacity:1;pointer-events:auto;}
-  .o90-prod-modal-sheet{
-    background:var(--cream);width:100%;max-width:480px;
-    border-radius:28px 28px 0 0;padding:0 0 32px;
-    transform:translateY(30px);transition:transform .35s cubic-bezier(.22,.9,.35,1);
-  }
-  .o90-prod-modal-overlay.open .o90-prod-modal-sheet{transform:translateY(0);}
-  .o90-prod-modal-img{width:100%;aspect-ratio:1000/1320;background-size:cover;background-position:center;border-radius:28px 28px 0 0;touch-action:pan-y;cursor:grab;}
-  .o90-prod-modal-body{padding:20px 24px 0;text-align:center;}
-  .o90-prod-modal-name{font-family:'Manrope',sans-serif;font-weight:800;font-size:19px;color:var(--verde-deep);}
-  .o90-prod-modal-price{font-size:13px;color:var(--coral-deep);font-weight:700;margin-top:6px;}
-  .o90-prod-modal-desc{font-size:12.5px;color:var(--grey);margin-top:10px;line-height:1.55;}
-  .o90-prod-modal-btn{
-    margin-top:18px;display:inline-block;background:var(--coral);color:#fff;
-    padding:13px 28px;border-radius:100px;font-weight:700;font-size:13px;
-  }
-  .o90-prod-modal-close{
-    display:block;margin:16px auto 0;font-size:12px;color:var(--grey);background:none;border:none;
-  }
-
-  .o90-steps-section{background:var(--verde-deep);}
-  .o90-steps-section .o90-section-title{color:#fff;text-align:center;}
-  .o90-steps-ticker{margin-top:24px;overflow:hidden;position:relative;padding:24px 0;}
-  .o90-steps-ticker::before,.o90-steps-ticker::after{
-    content:'';position:absolute;top:0;bottom:0;width:40px;z-index:3;pointer-events:none;
-  }
-  .o90-steps-ticker::before{left:0;background:linear-gradient(90deg,var(--verde-deep),transparent);}
-  .o90-steps-ticker::after{right:0;background:linear-gradient(-90deg,var(--verde-deep),transparent);}
-  .o90-steps-track{display:flex;gap:20px;width:max-content;animation:o90StepsScroll 18s linear infinite;}
-  .o90-step-card{
-    position:relative;width:150px;background:#173D31;border-radius:20px;
-    padding:22px 16px;text-align:center;
-    box-shadow:0 0 30px 6px rgba(232,102,74,.65);
-  }
-  .o90-step-card.final{box-shadow:0 0 30px 6px rgba(143,196,172,.7);}
-  .o90-step-icon{font-size:26px;}
-  .o90-step-label{
-    font-family:'Manrope',sans-serif;font-weight:800;font-size:11.5px;color:#fff;
-    text-transform:uppercase;letter-spacing:.02em;margin-top:8px;line-height:1.4;
-  }
-  @keyframes o90StepsScroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
-
-  .o90-chart-wrap{margin-top:20px;}
-  .o90-bar{transform:scaleY(0);transform-origin:bottom;transition:transform 1s cubic-bezier(.22,.9,.35,1);}
-  .o90-bar.grow{transform:scaleY(1);}
-  .o90-arrow-path{stroke-dasharray:400;stroke-dashoffset:400;transition:stroke-dashoffset 1.4s ease .3s;}
-  .o90-arrow-path.draw{stroke-dashoffset:0;}
-
-  .o90-overflow-note{
-    background:var(--verde-soft);border-radius:16px;padding:16px 18px;
-    font-size:12.5px;color:var(--verde-deep);line-height:1.6;text-align:center;
-  }
-  /* Distribución de fondos */
-  .fund-split-card{
-    background:var(--card);border-radius:20px;padding:22px;
-    box-shadow:0 10px 24px -10px rgba(0,0,0,.12);border:1px solid var(--line);
-  }
-  .fund-split-title{
-    font-family:'Manrope',sans-serif;font-weight:800;font-size:13px;color:var(--verde-deep);
-    text-align:center;margin-bottom:14px;
-  }
-  .fund-bar{display:flex;width:100%;height:16px;border-radius:100px;overflow:hidden;}
-  .fund-bar-segment.fundacion{background:var(--verde);width:71.43%;}
-  .fund-bar-segment.causa30{background:var(--coral);width:28.57%;}
-  .fund-rows{margin-top:18px;display:flex;flex-direction:column;gap:12px;}
-  .fund-row{display:flex;align-items:center;gap:12px;}
-  .fund-row-icon{
-    width:36px;height:36px;border-radius:50%;flex-shrink:0;
-    display:flex;align-items:center;justify-content:center;font-size:16px;
-  }
-  .fund-row.fundacion .fund-row-icon{background:var(--verde-soft);}
-  .fund-row.causa30 .fund-row-icon{background:rgba(232,102,74,.12);}
-  .fund-row-pct{font-family:'Manrope',sans-serif;font-weight:800;font-size:16px;}
-  .fund-row.fundacion .fund-row-pct{color:var(--verde);}
-  .fund-row.causa30 .fund-row-pct{color:var(--coral-deep);}
-  .fund-row-label{font-size:12px;color:var(--grey);line-height:1.4;margin-top:1px;}
-  .o90-share{text-align:center;}
-  .o90-share-pulse-wrap{
-    position:relative;width:140px;height:140px;margin:26px auto 0;
-    display:flex;align-items:center;justify-content:center;
-  }
-  .o90-share-pulse-ring{
-    position:absolute;top:50%;left:50%;width:76px;height:76px;
-    margin:-38px 0 0 -38px;border-radius:50%;
-    border:2px solid #25D366;opacity:0;
-  }
-  .o90-share-pulse-ring-1{animation:o90SharePulse 2.8s ease-out infinite;}
-  .o90-share-pulse-ring-2{animation:o90SharePulse 2.8s ease-out .95s infinite;}
-  .o90-share-pulse-ring-3{animation:o90SharePulse 2.8s ease-out 1.9s infinite;}
-  @keyframes o90SharePulse{ 0%{transform:scale(1);opacity:.55;} 100%{transform:scale(1.9);opacity:0;} }
-  .o90-share-pulse-btn{
-    position:relative;z-index:2;width:76px;height:76px;border-radius:50%;
-    background:#25D366;color:#fff;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 10px 24px -8px rgba(37,211,102,.55);
-    transition:transform .15s ease;cursor:pointer;border:none;
-  }
-  .o90-share-pulse-btn:active{transform:scale(.92);}
-  .o90-share-pulse-btn.tapped{animation:o90ShareTapPop .3s ease;}
-  @keyframes o90ShareTapPop{ 0%{transform:scale(1);} 40%{transform:scale(.88);} 100%{transform:scale(1);} }
-  .o90-share-pulse-cta{
-    margin-top:14px;font-family:'Manrope',sans-serif;font-weight:800;font-size:14.5px;
-    color:#000;text-transform:uppercase;letter-spacing:.05em;
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    .o90-steps-track{animation:none;}
-  }
+:root{ --gold:#F0C24B; }
+.o90-header{
+position:relative;overflow:hidden;
+background-image:url('images/banner090.png');
+background-size:cover;background-position:center;
+padding:20px 24px 34px;text-align:center;border-radius:0 0 32px 32px;
+min-height:260px;display:flex;flex-direction:column;
+}
+.o90-back{
+position:relative;z-index:2;
+display:inline-flex;align-items:center;gap:6px;color:#fff;font-size:13px;font-weight:700;
+float:left;padding:6px 0;text-shadow:0 1px 4px rgba(0,0,0,.4);
+}
+.o90-header-content{position:relative;z-index:2;clear:both;padding-top:36px;margin-top:auto;}
+.o90-day-badge{
+display:inline-block;background:var(--coral);color:#fff;
+font-family:'Manrope',sans-serif;font-weight:800;font-size:13px;
+padding:8px 20px;border-radius:100px;letter-spacing:.03em;
+box-shadow:0 8px 18px -6px rgba(0,0,0,.4);
+}
+.o90-section{padding:32px 24px;}
+.o90-section-title{
+font-family:'Manrope',sans-serif;font-weight:800;font-size:20px;color:var(--verde-deep);
+line-height:1.3;
+}
+.o90-eyebrow3{
+display:block;font-size:11px;font-weight:700;color:var(--coral-deep);
+text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;
+}
+.o90-text{font-size:13.5px;color:var(--grey);line-height:1.6;margin-top:10px;}
+.o90-stamp-box{
+position:relative;width:100%;height:56px;margin-top:16px;
+border:2px dashed var(--line);border-radius:16px;
+display:flex;align-items:center;justify-content:center;overflow:hidden;
+}
+.o90-stamp-phrase{
+position:absolute;font-family:'Manrope',sans-serif;font-weight:800;font-size:17px;
+color:var(--coral-deep);opacity:0;transform:scale(2) rotate(-8deg);
+}
+.o90-stamp-phrase.stamping{ animation:o90StampCycle 2.2s ease-in-out; }
+@keyframes o90StampCycle{
+0%{opacity:0;transform:scale(2) rotate(-8deg);}
+15%{opacity:1;transform:scale(.95) rotate(2deg);}
+25%{opacity:1;transform:scale(1) rotate(0deg);}
+80%{opacity:1;transform:scale(1) rotate(0deg);}
+100%{opacity:0;transform:scale(.9) rotate(0deg);}
+}
+/* Bloque META / OBJETIVO */
+.meta-obj-card{
+background:var(--verde-deep);border-radius:22px;padding:24px 22px;color:#fff;
+}
+.meta-obj-row{padding:10px 0;}
+.meta-obj-row:first-child{padding-top:0;}
+.meta-obj-row:not(:last-child){border-bottom:1px solid rgba(255,255,255,.12);}
+.meta-obj-label{
+font-family:'Manrope',sans-serif;font-weight:800;font-size:11px;color:var(--coral);
+text-transform:uppercase;letter-spacing:.06em;
+}
+.meta-obj-value{font-size:14px;color:#fff;margin-top:6px;line-height:1.5;}
+.meta-obj-value b{font-family:'Manrope',sans-serif;font-weight:800;}
+/* Más vida, más bienestar — de borde a borde con gatitos */
+.bienestar-fullbleed{
+position:relative;width:100vw;margin-left:calc(50% - 50vw);
+background:var(--verde-deep);overflow:hidden;
+padding:36px 24px 40px;
+}
+.gato-superior{
+position:absolute;top:0;left:0;width:150px;height:150px;z-index:1;
+background-image:url('images/obj90-gato1-superior.png');
+background-size:contain;background-repeat:no-repeat;background-position:top left;
+}
+.gato-inferior{
+position:absolute;bottom:0;right:0;width:150px;height:150px;z-index:1;
+background-image:url('images/obj90-gato2-inferior.png');
+background-size:contain;background-repeat:no-repeat;background-position:bottom right;
+}
+.bienestar-grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px;}
+.bienestar-group-label{
+grid-column:1/-1;display:flex;flex-direction:column;align-items:center;gap:4px;
+font-family:'Manrope',sans-serif;font-weight:800;font-size:11.5px;
+color:#fff;text-transform:uppercase;letter-spacing:.05em;margin-top:10px;
+}
+.bienestar-group-label:first-child{margin-top:0;}
+.cat-icon{display:block;}
+.bienestar-card{
+position:relative;z-index:2;
+background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);border-radius:14px;
+padding:12px 10px;text-align:center;backdrop-filter:blur(2px);
+}
+.bienestar-card.good{border-color:#8FC4AC;background:rgba(143,196,172,.15);}
+.bienestar-years{font-family:'Manrope',sans-serif;font-weight:800;font-size:22px;color:#fff;}
+.bienestar-card.good .bienestar-years{color:#8FC4AC;}
+.bienestar-label{font-size:10px;color:#C7D6CE;margin-top:3px;line-height:1.4;}
+/* Puente a productos */
+.puente-card{
+background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:22px;text-align:center;
+}
+.puente-highlight{
+background:var(--verde-soft);border-radius:14px;padding:14px 16px;margin-top:14px;
+font-size:12.5px;color:var(--verde-deep);line-height:1.55;font-weight:600;
+}
+.o90-prod-tag{
+display:block;margin-top:6px;font-size:10.5px;font-weight:800;color:var(--coral-deep);
+text-transform:uppercase;letter-spacing:.06em;
+}
+.o90-g-carousel{
+position:relative;height:280px;margin-top:24px;
+display:flex;align-items:center;justify-content:center;
+touch-action:pan-y;cursor:grab;overflow:visible;
+}
+.o90-g-card{
+position:absolute;border-radius:16px;
+background:var(--card);box-shadow:0 10px 24px -10px rgba(0,0,0,.25);
+transition:all .4s cubic-bezier(.22,.9,.35,1);cursor:pointer;overflow:hidden;
+}
+.o90-g-card .art{width:100%;height:100%;background-size:cover;background-position:center;display:flex;align-items:flex-end;padding:8px;}
+.o90-g-card .name-tag{
+background:rgba(255,255,255,.92);border-radius:8px;padding:3px 6px;
+font-size:9px;font-weight:700;color:var(--verde-deep);
+}
+.o90-g-card.pos-0{
+width:150px;height:198px;z-index:5;transform:translateX(0) scale(1);
+box-shadow:0 0 0 3px var(--gold), 0 0 35px 8px rgba(240,194,75,.75), 0 10px 24px -10px rgba(0,0,0,.3);
+}
+.o90-g-card.pos-1{width:110px;height:145px;z-index:4;transform:translateX(92px) scale(1);opacity:.85;}
+.o90-g-card.pos--1{width:110px;height:145px;z-index:4;transform:translateX(-92px) scale(1);opacity:.85;}
+.o90-g-card.pos-2{width:80px;height:106px;z-index:3;transform:translateX(158px) scale(1);opacity:.5;filter:saturate(.7) brightness(.92);}
+.o90-g-card.pos--2{width:80px;height:106px;z-index:3;transform:translateX(-158px) scale(1);opacity:.5;filter:saturate(.7) brightness(.92);}
+.o90-g-card.pos-hidden{opacity:0;pointer-events:none;transform:scale(.5);}
+.o90-g-nav{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:18px;}
+.o90-g-arrow{
+width:38px;height:38px;border-radius:50%;background:var(--card);border:1.5px solid var(--line);
+display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--verde-deep);font-weight:800;
+}
+.o90-g-dots{display:flex;gap:6px;}
+.o90-g-dot{width:6px;height:6px;border-radius:50%;background:var(--line);}
+.o90-g-dot.active{background:var(--gold);width:16px;border-radius:4px;}
+.o90-g-hint{font-size:11.5px;color:var(--grey);margin-top:10px;font-style:italic;}
+.o90-prod-modal-overlay{
+position:fixed;inset:0;background:rgba(18,25,22,.55);
+display:flex;align-items:flex-end;justify-content:center;
+opacity:0;pointer-events:none;transition:opacity .3s;z-index:60;
+}
+.o90-prod-modal-overlay.open{opacity:1;pointer-events:auto;}
+.o90-prod-modal-sheet{
+background:var(--cream);width:100%;max-width:480px;
+border-radius:28px 28px 0 0;padding:0 0 32px;
+transform:translateY(30px);transition:transform .35s cubic-bezier(.22,.9,.35,1);
+}
+.o90-prod-modal-overlay.open .o90-prod-modal-sheet{transform:translateY(0);}
+.o90-prod-modal-img{width:100%;aspect-ratio:1000/1320;background-size:cover;background-position:center;border-radius:28px 28px 0 0;touch-action:pan-y;cursor:grab;}
+.o90-prod-modal-body{padding:20px 24px 0;text-align:center;}
+.o90-prod-modal-name{font-family:'Manrope',sans-serif;font-weight:800;font-size:19px;color:var(--verde-deep);}
+.o90-prod-modal-price{font-size:13px;color:var(--coral-deep);font-weight:700;margin-top:6px;}
+.o90-prod-modal-desc{font-size:12.5px;color:var(--grey);margin-top:10px;line-height:1.55;}
+.o90-prod-modal-btn{
+margin-top:18px;display:inline-block;background:var(--coral);color:#fff;
+padding:13px 28px;border-radius:100px;font-weight:700;font-size:13px;
+}
+.o90-prod-modal-close{
+display:block;margin:16px auto 0;font-size:12px;color:var(--grey);background:none;border:none;
+}
+.o90-steps-section{background:var(--verde-deep);}
+.o90-steps-section .o90-section-title{color:#fff;text-align:center;}
+.o90-steps-ticker{margin-top:24px;overflow:hidden;position:relative;padding:24px 0;}
+.o90-steps-ticker::before,.o90-steps-ticker::after{
+content:'';position:absolute;top:0;bottom:0;width:40px;z-index:3;pointer-events:none;
+}
+.o90-steps-ticker::before{left:0;background:linear-gradient(90deg,var(--verde-deep),transparent);}
+.o90-steps-ticker::after{right:0;background:linear-gradient(-90deg,var(--verde-deep),transparent);}
+.o90-steps-track{display:flex;gap:20px;width:max-content;animation:o90StepsScroll 18s linear infinite;}
+.o90-step-card{
+position:relative;width:150px;background:#173D31;border-radius:20px;
+padding:22px 16px;text-align:center;
+box-shadow:0 0 30px 6px rgba(232,102,74,.65);
+}
+.o90-step-card.final{box-shadow:0 0 30px 6px rgba(143,196,172,.7);}
+.o90-step-icon{font-size:26px;}
+.o90-step-label{
+font-family:'Manrope',sans-serif;font-weight:800;font-size:11.5px;color:#fff;
+text-transform:uppercase;letter-spacing:.02em;margin-top:8px;line-height:1.4;
+}
+@keyframes o90StepsScroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+.o90-chart-wrap{margin-top:20px;}
+.o90-bar{transform:scaleY(0);transform-origin:bottom;transition:transform 1s cubic-bezier(.22,.9,.35,1);}
+.o90-bar.grow{transform:scaleY(1);}
+.o90-arrow-path{stroke-dasharray:400;stroke-dashoffset:400;transition:stroke-dashoffset 1.4s ease .3s;}
+.o90-arrow-path.draw{stroke-dashoffset:0;}
+.o90-overflow-note{
+background:var(--verde-soft);border-radius:16px;padding:16px 18px;
+font-size:12.5px;color:var(--verde-deep);line-height:1.6;text-align:center;
+}
+/* Distribución de fondos */
+.fund-split-card{
+background:var(--card);border-radius:20px;padding:22px;
+box-shadow:0 10px 24px -10px rgba(0,0,0,.12);border:1px solid var(--line);
+}
+.fund-split-title{
+font-family:'Manrope',sans-serif;font-weight:800;font-size:13px;color:var(--verde-deep);
+text-align:center;margin-bottom:14px;
+}
+.fund-bar{display:flex;width:100%;height:16px;border-radius:100px;overflow:hidden;}
+.fund-bar-segment.fundacion{background:var(--verde);width:71.43%;}
+.fund-bar-segment.causa30{background:var(--coral);width:28.57%;}
+.fund-rows{margin-top:18px;display:flex;flex-direction:column;gap:12px;}
+.fund-row{display:flex;align-items:center;gap:12px;}
+.fund-row-icon{
+width:36px;height:36px;border-radius:50%;flex-shrink:0;
+display:flex;align-items:center;justify-content:center;font-size:16px;
+}
+.fund-row.fundacion .fund-row-icon{background:var(--verde-soft);}
+.fund-row.causa30 .fund-row-icon{background:rgba(232,102,74,.12);}
+.fund-row-pct{font-family:'Manrope',sans-serif;font-weight:800;font-size:16px;}
+.fund-row.fundacion .fund-row-pct{color:var(--verde);}
+.fund-row.causa30 .fund-row-pct{color:var(--coral-deep);}
+.fund-row-label{font-size:12px;color:var(--grey);line-height:1.4;margin-top:1px;}
+.o90-share{text-align:center;}
+.o90-share-pulse-wrap{
+position:relative;width:140px;height:140px;margin:26px auto 0;
+display:flex;align-items:center;justify-content:center;
+}
+.o90-share-pulse-ring{
+position:absolute;top:50%;left:50%;width:76px;height:76px;
+margin:-38px 0 0 -38px;border-radius:50%;
+border:2px solid #25D366;opacity:0;
+}
+.o90-share-pulse-ring-1{animation:o90SharePulse 2.8s ease-out infinite;}
+.o90-share-pulse-ring-2{animation:o90SharePulse 2.8s ease-out .95s infinite;}
+.o90-share-pulse-ring-3{animation:o90SharePulse 2.8s ease-out 1.9s infinite;}
+@keyframes o90SharePulse{ 0%{transform:scale(1);opacity:.55;} 100%{transform:scale(1.9);opacity:0;} }
+.o90-share-pulse-btn{
+position:relative;z-index:2;width:76px;height:76px;border-radius:50%;
+background:#25D366;color:#fff;
+display:flex;align-items:center;justify-content:center;
+box-shadow:0 10px 24px -8px rgba(37,211,102,.55);
+transition:transform .15s ease;cursor:pointer;border:none;
+}
+.o90-share-pulse-btn:active{transform:scale(.92);}
+.o90-share-pulse-btn.tapped{animation:o90ShareTapPop .3s ease;}
+@keyframes o90ShareTapPop{ 0%{transform:scale(1);} 40%{transform:scale(.88);} 100%{transform:scale(1);} }
+.o90-share-pulse-cta{
+margin-top:14px;font-family:'Manrope',sans-serif;font-weight:800;font-size:14.5px;
+color:#000;text-transform:uppercase;letter-spacing:.05em;
+}
+@media (prefers-reduced-motion: reduce){
+.o90-steps-track{animation:none;}
+}
 </style>
 </head>
 <body>
-
 <div class="o90-header">
-  <a href="index.html" class="o90-back">← Volver</a>
-  <div class="o90-header-content">
-    <span class="o90-day-badge" id="o90DayBadge">Día — de —</span>
-  </div>
+<a href="index.html" class="o90-back">← Volver</a>
+<div class="o90-header-content">
+<span class="o90-day-badge" id="o90DayBadge">Día — de —</span>
 </div>
-
+</div>
 <div class="wrap">
-
-  <!-- 1. LA META ACTUAL -->
-  <section class="o90-section" style="text-align:center;">
-    <span class="o90-eyebrow3">Nuestra meta actual</span>
-    <h2 class="o90-section-title">Hagamos posible una gran jornada de esterilización felina.</h2>
-
-    <div class="o90-stamp-box">
-      <span class="o90-stamp-phrase" id="o90StampPhrase">90 días</span>
-    </div>
-  </section>
-
-  <!-- 2. META / OBJETIVO -->
-  <section class="o90-section" style="padding-top:0;">
-    <div class="meta-obj-card">
-      <div class="meta-obj-row">
-        <span class="meta-obj-label">Meta</span>
-        <p class="meta-obj-value">Castrar <b>100 gatos</b> a través del programa Catlovers en República Dominicana.</p>
-      </div>
-      <div class="meta-obj-row">
-        <span class="meta-obj-label">Objetivo</span>
-        <p class="meta-obj-value">Reunir <b>RD$350,000</b> para hacer posible esta campaña.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3. MÁS VIDA, MÁS BIENESTAR -->
-  <div class="bienestar-fullbleed">
-    <div class="gato-superior"></div>
-    <div class="gato-inferior"></div>
-
-    <h2 class="o90-section-title" style="color:#fff;text-align:center;">Más vida, más bienestar</h2>
-    <p class="o90-text" style="color:#C7D6CE;text-align:center;">La esterilización puede marcar una gran diferencia en la vida de un gato.</p>
-
-    <div class="bienestar-grid">
-      <div class="bienestar-group-label">
-        <svg class="cat-icon" width="40" height="40" viewBox="0 0 44 44">
-          <path d="M12 14 L8 4 L18 11 Z" fill="#E8664A"/>
-          <path d="M32 14 L36 4 L26 11 Z" fill="#E8664A"/>
-          <circle cx="22" cy="20" r="14" fill="#E8664A"/>
-          <path d="M17 19 q5 4 10 0" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-          <circle cx="17" cy="17" r="1.6" fill="#fff"/>
-          <circle cx="27" cy="17" r="1.6" fill="#fff"/>
-          <path d="M22 21 l-1.4 2 h2.8 Z" fill="#fff"/>
-          <circle cx="33" cy="9" r="3.2" fill="#F0C24B"/>
-          <circle cx="30.5" cy="10.5" r="2.6" fill="#F0C24B"/>
-          <circle cx="33" cy="10" r="1.4" fill="#C94F36"/>
-        </svg>
-        <span>Hembras</span>
-      </div>
-      <div class="bienestar-card good">
-        <div class="bienestar-years">10.5</div>
-        <div class="bienestar-label">años · Esterilizadas</div>
-      </div>
-      <div class="bienestar-card">
-        <div class="bienestar-years">4.7</div>
-        <div class="bienestar-label">años · No esterilizadas</div>
-      </div>
-
-      <div class="bienestar-group-label">
-        <svg class="cat-icon" width="40" height="40" viewBox="0 0 44 44">
-          <path d="M12 14 L8 4 L18 11 Z" fill="#8FC4AC"/>
-          <path d="M32 14 L36 4 L26 11 Z" fill="#8FC4AC"/>
-          <circle cx="22" cy="20" r="14" fill="#8FC4AC"/>
-          <path d="M17 19 q5 4 10 0" stroke="#12332A" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-          <circle cx="17" cy="17" r="1.6" fill="#12332A"/>
-          <circle cx="27" cy="17" r="1.6" fill="#12332A"/>
-          <path d="M22 21 l-1.4 2 h2.8 Z" fill="#12332A"/>
-        </svg>
-        <span>Machos</span>
-      </div>
-      <div class="bienestar-card good">
-        <div class="bienestar-years">9.8</div>
-        <div class="bienestar-label">años · Castrados</div>
-      </div>
-      <div class="bienestar-card">
-        <div class="bienestar-years">3.7</div>
-        <div class="bienestar-label">años · No castrados</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 4. PUENTE HACIA LOS PRODUCTOS -->
-  <section class="o90-section" style="padding-top:32px;">
-    <div class="puente-card">
-      <span class="o90-eyebrow3">¿Cómo vamos a lograrlo?</span>
-      <p class="o90-text" style="margin-top:2px;">Para hacer realidad esta campaña necesitamos reunir <b>RD$350,000</b>.</p>
-      <p class="o90-text">Una empresa participante ha decidido apoyar este objetivo destinando un porcentaje de las ventas de 5 productos a esta causa.</p>
-      <div class="puente-highlight">
-        Tú eliges. Compras el producto que quieras, sin aportar dinero extra para la causa — y esa compra ayuda a acercarnos a la meta.
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. CADA COMPRA SUMA — carrusel estilo galería -->
-  <section class="o90-section" style="padding-top:0;text-align:center;">
-    <h2 class="o90-section-title">Cada compra suma</h2>
-    <span class="o90-prod-tag" id="o90ProdCount">— productos participantes</span>
-
-    <div class="o90-g-carousel" id="o90GCarousel"></div>
-    <div class="o90-g-nav">
-      <button class="o90-g-arrow" id="o90GPrev">‹</button>
-      <div class="o90-g-dots" id="o90GDots"></div>
-      <button class="o90-g-arrow" id="o90GNext">›</button>
-    </div>
-    <p class="o90-g-hint">Desliza o toca las flechas · toca el producto central para más detalles</p>
-  </section>
-
-  <!-- 6. ¿CÓMO LO VAMOS A LOGRAR? -->
-  <section class="o90-section o90-steps-section">
-    <h2 class="o90-section-title">¿Cómo lo vamos a lograr?</h2>
-    <div class="o90-steps-ticker">
-      <div class="o90-steps-track" id="o90StepsTrack"></div>
-    </div>
-  </section>
-
-  <!-- 7. SIGAMOS LA META JUNTOS -->
-  <section class="o90-section" style="padding-top:0;text-align:center;">
-    <h2 class="o90-section-title">Sigamos la meta juntos</h2>
-    <p class="o90-text">Actualizaremos periódicamente el progreso para que puedas ver cómo las compras participantes nos acercan a la meta.</p>
-
-    <div class="o90-chart-wrap">
-      <svg viewBox="0 0 320 160" width="100%" id="o90ChartSvg">
-        <rect class="o90-bar" x="20"  y="120" width="26" height="30" rx="4" fill="#8FC4AC" style="transition-delay:.1s"/>
-        <rect class="o90-bar" x="58"  y="105" width="26" height="45" rx="4" fill="#8FC4AC" style="transition-delay:.2s"/>
-        <rect class="o90-bar" x="96"  y="88"  width="26" height="62" rx="4" fill="#6FAE93" style="transition-delay:.3s"/>
-        <rect class="o90-bar" x="134" y="70"  width="26" height="80" rx="4" fill="#6FAE93" style="transition-delay:.4s"/>
-        <rect class="o90-bar" x="172" y="52"  width="26" height="98" rx="4" fill="#1F5F4A" style="transition-delay:.5s"/>
-        <rect class="o90-bar" x="210" y="34"  width="26" height="116" rx="4" fill="#1F5F4A" style="transition-delay:.6s"/>
-        <rect class="o90-bar" x="248" y="16"  width="26" height="134" rx="4" fill="#E8664A" style="transition-delay:.7s"/>
-        <path class="o90-arrow-path" id="o90ArrowPath" d="M 24 140 Q 140 90, 245 30" fill="none" stroke="#E8664A" stroke-width="4" stroke-linecap="round"/>
-        <polygon points="245,10 268,26 240,42" fill="#E8664A"/>
-      </svg>
-    </div>
-  </section>
-
-  <!-- 8. DISTRIBUCIÓN DE FONDOS -->
-<section class="o90-section" style="padding-top:0;">
-  <div class="fund-split-card">
-    <div class="fund-split-title">¿Cómo se distribuyen los fondos?</div>
-
-    <div class="fund-bar">
-      <div class="fund-bar-segment fundacion"></div>
-      <div class="fund-bar-segment causa30"></div>
-    </div>
-
-    <div class="fund-rows">
-      <div class="fund-row fundacion">
-        <div class="fund-row-icon">🎯</div>
-        <div>
-          <div class="fund-row-pct">71.43%</div>
-          <div class="fund-row-label">Ejecución directa del proyecto social, a cargo de la fundación.</div>
-        </div>
-      </div>
-      <div class="fund-row causa30">
-        <div class="fund-row-icon">🚀</div>
-        <div>
-          <div class="fund-row-pct">28.57%</div>
-          <div class="fund-row-label">Logística, difusión y administración de la campaña, a cargo de Causa30.</div>
-        </div>
-      </div>
-    </div>
-  </div>
+<!-- 1. LA META ACTUAL -->
+<section class="o90-section" style="text-align:center;">
+<span class="o90-eyebrow3">Nuestra meta actual</span>
+<h2 class="o90-section-title">Hagamos posible una gran jornada de esterilización felina.</h2>
+<div class="o90-stamp-box">
+<span class="o90-stamp-phrase" id="o90StampPhrase">90 días</span>
+</div>
 </section>
-
-  <!-- 9. COMPARTIR -->
-  <section class="o90-section o90-share">
-    <h2 class="o90-section-title">❤️ Ayuda a que esta meta llegue más lejos</h2>
-    <p class="o90-text">¿No lo necesitas hoy? Compártelo. Tu ayuda también puede acercarnos a la meta.</p>
-
-    <div class="o90-share-pulse-wrap">
-      <div class="o90-share-pulse-ring o90-share-pulse-ring-1"></div>
-      <div class="o90-share-pulse-ring o90-share-pulse-ring-2"></div>
-      <div class="o90-share-pulse-ring o90-share-pulse-ring-3"></div>
-      <button class="o90-share-pulse-btn" id="o90ShareBtn">
-        <svg width="34" height="34" viewBox="0 0 24 24" fill="#fff">
-          <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.005c5.46 0 9.91-4.45 9.91-9.91C21.98 6.45 17.53 2 12.04 2zm5.79 14.13c-.24.68-1.4 1.3-1.93 1.38-.49.08-1.11.11-1.79-.11-.41-.13-.94-.3-1.62-.59-2.86-1.23-4.72-4.12-4.86-4.31-.14-.19-1.16-1.55-1.16-2.95 0-1.41.74-2.1 1-2.39.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.57.81 1.98.88 2.12.07.14.12.31.02.5-.1.19-.15.31-.29.48-.14.17-.3.38-.43.51-.14.14-.29.29-.12.57.17.29.76 1.25 1.63 2.02 1.12 1 2.06 1.31 2.35 1.46.29.14.46.12.63-.07.17-.19.72-.84.92-1.13.19-.29.38-.24.64-.14.26.1 1.65.78 1.94.92.29.14.48.21.55.33.07.12.07.69-.17 1.37z"/>
-        </svg>
-      </button>
-    </div>
-    <div class="o90-share-pulse-cta">Toca para compartir</div>
-  </section>
-
-  <footer>
-    <div class="word">CAUSA<span style="color:var(--coral)">30</span></div>
-    <div class="credit">Causa30 — powered by Altrua</div>
-  </footer>
-
+<!-- 2. META / OBJETIVO -->
+<section class="o90-section" style="padding-top:0;">
+<div class="meta-obj-card">
+<div class="meta-obj-row">
+<span class="meta-obj-label">Meta</span>
+<p class="meta-obj-value">Castrar <b>100 gatos</b> a través del programa Catlovers en República Dominicana.</p>
 </div>
-
+<div class="meta-obj-row">
+<span class="meta-obj-label">Objetivo</span>
+<p class="meta-obj-value">Reunir <b>RD$350,000</b> para hacer posible esta campaña.</p>
+</div>
+</div>
+</section>
+<!-- 3. MÁS VIDA, MÁS BIENESTAR -->
+<div class="bienestar-fullbleed">
+<div class="gato-superior"></div>
+<div class="gato-inferior"></div>
+<h2 class="o90-section-title" style="color:#fff;text-align:center;">Más vida, más bienestar</h2>
+<p class="o90-text" style="color:#C7D6CE;text-align:center;">La esterilización puede marcar una gran diferencia en la vida de un gato.</p>
+<div class="bienestar-grid">
+<div class="bienestar-group-label">
+<svg class="cat-icon" width="40" height="40" viewBox="0 0 44 44">
+<path d="M12 14 L8 4 L18 11 Z" fill="#E8664A"/>
+<path d="M32 14 L36 4 L26 11 Z" fill="#E8664A"/>
+<circle cx="22" cy="20" r="14" fill="#E8664A"/>
+<path d="M17 19 q5 4 10 0" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+<circle cx="17" cy="17" r="1.6" fill="#fff"/>
+<circle cx="27" cy="17" r="1.6" fill="#fff"/>
+<path d="M22 21 l-1.4 2 h2.8 Z" fill="#fff"/>
+<circle cx="33" cy="9" r="3.2" fill="#F0C24B"/>
+<circle cx="30.5" cy="10.5" r="2.6" fill="#F0C24B"/>
+<circle cx="33" cy="10" r="1.4" fill="#C94F36"/>
+</svg>
+<span>Hembras</span>
+</div>
+<div class="bienestar-card good">
+<div class="bienestar-years">10.5</div>
+<div class="bienestar-label">años · Esterilizadas</div>
+</div>
+<div class="bienestar-card">
+<div class="bienestar-years">4.7</div>
+<div class="bienestar-label">años · No esterilizadas</div>
+</div>
+<div class="bienestar-group-label">
+<svg class="cat-icon" width="40" height="40" viewBox="0 0 44 44">
+<path d="M12 14 L8 4 L18 11 Z" fill="#8FC4AC"/>
+<path d="M32 14 L36 4 L26 11 Z" fill="#8FC4AC"/>
+<circle cx="22" cy="20" r="14" fill="#8FC4AC"/>
+<path d="M17 19 q5 4 10 0" stroke="#12332A" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+<circle cx="17" cy="17" r="1.6" fill="#12332A"/>
+<circle cx="27" cy="17" r="1.6" fill="#12332A"/>
+<path d="M22 21 l-1.4 2 h2.8 Z" fill="#12332A"/>
+</svg>
+<span>Machos</span>
+</div>
+<div class="bienestar-card good">
+<div class="bienestar-years">9.8</div>
+<div class="bienestar-label">años · Castrados</div>
+</div>
+<div class="bienestar-card">
+<div class="bienestar-years">3.7</div>
+<div class="bienestar-label">años · No castrados</div>
+</div>
+</div>
+</div>
+<!-- 4. PUENTE HACIA LOS PRODUCTOS -->
+<section class="o90-section" style="padding-top:32px;">
+<div class="puente-card">
+<span class="o90-eyebrow3">¿Cómo vamos a lograrlo?</span>
+<p class="o90-text" style="margin-top:2px;">Para hacer realidad esta campaña necesitamos reunir <b>RD$350,000</b>.</p>
+<p class="o90-text">Una empresa participante ha decidido apoyar este objetivo destinando un porcentaje de las ventas de 5 productos a esta causa.</p>
+<div class="puente-highlight">
+Tú eliges. Compras el producto que quieras, sin aportar dinero extra para la causa — y esa compra ayuda a acercarnos a la meta.
+</div>
+</div>
+</section>
+<!-- 5. CADA COMPRA SUMA — carrusel estilo galería -->
+<section class="o90-section" style="padding-top:0;text-align:center;">
+<h2 class="o90-section-title">Cada compra suma</h2>
+<span class="o90-prod-tag" id="o90ProdCount">— productos participantes</span>
+<div class="o90-g-carousel" id="o90GCarousel"></div>
+<div class="o90-g-nav">
+<button class="o90-g-arrow" id="o90GPrev">‹</button>
+<div class="o90-g-dots" id="o90GDots"></div>
+<button class="o90-g-arrow" id="o90GNext">›</button>
+</div>
+<p class="o90-g-hint">Desliza o toca las flechas · toca el producto central para más detalles</p>
+</section>
+<!-- 6. ¿CÓMO LO VAMOS A LOGRAR? -->
+<section class="o90-section o90-steps-section">
+<h2 class="o90-section-title">¿Cómo lo vamos a lograr?</h2>
+<div class="o90-steps-ticker">
+<div class="o90-steps-track" id="o90StepsTrack"></div>
+</div>
+</section>
+<!-- 7. SIGAMOS LA META JUNTOS -->
+<section class="o90-section" style="padding-top:0;text-align:center;">
+<h2 class="o90-section-title">Sigamos la meta juntos</h2>
+<p class="o90-text">Actualizaremos periódicamente el progreso para que puedas ver cómo las compras participantes nos acercan a la meta.</p>
+<div class="o90-chart-wrap">
+<svg viewBox="0 0 320 160" width="100%" id="o90ChartSvg">
+<rect class="o90-bar" x="20" y="120" width="26" height="30" rx="4" fill="#8FC4AC" style="transition-delay:.1s"/>
+<rect class="o90-bar" x="58" y="105" width="26" height="45" rx="4" fill="#8FC4AC" style="transition-delay:.2s"/>
+<rect class="o90-bar" x="96" y="88" width="26" height="62" rx="4" fill="#6FAE93" style="transition-delay:.3s"/>
+<rect class="o90-bar" x="134" y="70" width="26" height="80" rx="4" fill="#6FAE93" style="transition-delay:.4s"/>
+<rect class="o90-bar" x="172" y="52" width="26" height="98" rx="4" fill="#1F5F4A" style="transition-delay:.5s"/>
+<rect class="o90-bar" x="210" y="34" width="26" height="116" rx="4" fill="#1F5F4A" style="transition-delay:.6s"/>
+<rect class="o90-bar" x="248" y="16" width="26" height="134" rx="4" fill="#E8664A" style="transition-delay:.7s"/>
+<path class="o90-arrow-path" id="o90ArrowPath" d="M 24 140 Q 140 90, 245 30" fill="none" stroke="#E8664A" stroke-width="4" stroke-linecap="round"/>
+<polygon points="245,10 268,26 240,42" fill="#E8664A"/>
+</svg>
+</div>
+</section>
+<!-- 8. RESULTADOS DE CAMPAÑA OBJETIVO 90 -->
+<section class="o90-section" style="padding-top:0;text-align:center;">
+<div class="o90-overflow-note" style="cursor:pointer;" id="o90ResultsBtn">
+Resultados de campaña Objetivo 90 →
+</div>
+</section>
+<!-- 9. COMPARTIR -->
+<section class="o90-section o90-share">
+<h2 class="o90-section-title">❤️ Ayuda a que esta meta llegue más lejos</h2>
+<p class="o90-text">¿No lo necesitas hoy? Compártelo. Tu ayuda también puede acercarnos a la meta.</p>
+<div class="o90-share-pulse-wrap">
+<div class="o90-share-pulse-ring o90-share-pulse-ring-1"></div>
+<div class="o90-share-pulse-ring o90-share-pulse-ring-2"></div>
+<div class="o90-share-pulse-ring o90-share-pulse-ring-3"></div>
+<button class="o90-share-pulse-btn" id="o90ShareBtn">
+<svg width="34" height="34" viewBox="0 0 24 24" fill="#fff">
+<path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.005c5.46 0 9.91-4.45 9.91-9.91C21.98 6.45 17.53 2 12.04 2zm5.79 14.13c-.24.68-1.4 1.3-1.93 1.38-.49.08-1.11.11-1.79-.11-.41-.13-.94-.3-1.62-.59-2.86-1.23-4.72-4.12-4.86-4.31-.14-.19-1.16-1.55-1.16-2.95 0-1.41.74-2.1 1-2.39.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.57.81 1.98.88 2.12.07.14.12.31.02.5-.1.19-.15.31-.29.48-.14.17-.3.38-.43.51-.14.14-.29.29-.12.57.17.29.76 1.25 1.63 2.02 1.12 1 2.06 1.31 2.35 1.46.29.14.46.12.63-.07.17-.19.72-.84.92-1.13.19-.29.38-.24.64-.14.26.1 1.65.78 1.94.92.29.14.48.21.55.33.07.12.07.69-.17 1.37z"/>
+</svg>
+</button>
+</div>
+<div class="o90-share-pulse-cta">Toca para compartir</div>
+</section>
+<footer>
+<div class="word">CAUSA<span style="color:var(--coral)">30</span></div>
+<div class="credit">Causa30 — powered by Altrua</div>
+</footer>
+</div>
 <div class="o90-prod-modal-overlay" id="o90ProdModal">
-  <div class="o90-prod-modal-sheet">
-    <div class="o90-prod-modal-img" id="o90ProdModalImg"></div>
-    <div class="o90-prod-modal-body">
-      <h3 class="o90-prod-modal-name" id="o90ProdModalName">—</h3>
-      <div class="o90-prod-modal-price" id="o90ProdModalPrice">—</div>
-      <p class="o90-prod-modal-desc" id="o90ProdModalDesc">—</p>
-      <p class="o90-prod-modal-btn" id="o90ProdModalBtn">Compra este producto en: Empresa X</p>
-      <button class="o90-prod-modal-close" data-close>Cerrar ✕</button>
-    </div>
-  </div>
+<div class="o90-prod-modal-sheet">
+<div class="o90-prod-modal-img" id="o90ProdModalImg"></div>
+<div class="o90-prod-modal-body">
+<h3 class="o90-prod-modal-name" id="o90ProdModalName">—</h3>
+<div class="o90-prod-modal-price" id="o90ProdModalPrice">—</div>
+<p class="o90-prod-modal-desc" id="o90ProdModalDesc">—</p>
+<p class="o90-prod-modal-btn" id="o90ProdModalBtn">Compra este producto en: Empresa X</p>
+<button class="o90-prod-modal-close" data-close>Cerrar ✕</button>
 </div>
-
+</div>
+</div>
+<!-- MODAL: RESULTADOS DE CAMPAÑA OBJETIVO 90 -->
+<div class="modal-overlay" id="o90ProgressModal">
+<div class="modal-sheet" style="max-height:70vh;text-align:center;">
+<div class="modal-handle"></div>
+<button class="modal-close" data-close>✕</button>
+<div class="progress-flip" id="o90ProgressFlip">
+<div class="progress-flip-inner">
+<div class="progress-front">
+<div class="progress-art" id="o90ProgressArt" style="background-image:url('images/progress3.png')"></div>
+<div class="results-tap-hint">(toca la foto)</div>
+</div>
+<div class="progress-back">
+<div class="rgrid">
+<div class="rrow"><span class="k">Meta</span><span class="v">100 gatos</span></div>
+<div class="rrow"><span class="k">Objetivo</span><span class="v">RD$350,000</span></div>
+<div class="rrow"><span class="k">Recaudado</span><span class="v" id="o90ResRecaudado">—</span></div>
+<div class="rrow"><span class="k">Compras</span><span class="v" id="o90ResCompras">—</span></div>
+<div class="rrow"><span class="k">Fundación</span><span class="v">Catlovers RD</span></div>
+<div class="rrow"><span class="k">Estado</span><span class="status-pill" style="background:rgba(240,161,144,.15);color:#F0A190;">Próximamente</span></div>
+</div>
+</div>
+</div>
+</div>
+<h2 class="sec-title" style="font-size:20px;margin-top:14px;">¡Esta campaña todavía está en marcha!</h2>
+<p style="font-size:13.5px;color:var(--grey);margin-top:12px;line-height:1.6;">Aún puedes ser parte. Compra uno de los 5 productos participantes y ayuda a llevar esta jornada de esterilización más cerca de la meta.</p>
+<div class="countdown" id="o90CampaignCountdown">
+<div class="cd-unit"><span class="cd-num" id="o90CdDays">00</span><span class="cd-label">Días</span></div>
+<div class="cd-sep">:</div>
+<div class="cd-unit"><span class="cd-num" id="o90CdHours">00</span><span class="cd-label">Hrs</span></div>
+<div class="cd-sep">:</div>
+<div class="cd-unit"><span class="cd-num" id="o90CdMins">00</span><span class="cd-label">Min</span></div>
+<div class="cd-sep">:</div>
+<div class="cd-unit"><span class="cd-num" id="o90CdSecs">00</span><span class="cd-label">Seg</span></div>
+</div>
+<button class="btn-ghost" id="o90VerProductosBtn" style="margin-top:18px;">Ver productos</button>
+<p style="font-size:11.5px;color:var(--grey);margin-top:18px;">Los resultados oficiales se publican apenas cierre la campaña.</p>
+</div>
+</div>
 <script>
 // ✏️ EDITAR AQUÍ CADA VEZ QUE ACTUALICES OBJETIVO 90
 const objetivo90 = {
-  diaActual: 34,
-  diaTotal: 90,
+diaActual: 34,
+diaTotal: 90,
 };
-
 // ✏️ EDITAR AQUÍ LOS 5 PRODUCTOS PARTICIPANTES DE ESTE OBJETIVO 90
 const o90Products = [
-  {name:"Producto 1", price:"RD$ — · Aporte RD$—", img:"images/producto-obj90-1.png", desc:"Cada compra registrada suma para el Objetivo 90."},
-  {name:"Producto 2", price:"RD$ — · Aporte RD$—", img:"images/producto-obj90-2.png", desc:"Cada compra registrada suma para el Objetivo 90."},
-  {name:"Producto 3", price:"RD$ — · Aporte RD$—", img:"images/producto-obj90-3.png", desc:"Cada compra registrada suma para el Objetivo 90."},
-  {name:"Producto 4", price:"RD$ — · Aporte RD$—", img:"images/producto-obj90-4.png", desc:"Cada compra registrada suma para el Objetivo 90."},
-  {name:"Producto 5", price:"RD$ — · Aporte RD$—", img:"images/producto-obj90-5.png", desc:"Cada compra registrada suma para el Objetivo 90."},
+{name:"Producto 1", price:"RD$ — · Aporte RD$—", img:"images/producto-obj90-1.png", desc:"Cada compra registrada suma para el Objetivo 90."},
+{name:"Producto 2", price:"RD$ — · Aporte RD$—", img:"images/producto-obj90-2.png", desc:"Cada compra registrada suma para el Objetivo 90."},
+{name:"Producto 3", price:"RD$ — · Aporte RD$—", img:"images/producto-obj90-3.png", desc:"Cada compra registrada suma para el Objetivo 90."},
+{name:"Producto 4", price:"RD$ — · Aporte RD$—", img:"images/producto-obj90-4.png", desc:"Cada compra registrada suma para el Objetivo 90."},
+{name:"Producto 5", price:"RD$ — · Aporte RD$—", img:"images/producto-obj90-5.png", desc:"Cada compra registrada suma para el Objetivo 90."},
 ];
-
 document.getElementById('o90DayBadge').textContent = `Día ${objetivo90.diaActual} de ${objetivo90.diaTotal}`;
 document.getElementById('o90ProdCount').textContent = `${o90Products.length} productos participantes`;
-
 const chartSvg = document.getElementById('o90ChartSvg');
 new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      document.querySelectorAll('.o90-bar').forEach(b => b.classList.add('grow'));
-      document.getElementById('o90ArrowPath').classList.add('draw');
-    }
-  });
+entries.forEach(entry => {
+if(entry.isIntersecting){
+document.querySelectorAll('.o90-bar').forEach(b => b.classList.add('grow'));
+document.getElementById('o90ArrowPath').classList.add('draw');
+}
+});
 }, { threshold: 0.4 }).observe(chartSvg);
-
 const stampPhrases = ["90 días", "Una meta", "Cientos de vidas transformadas"];
 let stampIdx = 0;
 const stampEl = document.getElementById('o90StampPhrase');
 function o90Stamp(){
-  stampEl.textContent = stampPhrases[stampIdx];
-  stampEl.classList.remove('stamping');
-  void stampEl.offsetWidth;
-  stampEl.classList.add('stamping');
-  stampIdx = (stampIdx + 1) % stampPhrases.length;
+stampEl.textContent = stampPhrases[stampIdx];
+stampEl.classList.remove('stamping');
+void stampEl.offsetWidth;
+stampEl.classList.add('stamping');
+stampIdx = (stampIdx + 1) % stampPhrases.length;
 }
 o90Stamp();
 setInterval(o90Stamp, 2200);
-
 let gActive = 0;
 const gCarousel = document.getElementById('o90GCarousel');
 const gDotsWrap = document.getElementById('o90GDots');
 let gJustDragged = false;
-
 function gRender(){
-  gCarousel.innerHTML = '';
-  gDotsWrap.innerHTML = '';
-  o90Products.forEach((p, i) => {
-    const card = document.createElement('div');
-    let diff = i - gActive;
-    if(diff > o90Products.length/2) diff -= o90Products.length;
-    if(diff < -o90Products.length/2) diff += o90Products.length;
-
-    let posClass = 'pos-hidden';
-    if(diff === 0) posClass = 'pos-0';
-    else if(diff === 1) posClass = 'pos-1';
-    else if(diff === -1) posClass = 'pos--1';
-    else if(diff === 2) posClass = 'pos-2';
-    else if(diff === -2) posClass = 'pos--2';
-
-    card.className = 'o90-g-card ' + posClass;
-    card.innerHTML = `<div class="art" style="background-image:url('${p.img}')">
-      <span class="name-tag">${p.name}</span>
-    </div>`;
-    card.addEventListener('click', () => {
-      if(gJustDragged){ gJustDragged = false; return; }
-      if(diff === 0){ o90OpenModal(p); }
-      else { gActive = i; gRender(); }
-    });
-    gCarousel.appendChild(card);
-
-    const dot = document.createElement('div');
-    dot.className = 'o90-g-dot' + (i === gActive ? ' active' : '');
-    gDotsWrap.appendChild(dot);
-  });
+gCarousel.innerHTML = '';
+gDotsWrap.innerHTML = '';
+o90Products.forEach((p, i) => {
+const card = document.createElement('div');
+let diff = i - gActive;
+if(diff > o90Products.length/2) diff -= o90Products.length;
+if(diff < -o90Products.length/2) diff += o90Products.length;
+let posClass = 'pos-hidden';
+if(diff === 0) posClass = 'pos-0';
+else if(diff === 1) posClass = 'pos-1';
+else if(diff === -1) posClass = 'pos--1';
+else if(diff === 2) posClass = 'pos-2';
+else if(diff === -2) posClass = 'pos--2';
+card.className = 'o90-g-card ' + posClass;
+card.innerHTML = `<div class="art" style="background-image:url('${p.img}')">
+<span class="name-tag">${p.name}</span>
+</div>`;
+card.addEventListener('click', () => {
+if(gJustDragged){ gJustDragged = false; return; }
+if(diff === 0){ o90OpenModal(p); }
+else { gActive = i; gRender(); }
+});
+gCarousel.appendChild(card);
+const dot = document.createElement('div');
+dot.className = 'o90-g-dot' + (i === gActive ? ' active' : '');
+gDotsWrap.appendChild(dot);
+});
 }
 gRender();
-
 document.getElementById('o90GPrev').addEventListener('click', () => { gActive = (gActive-1+o90Products.length)%o90Products.length; gRender(); });
 document.getElementById('o90GNext').addEventListener('click', () => { gActive = (gActive+1)%o90Products.length; gRender(); });
-
 let gDragStartX=null, gDragDeltaX=0, gIsDragging=false;
 gCarousel.addEventListener('pointerdown', e => { gIsDragging=true; gDragStartX=e.clientX; gDragDeltaX=0; });
 gCarousel.addEventListener('pointermove', e => { if(!gIsDragging) return; gDragDeltaX = e.clientX - gDragStartX; });
 gCarousel.addEventListener('pointerup', () => {
-  if(!gIsDragging) return;
-  gIsDragging=false;
-  if(Math.abs(gDragDeltaX) > 40){
-    gActive = gDragDeltaX < 0 ? (gActive+1)%o90Products.length : (gActive-1+o90Products.length)%o90Products.length;
-    gRender();
-    gJustDragged = true;
-  }
+if(!gIsDragging) return;
+gIsDragging=false;
+if(Math.abs(gDragDeltaX) > 40){
+gActive = gDragDeltaX < 0 ? (gActive+1)%o90Products.length : (gActive-1+o90Products.length)%o90Products.length;
+gRender();
+gJustDragged = true;
+}
 });
 gCarousel.addEventListener('pointerleave', () => { gIsDragging = false; });
-
 const o90ProdModal = document.getElementById('o90ProdModal');
 function o90OpenModal(p){
-  document.getElementById('o90ProdModalImg').style.backgroundImage = `url('${p.img}')`;
-  document.getElementById('o90ProdModalName').textContent = p.name;
-  document.getElementById('o90ProdModalPrice').textContent = p.price;
-  document.getElementById('o90ProdModalDesc').textContent = p.desc;
-  o90ProdModal.classList.add('open');
+document.getElementById('o90ProdModalImg').style.backgroundImage = `url('${p.img}')`;
+document.getElementById('o90ProdModalName').textContent = p.name;
+document.getElementById('o90ProdModalPrice').textContent = p.price;
+document.getElementById('o90ProdModalDesc').textContent = p.desc;
+o90ProdModal.classList.add('open');
 }
 document.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', () => o90ProdModal.classList.remove('open')));
 o90ProdModal.addEventListener('click', e => { if(e.target === o90ProdModal) o90ProdModal.classList.remove('open'); });
-
 const o90ProdModalImg = document.getElementById('o90ProdModalImg');
 let o90ModalDragStartX=null, o90ModalDragDeltaX=0, o90ModalDragging=false;
 o90ProdModalImg.addEventListener('pointerdown', e => { o90ModalDragging=true; o90ModalDragStartX=e.clientX; o90ModalDragDeltaX=0; });
 o90ProdModalImg.addEventListener('pointermove', e => { if(!o90ModalDragging) return; o90ModalDragDeltaX = e.clientX - o90ModalDragStartX; });
 o90ProdModalImg.addEventListener('pointerup', () => {
-  if(!o90ModalDragging) return;
-  o90ModalDragging=false;
-  if(Math.abs(o90ModalDragDeltaX) > 50){
-    gActive = o90ModalDragDeltaX < 0 ? (gActive+1)%o90Products.length : (gActive-1+o90Products.length)%o90Products.length;
-    gRender();
-    o90OpenModal(o90Products[gActive]);
-  }
+if(!o90ModalDragging) return;
+o90ModalDragging=false;
+if(Math.abs(o90ModalDragDeltaX) > 50){
+gActive = o90ModalDragDeltaX < 0 ? (gActive+1)%o90Products.length : (gActive-1+o90Products.length)%o90Products.length;
+gRender();
+o90OpenModal(o90Products[gActive]);
+}
 });
 o90ProdModalImg.addEventListener('pointerleave', () => { o90ModalDragging = false; });
-
 const o90Steps = [
-  {icon:"🛒", label:"Compras el producto participante"},
-  {icon:"🧾", label:"La compra es registrada"},
-  {icon:"🤝", label:"La empresa realiza su aporte"},
-  {icon:"🎯", label:"Avanzamos hacia el objetivo", final:true},
+{icon:"🛒", label:"Compras el producto participante"},
+{icon:"🧾", label:"La compra es registrada"},
+{icon:"🤝", label:"La empresa realiza su aporte"},
+{icon:"🎯", label:"Avanzamos hacia el objetivo", final:true},
 ];
 function o90RenderStep(s){
-  return `<div class="o90-step-card${s.final ? ' final' : ''}">
-    <div class="o90-step-icon">${s.icon}</div>
-    <div class="o90-step-label">${s.label}</div>
-  </div>`;
+return `<div class="o90-step-card${s.final ? ' final' : ''}">
+<div class="o90-step-icon">${s.icon}</div>
+<div class="o90-step-label">${s.label}</div>
+</div>`;
 }
 document.getElementById('o90StepsTrack').innerHTML = o90Steps.map(o90RenderStep).join('') + o90Steps.map(o90RenderStep).join('');
-
 document.getElementById('o90ShareBtn').addEventListener('click', function(){
-  this.classList.add('tapped');
-  setTimeout(() => this.classList.remove('tapped'), 300);
-  const shareUrl = window.location.origin + window.location.pathname;
-  const message = `🎯 Objetivo 90 — Causa30\n\nHagamos posible una gran jornada de esterilización felina.\n\n¿No lo necesitas hoy? Compártelo. Tu ayuda también puede acercarnos a la meta.\n\nDescúbrelo aquí:\n${shareUrl}\n\n📱 Si usas iPhone y el link no carga bien, mantenlo presionado y elige "Abrir en Chrome/Safari" 👆.`;
-  setTimeout(() => window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank'), 200);
+this.classList.add('tapped');
+setTimeout(() => this.classList.remove('tapped'), 300);
+const shareUrl = window.location.origin + window.location.pathname;
+const message = `🎯 Objetivo 90 — Causa30\n\nHagamos posible una gran jornada de esterilización felina.\n\n¿No lo necesitas hoy? Compártelo. Tu ayuda también puede acercarnos a la meta.\n\nDescúbrelo aquí:\n${shareUrl}\n\n📱 Si usas iPhone y el link no carga bien, mantenlo presionado y elige "Abrir en Chrome/Safari" 👆.`;
+setTimeout(() => window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank'), 200);
 });
+
+// ✏️ EDITAR AQUÍ cuando tengas la fecha real de cierre de esta campaña
+const O90_CAMPAIGN_END = new Date('2026-11-30T23:59:00');
+
+const o90ProgressModal = document.getElementById('o90ProgressModal');
+document.getElementById('o90ResultsBtn').addEventListener('click', () => o90ProgressModal.classList.add('open'));
+document.querySelectorAll('#o90ProgressModal [data-close]').forEach(b => b.addEventListener('click', () => o90ProgressModal.classList.remove('open')));
+o90ProgressModal.addEventListener('click', e => { if(e.target === o90ProgressModal) o90ProgressModal.classList.remove('open'); });
+
+const o90ProgressFlip = document.getElementById('o90ProgressFlip');
+document.getElementById('o90ProgressArt').addEventListener('click', () => o90ProgressFlip.classList.toggle('flipped'));
+document.querySelector('#o90ProgressFlip .progress-back').addEventListener('click', () => o90ProgressFlip.classList.remove('flipped'));
+
+document.getElementById('o90VerProductosBtn').addEventListener('click', () => {
+  o90ProgressModal.classList.remove('open');
+  document.getElementById('o90GCarousel').scrollIntoView({ behavior: 'smooth', block: 'center' });
+});
+
+function o90UpdateCountdown(){
+  const now = new Date();
+  let diff = O90_CAMPAIGN_END - now;
+  if(diff < 0) diff = 0;
+  document.getElementById('o90CdDays').textContent = String(Math.floor(diff / (1000*60*60*24))).padStart(2,'0');
+  document.getElementById('o90CdHours').textContent = String(Math.floor((diff / (1000*60*60)) % 24)).padStart(2,'0');
+  document.getElementById('o90CdMins').textContent = String(Math.floor((diff / (1000*60)) % 60)).padStart(2,'0');
+  document.getElementById('o90CdSecs').textContent = String(Math.floor((diff / 1000) % 60)).padStart(2,'0');
+}
+o90UpdateCountdown();
+setInterval(o90UpdateCountdown, 1000);
+
 </script>
 </body>
 </html>
