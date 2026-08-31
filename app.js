@@ -347,7 +347,7 @@ detailPhoto.addEventListener('pointerleave', () => {
 // VIDEO — lightbox reutilizable con YouTube, a pantalla completa
 // Cada botón con class="video-trigger" puede tener su propio data-yt-id en el HTML (intro, patrocinador, cómo funciona, Objetivo 90).
 // Si no tiene data-yt-id, usa este video por defecto:
-const YOUTUBE_VIDEO_ID = 'jWonJ8oFlA8';
+const YOUTUBE_VIDEO_ID = 'QzWsqtNT2R4';
 
 const videoLightbox = document.getElementById('videoLightbox');
 const ytFrameWrap = document.getElementById('ytFrameWrap');
