@@ -614,7 +614,7 @@ setInterval(() => {
 }, 4000);
 // ============ COMUNIDAD CAUSA30 ============
 const communityModal = document.getElementById('communityModal');
-const communityTab = document.getElementById('communityTab');
+const communityTicker = document.getElementById('communityTicker');
 const commStepRegister = document.getElementById('commStepRegister');
 const commStepCommunity = document.getElementById('commStepCommunity');
 const commRegInput = document.getElementById('commRegInput');
@@ -634,7 +634,7 @@ document.querySelectorAll('.reg-tab').forEach(t => {
   });
 });
 
-// NOTA: el contador vive en localStorage SOLO mientras no haya backend.
+// NOTA: el contador vive en localStorage SOLO mientras no haya backend (Supabase).
 // En producción, el contador (y la validación de correo/teléfono duplicado)
 // deben vivir en el servidor — localStorage es por dispositivo, no global.
 function assignCausa30Code(){
@@ -658,19 +658,7 @@ function openCommunityPanel(){
   }
   openModal(communityModal);
 }
-
-// tap normal
-communityTab.addEventListener('click', openCommunityPanel);
-
-// gesto swipe-up (mismo patrón pointer events que ya usas en el carrusel y la ficha ampliada)
-let commDragStartY = null, commDragging = false;
-communityTab.addEventListener('pointerdown', (e) => { commDragging = true; commDragStartY = e.clientY; });
-communityTab.addEventListener('pointerup', (e) => {
-  if(!commDragging) return;
-  commDragging = false;
-  const delta = e.clientY - commDragStartY;
-  if(delta < -24) openCommunityPanel();
-});
+communityTicker.addEventListener('click', openCommunityPanel);
 
 communityModal.addEventListener('click', (e) => { if(e.target === communityModal) closeModal(communityModal); });
 
