@@ -1001,3 +1001,42 @@
   @media (prefers-reduced-motion: reduce){
     .fund-pulse-ring{animation:none;}
   }
+/* ---------- COMUNIDAD CAUSA30 (panel oculto, gesto swipe-up) ---------- */
+:root{
+  --comm-orange:#FF9142;
+}
+
+.community-tab{
+  position:fixed;left:50%;bottom:0;transform:translateX(-50%);
+  z-index:80;width:auto;padding:0 18px;height:34px;border-radius:16px 16px 0 0;
+  background:rgba(10,10,10,.9);border:1px solid rgba(255,145,66,.3);border-bottom:none;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
+  touch-action:none;user-select:none;cursor:pointer;white-space:nowrap;
+}
+.community-tab .tab-chevron{color:var(--comm-orange);font-size:10px;line-height:1;animation:tabBob 2.6s ease-in-out infinite;}
+.community-tab .tab-label{color:rgba(255,255,255,.75);font-size:11px;font-weight:600;letter-spacing:.01em;}
+.community-teaser{font-size:12.5px;color:rgba(255,255,255,.45);text-align:center;line-height:1.6;max-width:280px;margin:20px auto 0;}
+@keyframes tabBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+
+.community-sheet{background:linear-gradient(180deg,#111,#000);border:1px solid rgba(255,145,66,.22);}
+.community-sheet .modal-handle{background:rgba(255,145,66,.4);}
+.community-sheet .modal-close{background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);}
+
+.community-kicker{font-family:'Manrope',sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.2em;color:var(--comm-orange);text-align:center;margin-top:4px;}
+.community-title{font-family:'Manrope',sans-serif;font-weight:800;font-size:21px;color:#fff;text-align:center;margin-top:12px;}
+.community-copy{font-size:13px;color:rgba(255,255,255,.5);text-align:center;line-height:1.6;max-width:280px;margin:10px auto 0;}
+
+.reg-toggle{display:flex;gap:6px;background:rgba(255,255,255,.05);border-radius:100px;padding:4px;max-width:220px;margin:18px auto 0;}
+.reg-tab{flex:1;padding:9px;border-radius:100px;font-size:12px;font-weight:700;color:rgba(255,255,255,.4);background:none;border:none;font-family:inherit;cursor:pointer;}
+.reg-tab.active{background:var(--comm-orange);color:#0a0a0a;}
+.reg-input{display:block;width:100%;max-width:280px;margin:14px auto 0;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.14);border-radius:14px;padding:13px 16px;color:#fff;font-size:14px;text-align:center;font-family:'Inter',sans-serif;}
+.reg-input::placeholder{color:rgba(255,255,255,.3);}
+.reg-input:focus{outline:none;border-color:var(--comm-orange);}
+.reg-note{font-size:11px;color:rgba(255,255,255,.3);text-align:center;margin-top:8px;}
+.reg-submit{display:block;width:100%;max-width:280px;margin:16px auto 0;background:var(--comm-orange);color:#0a0a0a;font-weight:800;font-size:13.5px;padding:14px;border-radius:100px;border:none;font-family:inherit;cursor:pointer;}
+
+.code-label{font-size:11px;letter-spacing:.16em;color:rgba(255,255,255,.4);text-align:center;margin-top:26px;font-weight:700;}
+.code-value{font-family:'Manrope',sans-serif;font-weight:800;font-size:38px;letter-spacing:.03em;text-align:center;color:var(--comm-orange);margin-top:6px;text-shadow:0 0 30px rgba(255,145,66,.4);}
+.code-sub{font-size:12.5px;color:rgba(255,255,255,.42);text-align:center;margin-top:6px;}
+.community-question{font-family:'Manrope',sans-serif;font-weight:800;font-size:16.5px;color:#fff;text-align:center;margin-top:28px;}
+.community-footnote{font-size:11.5px;color:rgba(255,255,255,.32);text-align:center;font-style:italic;margin-top:16px;}
