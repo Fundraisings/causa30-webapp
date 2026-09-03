@@ -612,3 +612,92 @@ setInterval(() => {
     adCaptionTextMain.classList.add('active');
   }, 150);
 }, 4000);
+// ============ COMUNIDAD CAUSA30 ============
+const communityModal = document.getElementById('communityModal');
+const communityTab = document.getElementById('communityTab');
+const commStepRegister = document.getElementById('commStepRegister');
+const commStepCommunity = document.getElementById('commStepCommunity');
+const commRegInput = document.getElementById('commRegInput');
+const commRegSubmit = document.getElementById('commRegSubmit');
+const commCodeValue = document.getElementById('commCodeValue');
+const commShareBtn = document.getElementById('commShareBtn');
+
+let commMode = 'email';
+document.querySelectorAll('.reg-tab').forEach(t => {
+  t.addEventListener('click', () => {
+    document.querySelectorAll('.reg-tab').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    commMode = t.dataset.mode;
+    commRegInput.placeholder = commMode === 'email' ? 'tu@correo.com' : '(809) 000-0000';
+    commRegInput.inputMode = commMode === 'email' ? 'email' : 'tel';
+    commRegInput.value = '';
+  });
+});
+
+// NOTA: el contador vive en localStorage SOLO mientras no haya backend.
+// En producción, el contador (y la validación de correo/teléfono duplicado)
+// deben vivir en el servidor — localStorage es por dispositivo, no global.
+function assignCausa30Code(){
+  let counter = parseInt(localStorage.getItem('causa30_counter') || '426', 10);
+  counter += 1;
+  const code = 'C30-' + String(counter).padStart(4, '0');
+  localStorage.setItem('causa30_counter', counter);
+  localStorage.setItem('causa30_code', code);
+  return code;
+}
+
+function openCommunityPanel(){
+  const existing = localStorage.getItem('causa30_code');
+  if(existing){
+    commStepRegister.style.display = 'none';
+    commStepCommunity.style.display = 'block';
+    commCodeValue.textContent = existing;
+  } else {
+    commStepRegister.style.display = 'block';
+    commStepCommunity.style.display = 'none';
+  }
+  openModal(communityModal);
+}
+
+// tap normal
+communityTab.addEventListener('click', openCommunityPanel);
+
+// gesto swipe-up (mismo patrón pointer events que ya usas en el carrusel y la ficha ampliada)
+let commDragStartY = null, commDragging = false;
+communityTab.addEventListener('pointerdown', (e) => { commDragging = true; commDragStartY = e.clientY; });
+communityTab.addEventListener('pointerup', (e) => {
+  if(!commDragging) return;
+  commDragging = false;
+  const delta = e.clientY - commDragStartY;
+  if(delta < -24) openCommunityPanel();
+});
+
+communityModal.addEventListener('click', (e) => { if(e.target === communityModal) closeModal(communityModal); });
+
+commRegSubmit.addEventListener('click', () => {
+  const val = commRegInput.value.trim();
+  if(val.length < 3){ commRegInput.style.borderColor = '#ff5a5a'; return; }
+  const code = assignCausa30Code();
+  commCodeValue.textContent = code;
+  commStepRegister.style.display = 'none';
+  commStepCommunity.style.display = 'block';
+});
+
+// reutiliza tu misma animación de compartir (share-anim-overlay) que ya usas para producto y mascota
+commShareBtn.addEventListener('click', () => {
+  const code = commCodeValue.textContent.trim();
+  const shareUrl = window.location.origin + window.location.pathname;
+  const message = `🌿 Ya tengo mi código ${code} en Causa30 — la app que convierte tus compras de siempre en donaciones directas a fundaciones de animales.\n\n¿Quieres el tuyo? Comparte Causa30 y ayuda a que más personas descubran una nueva forma de consumir con propósito.\n\n${shareUrl}`;
+  const waUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+
+  if(prefersReducedMotion){
+    window.open(waUrl, '_blank');
+    return;
+  }
+  shareAnimProduct.textContent = '🪪';
+  shareAnimOverlay.classList.add('active');
+  setTimeout(() => {
+    shareAnimOverlay.classList.remove('active');
+    window.open(waUrl, '_blank');
+  }, 900);
+});
