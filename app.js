@@ -622,7 +622,7 @@ const commRegSubmit = document.getElementById('commRegSubmit');
 const commCodeValue = document.getElementById('commCodeValue');
 const commShareBtn = document.getElementById('commShareBtn');
 
-
+const commMode = 'email';
 
 // Conexión a Supabase — la clave "publishable" es pública a propósito,
 // está diseñada para vivir en el navegador (la seguridad real está en
