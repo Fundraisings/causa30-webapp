@@ -679,14 +679,7 @@ communityTicker.addEventListener('click', openCommunityPanel);
 
 communityModal.addEventListener('click', (e) => { if(e.target === communityModal) closeModal(communityModal); });
 
-commRegSubmit.addEventListener('click', () => {
-  const val = commRegInput.value.trim();
-  if(val.length < 3){ commRegInput.style.borderColor = '#ff5a5a'; return; }
-  const code = assignCausa30Code();
-  commCodeValue.textContent = code;
-  commStepRegister.style.display = 'none';
-  commStepCommunity.style.display = 'block';
-});
+
 
 // reutiliza tu misma animación de compartir (share-anim-overlay) que ya usas para producto y mascota
 commShareBtn.addEventListener('click', () => {
