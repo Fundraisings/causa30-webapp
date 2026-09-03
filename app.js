@@ -622,17 +622,7 @@ const commRegSubmit = document.getElementById('commRegSubmit');
 const commCodeValue = document.getElementById('commCodeValue');
 const commShareBtn = document.getElementById('commShareBtn');
 
-let commMode = 'email';
-document.querySelectorAll('.reg-tab').forEach(t => {
-  t.addEventListener('click', () => {
-    document.querySelectorAll('.reg-tab').forEach(x => x.classList.remove('active'));
-    t.classList.add('active');
-    commMode = t.dataset.mode;
-    commRegInput.placeholder = commMode === 'email' ? 'tu@correo.com' : '(809) 000-0000';
-    commRegInput.inputMode = commMode === 'email' ? 'email' : 'tel';
-    commRegInput.value = '';
-  });
-});
+
 
 // Conexión a Supabase — la clave "publishable" es pública a propósito,
 // está diseñada para vivir en el navegador (la seguridad real está en
