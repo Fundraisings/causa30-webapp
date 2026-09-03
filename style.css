@@ -1007,11 +1007,12 @@
 }
 
 .community-tab{
-  position:fixed;left:50%;bottom:0;transform:translateX(-50%);
-  z-index:80;width:auto;padding:0 18px;height:34px;border-radius:16px 16px 0 0;
-  background:rgba(10,10,10,.9);border:1px solid rgba(255,145,66,.3);border-bottom:none;
+  position:fixed;left:50%;bottom:max(10px, env(safe-area-inset-bottom));transform:translateX(-50%);
+  z-index:90;width:auto;padding:0 18px;height:38px;border-radius:100px;
+  background:rgba(10,10,10,.92);border:1px solid rgba(255,145,66,.35);
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
-  touch-action:none;user-select:none;cursor:pointer;white-space:nowrap;
+  touch-action:manipulation;user-select:none;cursor:pointer;white-space:nowrap;
+  box-shadow:0 8px 24px -8px rgba(0,0,0,.5);
 }
 .community-tab .tab-chevron{color:var(--comm-orange);font-size:10px;line-height:1;animation:tabBob 2.6s ease-in-out infinite;}
 .community-tab .tab-label{color:rgba(255,255,255,.75);font-size:11px;font-weight:600;letter-spacing:.01em;}
