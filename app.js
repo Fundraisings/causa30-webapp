@@ -634,17 +634,44 @@ document.querySelectorAll('.reg-tab').forEach(t => {
   });
 });
 
-// NOTA: el contador vive en localStorage SOLO mientras no haya backend (Supabase).
-// En producción, el contador (y la validación de correo/teléfono duplicado)
-// deben vivir en el servidor — localStorage es por dispositivo, no global.
-function assignCausa30Code(){
-  let counter = parseInt(localStorage.getItem('causa30_counter') || '426', 10);
-  counter += 1;
-  const code = 'C30-' + String(counter).padStart(4, '0');
-  localStorage.setItem('causa30_counter', counter);
-  localStorage.setItem('causa30_code', code);
-  return code;
-}
+// Conexión a Supabase — la clave "publishable" es pública a propósito,
+// está diseñada para vivir en el navegador (la seguridad real está en
+// las políticas RLS y en la función register_member, no en ocultar esto).
+const supabaseClient = window.supabase.createClient(
+  'https://qqrpjoylnhrtxwiwsdgr.supabase.co',
+  'sb_publishable_7A7EWiJ6LAScUSnA0Y8f_g_NuBrID3J'
+);
+
+commRegSubmit.addEventListener('click', async () => {
+  const val = commRegInput.value.trim();
+  if(val.length < 3){ commRegInput.style.borderColor = '#ff5a5a'; return; }
+
+  commRegSubmit.disabled = true;
+  commRegSubmit.textContent = 'Un momento...';
+
+  const { data: code, error } = await supabaseClient.rpc('register_member', {
+    p_contact: val,
+    p_contact_type: commMode
+  });
+
+  commRegSubmit.disabled = false;
+  commRegSubmit.textContent = 'Sí, quiero mi código →';
+
+  if(error){
+    if(error.message && error.message.includes('ALREADY_REGISTERED')){
+      alert('Este correo o teléfono ya forma parte de la Comunidad Causa30.');
+    } else {
+      console.error('Error registrando en Supabase:', error);
+      alert('Hubo un problema al generar tu código. Intenta de nuevo en un momento.');
+    }
+    return;
+  }
+
+  localStorage.setItem('causa30_code', code); // recuerda el código en este dispositivo
+  commCodeValue.textContent = code;
+  commStepRegister.style.display = 'none';
+  commStepCommunity.style.display = 'block';
+});
 
 function openCommunityPanel(){
   const existing = localStorage.getItem('causa30_code');
