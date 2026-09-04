@@ -56,7 +56,8 @@ const products = [
   {biz:"Empresa X · Chocolate", name:"Chocolate X · Dark, Coco & Jengibre", price:"RD$ x", aporte:"RD$ x por compra", img:"images/producto-chocolate.png",
    address:"Dirección pendiente de confirmar", hours:"Horario pendiente de confirmar",
    compras:"x cantidad", donacion:"RD$xxx",
-   detail:"Adquiere este producto en <b>Empresa X</b> por RD$xxx. Al hacerlo, desbloqueas automáticamente un impacto de <b>RD$x</b>."},
+   detail:"
+     Puedes comprar este producto en <b>Empresa X</b> por RD$xxx. Tu aporte solo se hace efectivo al enviarnos tu comprobante por WhatsApp.  <b>RD$x</b>."},
   {biz:"Empresa X · Alimento para Mascotas", name:"Alimento para Perros X", price:"RD$xxx", aporte:"RD$ x por compra", img:"images/producto-petfood.png",
    address:"Dirección pendiente de confirmar", hours:"Horario pendiente de confirmar",
    compras:"xcantidad", donacion:"RD$xxx",
