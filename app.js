@@ -53,18 +53,18 @@ if ('serviceWorker' in navigator) {
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xnpavpkp';
 
 const products = [
-  {biz:"Empresa X · Chocolate", name:"Chocolate X · Dark, Coco & Jengibre", price:"RD$ 250", aporte:"RD$ 15 por compra", img:"images/producto-chocolate.png",
+  {biz:"Empresa X · Chocolate", name:"Chocolate X · Dark, Coco & Jengibre", price:"RD$ x", aporte:"RD$ x por compra", img:"images/producto-chocolate.png",
    address:"Dirección pendiente de confirmar", hours:"Horario pendiente de confirmar",
-   compras:"212", donacion:"RD$3,180",
-   detail:"Adquiere este producto en <b>Empresa X</b> por RD$250. Al hacerlo, desbloqueas automáticamente un impacto de <b>RD$15</b>."},
-  {biz:"Empresa X · Alimento para Mascotas", name:"Alimento para Perros X", price:"RD$ 320", aporte:"RD$ 25 por compra", img:"images/producto-petfood.png",
+   compras:"x cantidad", donacion:"RD$xxx",
+   detail:"Adquiere este producto en <b>Empresa X</b> por RD$xxx. Al hacerlo, desbloqueas automáticamente un impacto de <b>RD$15</b>."},
+  {biz:"Empresa X · Alimento para Mascotas", name:"Alimento para Perros X", price:"RD$xxx", aporte:"RD$ x por compra", img:"images/producto-petfood.png",
    address:"Dirección pendiente de confirmar", hours:"Horario pendiente de confirmar",
-   compras:"157", donacion:"RD$3,925",
-   detail:"Adquiere este producto en <b>Empresa X</b> por RD$320. Al hacerlo, desbloqueas automáticamente un impacto de <b>RD$25</b>."},
-  {biz:"Supermercados La Sirena", name:"Combo Solidario · 4 Botellas de Agua", price:"RD$ 100", aporte:"RD$ 10 por compra", img:"images/producto-agua.png",
-   address:"Supermercados La Sirena — Sucursal [NOMBRE DE LA SUCURSAL ACTIVA ESTA SEMANA]", hours:"Horario pendiente de confirmar",
-   compras:"98", donacion:"RD$980",
-   detail:"Adquiere este producto en <b>Supermercados La Sirena — Sucursal [NOMBRE DE LA SUCURSAL ACTIVA ESTA SEMANA]</b> por RD$100 (combo solidario, 4 botellas). Al hacerlo, desbloqueas automáticamente un impacto de <b>RD$10</b>."},
+   compras:"xcantidad", donacion:"RD$xxx",
+   detail:"Adquiere este producto en <b>Empresa X</b> por RD$xx. Al hacerlo, desbloqueas automáticamente un impacto de <b>RD$x</b>."},
+  {biz:"Supermercados x", name:"Combo Solidario · 4 Botellas de Agua", price:"RD$ xxx", aporte:"RD$ x por compra", img:"images/producto-agua.png",
+   address:"Supermercados xx — Sucursal [NOMBRE DE LA SUCURSAL ACTIVA ESTA SEMANA]", hours:"Horario pendiente de confirmar",
+   compras:"x", donacion:"RD$xx",
+   detail:"Adquiere este producto en <b>Supermercados xxxx — Sucursal [NOMBRE DE LA SUCURSAL ACTIVA ESTA SEMANA]</b> por RD$x (combo solidario, 4 botellas). Al hacerlo, desbloqueas automáticamente un impacto de <b>RD$10</b>."},
 ];
 let active = 0;
 const carousel = document.getElementById('carousel');
