@@ -241,12 +241,12 @@ const foundation = {
   quote: "Una organización que lleva más de 27 años trabajando por el bienestar y protección de los animales.",
   story: [
     { type: "text", content: "Somos una fundación sin fines de lucro, con más de 27 años dedicados al cuidado de los animales." },
-    { type: "photo", src: "images/fundacion-galeria1.png" },
+    { type: "photo", src: "images/fundacion-galeria1a.jpg" },
     { type: "text", content: "Trabajamos en la educación continua de la población dominicana en materia de protección animal." },
-    { type: "photo", src: "images/fundacion-galeria2.png" },
+    { type: "photo", src: "images/fundacion-galeria2b.jpg" },
     { type: "text", content: "Y en la preservación del entorno natural, la vida sana, y los valores familiares basados en el amor y el respeto." },
-    { type: "photo", src: "images/fundacion-galeria3.png" },
-    { type: "photo", src: "images/fundacion-galeria4.png" }
+    { type: "photo", src: "images/fundacion-galeria3c.jpg" },
+    { type: "photo", src: "images/fundacion-galeria4d.jpg" }
   ],
   address: "Santo Domingo, Rep. Dominicana",
   phone: "(+1) 809 884 5044 / 809 609 6006",
