@@ -355,6 +355,12 @@
   background-image:url('images/obj90-gato-video.png');
   background-size:contain;background-repeat:no-repeat;background-position:center;
 }
+  .fund-quote{font-size:14px;color:var(--grey);font-style:italic;line-height:1.55;margin-top:10px;max-width:360px;}
+  .fund-story{margin-top:20px;display:flex;flex-direction:column;gap:16px;}
+  .fund-story-text{font-size:14px;color:var(--ink);line-height:1.65;}
+  .fund-story-photo{width:100%;border-radius:var(--radius-md);overflow:hidden;}
+  .fund-story-photo img{width:100%;height:auto;display:block;}
+  .fund-card{margin-top:20px;}
   .fund-body{padding:22px;}
   .fund-body h3{font-size:19px;font-weight:800;color:var(--verde-deep);}
   .fund-body p{font-size:13.5px;color:var(--grey);line-height:1.6;margin-top:10px;}
@@ -364,7 +370,6 @@
     margin-top:18px;display:inline-block;border:1.5px solid var(--verde-deep);
     color:var(--verde-deep);padding:11px 22px;border-radius:100px;font-weight:700;font-size:13px;
   }
-
   .pet-section-title{margin-top:34px;}
   .pet-scroll{
     display:flex;gap:14px;overflow-x:auto;margin-top:20px;padding-bottom:8px;
