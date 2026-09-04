@@ -167,6 +167,9 @@ carousel.addEventListener('pointerleave', () => {
 
 
 
+// DESACTIVADO — ya no se muestra en la sección de fundación.
+// Se puede reactivar si arman una página de adopciones aparte.
+/*
 // MASCOTAS
 const pets = [
   {name:"Lobo", meta:"3 años · Macho · Pequeño", desc:"Cariñoso y juguetón, disfruta del contacto humano.",
@@ -205,19 +208,16 @@ pets.forEach((p, idx) => {
         <button class="share">Clic aquí para compartir con tus amigos →</button>
       </div>
     </div>`;
-
   const scene = card.querySelector('.flip-scene');
   scene.addEventListener('click', () => {
     const flipped = scene.getAttribute('data-flipped') === 'true';
     scene.setAttribute('data-flipped', String(!flipped));
     scene.classList.toggle('flipped');
   });
-
   const adoptFlip = card.querySelector('.adopt-flip');
   adoptFlip.querySelector('.adopt-front').addEventListener('click', () => {
     adoptFlip.classList.add('flipped');
   });
-
   card.querySelector('.share').addEventListener('click', () => {
     const shareText = `Conoce a ${p.name} 🐾 está buscando un hogar. Descúbrelo en Causa30:`;
     const shareUrl = window.location.origin + window.location.pathname;
@@ -228,9 +228,9 @@ pets.forEach((p, idx) => {
       window.open(waUrl, '_blank');
     }
   });
-
   petScroll.appendChild(card);
 });
+*/
 
 // MODALS
 function openModal(el){ el.classList.add('open'); }
