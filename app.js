@@ -56,15 +56,15 @@ const products = [
   {biz:"Empresa X · Chocolate", name:"Chocolate X · Dark, Coco & Jengibre", price:"RD$ x", aporte:"RD$ x por compra", img:"images/producto-chocolate.png",
    address:"Dirección pendiente de confirmar", hours:"Horario pendiente de confirmar",
    compras:"x cantidad", donacion:"RD$xxx",
-   detail:"Por cada Chocolate X que compres, Empresa X realizará un aporte directamente a la fundación.<br><br>Tú haces que la ayuda sea posible.<br><br>Este aporte solo será efectivo si validas tu compra enviándonos el comprobante por WhatsApp.<br><br><a href=\"#\" class=\"go-to-receipt\">Validar mi compra →</a>"},
+   detail:"Por cada Chocolate X que compres, Empresa X realizará un aporte directamente a la fundación.<br><span class=\"cta-highlight\">🙌 Tú haces que la ayuda sea posible.</span><br>Este aporte solo será efectivo si validas tu compra enviándonos el comprobante por WhatsApp.<br><br><a href=\"#\" class=\"go-to-receipt\">Validar mi compra →</a>"},
   {biz:"Empresa X · Alimento para Mascotas", name:"Alimento para Perros X", price:"RD$xxx", aporte:"RD$ x por compra", img:"images/producto-petfood.png",
    address:"Dirección pendiente de confirmar", hours:"Horario pendiente de confirmar",
    compras:"xcantidad", donacion:"RD$xxx",
-   detail:"Por cada Alimento para Perros X que compres, Empresa X realizará un aporte directamente a la fundación.<br><br>Tú haces que la ayuda sea posible.<br><br>Este aporte solo será efectivo si validas tu compra enviándonos el comprobante por WhatsApp.<br><br><a href=\"#\" class=\"go-to-receipt\">Validar mi compra →</a>"},
+   detail:"Por cada Alimento para Perros X que compres, Empresa X realizará un aporte directamente a la fundación.<br><span class=\"cta-highlight\">🙌 Tú haces que la ayuda sea posible.</span><br>Este aporte solo será efectivo si validas tu compra enviándonos el comprobante por WhatsApp.<br><br><a href=\"#\" class=\"go-to-receipt\">Validar mi compra →</a>"},
   {biz:"Supermercados x", name:"Combo Solidario · 4 Botellas de Agua", price:"RD$ xxx", aporte:"RD$ x por compra", img:"images/producto-agua.png",
    address:"Supermercados xx — Sucursal [NOMBRE DE LA SUCURSAL ACTIVA ESTA SEMANA]", hours:"Horario pendiente de confirmar",
    compras:"x", donacion:"RD$xx",
-   detail:"Por cada Combo Solidario · 4 Botellas de Agua que compres, Supermercados x realizará un aporte directamente a la fundación.<br><br>Tú haces que la ayuda sea posible.<br><br>Este aporte solo será efectivo si validas tu compra enviándonos el comprobante por WhatsApp.<br><br><a href=\"#\" class=\"go-to-receipt\">Validar mi compra →</a>"},
+   detail:"Por cada Combo Solidario · 4 Botellas de Agua que compres, Supermercados x realizará un aporte directamente a la fundación.<br><span class=\"cta-highlight\">🙌 Tú haces que la ayuda sea posible.</span><br>Este aporte solo será efectivo si validas tu compra enviándonos el comprobante por WhatsApp.<br><br><a href=\"#\" class=\"go-to-receipt\">Validar mi compra →</a>"},
 ];
 let active = 0;
 const carousel = document.getElementById('carousel');
