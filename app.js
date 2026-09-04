@@ -64,7 +64,7 @@ const products = [
   {biz:"Supermercados x", name:"Combo Solidario · 4 Botellas de Agua", price:"RD$ xxx", aporte:"RD$ x por compra", img:"images/producto-agua.png",
    address:"Supermercados xx — Sucursal [NOMBRE DE LA SUCURSAL ACTIVA ESTA SEMANA]", hours:"Horario pendiente de confirmar",
    compras:"x", donacion:"RD$xx",
-   detail:"Adquiere este producto en <b>Supermercados xxxx — Sucursal [NOMBRE DE LA SUCURSAL ACTIVA ESTA SEMANA]</b> por RD$x (combo solidario, 4 botellas). Al hacerlo, desbloqueas automáticamente un impacto de <b>RD$10</b>."},
+   detail:"Adquiere este producto en <b>Supermercados xxxx — Sucursal [NOMBRE DE LA SUCURSAL ACTIVA ESTA SEMANA]</b> por RD$x (combo solidario, 4 botellas). Al hacerlo, desbloqueas automáticamente un impacto de <b>RD$x</b>."},
 ];
 let active = 0;
 const carousel = document.getElementById('carousel');
