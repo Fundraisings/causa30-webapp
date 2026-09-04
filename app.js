@@ -452,7 +452,7 @@ const productEmojis = { "Chocolate X · Dark, Coco & Jengibre":"🍫", "Alimento
 
 function shareProductViaWhatsApp(product){
   const shareUrl = window.location.origin + window.location.pathname;
-  const message = `Encontré esta promoción en Causa30. ❤️\n\nCreo que este producto podría interesarte. Además, al elegirlo también apoyas una causa.\n\n${product.name}\n\nTu compra tiene doble valor.\n\nMira la promoción aquí:\n${shareUrl}\n\n📱 Si usas iPhone y el link no carga bien, mantenlo presionado y elige "Abrir en Chrome/Safari" 👆.`;
+  const message = `Encontré esta promoción en Causa30. ❤️\n\nCreo que este producto podría interesarte. Además, al elegirlo también apoyas una causa.\n\n${product.name}\n\nUna compra. Doble propósito.\n\nMira la promoción aquí:\n${shareUrl}\n\n📱 Si usas iPhone y el link no carga bien, mantenlo presionado y elige "Abrir en Chrome/Safari" 👆.`;
   const waUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
 
   if(prefersReducedMotion){
