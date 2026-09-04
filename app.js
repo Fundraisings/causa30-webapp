@@ -56,16 +56,15 @@ const products = [
   {biz:"Empresa X · Chocolate", name:"Chocolate X · Dark, Coco & Jengibre", price:"RD$ x", aporte:"RD$ x por compra", img:"images/producto-chocolate.png",
    address:"Dirección pendiente de confirmar", hours:"Horario pendiente de confirmar",
    compras:"x cantidad", donacion:"RD$xxx",
-   detail:"
-     Puedes comprar este producto en <b>Empresa X</b> por RD$xxx. Tu aporte solo se hace efectivo al enviarnos tu comprobante por WhatsApp.  <b>RD$x</b>."},
+   detail:"Por cada Chocolate X que compres, Empresa X realizará un aporte directamente a la fundación. Valida tu compra enviándonos el comprobante por WhatsApp para hacer efectivo el aporte. <a href=\"https://wa.me/1XXXXXXXXXX\" target=\"_blank\" rel=\"noopener\">Ver dónde enviar →</a>"},
   {biz:"Empresa X · Alimento para Mascotas", name:"Alimento para Perros X", price:"RD$xxx", aporte:"RD$ x por compra", img:"images/producto-petfood.png",
    address:"Dirección pendiente de confirmar", hours:"Horario pendiente de confirmar",
    compras:"xcantidad", donacion:"RD$xxx",
-   detail:"Adquiere este producto en <b>Empresa X</b> por RD$xx. Al hacerlo, desbloqueas automáticamente un impacto de <b>RD$x</b>."},
+   detail:"Por cada Alimento para Perros X que compres, Empresa X realizará un aporte directamente a la fundación. Valida tu compra enviándonos el comprobante por WhatsApp para hacer efectivo el aporte. <a href=\"https://wa.me/1XXXXXXXXXX\" target=\"_blank\" rel=\"noopener\">Ver dónde enviar →</a>"},
   {biz:"Supermercados x", name:"Combo Solidario · 4 Botellas de Agua", price:"RD$ xxx", aporte:"RD$ x por compra", img:"images/producto-agua.png",
    address:"Supermercados xx — Sucursal [NOMBRE DE LA SUCURSAL ACTIVA ESTA SEMANA]", hours:"Horario pendiente de confirmar",
    compras:"x", donacion:"RD$xx",
-   detail:"Adquiere este producto en <b>Supermercados xxxx — Sucursal [NOMBRE DE LA SUCURSAL ACTIVA ESTA SEMANA]</b> por RD$x (combo solidario, 4 botellas). Al hacerlo, desbloqueas automáticamente un impacto de <b>RD$x</b>."},
+   detail:"Por cada Combo Solidario · 4 Botellas de Agua que compres, Supermercados x realizará un aporte directamente a la fundación. Valida tu compra enviándonos el comprobante por WhatsApp para hacer efectivo el aporte. <a href=\"https://wa.me/1XXXXXXXXXX\" target=\"_blank\" rel=\"noopener\">Ver dónde enviar →</a>"},
 ];
 let active = 0;
 const carousel = document.getElementById('carousel');
