@@ -231,7 +231,58 @@ pets.forEach((p, idx) => {
   petScroll.appendChild(card);
 });
 */
+// ============ FUNDACIÓN DEL MES ============
+// Todo lo que cambia cada 30 días vive aquí — un solo bloque de datos.
+// "story" es la narrativa intercalada (texto, foto, texto, foto...) que
+// reemplaza la sección de mascotas. El orden y la cantidad de piezas
+// pueden variar libremente cada mes, según lo que tengan de esa fundación.
+const foundation = {
+  name: "Fundación De Blanck",
+  quote: "Una organización que lleva más de 27 años trabajando por el bienestar y protección de los animales.",
+  story: [
+    { type: "text", content: "Somos una fundación sin fines de lucro, con más de 27 años dedicados al cuidado de los animales." },
+    { type: "photo", src: "images/fundacion-galeria1.png" },
+    { type: "text", content: "Trabajamos en la educación continua de la población dominicana en materia de protección animal." },
+    { type: "photo", src: "images/fundacion-galeria2.png" },
+    { type: "text", content: "Y en la preservación del entorno natural, la vida sana, y los valores familiares basados en el amor y el respeto." },
+    { type: "photo", src: "images/fundacion-galeria3.png" },
+    { type: "photo", src: "images/fundacion-galeria4.png" }
+  ],
+  address: "Santo Domingo, Rep. Dominicana",
+  phone: "(+1) 809 884 5044 / 809 609 6006",
+  website: "fundaciondeblanck.org",
+  instagram: "@fundacion_de_blanck",
+  link: "https://fundaciondeblanck.org/"
+};
 
+function renderFoundation(){
+  document.getElementById('fundName').textContent = foundation.name;
+  document.getElementById('fundQuote').textContent = `"${foundation.quote}"`;
+
+  const storyWrap = document.getElementById('fundStory');
+  storyWrap.innerHTML = '';
+  foundation.story.forEach(item => {
+    const el = document.createElement('div');
+    if(item.type === 'photo'){
+      el.className = 'fund-story-photo';
+      el.innerHTML = `<img src="${item.src}" alt="${foundation.name}" loading="lazy">`;
+    } else {
+      el.className = 'fund-story-text';
+      el.textContent = item.content;
+    }
+    storyWrap.appendChild(el);
+  });
+
+  document.getElementById('fundMeta').innerHTML = `
+    <span><b>Dirección:</b> ${foundation.address}</span>
+    <span><b>Teléfono:</b> ${foundation.phone}</span>
+    <span><b>Website:</b> ${foundation.website}</span>
+    <span><b>Instagram:</b> ${foundation.instagram}</span>
+  `;
+
+  document.getElementById('fundLink').href = foundation.link;
+}
+renderFoundation();
 // MODALS
 function openModal(el){ el.classList.add('open'); }
 function closeModal(el){ el.classList.remove('open'); }
