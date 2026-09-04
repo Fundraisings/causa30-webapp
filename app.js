@@ -346,7 +346,7 @@ function openDetail(p){
   document.getElementById('detailPhoto').style.backgroundImage = `url('${p.img}')`;
   document.getElementById('whereTitle').textContent = p.name;
   document.getElementById('detailPrice').textContent = p.price;
-  document.getElementById('detailAporte').textContent = 'Tu impacto directo: ' + p.aporte;
+  document.getElementById('detailAporte').textContent = '';
   document.getElementById('storyCause').textContent = p.fundacion || 'Fundación De Blanck';
   document.getElementById('whereBody').innerHTML = p.detail
     ? `<p style="font-size:12.5px;color:var(--ink);line-height:1.6;">${p.detail}</p>`
@@ -364,6 +364,14 @@ function openDetail(p){
   openModal(whereModal);
 }
 
+// "Validar mi compra" dentro de la ficha del producto → cierra el modal y baja a la sección real de comprobante
+document.getElementById('whereBody').addEventListener('click', (e) => {
+  if(e.target.classList.contains('go-to-receipt')){
+    e.preventDefault();
+    closeModal(whereModal);
+    document.getElementById('receiptSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+});
 // DESLIZAR DENTRO DE LA FICHA AMPLIADA — cambia de producto sin cerrar el modal
 const detailPhoto = document.getElementById('detailPhoto');
 let detailDragStartX = null, detailDragDeltaX = 0, detailDragging = false;
