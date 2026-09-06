@@ -1120,7 +1120,7 @@
 .remind-banner.active .remind-step-word{opacity:1;transform:translateX(0);transition-delay:.2s;}
 
 .remind-product-img{
-  width:96px;height:96px;flex-shrink:0;border-radius:18px;overflow:hidden;
+  width:116px;height:116px;flex-shrink:0;border-radius:18px;overflow:hidden;
   background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;
   box-shadow:0 10px 20px -8px rgba(0,0,0,.35);
   opacity:0;transform:scale(.82);
