@@ -33,13 +33,7 @@ function finishWelcomeCover(){
     maybeShowInstallBanner();
   }, 700);
 }
-  welcomeCover.classList.add('closing');
-  sessionStorage.setItem(WELCOME_KEY, 'true');
-  document.body.style.overflow = '';
-  setTimeout(() => {
-    welcomeCover.classList.add('hidden');
-  }, 700);
-}
+ 
 
 if(sessionStorage.getItem(WELCOME_KEY)){
   welcomeCover.classList.add('hidden');
