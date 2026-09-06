@@ -24,10 +24,31 @@
 <meta name="twitter:description" content="Te invito a un consumo más inteligente. Tu compra tiene doble propósito.">
 <meta name="twitter:image" content="https://causa30.com/images/og-cover3.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Inter:wght@400;500;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<!-- BANNER DE INSTALACIÓN — estilo Mobbin -->
+<div class="install-banner" id="installBanner">
+  <div class="install-banner-left">
+    <div class="install-banner-icon"><img src="images/icon192.png" alt="Causa30"></div>
+    <div class="install-banner-text">
+      <span class="install-banner-title">Instalar Causa30</span>
+      <span class="install-banner-domain">causa30.com</span>
+    </div>
+  </div>
+  <div class="install-banner-actions">
+    <button class="install-banner-btn" id="installBannerBtn">Instalar</button>
+    <button class="install-banner-close" id="installBannerClose">✕</button>
+  </div>
+</div>
+
+<div class="ios-tip" id="iosTip">
+  1. Toca el ícono de <b>compartir</b> ⬆️ en la barra de Safari<br>
+  2. Baja y elige <b>"Agregar a pantalla de inicio"</b><br>
+  3. Confirma — ¡listo, Causa30 ya queda como una app más!
+</div>
+
 <!-- COVER DE BIENVENIDA — pantalla completa, una vez por sesión -->
 <div class="welcome-cover" id="welcomeCover">
 <img src="images/logo.png" alt="Causa30" class="wc-logo-img">
@@ -108,7 +129,7 @@ Descubrir Causa30
 <div class="remind-closing-title">El poder de ayudar está en tus manos.</div>
 <div class="remind-closing-sub">Tres productos. Dos acciones. Una causa.</div>
 </div>
-<div class="remind-closing-pet"><img src="images/banner-animalrep.png" alt="Causa30"></div>
+<div class="remind-closing-pet"><img src="images/banner-rep1.png" alt="Causa30"></div>
 <div class="remind-closing-badge">🐾 Juntos hacemos la diferencia</div>
 </div>
 </section>
@@ -410,7 +431,8 @@ Descubrir Causa30
       <div class="community-footnote">Tienes tu C30. Ahora invita a alguien a tener el suyo.</div>
     </div>
   </div>
-</div> <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="app.js"></script>
 </body>
 </html>
