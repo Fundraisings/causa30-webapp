@@ -828,9 +828,9 @@ commShareBtn.addEventListener('click', () => {
 
 // ============ RECUERDA CÓMO PARTICIPAR ============
 const remindSteps = [
-  { step: 1, word: "Elige", img: "images/producto-chocorep2.png", name: "Chocolate X · Dark, Coco & Jengibre", line: "Entre los productos participantes de este mes.", bg: "bg-1" },
-  { step: 2, word: "Compra", img: "images/producto-comperrosrep3.png", name: "Alimento para Perros X", line: "Como cualquier otro día — nada cambia para ti.", bg: "bg-2" },
-  { step: 3, word: "Valida", img: "images/producto-aguarep1.png", name: "Combo Solidario · 4 Botellas de Agua", line: "Envía tu comprobante por WhatsApp.", bg: "bg-3" }
+  { step: 1, word: "Elige", img: "images/producto-chocorep2b.png", name: "Chocolate X · Dark, Coco & Jengibre", line: "Entre los productos participantes de este mes.", bg: "bg-1" },
+  { step: 2, word: "Compra", img: "images/producto-perrosrep3c.png", name: "Alimento para Perros X", line: "Como cualquier otro día — nada cambia para ti.", bg: "bg-2" },
+  { step: 3, word: "Valida", img: "images/producto-aguarep1a.png", name: "Combo Solidario · 4 Botellas de Agua", line: "Envía tu comprobante por WhatsApp.", bg: "bg-3" }
 ];
 
 const remindBannersWrap = document.getElementById('remindBanners');
