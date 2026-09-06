@@ -1070,3 +1070,88 @@
   75%{transform:scale(.96);}
   100%{transform:scale(1);opacity:1;}
 }
+/* ---------- RECUERDA CÓMO PARTICIPAR ---------- */
+.remind-header{padding:44px 28px 6px;text-align:center;position:relative;}
+.remind-logo{width:42px;height:42px;margin:0 auto 16px;border-radius:12px;overflow:hidden;}
+.remind-logo img{width:100%;height:100%;object-fit:contain;}
+.remind-eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--coral-deep);}
+.remind-title{font-family:'Manrope',sans-serif;font-weight:800;font-size:27px;color:var(--verde-deep);margin-top:10px;line-height:1.15;}
+.remind-copy{font-size:13.5px;color:var(--grey);max-width:320px;margin:14px auto 0;line-height:1.65;}
+.remind-tagline{
+  font-family:'Caveat',cursive;font-weight:700;font-size:19px;color:var(--verde-deep);
+  margin:20px auto 0;line-height:1.35;transform:rotate(-2.5deg);max-width:220px;
+}
+.remind-tagline .underline{display:block;width:64%;height:3px;background:var(--coral);margin-top:4px;border-radius:3px;}
+.remind-caption{text-align:center;font-size:12.5px;color:var(--coral-deep);font-weight:600;margin:0 24px;}
+
+.remind-banners-wrap{margin:26px 20px 0;}
+.remind-banners{position:relative;height:230px;border-radius:26px;overflow:hidden;box-shadow:0 16px 34px -16px rgba(18,51,42,.3);}
+.remind-banner{
+  position:absolute;inset:0;display:flex;align-items:center;padding:26px;gap:18px;
+  transform:translateX(105%);opacity:0;transition:transform .65s cubic-bezier(.22,.9,.35,1), opacity .5s ease;
+}
+.remind-banner.active{transform:translateX(0);opacity:1;}
+.remind-banner.exit-left{transform:translateX(-105%);opacity:0;}
+.remind-banner.bg-1{background:radial-gradient(ellipse at 30% 20%, #1a4538, var(--verde-deep) 70%);}
+.remind-banner.bg-2{background:radial-gradient(ellipse at 30% 20%, #e8664a, var(--coral-deep) 70%);}
+.remind-banner.bg-3{background:radial-gradient(ellipse at 30% 20%, #c9a24a, #8a6d2e 70%);}
+.remind-banner::after{
+  content:'';position:absolute;top:-40%;left:-60%;width:60%;height:180%;
+  background:linear-gradient(75deg, transparent 40%, rgba(255,255,255,.12) 50%, transparent 60%);
+  animation:sweepLight 7s ease-in-out infinite;
+}
+@keyframes sweepLight{0%{transform:translateX(0);}18%{transform:translateX(340%);}100%{transform:translateX(340%);}}
+
+.remind-stamp-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.remind-stamp{
+  width:44px;height:44px;flex-shrink:0;border-radius:50%;background:#fff;color:var(--verde-deep);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Manrope',sans-serif;font-weight:800;font-size:19px;
+  box-shadow:0 8px 18px -6px rgba(0,0,0,.45);
+  transform:rotate(-24deg) scale(1.9);opacity:0;
+  transition:transform .5s cubic-bezier(.34,1.6,.5,1), opacity .3s ease;
+}
+.remind-banner.active .remind-stamp{transform:rotate(-6deg) scale(1);opacity:1;}
+.remind-step-word{
+  font-family:'Manrope',sans-serif;font-weight:800;font-size:14.5px;letter-spacing:.1em;
+  color:#fff;text-transform:uppercase;
+  opacity:0;transform:translateX(-6px);transition:opacity .4s ease, transform .4s ease;
+}
+.remind-banner.active .remind-step-word{opacity:1;transform:translateX(0);transition-delay:.2s;}
+
+.remind-product-img{
+  width:96px;height:96px;flex-shrink:0;border-radius:18px;overflow:hidden;
+  background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;
+  box-shadow:0 10px 20px -8px rgba(0,0,0,.35);
+  opacity:0;transform:scale(.82);
+  transition:opacity .5s ease, transform .5s cubic-bezier(.34,1.2,.5,1);
+}
+.remind-banner.active .remind-product-img{opacity:1;transform:scale(1);transition-delay:.15s;animation:remindFloat 3.6s ease-in-out .65s infinite;}
+.remind-product-img img{width:100%;height:100%;object-fit:contain;}
+@keyframes remindFloat{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-7px) scale(1);}}
+
+.remind-banner-text{color:#fff;position:relative;z-index:2;}
+.remind-banner-text > *{opacity:0;transform:translateY(10px);transition:opacity .5s ease, transform .5s ease;}
+.remind-banner.active .remind-banner-text > *{opacity:1;transform:translateY(0);}
+.remind-banner.active .remind-stamp-row{transition-delay:.05s;}
+.remind-banner.active .remind-banner-name{transition-delay:.5s;}
+.remind-banner.active .remind-banner-line{transition-delay:.6s;}
+.remind-banner-name{font-family:'Manrope',sans-serif;font-weight:800;font-size:17px;line-height:1.2;}
+.remind-banner-line{font-size:12.5px;color:rgba(255,255,255,.8);margin-top:8px;line-height:1.5;}
+
+.remind-dots{display:flex;justify-content:center;gap:7px;margin-top:16px;}
+.remind-dot{width:6px;height:6px;border-radius:50%;background:var(--line);transition:all .3s;}
+.remind-dot.active{background:var(--coral);width:20px;border-radius:4px;}
+
+.remind-closing{
+  position:relative;margin:30px 20px 0;min-height:190px;overflow:hidden;
+  border-radius:26px;display:flex;align-items:center;
+  background:radial-gradient(ellipse at 20% 30%, #1a4538, var(--verde-deep) 75%);
+  box-shadow:0 16px 34px -16px rgba(18,51,42,.4);
+}
+.remind-closing-content{position:relative;z-index:2;padding:26px 22px;flex:1;}
+.remind-closing-title{font-family:'Caveat',cursive;font-weight:700;font-size:23px;color:#fff;line-height:1.25;}
+.remind-closing-sub{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:10px;}
+.remind-closing-pet{width:130px;height:170px;flex-shrink:0;margin-right:8px;display:flex;align-items:flex-end;justify-content:center;position:relative;z-index:2;}
+.remind-closing-pet img{width:100%;height:100%;object-fit:contain;object-position:bottom;}
+.remind-closing-badge{position:absolute;left:18px;bottom:16px;z-index:2;background:rgba(255,255,255,.14);color:#fff;border-radius:100px;padding:7px 14px;font-size:11px;font-weight:700;}
