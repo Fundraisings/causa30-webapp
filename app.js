@@ -33,7 +33,6 @@ function finishWelcomeCover(){
     maybeShowInstallBanner();
   }, 700);
 }
- 
 
 if(sessionStorage.getItem(WELCOME_KEY)){
   welcomeCover.classList.add('hidden');
@@ -740,7 +739,11 @@ function openCommunityPanel(){
 communityTicker.addEventListener('click', openCommunityPanel);
 
 communityModal.addEventListener('click', (e) => { if(e.target === communityModal) closeModal(communityModal); });
+
 // ---------- BANNER DE INSTALACIÓN (estilo Mobbin) ----------
+// Blindado con "if(installBanner)" — si algún día el HTML de este banner
+// faltara, esta sección simplemente no hace nada, en vez de romper el
+// resto del script (como pasó esta vez).
 let deferredInstallPrompt = null;
 const installBanner = document.getElementById('installBanner');
 const installBannerBtn = document.getElementById('installBannerBtn');
@@ -755,6 +758,7 @@ function isIOSDevice(){
   return /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
 }
 function canShowInstallBanner(){
+  if(!installBanner) return false;
   if(isStandaloneApp()) return false;
   if(!sessionStorage.getItem(WELCOME_KEY)) return false; // espera a que cierre la bienvenida
   const dismissedAt = localStorage.getItem(INSTALL_DISMISS_KEY);
@@ -778,27 +782,29 @@ window.addEventListener('beforeinstallprompt', (e) => {
   maybeShowInstallBanner();
 });
 
-installBannerBtn.addEventListener('click', async () => {
-  if(isIOSDevice()){
-    iosTip.classList.add('show');
-    return;
-  }
-  if(!deferredInstallPrompt) return;
-  installBanner.classList.remove('show');
-  deferredInstallPrompt.prompt();
-  await deferredInstallPrompt.userChoice;
-  deferredInstallPrompt = null;
-});
+if(installBanner){
+  installBannerBtn.addEventListener('click', async () => {
+    if(isIOSDevice()){
+      iosTip.classList.add('show');
+      return;
+    }
+    if(!deferredInstallPrompt) return;
+    installBanner.classList.remove('show');
+    deferredInstallPrompt.prompt();
+    await deferredInstallPrompt.userChoice;
+    deferredInstallPrompt = null;
+  });
 
-document.getElementById('installBannerClose').addEventListener('click', () => {
-  installBanner.classList.remove('show');
-  iosTip.classList.remove('show');
-  localStorage.setItem(INSTALL_DISMISS_KEY, String(Date.now()));
-});
+  document.getElementById('installBannerClose').addEventListener('click', () => {
+    installBanner.classList.remove('show');
+    iosTip.classList.remove('show');
+    localStorage.setItem(INSTALL_DISMISS_KEY, String(Date.now()));
+  });
 
-window.addEventListener('appinstalled', () => {
-  installBanner.classList.remove('show');
-});
+  window.addEventListener('appinstalled', () => {
+    installBanner.classList.remove('show');
+  });
+}
 
 
 // reutiliza tu misma animación de compartir (share-anim-overlay) que ya usas para producto y mascota
@@ -819,6 +825,7 @@ commShareBtn.addEventListener('click', () => {
     window.open(waUrl, '_blank');
   }, 900);
 });
+
 // ============ RECUERDA CÓMO PARTICIPAR ============
 const remindSteps = [
   { step: 1, word: "Elige", img: "images/producto-chocorep2.png", name: "Chocolate X · Dark, Coco & Jengibre", line: "Entre los productos participantes de este mes.", bg: "bg-1" },
