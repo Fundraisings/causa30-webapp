@@ -819,3 +819,46 @@ commShareBtn.addEventListener('click', () => {
     window.open(waUrl, '_blank');
   }, 900);
 });
+// ============ RECUERDA CÓMO PARTICIPAR ============
+const remindSteps = [
+  { step: 1, word: "Elige", img: "images/producto-chocorep2.png", name: "Chocolate X · Dark, Coco & Jengibre", line: "Entre los productos participantes de este mes.", bg: "bg-1" },
+  { step: 2, word: "Compra", img: "images/producto-comperrosrep3.png", name: "Alimento para Perros X", line: "Como cualquier otro día — nada cambia para ti.", bg: "bg-2" },
+  { step: 3, word: "Valida", img: "images/producto-aguarep1.png", name: "Combo Solidario · 4 Botellas de Agua", line: "Envía tu comprobante por WhatsApp.", bg: "bg-3" }
+];
+
+const remindBannersWrap = document.getElementById('remindBanners');
+const remindDotsWrap = document.getElementById('remindDots');
+
+remindSteps.forEach((s, i) => {
+  const b = document.createElement('div');
+  b.className = 'remind-banner ' + s.bg;
+  b.innerHTML = `
+    <div class="remind-product-img"><img src="${s.img}" alt="${s.name}"></div>
+    <div class="remind-banner-text">
+      <div class="remind-stamp-row"><div class="remind-stamp">${s.step}</div><span class="remind-step-word">${s.word}</span></div>
+      <div class="remind-banner-name">${s.name}</div>
+      <div class="remind-banner-line">${s.line}</div>
+    </div>`;
+  remindBannersWrap.appendChild(b);
+  const d = document.createElement('div');
+  d.className = 'remind-dot' + (i === 0 ? ' active' : '');
+  remindDotsWrap.appendChild(d);
+});
+
+const remindBannerEls = remindBannersWrap.querySelectorAll('.remind-banner');
+const remindDotEls = remindDotsWrap.querySelectorAll('.remind-dot');
+let remindCurrent = 0;
+
+function remindNext(){
+  const prev = remindCurrent;
+  remindCurrent = (remindCurrent + 1) % remindBannerEls.length;
+  remindBannerEls[prev].classList.remove('active');
+  remindBannerEls[prev].classList.add('exit-left');
+  remindBannerEls[remindCurrent].classList.remove('exit-left');
+  void remindBannerEls[remindCurrent].offsetWidth;
+  remindBannerEls[remindCurrent].classList.add('active');
+  setTimeout(() => remindBannerEls[prev].classList.remove('exit-left'), 700);
+  remindDotEls.forEach((d, i) => d.classList.toggle('active', i === remindCurrent));
+}
+setInterval(remindNext, 5500);
+setTimeout(() => remindBannerEls[0].classList.add('active'), 150);
