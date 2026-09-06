@@ -43,6 +43,7 @@ function finishWelcomeCover(){function finishWelcomeCover(){
 
 if(sessionStorage.getItem(WELCOME_KEY)){
   welcomeCover.classList.add('hidden');
+  maybeShowInstallBanner();
 } else {
   document.body.style.overflow = 'hidden';
   document.getElementById('wcCta').addEventListener('click', () => {
