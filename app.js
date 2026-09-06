@@ -24,7 +24,15 @@ const welcomeCover = document.getElementById('welcomeCover');
 const WELCOME_KEY = 'causa30_welcome_seen';
 let welcomeFlowActive = false;
 
-function finishWelcomeCover(){
+function finishWelcomeCover(){function finishWelcomeCover(){
+  welcomeCover.classList.add('closing');
+  sessionStorage.setItem(WELCOME_KEY, 'true');
+  document.body.style.overflow = '';
+  setTimeout(() => {
+    welcomeCover.classList.add('hidden');
+    maybeShowInstallBanner();
+  }, 700);
+}
   welcomeCover.classList.add('closing');
   sessionStorage.setItem(WELCOME_KEY, 'true');
   document.body.style.overflow = '';
