@@ -811,7 +811,7 @@ if(installBanner){
 commShareBtn.addEventListener('click', () => {
   const code = commCodeValue.textContent.trim();
   const shareUrl = window.location.origin + window.location.pathname;
-  const message = `🌿 Ya tengo mi código ${code} en Causa30 — la app que convierte tus compras de siempre en donaciones directas a fundaciones de animales.\n\n¿Quieres el tuyo? Comparte Causa30 y ayuda a que más personas descubran una nueva forma de consumir con propósito.\n\n${shareUrl}`;
+  const message = `🎁 ¡Ya tengo mi código ${code} en Causa30!\nEs la app que convierte lo que compras en donaciones directas para fundaciones de animales, sin que a ti te cueste más.\n¿Quieres tu código de la comunidad? Hay sorpresas preparándose para quienes estén dentro.\n📲 Pide el tuyo gratis aquí: ${shareUrl}`;
   const waUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
 
   if(prefersReducedMotion){
