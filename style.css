@@ -1151,7 +1151,7 @@
 .remind-dot.active{background:var(--coral);width:20px;border-radius:4px;}
 
 .remind-closing{
-  position:relative;margin:30px 20px 0;min-height:190px;overflow:hidden;
+  position:relative;margin:20px 0 0;height:230px;overflow:hidden;
   border-radius:26px;display:flex;align-items:center;
   background:radial-gradient(ellipse at 20% 30%, #1a4538, var(--verde-deep) 75%);
   box-shadow:0 16px 34px -16px rgba(18,51,42,.4);
