@@ -1099,7 +1099,7 @@
 }
 .remind-banner.active{transform:translateX(0);opacity:1;}
 .remind-banner.exit-left{transform:translateX(-105%);opacity:0;}
-.remind-banner.bg-1{background:radial-gradient(ellipse at 30% 20%, #1a4538, var(--verde-deep) 70%);}
+.remind-banner.bg-1{background:radial-gradient(ellipse at 30% 20%, #F2B705, #C98A0C 70%);}
 .remind-banner.bg-2{background:radial-gradient(ellipse at 30% 20%, #e8664a, var(--coral-deep) 70%);}
 .remind-banner.bg-3{background:radial-gradient(ellipse at 30% 20%, #c9a24a, #8a6d2e 70%);}
 .remind-banner::after{
