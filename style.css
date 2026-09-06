@@ -1069,6 +1069,13 @@
   55%{transform:scale(1.15);opacity:1;}
   75%{transform:scale(.96);}
   100%{transform:scale(1);opacity:1;}
+}.remind-wrap{
+  background:var(--card);
+  border:1.5px solid var(--line);
+  border-radius:var(--radius-lg);
+  margin:20px 0 0;
+  padding:28px 20px 24px;
+  overflow:hidden;
 }
 /* ---------- RECUERDA CÓMO PARTICIPAR ---------- */
 .remind-header{padding:44px 28px 6px;text-align:center;position:relative;}
