@@ -737,7 +737,65 @@ function openCommunityPanel(){
 communityTicker.addEventListener('click', openCommunityPanel);
 
 communityModal.addEventListener('click', (e) => { if(e.target === communityModal) closeModal(communityModal); });
+// ---------- BANNER DE INSTALACIÓN (estilo Mobbin) ----------
+let deferredInstallPrompt = null;
+const installBanner = document.getElementById('installBanner');
+const installBannerBtn = document.getElementById('installBannerBtn');
+const iosTip = document.getElementById('iosTip');
+const INSTALL_DISMISS_KEY = 'causa30_install_dismissed';
+const INSTALL_REPEAT_DAYS = 7;
 
+function isStandaloneApp(){
+  return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+}
+function isIOSDevice(){
+  return /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
+}
+function canShowInstallBanner(){
+  if(isStandaloneApp()) return false;
+  if(!sessionStorage.getItem(WELCOME_KEY)) return false; // espera a que cierre la bienvenida
+  const dismissedAt = localStorage.getItem(INSTALL_DISMISS_KEY);
+  const daysSinceDismiss = dismissedAt ? (Date.now() - Number(dismissedAt)) / 86400000 : Infinity;
+  return daysSinceDismiss >= INSTALL_REPEAT_DAYS;
+}
+function maybeShowInstallBanner(){
+  if(!canShowInstallBanner()) return;
+  if(isIOSDevice()){
+    installBannerBtn.textContent = 'Ver cómo';
+    installBanner.classList.add('show');
+  } else if(deferredInstallPrompt){
+    installBannerBtn.textContent = 'Instalar';
+    installBanner.classList.add('show');
+  }
+}
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  maybeShowInstallBanner();
+});
+
+installBannerBtn.addEventListener('click', async () => {
+  if(isIOSDevice()){
+    iosTip.classList.add('show');
+    return;
+  }
+  if(!deferredInstallPrompt) return;
+  installBanner.classList.remove('show');
+  deferredInstallPrompt.prompt();
+  await deferredInstallPrompt.userChoice;
+  deferredInstallPrompt = null;
+});
+
+document.getElementById('installBannerClose').addEventListener('click', () => {
+  installBanner.classList.remove('show');
+  iosTip.classList.remove('show');
+  localStorage.setItem(INSTALL_DISMISS_KEY, String(Date.now()));
+});
+
+window.addEventListener('appinstalled', () => {
+  installBanner.classList.remove('show');
+});
 
 
 // reutiliza tu misma animación de compartir (share-anim-overlay) que ya usas para producto y mascota
