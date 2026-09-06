@@ -1012,9 +1012,14 @@
 }
 
 .community-ticker{
-  background:#0a0a0a;border-top:1px solid rgba(255,145,66,.25);border-bottom:1px solid rgba(255,145,66,.25);
-  padding:15px 0;overflow:hidden;position:relative;cursor:pointer;
-  width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
+  background:#0a0a0a;
+  border:1px solid rgba(255,145,66,.25);
+  border-radius:16px;
+  padding:15px 0;
+  overflow:hidden;
+  position:relative;
+  cursor:pointer;
+  margin:20px 24px;
 }
 .community-ticker-track{
   display:flex;gap:36px;white-space:nowrap;width:max-content;
