@@ -1078,7 +1078,7 @@
   overflow:hidden;
 }
 /* ---------- RECUERDA CÓMO PARTICIPAR ---------- */
-.remind-header{padding:44px 28px 6px;text-align:center;position:relative;}
+.remind-header{padding:0 4px 6px;text-align:center;position:relative;}
 .remind-logo{width:42px;height:42px;margin:0 auto 16px;border-radius:12px;overflow:hidden;}
 .remind-logo img{width:100%;height:100%;object-fit:contain;}
 .remind-eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--coral-deep);}
@@ -1091,7 +1091,7 @@
 .remind-tagline .underline{display:block;width:64%;height:3px;background:var(--coral);margin-top:4px;border-radius:3px;}
 .remind-caption{text-align:center;font-size:12.5px;color:var(--coral-deep);font-weight:600;margin:0 24px;}
 
-.remind-banners-wrap{margin:26px 20px 0;}
+.remind-banners-wrap{margin:22px 0px 0;}
 .remind-banners{position:relative;height:230px;border-radius:26px;overflow:hidden;box-shadow:0 16px 34px -16px rgba(18,51,42,.3);}
 .remind-banner{
   position:absolute;inset:0;display:flex;align-items:center;padding:26px;gap:18px;
