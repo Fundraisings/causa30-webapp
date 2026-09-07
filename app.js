@@ -890,7 +890,7 @@ if(cameraCapture){
     document.body.removeChild(a);
     setTimeout(() => URL.revokeObjectURL(url), 3000);
 
-        const message = 'Aquí está mi comprobante de compra para Causa30 🐾 (adjunto la foto)';
+    const message = 'Aquí está mi comprobante de compra para Causa30 🐾 (adjunto la foto)';
     window.open(`https://wa.me/${RECEIPT_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
 
     if(receiptBefore && receiptThanks){
@@ -899,3 +899,7 @@ if(cameraCapture){
     }
   });
 }
+
+document.getElementById('backToCarouselBtn').addEventListener('click', () => {
+  carousel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+});
