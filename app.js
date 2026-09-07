@@ -881,45 +881,37 @@ if(cameraCapture){
     const file = e.target.files[0];
     if (!file) return;
 
-    const showThanks = () => {
-      if(receiptBefore && receiptThanks){
-        receiptBefore.style.display = 'none';
-        receiptThanks.style.display = 'block';
-      }
-    };
+    const p = products[active];
+    const c30Code = localStorage.getItem('causa30_code') || null;
+    const filePath = `${Date.now()}-${Math.random().toString(36).slice(2)}.jpg`;
 
-    // Intento 1: compartir la foto directamente (Android / iPhone con Safari 16.4+)
-    const shareMessage = 'Aquí está mi comprobante de compra para Causa30 🐾\n👉 Envíalo al chat de Causa30. Si no tienes el número guardado, es +1 849 489 1414.';
-    const canShareFile = navigator.canShare && navigator.canShare({ files: [file] });
+    const { error: uploadError } = await supabaseClient
+      .storage
+      .from('comprobantes')
+      .upload(filePath, file, { contentType: file.type || 'image/jpeg' });
 
-    if (canShareFile) {
-      try {
-        await navigator.share({
-          files: [file],
-          text: shareMessage
-        });
-        showThanks();
-        return;
-      } catch (err) {
-        // El usuario canceló el share, o falló — seguimos con el respaldo abajo
-      }
+    if (uploadError) {
+      console.error('Error subiendo comprobante:', uploadError);
+      alert('Hubo un problema al enviar tu comprobante. Intenta de nuevo en un momento.');
+      return;
     }
 
-    // Respaldo: descarga la foto + abre WhatsApp con el número fijo y el texto
-    const url = URL.createObjectURL(file);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'comprobante-causa30.jpg';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    setTimeout(() => URL.revokeObjectURL(url), 3000);
+    const { error: insertError } = await supabaseClient
+      .from('receipts')
+      .insert({
+        business: p.biz,
+        product: p.name,
+        photo_path: filePath,
+        c30_code: c30Code
+      });
 
-    const fallbackMessage = 'Aquí está mi comprobante de compra para Causa30 🐾\n👉 Un momento, adjunto la foto (ya se descargó a mi galería)';
-    window.location.href = `https://wa.me/${RECEIPT_WHATSAPP_NUMBER}?text=${encodeURIComponent(fallbackMessage)}`;
-    showThanks();
+    if (insertError) {
+      console.error('Error guardando registro del comprobante:', insertError);
+    }
+
+    if(receiptBefore && receiptThanks){
+      receiptBefore.style.display = 'none';
+      receiptThanks.style.display = 'block';
+    }
   });
 }
-document.getElementById('backToCarouselBtn').addEventListener('click', () => {
-  carousel.scrollIntoView({ behavior: 'smooth', block: 'center' });
-});
