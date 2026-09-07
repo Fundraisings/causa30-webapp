@@ -869,3 +869,26 @@ function remindNext(){
 }
 setInterval(remindNext, 5500);
 setTimeout(() => remindBannerEls[0].classList.add('active'), 150);
+// ============ ENVÍA TU COMPROBANTE — cámara directa + compartir a WhatsApp ============
+const cameraCapture = document.getElementById('cameraCapture');
+if(cameraCapture){
+  cameraCapture.addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      try {
+        await navigator.share({
+          files: [file],
+          title: 'Comprobante Causa30',
+          text: 'Aquí está mi comprobante de compra para Causa30 🐾'
+        });
+      } catch (err) {
+        console.log('Se canceló o no se pudo compartir', err);
+      }
+    } else {
+      alert('Tu navegador no soporta compartir directo — se abrirá WhatsApp para que adjuntes la foto manualmente.');
+      window.open('https://wa.me/1XXXXXXXXXX?text=' + encodeURIComponent('Aquí está mi comprobante de compra para Causa30 🐾'), '_blank');
+    }
+  });
+}
