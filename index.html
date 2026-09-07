@@ -179,35 +179,43 @@ Descubrir Causa30
 </div>
 
 </div>
-</section><!-- ENVÍA TU COMPROBANTE Y ACTIVA TU REGALO -->
+</section> <!-- ENVÍA TU COMPROBANTE Y ACTIVA TU REGALO -->
 <section style="padding-top:0;" id="receiptSection">
 <div class="receipt-card">
-  <div class="receipt-eyebrow">Multiplica tu impacto</div>
-  <h2 class="receipt-title">Envía tu comprobante<br>y activa tu regalo</h2>
-  <p class="receipt-sub">Valida tu compra y desbloquea contenido exclusivo, gratis, al instante.</p>
-  <div class="book-stage">
-    <div class="book">
-      <div class="book-spine"></div>
-      <div class="book-cover">
-        <div class="book-cover-eyebrow">Instituto Duartiano</div>
-        <div class="book-cover-title">Legado<br>Dominicano</div>
-        <div class="book-cover-sub">Edición Causa30</div>
+  <div id="receiptBefore">
+    <div class="receipt-eyebrow">Multiplica tu impacto</div>
+    <h2 class="receipt-title">Envía tu comprobante<br>y activa tu regalo</h2>
+    <p class="receipt-sub">Valida tu compra y desbloquea contenido exclusivo, gratis, al instante.</p>
+    <div class="book-stage">
+      <div class="book">
+        <div class="book-spine"></div>
+        <div class="book-cover">
+          <div class="book-cover-eyebrow">Instituto Duartiano</div>
+          <div class="book-cover-title">Legado<br>Dominicano</div>
+          <div class="book-cover-sub">Edición Causa30</div>
+        </div>
+        <div class="book-ribbon">GRATIS</div>
       </div>
-      <div class="book-ribbon">GRATIS</div>
+    </div>
+    <div class="receipt-reward-line">📖 Tu ebook de regalo, al instante</div>
+    <div class="receipt-reward-sub">Solo por validar tu compra con el comprobante</div>
+    <label class="receipt-cta" for="cameraCapture">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+      Tomar foto y enviar
+    </label>
+    <input type="file" accept="image/*" capture="environment" class="camera-input" id="cameraCapture">
+    <p class="receipt-note">Se abre tu cámara y luego WhatsApp — solo adjunta la foto (queda arriba de tu galería) y dale enviar.</p>
+    <div class="receipt-coupon-slot">
+      🎟️ Próximamente: cupones de descuento de nuestras marcas aliadas
     </div>
   </div>
-  <div class="receipt-reward-line">📖 Tu ebook de regalo, al instante</div>
-  <div class="receipt-reward-sub">Solo por validar tu compra con el comprobante</div>
-  <label class="receipt-cta" for="cameraCapture">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-    Tomar foto y enviar
-  </label>
-  <input type="file" accept="image/*" capture="environment" class="camera-input" id="cameraCapture">
-  <p class="receipt-note">Se abre tu cámara — la foto se comparte directo a nuestro WhatsApp</p>
-  <div class="receipt-coupon-slot">
-    🎟️ Próximamente: cupones de descuento de nuestras marcas aliadas
+  <div id="receiptThanks" style="display:none;">
+    <div class="receipt-thanks-check">✓</div>
+    <h2 class="receipt-title">¡Gracias por tu comprobante!</h2>
+    <p class="receipt-sub">Termina de adjuntar la foto y enviarla en WhatsApp — en cuanto la recibamos, tu regalo queda activado.</p>
   </div>
 </div>
+</section>
 </section>
 </section>
 <footer>
