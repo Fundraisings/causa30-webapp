@@ -890,10 +890,8 @@ if(cameraCapture){
     document.body.removeChild(a);
     setTimeout(() => URL.revokeObjectURL(url), 3000);
 
-    const message = 'Aquí está mi comprobante de compra para Causa30 🐾 (adjunto la foto)';
-    if(openWhatsAppBtn){
-      openWhatsAppBtn.href = `https://wa.me/${RECEIPT_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-    }
+        const message = 'Aquí está mi comprobante de compra para Causa30 🐾 (adjunto la foto)';
+    window.open(`https://wa.me/${RECEIPT_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
 
     if(receiptBefore && receiptThanks){
       receiptBefore.style.display = 'none';
