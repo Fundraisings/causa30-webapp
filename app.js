@@ -874,7 +874,7 @@ const cameraCapture = document.getElementById('cameraCapture');
 const receiptBefore = document.getElementById('receiptBefore');
 const receiptThanks = document.getElementById('receiptThanks');
 
-const RECEIPT_WHATSAPP_NUMBER = '18494891414'; // número real de prueba — cambiar cuando tengan el definitivo
+ // número real de prueba — cambiar cuando tengan el definitivo
 
 if(cameraCapture){
   cameraCapture.addEventListener('change', async (e) => {
