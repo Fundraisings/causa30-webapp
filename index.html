@@ -58,7 +58,7 @@
 </div>
 <p class="wc-text">Descubre productos y marcas que aportan valor a tu vida y, al mismo tiempo, apoyan una causa social.</p>
 <p class="wc-slogan">Tu compra tiene doble propósito.</p>
-<button class="wc-cta" id="wcCta">
+<button class="wc-cta" id="wcCta" onclick="document.getElementById('welcomeCover').classList.add('closing'); sessionStorage.setItem('causa30_welcome_seen','true'); document.body.style.overflow=''; setTimeout(()=>{document.getElementById('welcomeCover').classList.add('hidden');}, 700);">
 Descubrir Causa30
 <span class="wc-arrow">↓</span>
 </button>
