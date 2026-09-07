@@ -881,37 +881,35 @@ if(cameraCapture){
     const file = e.target.files[0];
     if (!file) return;
 
-    const p = products[active];
-    const c30Code = localStorage.getItem('causa30_code') || null;
-    const filePath = `${Date.now()}-${Math.random().toString(36).slice(2)}.jpg`;
+    try {
+      const p = products[active];
+      const c30Code = localStorage.getItem('causa30_code') || null;
+      const filePath = `${Date.now()}-${Math.random().toString(36).slice(2)}.jpg`;
 
-    const { error: uploadError } = await supabaseClient
-      .storage
-      .from('comprobantes')
-      .upload(filePath, file, { contentType: file.type || 'image/jpeg' });
+      const { error: uploadError } = await supabaseClient
+        .storage
+        .from('comprobantes')
+        .upload(filePath, file, { contentType: file.type || 'image/jpeg' });
 
-    if (uploadError) {
-      console.error('Error subiendo comprobante:', uploadError);
-      alert('Hubo un problema al enviar tu comprobante. Intenta de nuevo en un momento.');
-      return;
-    }
+      if (uploadError) throw uploadError;
 
-    const { error: insertError } = await supabaseClient
-      .from('receipts')
-      .insert({
-        business: p.biz,
-        product: p.name,
-        photo_path: filePath,
-        c30_code: c30Code
-      });
+      const { error: insertError } = await supabaseClient
+        .from('receipts')
+        .insert({
+          business: p.biz,
+          product: p.name,
+          photo_path: filePath,
+          c30_code: c30Code
+        });
 
-    if (insertError) {
-      console.error('Error guardando registro del comprobante:', insertError);
-    }
+      if (insertError) throw insertError;
 
-    if(receiptBefore && receiptThanks){
-      receiptBefore.style.display = 'none';
-      receiptThanks.style.display = 'block';
+      if(receiptBefore && receiptThanks){
+        receiptBefore.style.display = 'none';
+        receiptThanks.style.display = 'block';
+      }
+    } catch (err) {
+      alert('DIAGNÓSTICO: ' + JSON.stringify(err, null, 2));
     }
   });
 }
