@@ -1196,3 +1196,61 @@
 }
 .ios-tip.show{display:block;}
 .ios-tip b{color:var(--verde-deep);}
+/* ---------- ENVÍA TU COMPROBANTE Y ACTIVA TU REGALO ---------- */
+.receipt-card{
+  position:relative;overflow:hidden;
+  background:radial-gradient(ellipse at 20% 0%, #1a4538, var(--verde-deep) 70%);
+  border-radius:28px;padding:32px 24px 28px;color:#fff;text-align:center;
+  box-shadow:0 20px 44px -18px rgba(0,0,0,.4);
+  margin:0 4px;
+}
+.receipt-eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8FC4AC;}
+.receipt-title{font-family:'Manrope',sans-serif;font-weight:800;font-size:22px;margin-top:10px;line-height:1.25;}
+.receipt-sub{font-size:13px;color:#C7D6CE;margin-top:10px;line-height:1.55;max-width:320px;margin-left:auto;margin-right:auto;}
+
+.book-stage{margin:26px 0 8px;display:flex;justify-content:center;perspective:900px;}
+.book{
+  position:relative;width:130px;height:180px;
+  transform:rotateY(-22deg) rotateX(2deg);
+  transform-style:preserve-3d;
+  animation:bookFloat 3.6s ease-in-out infinite;
+}
+@keyframes bookFloat{0%,100%{transform:rotateY(-22deg) rotateX(2deg) translateY(0);}50%{transform:rotateY(-22deg) rotateX(2deg) translateY(-8px);}}
+.book-cover{
+  position:absolute;inset:0;border-radius:4px 8px 8px 4px;
+  background:linear-gradient(155deg, #E8664A, #C94F36 60%, #8a3323);
+  box-shadow:6px 14px 30px -8px rgba(0,0,0,.6), inset -6px 0 14px rgba(0,0,0,.25);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px;
+}
+.book-cover-eyebrow{font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.75);font-weight:700;}
+.book-cover-title{font-family:'Manrope',sans-serif;font-weight:800;font-size:15px;line-height:1.15;margin-top:8px;}
+.book-cover-sub{font-size:8.5px;color:rgba(255,255,255,.7);margin-top:6px;}
+.book-spine{
+  position:absolute;left:-8px;top:0;bottom:0;width:8px;
+  background:linear-gradient(90deg, #6d2519, #8a3323);
+  transform:rotateY(90deg);transform-origin:right;
+  border-radius:4px 0 0 4px;
+}
+.book-ribbon{
+  position:absolute;top:12px;right:-28px;z-index:3;
+  background:#F2B705;color:#3d2a00;font-size:9px;font-weight:800;
+  padding:5px 32px;transform:rotate(35deg);
+  box-shadow:0 4px 10px -2px rgba(0,0,0,.4);
+}
+
+.receipt-reward-line{font-size:12.5px;color:#fff;font-weight:700;margin-top:18px;}
+.receipt-reward-sub{font-size:11.5px;color:#C7D6CE;margin-top:4px;}
+
+.receipt-cta{
+  display:inline-flex;align-items:center;gap:10px;margin-top:22px;cursor:pointer;
+  background:var(--coral);color:#fff;font-weight:800;font-size:14px;
+  padding:15px 26px;border-radius:100px;
+  box-shadow:0 14px 28px -10px rgba(232,102,74,.6);
+}
+.receipt-note{font-size:10.5px;color:rgba(255,255,255,.45);margin-top:14px;}
+
+.receipt-coupon-slot{
+  margin-top:20px;padding-top:18px;border-top:1px dashed rgba(255,255,255,.18);
+  font-size:11px;color:rgba(255,255,255,.5);
+}
+.camera-input{display:none;}
