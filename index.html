@@ -475,7 +475,22 @@ Descubrir Causa30
     </div>
   </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="app.js"></script>
-</body>
-</html>
+<!-- CÁMARA EN VIVO — captura del comprobante dentro de la misma página -->
+<div class="camera-live-overlay" id="cameraLiveOverlay">
+  <button class="camera-live-close" id="cameraLiveClose">✕</button>
+
+  <div class="camera-live-stage" id="cameraLiveStage">
+    <video id="cameraLiveVideo" autoplay playsinline muted></video>
+    <button class="camera-live-shutter" id="cameraLiveShutter" aria-label="Tomar foto"></button>
+  </div>
+
+  <div class="camera-live-preview" id="cameraLivePreview" style="display:none;">
+    <img id="cameraLivePreviewImg" alt="Vista previa del comprobante">
+    <div class="camera-live-preview-actions">
+      <button class="btn-ghost" id="cameraLiveRetake">Volver a tomar</button>
+      <button class="promo-cta" id="cameraLiveConfirm">Enviar comprobante</button>
+    </div>
+  </div>
+
+  <canvas id="cameraLiveCanvas" style="display:none;"></canvas>
+</div>
