@@ -877,10 +877,35 @@ const receiptThanks = document.getElementById('receiptThanks');
 const RECEIPT_WHATSAPP_NUMBER = '18494891414'; // número real de prueba — cambiar cuando tengan el definitivo
 
 if(cameraCapture){
-  cameraCapture.addEventListener('change', (e) => {
+  cameraCapture.addEventListener('change', async (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
+    const showThanks = () => {
+      if(receiptBefore && receiptThanks){
+        receiptBefore.style.display = 'none';
+        receiptThanks.style.display = 'block';
+      }
+    };
+
+    // Intento 1: compartir la foto directamente (Android / iPhone con Safari 16.4+)
+    const shareMessage = 'Aquí está mi comprobante de compra para Causa30 🐾\n👉 Envíalo al chat de Causa30. Si no tienes el número guardado, es +1 849 489 1414.';
+    const canShareFile = navigator.canShare && navigator.canShare({ files: [file] });
+
+    if (canShareFile) {
+      try {
+        await navigator.share({
+          files: [file],
+          text: shareMessage
+        });
+        showThanks();
+        return;
+      } catch (err) {
+        // El usuario canceló el share, o falló — seguimos con el respaldo abajo
+      }
+    }
+
+    // Respaldo: descarga la foto + abre WhatsApp con el número fijo y el texto
     const url = URL.createObjectURL(file);
     const a = document.createElement('a');
     a.href = url;
@@ -890,16 +915,11 @@ if(cameraCapture){
     document.body.removeChild(a);
     setTimeout(() => URL.revokeObjectURL(url), 3000);
 
-        const message = 'Aquí está mi comprobante de compra para Causa30 🐾\n👉 Un momento, adjunto la foto (ya se descargó a mi galería)';
-       window.location.href = `https://wa.me/${RECEIPT_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-
-    if(receiptBefore && receiptThanks){
-      receiptBefore.style.display = 'none';
-      receiptThanks.style.display = 'block';
-    }
+    const fallbackMessage = 'Aquí está mi comprobante de compra para Causa30 🐾\n👉 Un momento, adjunto la foto (ya se descargó a mi galería)';
+    window.location.href = `https://wa.me/${RECEIPT_WHATSAPP_NUMBER}?text=${encodeURIComponent(fallbackMessage)}`;
+    showThanks();
   });
 }
-
 document.getElementById('backToCarouselBtn').addEventListener('click', () => {
   carousel.scrollIntoView({ behavior: 'smooth', block: 'center' });
 });
