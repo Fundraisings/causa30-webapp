@@ -888,7 +888,7 @@ if(cameraCapture){
 
       const { error: uploadError } = await supabaseClient
         .storage
-        .from('comprobantes')
+        .from('Comprobantes')
         .upload(filePath, file, { contentType: file.type || 'image/jpeg' });
 
       if (uploadError) throw uploadError;
