@@ -1259,3 +1259,16 @@
   color:#8FC4AC;font-size:26px;display:flex;align-items:center;justify-content:center;
   margin:0 auto 16px;
 }
+.camera-pulse-wrap{position:relative;width:110px;height:110px;margin:22px auto 0;display:flex;align-items:center;justify-content:center;}
+.camera-pulse-ring{position:absolute;top:50%;left:50%;width:66px;height:66px;margin:-33px 0 0 -33px;border-radius:50%;border:2px solid var(--coral);opacity:0;}
+.camera-pulse-ring-1{animation:sharePulseSm 2.8s ease-out infinite;}
+.camera-pulse-ring-2{animation:sharePulseSm 2.8s ease-out .95s infinite;}
+.camera-pulse-ring-3{animation:sharePulseSm 2.8s ease-out 1.9s infinite;}
+.camera-pulse-btn{
+  position:relative;z-index:2;width:66px;height:66px;border-radius:50%;
+  background:var(--coral);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 10px 22px -8px rgba(232,102,74,.6);
+  cursor:pointer;
+}
+.camera-pulse-cta{margin-top:12px;font-family:'Manrope',sans-serif;font-weight:800;font-size:12px;color:#fff;text-transform:uppercase;letter-spacing:.04em;}
