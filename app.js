@@ -869,7 +869,7 @@ function remindNext(){
 }
 setInterval(remindNext, 5500);
 setTimeout(() => remindBannerEls[0].classList.add('active'), 150);
-// ============ ENVÍA TU COMPROBANTE — cámara directa + WhatsApp directo ============
+// ============ ENVÍA TU COMPROBANTE — cámara directa + descarga + WhatsApp ============
 const cameraCapture = document.getElementById('cameraCapture');
 const receiptBefore = document.getElementById('receiptBefore');
 const receiptThanks = document.getElementById('receiptThanks');
@@ -882,6 +882,15 @@ if(cameraCapture){
 
     const message = 'Aquí está mi comprobante de compra para Causa30 🐾 (adjunto la foto)';
     window.open(`https://wa.me/${RECEIPT_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+
+    const url = URL.createObjectURL(file);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'comprobante-causa30.jpg';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 3000);
 
     if(receiptBefore && receiptThanks){
       receiptBefore.style.display = 'none';
