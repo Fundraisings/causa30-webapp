@@ -869,26 +869,23 @@ function remindNext(){
 }
 setInterval(remindNext, 5500);
 setTimeout(() => remindBannerEls[0].classList.add('active'), 150);
-// ============ ENVÍA TU COMPROBANTE — cámara directa + compartir a WhatsApp ============
+// ============ ENVÍA TU COMPROBANTE — cámara directa + WhatsApp directo ============
 const cameraCapture = document.getElementById('cameraCapture');
+const receiptBefore = document.getElementById('receiptBefore');
+const receiptThanks = document.getElementById('receiptThanks');
+const RECEIPT_WHATSAPP_NUMBER = '18494891414'; // número real de prueba — cambiar cuando tengan el definitivo
+
 if(cameraCapture){
-  cameraCapture.addEventListener('change', async (e) => {
+  cameraCapture.addEventListener('change', (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
-    if (navigator.canShare && navigator.canShare({ files: [file] })) {
-      try {
-        await navigator.share({
-          files: [file],
-          title: 'Comprobante Causa30',
-          text: 'Aquí está mi comprobante de compra para Causa30 🐾'
-        });
-      } catch (err) {
-        console.log('Se canceló o no se pudo compartir', err);
-      }
-    } else {
-      alert('Tu navegador no soporta compartir directo — se abrirá WhatsApp para que adjuntes la foto manualmente.');
-      window.open('https://wa.me/1XXXXXXXXXX?text=' + encodeURIComponent('Aquí está mi comprobante de compra para Causa30 🐾'), '_blank');
+    const message = 'Aquí está mi comprobante de compra para Causa30 🐾 (adjunto la foto)';
+    window.open(`https://wa.me/${RECEIPT_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+
+    if(receiptBefore && receiptThanks){
+      receiptBefore.style.display = 'none';
+      receiptThanks.style.display = 'block';
     }
   });
 }
