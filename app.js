@@ -869,47 +869,144 @@ function remindNext(){
 }
 setInterval(remindNext, 5500);
 setTimeout(() => remindBannerEls[0].classList.add('active'), 150);
-// ============ ENVÍA TU COMPROBANTE — cámara + descarga + botón real de WhatsApp ============
+// ============ ENVÍA TU COMPROBANTE — cámara en vivo + subida a Supabase ============
 const cameraCapture = document.getElementById('cameraCapture');
 const receiptBefore = document.getElementById('receiptBefore');
 const receiptThanks = document.getElementById('receiptThanks');
+const openCameraBtn = document.getElementById('openCameraBtn');
 
- // número real de prueba — cambiar cuando tengan el definitivo
+const cameraLiveOverlay = document.getElementById('cameraLiveOverlay');
+const cameraLiveStage = document.getElementById('cameraLiveStage');
+const cameraLiveVideo = document.getElementById('cameraLiveVideo');
+const cameraLiveShutter = document.getElementById('cameraLiveShutter');
+const cameraLiveClose = document.getElementById('cameraLiveClose');
+const cameraLivePreview = document.getElementById('cameraLivePreview');
+const cameraLivePreviewImg = document.getElementById('cameraLivePreviewImg');
+const cameraLiveRetake = document.getElementById('cameraLiveRetake');
+const cameraLiveConfirm = document.getElementById('cameraLiveConfirm');
+const cameraLiveCanvas = document.getElementById('cameraLiveCanvas');
 
+let cameraStream = null;
+let capturedBlob = null;
+
+function showReceiptThanks(){
+  if(receiptBefore && receiptThanks){
+    receiptBefore.style.display = 'none';
+    receiptThanks.style.display = 'block';
+  }
+}
+
+async function uploadReceiptFile(file){
+  try {
+    const p = products[active];
+    const c30Code = localStorage.getItem('causa30_code') || null;
+    const filePath = `${Date.now()}-${Math.random().toString(36).slice(2)}.jpg`;
+
+    const { error: uploadError } = await supabaseClient
+      .storage
+      .from('Comprobantes')
+      .upload(filePath, file, { contentType: file.type || 'image/jpeg' });
+
+    if (uploadError) throw uploadError;
+
+    const { error: insertError } = await supabaseClient
+      .from('receipts')
+      .insert({
+        business: p.biz,
+        product: p.name,
+        photo_path: filePath,
+        c30_code: c30Code
+      });
+
+    if (insertError) throw insertError;
+
+    showReceiptThanks();
+    return true;
+  } catch (err) {
+    console.error('Error al procesar comprobante:', err);
+    alert('Hubo un problema al enviar tu comprobante. Intenta de nuevo en un momento.');
+    return false;
+  }
+}
+
+// Respaldo: cámara nativa del teléfono (input file), para navegadores sin getUserMedia
 if(cameraCapture){
   cameraCapture.addEventListener('change', async (e) => {
     const file = e.target.files[0];
     if (!file) return;
+    await uploadReceiptFile(file);
+  });
+}
 
-    try {
-      const p = products[active];
-      const c30Code = localStorage.getItem('causa30_code') || null;
-      const filePath = `${Date.now()}-${Math.random().toString(36).slice(2)}.jpg`;
+async function openCameraLive(){
+  try {
+    cameraStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+    cameraLiveVideo.srcObject = cameraStream;
+    cameraLiveStage.style.display = 'flex';
+    cameraLivePreview.style.display = 'none';
+    cameraLiveOverlay.classList.add('open');
+  } catch (err) {
+    console.error('No se pudo abrir la cámara en vivo, usando respaldo:', err);
+    cameraCapture.click();
+  }
+}
 
-      const { error: uploadError } = await supabaseClient
-        .storage
-        .from('Comprobantes')
-        .upload(filePath, file, { contentType: file.type || 'image/jpeg' });
+function stopCameraStream(){
+  if(cameraStream){
+    cameraStream.getTracks().forEach(track => track.stop());
+    cameraStream = null;
+  }
+}
 
-      if (uploadError) throw uploadError;
+function closeCameraLive(){
+  stopCameraStream();
+  cameraLiveOverlay.classList.remove('open');
+  capturedBlob = null;
+}
 
-      const { error: insertError } = await supabaseClient
-        .from('receipts')
-        .insert({
-          business: p.biz,
-          product: p.name,
-          photo_path: filePath,
-          c30_code: c30Code
-        });
+if(openCameraBtn){
+  openCameraBtn.addEventListener('click', openCameraLive);
+}
 
-      if (insertError) throw insertError;
+if(cameraLiveClose){
+  cameraLiveClose.addEventListener('click', closeCameraLive);
+}
 
-      if(receiptBefore && receiptThanks){
-        receiptBefore.style.display = 'none';
-        receiptThanks.style.display = 'block';
-      }
-    } catch (err) {
-      alert('DIAGNÓSTICO: ' + JSON.stringify(err, null, 2));
+if(cameraLiveShutter){
+  cameraLiveShutter.addEventListener('click', () => {
+    const w = cameraLiveVideo.videoWidth;
+    const h = cameraLiveVideo.videoHeight;
+    cameraLiveCanvas.width = w;
+    cameraLiveCanvas.height = h;
+    cameraLiveCanvas.getContext('2d').drawImage(cameraLiveVideo, 0, 0, w, h);
+
+    cameraLiveCanvas.toBlob((blob) => {
+      capturedBlob = blob;
+      cameraLivePreviewImg.src = URL.createObjectURL(blob);
+      cameraLiveStage.style.display = 'none';
+      cameraLivePreview.style.display = 'flex';
+    }, 'image/jpeg', 0.9);
+  });
+}
+
+if(cameraLiveRetake){
+  cameraLiveRetake.addEventListener('click', () => {
+    capturedBlob = null;
+    cameraLivePreview.style.display = 'none';
+    cameraLiveStage.style.display = 'flex';
+  });
+}
+
+if(cameraLiveConfirm){
+  cameraLiveConfirm.addEventListener('click', async () => {
+    if(!capturedBlob) return;
+    cameraLiveConfirm.disabled = true;
+    cameraLiveConfirm.textContent = 'Enviando...';
+    const ok = await uploadReceiptFile(capturedBlob);
+    cameraLiveConfirm.disabled = false;
+    cameraLiveConfirm.textContent = 'Enviar comprobante';
+    if(ok){
+      closeCameraLive();
     }
   });
 }
