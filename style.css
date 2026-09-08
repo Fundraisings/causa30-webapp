@@ -1308,3 +1308,14 @@
   display:flex; gap:12px; width:100%; max-width:320px;
 }
 .camera-live-preview-actions button{ flex:1; }
+.confetti-burst{
+  position:absolute;inset:0;overflow:hidden;pointer-events:none;
+}
+.confetti-piece{
+  position:absolute;top:-10px;width:8px;height:14px;opacity:0;
+  animation:confettiFall 1.8s ease-in forwards;
+}
+@keyframes confettiFall{
+  0%{opacity:1;transform:translateY(0) rotate(0deg);}
+  100%{opacity:0;transform:translateY(340px) rotate(540deg);}
+}
