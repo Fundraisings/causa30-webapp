@@ -888,7 +888,21 @@ const cameraLiveCanvas = document.getElementById('cameraLiveCanvas');
 
 let cameraStream = null;
 let capturedBlob = null;
-
+function triggerConfetti(){
+  const burst = document.getElementById('confettiBurst');
+  if(!burst) return;
+  burst.innerHTML = '';
+  const colors = ['#E8664A', '#F2B705', '#8FC4AC', '#fff', '#F0A190'];
+  for(let i = 0; i < 40; i++){
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random() * 100 + '%';
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.animationDelay = (Math.random() * 0.4) + 's';
+    piece.style.transform = `rotate(${Math.random() * 360}deg)`;
+    burst.appendChild(piece);
+  }
+}
 function showReceiptThanks(){
   if(receiptBefore && receiptThanks){
     receiptBefore.style.display = 'none';
