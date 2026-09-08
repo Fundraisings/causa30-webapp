@@ -907,6 +907,7 @@ function showReceiptThanks(){
   if(receiptBefore && receiptThanks){
     receiptBefore.style.display = 'none';
     receiptThanks.style.display = 'block';
+    triggerConfetti();
   }
 }
 
