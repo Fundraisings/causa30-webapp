@@ -1229,7 +1229,7 @@
   animation:bookFloat 3.6s ease-in-out infinite;
 }
 .book-tablet{
-  position:relative;width:180px;
+  position:relative;width:220px;
   animation:bookFloat 3.6s ease-in-out infinite;
 }
 .book-tablet-img{
