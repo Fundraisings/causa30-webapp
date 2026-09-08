@@ -1214,6 +1214,20 @@
   transform:rotateY(-22deg) rotateX(2deg);
   transform-style:preserve-3d;
   animation:bookFloat 3.6s ease-in-out infinite;
+} .book-stage{margin:26px 0 8px;display:flex;justify-content:center;perspective:900px;}
+.book{
+  position:relative;width:130px;height:180px;
+  transform:rotateY(-22deg) rotateX(2deg);
+  transform-style:preserve-3d;
+  animation:bookFloat 3.6s ease-in-out infinite;
+}
+.book-tablet{
+  position:relative;width:180px;
+  animation:bookFloat 3.6s ease-in-out infinite;
+}
+.book-tablet-img{
+  width:100%;height:auto;display:block;
+  filter:drop-shadow(6px 14px 30px rgba(0,0,0,.5));
 }
 @keyframes bookFloat{0%,100%{transform:rotateY(-22deg) rotateX(2deg) translateY(0);}50%{transform:rotateY(-22deg) rotateX(2deg) translateY(-8px);}}
 .book-cover{
