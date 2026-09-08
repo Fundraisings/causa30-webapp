@@ -778,7 +778,14 @@
   display:block;margin:12px auto 0;font-size:12px;font-weight:700;
   color:var(--coral-deep);text-align:center;
 }
-
+.ad-invite-link{
+  display:block;margin:12px auto 0;font-size:12px;font-weight:700;
+  color:var(--coral-deep);text-align:center;
+}
+.ad-exclusions-note{
+  display:block;text-align:center;margin-top:8px;
+  font-size:11px;color:var(--grey);text-decoration:underline;
+}
     /* ---------- LEGADO DOMINICANO ---------- */
   .libro-mes{
     background:var(--card);border:1.5px solid var(--line);
