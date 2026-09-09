@@ -673,17 +673,16 @@ setInterval(() => {
     adCaptionTextMain.classList.add('active');
   }, 150);
 }, 4000);
-// ============ COMUNIDAD CAUSA30 ============
+// ============ LIBRO DEL MES — COMUNIDAD CAUSA30 ============
 const communityModal = document.getElementById('communityModal');
-const communityTicker = document.getElementById('communityTicker');
-const commStepRegister = document.getElementById('commStepRegister');
-const commStepCommunity = document.getElementById('commStepCommunity');
-const commRegInput = document.getElementById('commRegInput');
-const commRegSubmit = document.getElementById('commRegSubmit');
 const commCodeValue = document.getElementById('commCodeValue');
 const commShareBtn = document.getElementById('commShareBtn');
 
-const commMode = 'email';
+const libroMesUnregistered = document.getElementById('libroMesUnregistered');
+const libroMesRegistered = document.getElementById('libroMesRegistered');
+const libroMesEmailInput = document.getElementById('libroMesEmailInput');
+const libroMesSubmit = document.getElementById('libroMesSubmit');
+const libroMesShareBtn = document.getElementById('libroMesShareBtn');
 
 // Conexión a Supabase — la clave "publishable" es pública a propósito,
 // está diseñada para vivir en el navegador (la seguridad real está en
@@ -693,24 +692,37 @@ const supabaseClient = window.supabase.createClient(
   'sb_publishable_7A7EWiJ6LAScUSnA0Y8f_g_NuBrID3J'
 );
 
-commRegSubmit.addEventListener('click', async () => {
-  const val = commRegInput.value.trim();
-  if(val.length < 3){ commRegInput.style.borderColor = '#ff5a5a'; return; }
+function showLibroMesState(){
+  const existing = localStorage.getItem('causa30_code');
+  if(existing){
+    libroMesUnregistered.style.display = 'none';
+    libroMesRegistered.style.display = 'block';
+    commCodeValue.textContent = existing;
+  } else {
+    libroMesUnregistered.style.display = 'block';
+    libroMesRegistered.style.display = 'none';
+  }
+}
+showLibroMesState();
 
-  commRegSubmit.disabled = true;
-  commRegSubmit.textContent = 'Un momento...';
+libroMesSubmit.addEventListener('click', async () => {
+  const val = libroMesEmailInput.value.trim();
+  if(val.length < 3){ libroMesEmailInput.style.borderColor = '#ff5a5a'; return; }
+
+  libroMesSubmit.disabled = true;
+  libroMesSubmit.textContent = 'Un momento...';
 
   const { data: code, error } = await supabaseClient.rpc('register_member', {
     p_contact: val,
-    p_contact_type: commMode
+    p_contact_type: 'email'
   });
 
-  commRegSubmit.disabled = false;
-  commRegSubmit.textContent = 'Sí, quiero mi código →';
+  libroMesSubmit.disabled = false;
+  libroMesSubmit.textContent = 'Unirme y recibir mi libro →';
 
   if(error){
     if(error.message && error.message.includes('ALREADY_REGISTERED')){
-      alert('Este correo o teléfono ya forma parte de la Comunidad Causa30.');
+      alert('Este correo ya forma parte de la Comunidad Causa30.');
     } else {
       console.error('Error registrando en Supabase:', error);
       alert('Hubo un problema al generar tu código. Intenta de nuevo en un momento.');
@@ -718,25 +730,32 @@ commRegSubmit.addEventListener('click', async () => {
     return;
   }
 
-  localStorage.setItem('causa30_code', code); // recuerda el código en este dispositivo
+  localStorage.setItem('causa30_code', code);
   commCodeValue.textContent = code;
-  commStepRegister.style.display = 'none';
-  commStepCommunity.style.display = 'block';
+  showLibroMesState();
+  openModal(communityModal);
 });
 
-function openCommunityPanel(){
-  const existing = localStorage.getItem('causa30_code');
-  if(existing){
-    commStepRegister.style.display = 'none';
-    commStepCommunity.style.display = 'block';
-    commCodeValue.textContent = existing;
-  } else {
-    commStepRegister.style.display = 'block';
-    commStepCommunity.style.display = 'none';
+function shareCommunityCode(){
+  const code = commCodeValue.textContent.trim();
+  const shareUrl = window.location.origin + window.location.pathname;
+  const message = `📖 ¡Ya tengo mi código ${code} en Causa30!\nCada mes regalan un libro digital solo por unirte a la comunidad — este mes es "Legado Dominicano" 🇩🇴.\n📲 Únete gratis y recibe el tuyo aquí: ${shareUrl}`;
+  const waUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+
+  if(prefersReducedMotion){
+    window.open(waUrl, '_blank');
+    return;
   }
-  openModal(communityModal);
+  shareAnimProduct.textContent = '📖';
+  shareAnimOverlay.classList.add('active');
+  setTimeout(() => {
+    shareAnimOverlay.classList.remove('active');
+    window.open(waUrl, '_blank');
+  }, 900);
 }
-communityTicker.addEventListener('click', openCommunityPanel);
+
+libroMesShareBtn.addEventListener('click', shareCommunityCode);
+commShareBtn.addEventListener('click', shareCommunityCode);
 
 communityModal.addEventListener('click', (e) => { if(e.target === communityModal) closeModal(communityModal); });
 
