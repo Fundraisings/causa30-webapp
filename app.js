@@ -739,7 +739,7 @@ libroMesSubmit.addEventListener('click', async () => {
 function shareCommunityCode(){
   const code = commCodeValue.textContent.trim();
   const shareUrl = window.location.origin + window.location.pathname;
-  const message = `📖 ¡Ya tengo mi código ${code} en Causa30!\nCada mes regalan un libro digital solo por unirte a la comunidad — este mes es "Legado Dominicano" 🇩🇴.\n📲 Únete gratis y recibe el tuyo aquí: ${shareUrl}`;
+    const message = `🐾 Te invito a conocer Causa30 — cada mes elige algunos productos que seguramente ya compras, y con solo elegir esa marca en tu próxima compra, apoyas una causa social sin gastar nada extra.\n\nCada mes cambia la fundación que apoyamos, y por unirte a la comunidad te llevas de regalo un libro digital.\n\n📲 Échale un vistazo: ${shareUrl}`;
   const waUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
 
   if(prefersReducedMotion){
