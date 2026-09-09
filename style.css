@@ -1390,3 +1390,21 @@
 }
 .libromes-fineprint{font-size:11px;color:rgba(255,255,255,.35);margin-top:10px;font-style:italic;}
 .libromes-footnote{font-size:12px;color:rgba(255,255,255,.45);margin-top:14px;}
+.dog-pulse-wrap{
+  position:relative;width:150px;height:150px;margin:26px auto 0;
+  display:flex;align-items:center;justify-content:center;
+}
+.dog-pulse-ring{
+  position:absolute;top:50%;left:50%;width:104px;height:104px;
+  margin:-52px 0 0 -52px;border-radius:50%;
+  border:2px solid var(--coral);opacity:0;
+}
+.dog-pulse-ring-1{animation:sharePulseSm 2.8s ease-out infinite;}
+.dog-pulse-ring-2{animation:sharePulseSm 2.8s ease-out .95s infinite;}
+.dog-pulse-ring-3{animation:sharePulseSm 2.8s ease-out 1.9s infinite;}
+.dog-pulse-photo{
+  position:relative;z-index:2;width:104px;height:104px;border-radius:50%;
+  overflow:hidden;box-shadow:0 10px 22px -8px rgba(0,0,0,.4);
+  background:var(--verde-deep);
+}
+.dog-pulse-photo img{width:100%;height:100%;object-fit:cover;display:block;}
