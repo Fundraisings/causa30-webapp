@@ -1393,6 +1393,7 @@
 .dog-pulse-wrap{
   position:relative;width:150px;height:150px;margin:26px auto 0;
   display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
 }
 .dog-pulse-ring{
   position:absolute;top:50%;left:50%;width:104px;height:104px;
