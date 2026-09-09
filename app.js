@@ -826,24 +826,6 @@ if(installBanner){
 }
 
 
-// reutiliza tu misma animación de compartir (share-anim-overlay) que ya usas para producto y mascota
-commShareBtn.addEventListener('click', () => {
-  const code = commCodeValue.textContent.trim();
-  const shareUrl = window.location.origin + window.location.pathname;
-  const message = `🎁 ¡Ya tengo mi código ${code} en Causa30!\nEs la app que convierte lo que compras en donaciones directas para fundaciones de animales, sin que a ti te cueste más.\n¿Quieres tu código de la comunidad? Hay sorpresas preparándose para quienes estén dentro.\n📲 Pide el tuyo gratis aquí: ${shareUrl}`;
-  const waUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
-
-  if(prefersReducedMotion){
-    window.open(waUrl, '_blank');
-    return;
-  }
-  shareAnimProduct.textContent = '🪪';
-  shareAnimOverlay.classList.add('active');
-  setTimeout(() => {
-    shareAnimOverlay.classList.remove('active');
-    window.open(waUrl, '_blank');
-  }, 900);
-});
 
 // ============ RECUERDA CÓMO PARTICIPAR ============
 const remindSteps = [
