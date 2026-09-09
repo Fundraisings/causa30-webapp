@@ -1340,3 +1340,53 @@
   0%{opacity:1;transform:translateY(0) rotate(0deg);}
   100%{opacity:0;transform:translateY(340px) rotate(540deg);}
 }
+.libromes-card{
+  background:#0a0a0a;border:1px solid rgba(255,145,66,.25);
+  border-radius:24px;padding:28px 22px;text-align:center;
+}
+.libromes-eyebrow{
+  font-family:'Manrope',sans-serif;font-weight:800;font-size:26px;
+  color:var(--comm-orange);letter-spacing:.01em;
+}
+.libromes-title{
+  font-family:'Inter',sans-serif;font-weight:500;font-size:13px;
+  color:rgba(255,255,255,.5);margin-top:2px;text-transform:none;
+}
+.libromes-tagline{
+  margin:18px auto 0;max-width:280px;background:var(--comm-orange);color:#0a0a0a;
+  font-weight:800;font-size:14.5px;line-height:1.4;padding:14px 18px;border-radius:16px;
+}
+.libromes-body{
+  display:flex;align-items:center;gap:18px;margin-top:22px;text-align:left;
+}
+.libromes-text{flex:1;}
+.libromes-gift-line{font-size:14px;color:#fff;font-weight:700;line-height:1.5;}
+.libromes-book-name{color:var(--comm-orange);font-family:'Manrope',sans-serif;font-weight:800;font-size:15px;}
+.libromes-bullets{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:6px;}
+.libromes-bullets li{font-size:12px;color:rgba(255,255,255,.6);font-style:italic;padding-left:14px;position:relative;}
+.libromes-bullets li::before{content:'•';position:absolute;left:0;color:var(--comm-orange);}
+.libromes-book-tablet{width:110px;flex-shrink:0;}
+.libromes-book-tablet img{
+  width:100%;height:auto;display:block;
+  filter:drop-shadow(4px 10px 20px rgba(0,0,0,.5));
+  animation:bookFloat 3.6s ease-in-out infinite;
+}
+.libromes-cta-line{
+  font-family:'Manrope',sans-serif;font-weight:800;font-size:16px;color:#fff;
+  margin-top:26px;
+}
+.libromes-cta-sub{font-size:12.5px;color:rgba(255,255,255,.5);margin-top:8px;line-height:1.5;max-width:290px;margin-left:auto;margin-right:auto;}
+.libromes-input{
+  display:block;width:100%;max-width:290px;margin:16px auto 0;
+  background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.14);border-radius:14px;
+  padding:13px 16px;color:#fff;font-size:14px;text-align:center;font-family:'Inter',sans-serif;
+}
+.libromes-input::placeholder{color:rgba(255,255,255,.3);}
+.libromes-input:focus{outline:none;border-color:var(--comm-orange);}
+.libromes-submit{
+  display:block;width:100%;max-width:290px;margin:14px auto 0;
+  background:var(--comm-orange);color:#0a0a0a;font-weight:800;font-size:13.5px;
+  padding:14px;border-radius:100px;border:none;font-family:'Manrope',sans-serif;cursor:pointer;
+}
+.libromes-fineprint{font-size:11px;color:rgba(255,255,255,.35);margin-top:10px;font-style:italic;}
+.libromes-footnote{font-size:12px;color:rgba(255,255,255,.45);margin-top:14px;}
